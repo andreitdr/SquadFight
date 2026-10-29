@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Game.Core;
+using Game.Data;
 using Game.Services;
 using Game.ViewModels;
 using TMPro;
@@ -73,6 +74,14 @@ namespace Game.UI
 
         public static string ItemName(UIContext ctx, ItemInfo item) => ctx.T(item.Template.NameKey);
 
+        /// <summary>The template's own icon art, or null (cards then show the rarity-tinted slot icon).</summary>
+        public static Sprite ItemIcon(UIContext ctx, ItemInfo item) => item.Template != null ? ctx.Config.GetEquipmentAsset(item.Template.Id)?.icon : null;
+
+        /// <summary>Round icon art for a hero (falls back to the portrait); null = placeholder.</summary>
+        public static Sprite HeroIcon(HeroDefinition asset) => asset == null ? null : asset.icon != null ? asset.icon : asset.portrait;
+
+        public static Sprite EnemyIcon(EnemyDefinition asset) => asset == null ? null : asset.icon != null ? asset.icon : asset.portrait;
+
         public static string FormatStat(StatType s, float v) =>
             s == StatType.CritChance ? (v * 100).ToString("0.#") + "%" : s == StatType.CritDamage ? "×" + v.ToString("0.00") : Mathf.RoundToInt(v).ToString();
 
@@ -84,8 +93,10 @@ namespace Game.UI
         public static void SetHeroCard(UIContext ctx, HeroCard card, HeroEntry e)
         {
             var asset = ctx.Config.GetHeroAsset(e.Def.Id);
-            card.Set(ctx.T(e.Def.NameKey), e.Def.Rarity, RarityColor(ctx, e.Def.Rarity), asset != null ? asset.tint : Color.white, asset != null ? asset.portrait : null,
+            var art = asset == null ? null : card.Skinned && asset.cardArt != null ? asset.cardArt : asset.portrait;
+            card.Set(ctx.T(e.Def.NameKey), e.Def.Rarity, RarityColor(ctx, e.Def.Rarity), asset != null ? asset.tint : Color.white, art,
                 e.Unlocked, e.Star, e.MaxStar, e.Shards, e.ShardsNeeded, ctx.F("power_value", e.Power), e.Badge);
+            card.SetClass(e.Def.Class);
             card.LockOverlay.GetComponentInChildren<TextMeshProUGUI>().text = e.ShardsNeeded > 0 && e.Shards >= e.ShardsNeeded ? ctx.T("unlock_ready") : ctx.T("locked");
         }
 
@@ -93,10 +104,11 @@ namespace Game.UI
         public static Image Portrait(UIContext ctx, Transform parent, string heroId, float size)
         {
             var asset = heroId != null ? ctx.Config.GetHeroAsset(heroId) : null;
-            var img = UIKit.Image(parent, "Portrait", asset != null ? asset.tint : ctx.Theme.panelAlt, asset != null && asset.portrait != null ? asset.portrait : ctx.Theme.circle);
+            var art = HeroIcon(asset);
+            var img = UIKit.Image(parent, "Portrait", art != null ? Color.white : asset != null ? asset.tint : ctx.Theme.panelAlt, art != null ? art : ctx.Theme.circle);
             img.Size(size, size);
             var name = heroId != null ? HeroName(ctx, heroId) : "";
-            var t = UIKit.Text(img.transform, "Initial", name.Length > 0 ? name.Substring(0, 1) : "+", size * 0.5f, new Color(0, 0, 0, 0.55f), TextAlignmentOptions.Center, bold: true);
+            var t = UIKit.Text(img.transform, "Initial", art != null ? "" : name.Length > 0 ? name.Substring(0, 1) : "+", size * 0.5f, new Color(0, 0, 0, 0.55f), TextAlignmentOptions.Center, bold: true);
             t.rectTransform.Stretch();
             return img;
         }

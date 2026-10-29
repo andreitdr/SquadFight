@@ -34,4 +34,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 36870be2eab76400cab5d866874b7aa6, type: 2}
   postBeats:
   - {fileID: 11400000, guid: e6374db8b8c844c14bc8f495c0351d34, type: 2}
+  - {fileID: 11400000, guid: 9723e6bf974bf45bc903166a3d69df22, type: 2}
   unlockConditions: []

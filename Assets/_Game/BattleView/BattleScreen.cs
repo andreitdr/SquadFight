@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Core;
+using Game.Data;
 using Game.Services;
 using Game.UI;
 using TMPro;
@@ -41,6 +42,8 @@ namespace Game.BattleView
         private readonly Dictionary<int, UnitView> _units = new Dictionary<int, UnitView>();
         private readonly List<SkillButton> _skillButtons = new List<SkillButton>();
         private UnitView _acting;
+        private SpeechBubble _bubble;
+        private float _nextBubbleAt;
         private float _speed = 1f;
         private bool _paused, _skip, _left;
         public bool Finished { get; private set; }
@@ -65,9 +68,24 @@ namespace Game.BattleView
             _speed = SpeedOverride ?? Ctx.Session.Settings.BattleSpeed;
             var bg = UIKit.Image(Root, "Background", Color.Lerp(Th.background, Th.secondary, 0.15f), Th.pixel);
             bg.rectTransform.Stretch();
+            var chapter = Ctx.Config.GetChapterAsset(_args.Battle.Fight?.ChapterId);
+            var scene = chapter != null && chapter.background != null ? chapter.background : Th.battleBackground;
+            if (scene != null)
+            {
+                var art = UIKit.Image(Root, "Scene", Color.white, scene);
+                art.rectTransform.Stretch();
+                art.preserveAspect = false;
+                var fit = art.gameObject.AddComponent<AspectRatioFitter>();
+                fit.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+                fit.aspectRatio = scene.rect.width / scene.rect.height;
+                // darken behind the HUD and the skill bar so they stay readable
+                UIKit.Image(Root, "TopShade", new Color(0, 0, 0, 0.45f)).rectTransform.TopBand(250);
+                UIKit.Image(Root, "BottomShade", new Color(0, 0, 0, 0.45f)).rectTransform.BottomBand(340);
+            }
 
             _stage = UIKit.Rect("Stage", Root).Stretch(0, 260, 0, 330);
             _fx = BattleFx.Create(_stage, Th);
+            _bubble = SpeechBubble.Create(_stage, 520);
 
             BuildHud();
             foreach (var p in _sim.Players) SpawnUnit(p);
@@ -98,12 +116,14 @@ namespace Game.BattleView
             string name;
             Sprite sprite;
             Color tint;
+            SpriteAnimSet anim;
             if (c.Team == Team.Player)
             {
                 var a = Ctx.Config.GetHeroAsset(c.DefId);
                 name = ScreenKit.HeroName(Ctx, c.DefId);
                 sprite = a != null && a.portrait != null ? a.portrait : Th.circle;
-                tint = a != null ? a.tint : Color.white;
+                tint = a != null && a.portrait == null ? a.tint : Color.white;
+                anim = a != null ? a.animations : null;
             }
             else
             {
@@ -111,11 +131,15 @@ namespace Game.BattleView
                 name = ScreenKit.EnemyName(Ctx, c.DefId);
                 sprite = a != null && a.sprite != null ? a.sprite : Th.diamond;
                 tint = a != null ? a.tint : Color.gray;
+                anim = a != null ? a.animations : null;
             }
             var size = c.IsBoss ? 300f : 190f;
             var anchor = c.IsBoss && c.Team == Team.Enemy ? new Vector2(0.5f, 0.8f) : SlotAnchor(c.Team, Mathf.Max(0, c.Team == Team.Player ? c.Slot : slot), Math.Max(1, count));
-            _units[c.Index] = UnitView.Create(_stage, c, name, sprite, tint, anchor, size, Th);
+            var view = UnitView.Create(_stage, c, name, sprite, tint, anchor, size, Th, anim);
+            view.SetAnimSpeed(_speed);
+            _units[c.Index] = view;
             _fx.transform.SetAsLastSibling();
+            _bubble.transform.SetAsLastSibling();
         }
 
         private void BuildHud()
@@ -236,6 +260,20 @@ namespace Game.BattleView
                 img.color = c.Team == Team.Player ? Th.positive : Th.negative;
                 var name = c.Team == Team.Player ? ScreenKit.HeroName(Ctx, c.DefId) : ScreenKit.EnemyName(Ctx, c.DefId);
                 letter.text = name.Length > 0 ? name.Substring(0, 1) : "?";
+                var art = c.Team == Team.Player ? ScreenKit.HeroIcon(Ctx.Config.GetHeroAsset(c.DefId)) : ScreenKit.EnemyIcon(Ctx.Config.GetEnemyAsset(c.DefId));
+                var iconT = img.transform.Find("Icon");
+                var icon = iconT != null ? iconT.GetComponent<Image>() : null;
+                if (icon == null && art != null)
+                {
+                    icon = UIKit.Image(img.transform, "Icon", Color.white, art);
+                    icon.rectTransform.Stretch(5, 5, 5, 5);
+                }
+                if (icon != null)
+                {
+                    icon.sprite = art;
+                    icon.enabled = art != null;
+                }
+                if (art != null) letter.text = "";
             }
         }
 
@@ -261,6 +299,7 @@ namespace Game.BattleView
         {
             _speed = _speed >= 3f ? 1f : _speed + 1f;
             Ctx.Session.Settings.BattleSpeed = _speed;
+            foreach (var u in _units.Values) u.SetAnimSpeed(_speed);
             RefreshHud();
         }
 
@@ -340,6 +379,10 @@ namespace Game.BattleView
                     var boss = _sim.Enemies.Any(x => x.IsBoss);
                     ShowBanner(boss ? Ctx.T("boss_banner") : Ctx.F("wave_n", e.Wave + 1), boss ? Th.negative : Th.text);
                     if (boss) Ctx.PlaySfx("boss");
+                    var bossUnit = _sim.Enemies.FirstOrDefault(x => x.IsBoss);
+                    if (bossUnit != null) Bark(bossUnit.Index, HeroLines.BattleStart, 1f, force: true);
+                    else if (e.Wave == 0) Bark(RandomAlive(Team.Player), HeroLines.BattleStart, 1f, force: true);
+                    else Bark(RandomAlive(Team.Enemy), HeroLines.BattleStart, 0.35f);
                     return boss ? 1.1f : 0.7f;
                 case BattleEventType.RoundStarted:
                     RefreshHud();
@@ -353,10 +396,12 @@ namespace Game.BattleView
                     if (!_units.TryGetValue(e.Actor, out var actor)) return 0f;
                     var c = _sim.Get(e.Actor);
                     var isActive = c.Active != null && e.SkillId == c.Active.Id;
+                    actor.PlayAction(isActive);
                     if (isActive)
                     {
                         _fx.FloatText(actor.LocalPos + new Vector2(0, 150), Ctx.T(c.Active.NameKey), Th.primary, 40, D(0.9f));
                         Ctx.PlaySfx("skill");
+                        Bark(e.Actor, HeroLines.Skill, c.IsBoss ? 0.8f : 0.5f);
                     }
                     var first = e.Targets != null && e.Targets.Length > 0 && _units.TryGetValue(e.Targets[0], out var t0) ? t0 : null;
                     var ranged = c.Team == Team.Player ? IsRanged(c.DefId) : c.Basic != null && c.DefId.Contains("shaman") || c.DefId.Contains("archer") || c.DefId.Contains("cultist") || c.DefId.Contains("priest") || c.DefId.Contains("lich");
@@ -379,6 +424,8 @@ namespace Game.BattleView
                     var shieldAfter = target.Shield - e.Absorbed;
                     target.SetHp(e.HpAfter, Math.Max(0, shieldAfter));
                     target.Flash(D(0.2f));
+                    if (e.HpAfter > 0) target.PlayHit();
+                    if (target.Team == Team.Player && target.CrossedLowHp()) Bark(e.Target, HeroLines.LowHp, 0.7f);
                     _fx.Spark(target.LocalPos, e.Crit ? Th.warning : Color.white, e.Crit ? 260 : 180, D(0.25f));
                     _fx.FloatText(target.LocalPos + new Vector2(UnityEngine.Random.Range(-30f, 30f), 80), (e.Crit ? Ctx.T("crit") + " " : "") + e.Amount, e.Crit ? Th.warning : Th.negative, e.Crit ? 64 : 48, D(0.8f));
                     if (e.Crit && Ctx.Session.Settings.ScreenShake && !Tween.ReduceMotion) target.Shake(D(0.25f), 18);
@@ -405,7 +452,7 @@ namespace Game.BattleView
                     if (_units.TryGetValue(e.Target, out var st))
                     {
                         var buff = e.StatusId != "stun" && e.Value > 0;
-                        st.AddStatus(e.StatusId, buff, Th);
+                        st.AddStatus(e.StatusId, buff, Th, Th.StatusIcon(e.StatusId, e.Stat, buff));
                         var label = e.StatusId == "stun" ? Ctx.T("stunned") : $"{ScreenKit.StatName(Ctx, e.Stat)} {(e.Value > 0 ? "+" : "")}{e.Value * 100:0}%";
                         _fx.FloatText(st.LocalPos + new Vector2(0, 130), label, buff ? Th.positive : e.StatusId == "stun" ? Th.warning : Th.negative, 32, D(0.8f));
                     }
@@ -422,6 +469,10 @@ namespace Game.BattleView
                         dead.SetHp(0, 0);
                         dead.Die(D(0.35f));
                         Ctx.PlaySfx("death");
+                        var deadBoss = _sim.Get(e.Target) != null && _sim.Get(e.Target).IsBoss;
+                        if (dead.Team == Team.Player) Bark(RandomAlive(Team.Player), HeroLines.AllyDown, 0.6f);
+                        else if (deadBoss) Bark(e.Target, HeroLines.Defeat, 1f, force: true);
+                        else if (_units.TryGetValue(e.Actor, out var killer) && killer.Team == Team.Player) Bark(e.Actor, HeroLines.Kill, 0.3f);
                     }
                     return 0.35f;
                 case BattleEventType.WaveCleared:
@@ -429,12 +480,39 @@ namespace Game.BattleView
                 case BattleEventType.BattleEnded:
                     if (_acting != null) _acting.SetActing(false, D(0.1f));
                     var win = e.Outcome == BattleOutcome.Victory;
+                    if (win) foreach (var u in _units.Values) if (u.Team == Team.Player) u.PlayVictory();
+                    Bark(win ? RandomAlive(Team.Player) : _sim.Players.Count > 0 ? _sim.Players[UnityEngine.Random.Range(0, _sim.Players.Count)].Index : -1,
+                        win ? HeroLines.Victory : HeroLines.Defeat, 1f, force: true);
                     ShowBanner(Ctx.T(win ? "victory" : e.Outcome == BattleOutcome.Timeout ? "timeout" : "defeat"), win ? Th.primary : Th.negative);
                     Ctx.PlaySfx(win ? "victory" : "defeat");
                     return 1.2f;
                 default:
                     return 0f;
             }
+        }
+
+        // ---------------- dialogue barks (presentation only; never touches the simulation)
+
+        private int RandomAlive(Team team)
+        {
+            var alive = _units.Values.Where(u => u.Team == team && !u.Dead && _sim.Get(u.Index) != null && _sim.Get(u.Index).Alive).ToList();
+            return alive.Count == 0 ? -1 : alive[UnityEngine.Random.Range(0, alive.Count)].Index;
+        }
+
+        /// <summary>Speech bubble over a unit with the given chance; rate-limited so lines never pile up.</summary>
+        private void Bark(int index, string trigger, float chance, bool force = false)
+        {
+            if (index < 0 || _bubble == null || _skip || _speed > 3.5f || !_units.TryGetValue(index, out var unit)) return;
+            if (!force && (Time.unscaledTime < _nextBubbleAt || UnityEngine.Random.value > chance)) return;
+            var c = _sim.Get(index);
+            var line = c != null ? HeroLines.Pick(Ctx, c.DefId, trigger) : null;
+            if (line == null) return;
+            var hold = D(1.8f);
+            var half = _stage.rect.width * 0.5f - 270f;
+            var tip = unit.LocalPos + new Vector2(0, unit.Size * 0.62f);
+            tip.x = Mathf.Clamp(tip.x, -half, half);
+            _bubble.Show(line, tip, hold, 28, 520);
+            _nextBubbleAt = Time.unscaledTime + hold + D(0.6f);
         }
 
         private bool IsRanged(string heroId) =>

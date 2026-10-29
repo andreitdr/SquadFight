@@ -19,6 +19,12 @@ namespace Game.Data
         [Tooltip("Tint applied to the (placeholder) portrait.")]
         public Color tint = Color.white;
         public Sprite shardIcon;
+        [Header("Art (Tools/Game/Art/Apply Generated Art fills empty slots)")]
+        [Tooltip("Round head-and-shoulders icon (party slots, turn order, dialogue).")]
+        public Sprite icon;
+        [Tooltip("Tall 3:4 bust shown inside hero cards.")]
+        public Sprite cardArt;
+        public SpriteAnimSet animations;
 
         public HeroDef ToCore() => new HeroDef
         {

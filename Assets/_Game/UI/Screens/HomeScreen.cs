@@ -21,7 +21,13 @@ namespace Game.UI
             var col = UIKit.Rect("Column", Root).Stretch(Th.padding, Th.padding, Th.padding, Th.padding);
             UIKit.VStack(col.gameObject, Th.spacing, 0, TextAnchor.UpperCenter);
 
-            UIKit.Text(col, "Title", "SquadFight", Th.fontHuge, Th.primary, TextAlignmentOptions.Center, bold: true).Size(preferredHeight: 170);
+            if (Th.logo != null)
+            {
+                var logo = UIKit.Image(col, "Logo", Color.white, Th.logo);
+                logo.Size(preferredHeight: 380);
+                Tween.Scale(logo.transform, 0.85f, 1f, 0.5f, Ease.OutBack);
+            }
+            else UIKit.Text(col, "Title", "SquadFight", Th.fontHuge, Th.primary, TextAlignmentOptions.Center, bold: true).Size(preferredHeight: 170);
 
             var card = UIKit.Panel(col, "ChapterCard", Th.panel);
             UIKit.VStack(card.gameObject, 16, Th.padding);

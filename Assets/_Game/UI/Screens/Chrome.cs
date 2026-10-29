@@ -72,6 +72,16 @@ namespace Game.UI
                 var id = Ids[i];
                 var b = UIKit.Button(bg.transform, "Tab_" + id, ctx.T(labels[i]), () => Navigation.GoTab(ctx, id), UIKit.ButtonStyle.Ghost, 34);
                 bar._buttons[i] = b;
+                var tabIcon = ctx.Theme.TabIcon(id);
+                if (tabIcon != null)
+                {
+                    var label = b.GetComponentInChildren<TextMeshProUGUI>();
+                    label.rectTransform.Stretch(6, 0, 6, 6);
+                    label.alignment = TextAlignmentOptions.Bottom;
+                    label.fontSizeMax = 28;
+                    var img = UIKit.Image(b.transform, "Icon", Color.white, tabIcon);
+                    img.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(84, 84), new Vector2(0, -10), new Vector2(0.5f, 1));
+                }
                 TutorialAnchor.Mark(b, "tab_" + id);
                 if (id == "heroes") bar._heroesDot = RedDot.Attach(b.transform);
                 if (id == "inventory") bar._bagDot = RedDot.Attach(b.transform);

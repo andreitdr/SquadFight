@@ -1,0 +1,3 @@
+pillow>=10
+numpy>=1.24
+resvg_py>=0.1

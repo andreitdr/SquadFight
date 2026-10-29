@@ -53,6 +53,24 @@ namespace Game.UI
         public Sprite softDot;
         public Sprite iconWeapon, iconHelmet, iconChest, iconGloves, iconBoots, iconRing;
 
+        [Header("Skin (generated art; empty = fall back to the shapes above)")]
+        [Tooltip("Grayscale 9-slices: the theme colors still tint them.")]
+        public Sprite panelSprite;
+        public Sprite buttonSprite, barBackground, barFill, bubble, bubbleTail, glow, vignette, ribbon;
+        [Tooltip("Full-color sprites: drawn untinted.")]
+        public Sprite starFull;
+        public Sprite starEmpty, redDotSprite, logo, appBackground, battleBackground;
+        public Sprite iconGold, iconShard, iconPower, iconLock, iconPause, iconSpeed, iconAuto, iconSkip, iconParty, iconBoss, iconStory;
+        public Sprite tabHome, tabCampaign, tabHeroes, tabInventory, tabSettings;
+        [Tooltip("Index = Rarity (Common..Legendary).")]
+        public Sprite[] rarityGems = new Sprite[0];
+        public Sprite[] cardFrames = new Sprite[0];
+        public Sprite[] cardBacks = new Sprite[0];
+        [Tooltip("Index = HeroClass.")]
+        public Sprite[] classIcons = new Sprite[0];
+        public Sprite statusStun, statusShield, statusHeal;
+        public Sprite statusAttackUp, statusAttackDown, statusDefenseUp, statusDefenseDown, statusSpeedUp, statusSpeedDown, statusCritUp, statusCritDown;
+
         [Header("Motion")]
         public float screenTransition = 0.22f;
         public float popupTransition = 0.18f;
@@ -72,9 +90,38 @@ namespace Game.UI
             }
         }
 
+        private static Sprite At(Sprite[] list, int i) => list != null && i >= 0 && i < list.Length ? list[i] : null;
+
+        /// <summary>Full-color rarity gem (keeps the colorblind shapes), or null when not skinned.</summary>
+        public Sprite RarityGem(Rarity r) => At(rarityGems, (int)r);
+        public Sprite CardFrame(Rarity r) => At(cardFrames, (int)r);
+        public Sprite CardBack(Rarity r) => At(cardBacks, (int)r);
+        public Sprite ClassIcon(HeroClass c) => At(classIcons, (int)c);
+        public Sprite Panel => panelSprite != null ? panelSprite : rounded;
+        public Sprite ButtonBody => buttonSprite != null ? buttonSprite : rounded;
+        public Sprite TabIcon(string tab) =>
+            tab == "home" ? tabHome : tab == "campaign" ? tabCampaign : tab == "heroes" ? tabHeroes : tab == "inventory" ? tabInventory : tab == "settings" ? tabSettings : null;
+
+        /// <summary>Status badge for a battle status (stun, or a stat buff/debuff); null when not skinned.</summary>
+        public Sprite StatusIcon(string statusId, StatType stat, bool buff)
+        {
+            if (statusId == "stun") return statusStun;
+            switch (stat)
+            {
+                case StatType.Attack: return buff ? statusAttackUp : statusAttackDown;
+                case StatType.Defense: return buff ? statusDefenseUp : statusDefenseDown;
+                case StatType.Speed: return buff ? statusSpeedUp : statusSpeedDown;
+                case StatType.CritChance:
+                case StatType.CritDamage: return buff ? statusCritUp : statusCritDown;
+                default: return buff ? statusHeal : statusShield;
+            }
+        }
+
         /// <summary>Shape per rarity so rarity is readable without color (colorblind support).</summary>
         public Sprite RarityShape(Rarity r)
         {
+            var gem = RarityGem(r);
+            if (gem != null) return gem;
             switch (r)
             {
                 case Rarity.Common: return circle;

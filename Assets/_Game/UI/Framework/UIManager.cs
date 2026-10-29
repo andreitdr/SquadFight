@@ -84,6 +84,17 @@ namespace Game.UI
             // Full-bleed background behind the safe area.
             var bgCanvas = Canvas("BackgroundCanvas", -10, false);
             UIKit.Image(bgCanvas, "Background", _ctx.Theme.background).rectTransform.Stretch();
+            if (_ctx.Theme.appBackground != null)
+            {
+                // Scene art behind every menu, dimmed by the theme background so text stays readable.
+                var art = UIKit.Image(bgCanvas, "BackgroundArt", Color.white, _ctx.Theme.appBackground);
+                art.rectTransform.Stretch();
+                art.preserveAspect = false;
+                art.gameObject.AddComponent<AspectRatioFitter>().aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+                art.GetComponent<AspectRatioFitter>().aspectRatio = _ctx.Theme.appBackground.rect.width / _ctx.Theme.appBackground.rect.height;
+                UIKit.Image(bgCanvas, "BackgroundDim", _ctx.Theme.background.WithAlpha(0.6f)).rectTransform.Stretch();
+                if (_ctx.Theme.vignette != null) UIKit.Image(bgCanvas, "Vignette", Color.white, _ctx.Theme.vignette).rectTransform.Stretch();
+            }
 
             var screens = Canvas("ScreensCanvas", 0, true);
             _screenHost = UIKit.Rect("Screens", screens).Stretch();

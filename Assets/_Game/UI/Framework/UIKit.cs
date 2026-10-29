@@ -72,7 +72,7 @@ namespace Game.UI
         }
 
         public static Image Panel(Transform parent, string name, Color? color = null, bool raycast = false) =>
-            Image(parent, name, color ?? Theme.panel, Theme.rounded, raycast);
+            Image(parent, name, color ?? Theme.panel, Theme.Panel, raycast);
 
         public static TextMeshProUGUI Text(Transform parent, string name, string text, float size = 0, Color? color = null, TextAlignmentOptions align = TextAlignmentOptions.Left, bool bold = false)
         {
@@ -93,7 +93,7 @@ namespace Game.UI
 
         public static Button Button(Transform parent, string name, string label, Action onClick, ButtonStyle style = ButtonStyle.Primary, float fontSize = 0)
         {
-            var bg = Image(parent, name, ButtonColor(style), Theme.rounded, raycast: true);
+            var bg = Image(parent, name, ButtonColor(style), Theme.ButtonBody, raycast: true);
             var button = bg.gameObject.AddComponent<Button>();
             button.targetGraphic = bg;
             var colors = button.colors;

@@ -15,6 +15,7 @@ namespace Game.UI
         private CampaignViewModel _vm;
         private TextMeshProUGUI _chapterTitle, _chapterInfo;
         private RectTransform _list;
+        private Image _banner;
         private Button _prev, _next;
 
         public override string TabId => "campaign";
@@ -25,12 +26,20 @@ namespace Game.UI
             _vm.Changed += _ => Refresh();
             var body = ScreenKit.Header(Ctx, Root, Ctx.T("tab_campaign"));
             var top = UIKit.Rect("ChapterBar", body).TopBand(170);
+            top.gameObject.AddComponent<RectMask2D>();
+            _banner = UIKit.Image(top, "Banner", Color.white);
+            _banner.rectTransform.Anchor(new Vector2(0.5f, 0.5f), new Vector2(1080, 422));
+            UIKit.Image(top, "Shade", new Color(0.04f, 0.03f, 0.08f, 0.72f)).rectTransform.Stretch();
             _prev = UIKit.Button(top, "Prev", "<", () => _vm.SelectChapter(_vm.SelectedChapter - 1), UIKit.ButtonStyle.Ghost, Th.fontTitle);
             ((RectTransform)_prev.transform).Anchor(new Vector2(0, 0.5f), new Vector2(130, 130), new Vector2(Th.padding, 0), new Vector2(0, 0.5f));
             _next = UIKit.Button(top, "Next", ">", () => _vm.SelectChapter(_vm.SelectedChapter + 1), UIKit.ButtonStyle.Ghost, Th.fontTitle);
             ((RectTransform)_next.transform).Anchor(new Vector2(1, 0.5f), new Vector2(130, 130), new Vector2(-Th.padding, 0), new Vector2(1, 0.5f));
             _chapterTitle = UIKit.Text(top, "Title", "", Th.fontLarge, Th.text, TextAlignmentOptions.Center, bold: true);
             _chapterTitle.rectTransform.Stretch(190, 10, 190, 80);
+            _chapterTitle.textWrappingMode = TextWrappingModes.NoWrap;
+            _chapterTitle.enableAutoSizing = true;
+            _chapterTitle.fontSizeMin = 28;
+            _chapterTitle.fontSizeMax = Th.fontLarge;
             _chapterInfo = UIKit.Text(top, "Info", "", Th.fontBody, Th.warning, TextAlignmentOptions.Center);
             _chapterInfo.rectTransform.Stretch(190, 95, 190, 5);
             var scroll = UIKit.ScrollView(body, "Fights", out _list, Th.spacing, Th.padding);
@@ -48,6 +57,10 @@ namespace Game.UI
             var chapters = _vm.Chapters;
             var ch = chapters[_vm.SelectedChapter];
             _chapterTitle.text = Ctx.F("chapter_title", _vm.SelectedChapter + 1, Ctx.T(ch.Def.NameKey));
+            var chAsset = Ctx.Config.GetChapterAsset(ch.Def.Id);
+            _banner.sprite = chAsset != null ? chAsset.banner : null;
+            _banner.enabled = _banner.sprite != null;
+            _banner.color = ch.Unlocked ? Color.white : new Color(0.35f, 0.35f, 0.4f);
             _chapterInfo.text = ch.Unlocked ? Ctx.F("chapter_progress", ch.Cleared, ch.Def.FightIds.Count, ch.Stars, ch.MaxStars) : Ctx.T("chapter_locked");
             _prev.interactable = _vm.SelectedChapter > 0;
             _next.interactable = _vm.SelectedChapter < chapters.Count - 1;
@@ -138,7 +151,8 @@ namespace Game.UI
                     var asset = Ctx.Config.GetEnemyAsset(e.Def.Id);
                     var cell = UIKit.Panel(row, "Enemy", Th.panel);
                     cell.Size(180, 190);
-                    var icon = UIKit.Image(cell.transform, "Icon", asset != null ? asset.tint : Color.gray, asset != null && asset.sprite != null ? asset.sprite : Th.diamond);
+                    var art = ScreenKit.EnemyIcon(asset);
+                    var icon = UIKit.Image(cell.transform, "Icon", art != null ? Color.white : asset != null ? asset.tint : Color.gray, art != null ? art : asset != null && asset.sprite != null ? asset.sprite : Th.diamond);
                     icon.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(e.Def.IsBoss ? 120 : 100, e.Def.IsBoss ? 120 : 100), new Vector2(0, -12), new Vector2(0.5f, 1));
                     var n = UIKit.Text(cell.transform, "Name", ScreenKit.EnemyName(Ctx, e.Def.Id), 26, e.Def.IsBoss ? Th.negative : Th.text, TextAlignmentOptions.Center, bold: e.Def.IsBoss);
                     n.rectTransform.Stretch(4, 128, 4, 30);
@@ -238,10 +252,12 @@ namespace Game.UI
             _speaker.text = Ctx.T(b.SpeakerKey);
             _text.text = Ctx.T(b.TextKey);
             var asset = Ctx.Config.GetStoryBeatAsset(b.Id);
-            _portrait.sprite = asset != null && asset.portrait != null ? asset.portrait : Th.circle;
             var hero = Ctx.Config.HeroAssets.FirstOrDefault(h => h.nameKey == b.SpeakerKey);
             var enemy = Ctx.Config.EnemyAssets.FirstOrDefault(e => e.nameKey == b.SpeakerKey);
-            _portrait.color = hero != null ? hero.tint : enemy != null ? enemy.tint : Th.textDim;
+            // Beat-specific portrait first, then the speaker's own icon art, then the tinted placeholder.
+            var art = asset != null && asset.portrait != null ? asset.portrait : hero != null ? ScreenKit.HeroIcon(hero) : ScreenKit.EnemyIcon(enemy);
+            _portrait.sprite = art != null ? art : Th.circle;
+            _portrait.color = art != null ? Color.white : hero != null ? hero.tint : enemy != null ? enemy.tint : Th.textDim;
         }
 
         private void Advance()

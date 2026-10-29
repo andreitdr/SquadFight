@@ -100,10 +100,22 @@ namespace Game.UI
             top.Size(preferredHeight: 300);
             var frame = UIKit.Image(top, "Frame", rarityColor, Th.circle);
             frame.Size(290, 290);
-            var portrait = UIKit.Image(frame.transform, "Portrait", _vm.Unlocked ? asset.tint : Color.Lerp(asset.tint, Color.black, 0.6f), asset.portrait != null ? asset.portrait : Th.circle);
+            var art = ScreenKit.HeroIcon(asset);
+            var baseColor = art != null ? Color.white : asset.tint;
+            var portrait = UIKit.Image(frame.transform, "Portrait", _vm.Unlocked ? baseColor : Color.Lerp(baseColor, Color.black, 0.6f), art != null ? art : Th.circle);
             portrait.rectTransform.Stretch(12, 12, 12, 12);
-            var initial = UIKit.Text(portrait.transform, "Initial", Ctx.T(def.NameKey).Substring(0, 1), 150, new Color(0, 0, 0, 0.5f), TextAlignmentOptions.Center, bold: true);
+            var initial = UIKit.Text(portrait.transform, "Initial", art != null ? "" : Ctx.T(def.NameKey).Substring(0, 1), 150, new Color(0, 0, 0, 0.5f), TextAlignmentOptions.Center, bold: true);
             initial.rectTransform.Stretch();
+            if (_vm.Unlocked)
+            {
+                // Tap the portrait for a line of dialogue.
+                var talk = frame.gameObject.AddComponent<Button>();
+                talk.targetGraphic = frame;
+                frame.raycastTarget = true;
+                frame.gameObject.AddComponent<ButtonFeedback>();
+                var heroId = def.Id;
+                talk.onClick.AddListener(() => Say(heroId, HeroLines.Select));
+            }
             var info = UIKit.Rect("Info", top);
             UIKit.VStack(info.gameObject, 8, 0, TextAnchor.MiddleLeft);
             info.Size(preferredWidth: 620);
@@ -153,7 +165,7 @@ namespace Game.UI
                     if (slot.Item.HasValue)
                     {
                         var it = slot.Item.Value;
-                        card.Set(slot.Slot, it.Rarity, ScreenKit.RarityColor(Ctx, it.Rarity), ScreenKit.ItemName(Ctx, it), "", slot.Badge);
+                        card.Set(slot.Slot, it.Rarity, ScreenKit.RarityColor(Ctx, it.Rarity), ScreenKit.ItemName(Ctx, it), "", slot.Badge, ScreenKit.ItemIcon(Ctx, it));
                     }
                     else
                     {
@@ -206,10 +218,22 @@ namespace Game.UI
                     Ctx.Haptics.Play(HapticKind.Success);
                     Ctx.PlaySfx("starup");
                     Ctx.Manager.Toast(Ctx.F("star_reached", _vm.Star));
+                    Say(_vm.HeroId, HeroLines.StarUp);
                 }
             });
             star.interactable = s.CanUpgrade;
             TutorialAnchor.Mark(star, "hero_starup");
+        }
+
+        private SpeechBubble _bubble;
+
+        private void Say(string heroId, string trigger)
+        {
+            var line = HeroLines.Pick(Ctx, heroId, trigger);
+            if (line == null) return;
+            if (_bubble == null) _bubble = SpeechBubble.Create(Root);
+            var tip = new Vector2(-Root.rect.width * 0.5f + 330, Root.rect.height * 0.5f - 300);
+            _bubble.Show(line, tip, 2.8f, 34, 640);
         }
 
         private void Section(string key) => UIKit.Text(_content, "Section", Ctx.T(key), Th.fontLarge, Th.primary, TextAlignmentOptions.Left, bold: true).Size(preferredHeight: 70);
@@ -284,7 +308,7 @@ namespace Game.UI
             UIKit.HStack(panel.gameObject, Th.spacing, 20, TextAnchor.MiddleLeft, expandWidth: false);
             panel.Size(preferredHeight: 240);
             var card = ItemCard.Create(panel.transform, 190);
-            card.Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), ScreenKit.RarityName(Ctx, item.Rarity), "", false);
+            card.Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), ScreenKit.RarityName(Ctx, item.Rarity), "", false, ScreenKit.ItemIcon(Ctx, item));
             var texts = UIKit.Rect("Texts", panel.transform);
             UIKit.VStack(texts.gameObject, 4, 0, TextAnchor.MiddleLeft);
             texts.Size(preferredWidth: isCurrent ? 740 : 500);
@@ -337,6 +361,8 @@ namespace Game.UI
             Tween.Scale(p.transform, 0.3f, 1f, 0.45f, Ease.OutBack);
             UIKit.Text(Panel, "Name", Ctx.T(def.NameKey), Th.fontLarge, ScreenKit.RarityColor(Ctx, def.Rarity), TextAlignmentOptions.Center, bold: true).Size(preferredHeight: 80);
             UIKit.Text(Panel, "Rarity", ScreenKit.RarityName(Ctx, def.Rarity), Th.fontBody, Th.textDim, TextAlignmentOptions.Center).Size(preferredHeight: 60);
+            var quote = HeroLines.Pick(Ctx, _heroId, HeroLines.Unlock);
+            if (quote != null) UIKit.Text(Panel, "Quote", "\u201C" + quote + "\u201D", Th.fontBody, Th.text, TextAlignmentOptions.Center).Size(preferredHeight: 130);
             var ok = UIKit.Button(Panel, "Ok", Ctx.T("great"), Close);
             TutorialAnchor.Mark(ok, "unlock_ok");
         }

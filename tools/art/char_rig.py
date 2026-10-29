@@ -426,6 +426,8 @@ def render_character(S, out_dir, frame_px=360, portrait_px=512, icon_px=256):
     bb = first.getbbox()
     manifest['heightRatio'] = round((bb[3] - bb[1]) / frame_px, 4) if bb else 0.7
     manifest['bbox'] = [round(v / frame_px, 4) for v in bb] if bb else None
+    manifest['clipList'] = [dict(name=k, **v) for k, v in manifest['clips'].items()]  # JsonUtility-friendly
+    manifest['feetFromBottom'] = round(1 - manifest['feetY'], 4)
     with open(os.path.join(out_dir, 'anim.json'), 'w') as f:
         json.dump(manifest, f, indent=1)
     render_portraits(S, out_dir, portrait_px, icon_px)

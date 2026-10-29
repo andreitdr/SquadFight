@@ -15,4 +15,4 @@ MonoBehaviour:
   id: beat_ch1_end
   speakerKey: speaker_narrator
   textKey: beat_ch1_end_text
-  portrait: {fileID: 21300000, guid: 51c4fb1bc86084d5689e78ec487e4c68, type: 3}
+  portrait: {fileID: 21300000, guid: 54fd19aa54d2246f7bef661d0e987985, type: 3}

@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769c6f0149ed24c52944413ee28ea587, type: 3}
+  m_Name: enemy_skeleton_anim
+  m_EditorClassIdentifier: Game.Data::Game.Data.SpriteAnimSet
+  displayScale: 2.0437038
+  feetY: 0.0708
+  clips:
+  - name: idle
+    fps: 8
+    loop: 1
+    frames:
+    - {fileID: 21300000, guid: d551faa49507a47de927de98efd8e24c, type: 3}
+    - {fileID: 21300000, guid: 0650a62e5d0a8478ea5816ad2db04856, type: 3}
+    - {fileID: 21300000, guid: 18dfbe6afd34d4c0d8d8f2d62b98dac9, type: 3}
+    - {fileID: 21300000, guid: 9f70d0c9a7f7742caace398d421cc953, type: 3}
+    - {fileID: 21300000, guid: d24bc8c2b09d047c088ff37e237fd67a, type: 3}
+    - {fileID: 21300000, guid: 80ef82486f303480684a3ee58880191a, type: 3}
+    - {fileID: 21300000, guid: f2deb469d34154e3db80c78898b4e144, type: 3}
+    - {fileID: 21300000, guid: 0907954a6fb584536a9ad003d07cb135, type: 3}
+  - name: attack
+    fps: 14
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: 059fddef4a91043878b75ae48faa663e, type: 3}
+    - {fileID: 21300000, guid: 99af838cb90af476f9f391f26ee8ada4, type: 3}
+    - {fileID: 21300000, guid: 806be1778d4ef4d67b4fa61f2caf8170, type: 3}
+    - {fileID: 21300000, guid: 21949b3bae616486a9680dfef5c12c5e, type: 3}
+    - {fileID: 21300000, guid: 4bc23f34086cb4048a2a2880594c160a, type: 3}
+    - {fileID: 21300000, guid: 8c5209683ceed410c8cb1b60616b33db, type: 3}
+  - name: skill
+    fps: 12
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: 460a634f6559f4fb3995b1bb522be432, type: 3}
+    - {fileID: 21300000, guid: 351041c0b809940209f24b4a036175a4, type: 3}
+    - {fileID: 21300000, guid: 39a04ba38e9894a7c873d6c5f757b896, type: 3}
+    - {fileID: 21300000, guid: ff07a4d94ed1a4cf4856944b5a31419d, type: 3}
+    - {fileID: 21300000, guid: 35c2e683a7f21409f9d5344e3cf36518, type: 3}
+    - {fileID: 21300000, guid: 7e48d083912864424b7956c4c464cdbf, type: 3}
+    - {fileID: 21300000, guid: 6fc81659a88b24c44b916dad0d0e1441, type: 3}
+    - {fileID: 21300000, guid: 4ad10984cadbb4604a1d0437dc6162c1, type: 3}
+  - name: hit
+    fps: 12
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: e828df5d0d3e943f99f848cdc088d967, type: 3}
+    - {fileID: 21300000, guid: d917baf0eca05430bbe0885110696158, type: 3}
+    - {fileID: 21300000, guid: 6edac625ecfc64ba78a4b8f4052ffdff, type: 3}
+  - name: death
+    fps: 10
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: ae94f421e30674b29b6708fc9271a506, type: 3}
+    - {fileID: 21300000, guid: 283ea6430698542c288dca87982deacc, type: 3}
+    - {fileID: 21300000, guid: 6b64cf67d258f4d7da4b9f894adf1083, type: 3}
+    - {fileID: 21300000, guid: 4df4a3f367cab4aa5892e67f97315e90, type: 3}
+    - {fileID: 21300000, guid: 292a398a8a2384eb68018492bbeb7412, type: 3}
+    - {fileID: 21300000, guid: 9926c9b47bc9c43f8b24ed4d7b0e68f1, type: 3}
+  - name: victory
+    fps: 10
+    loop: 1
+    frames:
+    - {fileID: 21300000, guid: 88db8fd5ff41e4debb0bdbc7f0fd40e7, type: 3}
+    - {fileID: 21300000, guid: b783588d81de74b9cb0a812afc9aa2da, type: 3}
+    - {fileID: 21300000, guid: a3d9ba493f6904d1a98da4393466510f, type: 3}
+    - {fileID: 21300000, guid: 08033810a57ec4c78912c087f55c037f, type: 3}
+    - {fileID: 21300000, guid: 309098c4682a94b70b8039629710d874, type: 3}
+    - {fileID: 21300000, guid: aed583902f5934420a7015e98cd82110, type: 3}

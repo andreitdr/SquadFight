@@ -15,6 +15,10 @@ namespace Game.Data
         public SkillDefinition activeSkill;
         public Sprite sprite;
         public Color tint = Color.white;
+        [Header("Art (Tools/Game/Art/Apply Generated Art fills empty slots)")]
+        public Sprite portrait;
+        public Sprite icon;
+        public SpriteAnimSet animations;
 
         public EnemyDef ToCore() => new EnemyDef
         {

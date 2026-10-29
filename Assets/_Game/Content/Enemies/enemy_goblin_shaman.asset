@@ -25,5 +25,8 @@ MonoBehaviour:
     - 1.5
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: a2d0775a354e24152ac5b01d542f44ce, type: 2}
-  sprite: {fileID: 21300000, guid: 73c991d359c344a82a02329d44b1e0d7, type: 3}
+  sprite: {fileID: 21300000, guid: fe83336be5523450096c7c765fa535f6, type: 3}
   tint: {r: 0.16470589, g: 0.6156863, b: 0.56078434, a: 1}
+  portrait: {fileID: 21300000, guid: fe83336be5523450096c7c765fa535f6, type: 3}
+  icon: {fileID: 21300000, guid: 8038a454e5d27441c9a4319f80fb1b47, type: 3}
+  animations: {fileID: 11400000, guid: 03854f52100d1406e80e40efbbf9bd83, type: 2}

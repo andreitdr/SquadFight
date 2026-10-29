@@ -13,7 +13,8 @@ namespace Game.UI
 
         public static RedDot Attach(Transform parent, float size = 34)
         {
-            var dot = UIKit.Image(parent, "RedDot", UIKit.Theme.redDot, UIKit.Theme.circle);
+            var skinned = UIKit.Theme.redDotSprite != null;
+            var dot = UIKit.Image(parent, "RedDot", skinned ? Color.white : UIKit.Theme.redDot, skinned ? UIKit.Theme.redDotSprite : UIKit.Theme.circle);
             dot.rectTransform.Anchor(new Vector2(1, 1), new Vector2(size, size), new Vector2(-6, -6), new Vector2(1, 1));
             var rd = dot.gameObject.AddComponent<RedDot>();
             rd._dot = dot;
@@ -53,7 +54,7 @@ namespace Game.UI
             Inner.color = Color.Lerp(UIKit.Theme.panel, color, 0.12f);
             Gem.enabled = true;
             Gem.sprite = UIKit.Theme.RarityShape(rarity);
-            Gem.color = Color.Lerp(color, Color.white, 0.35f);
+            Gem.color = UIKit.Theme.RarityGem(rarity) != null ? Color.white : Color.Lerp(color, Color.white, 0.35f);
         }
 
         public void SetNone()
@@ -72,10 +73,10 @@ namespace Game.UI
 
         public static ProgressBar Create(Transform parent, float height = 40, Color? fill = null)
         {
-            var bg = UIKit.Image(parent, "ProgressBar", UIKit.Theme.panelAlt, UIKit.Theme.rounded);
+            var bg = UIKit.Image(parent, "ProgressBar", UIKit.Theme.panelAlt, UIKit.Theme.barBackground != null ? UIKit.Theme.barBackground : UIKit.Theme.rounded);
             bg.Size(preferredHeight: height);
             var bar = bg.gameObject.AddComponent<ProgressBar>();
-            bar.Fill = UIKit.Image(bg.transform, "Fill", fill ?? UIKit.Theme.positive, UIKit.Theme.rounded);
+            bar.Fill = UIKit.Image(bg.transform, "Fill", fill ?? UIKit.Theme.positive, UIKit.Theme.barFill != null ? UIKit.Theme.barFill : UIKit.Theme.rounded);
             bar.Fill.rectTransform.anchorMin = Vector2.zero;
             bar.Fill.rectTransform.anchorMax = new Vector2(0, 1);
             bar.Fill.rectTransform.pivot = new Vector2(0, 0.5f);
@@ -189,7 +190,7 @@ namespace Game.UI
             _stars = new Image[max];
             for (var i = 0; i < max; i++)
             {
-                _stars[i] = UIKit.Image(transform, "Star" + i, Color.white, UIKit.Theme.star);
+                _stars[i] = UIKit.Image(transform, "Star" + i, Color.white, UIKit.Theme.starFull != null ? UIKit.Theme.starFull : UIKit.Theme.star);
                 _stars[i].Size(_size, _size);
             }
         }
@@ -197,14 +198,27 @@ namespace Game.UI
         public void Set(int filled, int max)
         {
             EnsureCount(Mathf.Max(0, max));
-            for (var i = 0; i < _stars.Length; i++) _stars[i].color = i < filled ? UIKit.Theme.warning : UIKit.Theme.textDim.WithAlpha(0.3f);
+            var th = UIKit.Theme;
+            var skinned = th.starFull != null && th.starEmpty != null;
+            for (var i = 0; i < _stars.Length; i++)
+            {
+                if (skinned)
+                {
+                    _stars[i].sprite = i < filled ? th.starFull : th.starEmpty;
+                    _stars[i].color = Color.white;
+                }
+                else _stars[i].color = i < filled ? th.warning : th.textDim.WithAlpha(0.3f);
+            }
         }
     }
 
-    /// <summary>Hero portrait card: rarity frame, tinted placeholder portrait with initial, stars, shard bar, lock, red dot.</summary>
+    /// <summary>
+    /// Hero card. Skinned (Theme.cardFrames set): rarity card back, 3:4 hero art, ornate frame with name plate, rarity gem,
+    /// class icon. Unskinned: rarity border + tinted round portrait with initial. Both: stars, shard bar, lock, red dot.
+    /// </summary>
     public sealed class HeroCard : MonoBehaviour
     {
-        public Image Background, Portrait;
+        public Image Background, Portrait, FrameArt, ClassIcon;
         public TextMeshProUGUI Initial, Name, Power;
         public StarRow Stars;
         public RarityFrame Frame;
@@ -212,6 +226,7 @@ namespace Game.UI
         public GameObject LockOverlay;
         public RedDot Dot;
         public Button Button;
+        public bool Skinned { get; private set; }
 
         public const float Width = 300, Height = 400;
 
@@ -226,51 +241,108 @@ namespace Game.UI
             c.Button.targetGraphic = bg;
             if (onClick != null) c.Button.onClick.AddListener(() => onClick());
             bg.gameObject.AddComponent<ButtonFeedback>();
+            c.Skinned = th.CardFrame(Rarity.Common) != null;
             c.Frame = RarityFrame.Create(bg);
-            c.Portrait = UIKit.Image(bg.transform, "Portrait", Color.white, th.circle);
-            c.Portrait.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(190, 190), new Vector2(0, -26), new Vector2(0.5f, 1));
-            c.Initial = UIKit.Text(c.Portrait.transform, "Initial", "", 96, new Color(0, 0, 0, 0.55f), TextAlignmentOptions.Center, bold: true);
-            c.Initial.rectTransform.Stretch();
-            c.Stars = StarRow.Create(bg.transform, 34);
-            ((RectTransform)c.Stars.transform).Anchor(new Vector2(0.5f, 1), new Vector2(280, 40), new Vector2(0, -222), new Vector2(0.5f, 1));
-            c.Name = UIKit.Text(bg.transform, "Name", "", 36, th.text, TextAlignmentOptions.Center, bold: true);
-            c.Name.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(280, 50), new Vector2(0, -262), new Vector2(0.5f, 1));
+            if (c.Skinned)
+            {
+                c.Frame.Inner.enabled = false;
+                c.Portrait = UIKit.Image(bg.transform, "Portrait", Color.white, th.circle);
+                c.Portrait.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(280, 373), new Vector2(0, -15), new Vector2(0.5f, 1));
+                c.FrameArt = UIKit.Image(bg.transform, "FrameArt", Color.white, th.CardFrame(Rarity.Common));
+                c.FrameArt.rectTransform.Stretch();
+                c.FrameArt.type = Image.Type.Simple;
+                c.FrameArt.preserveAspect = false;
+                c.Frame.Gem.transform.SetParent(bg.transform, false);
+                c.Frame.Gem.rectTransform.Anchor(new Vector2(0, 1), new Vector2(46, 46), new Vector2(22, -25), new Vector2(0, 1));
+                c.ClassIcon = UIKit.Image(bg.transform, "Class", Color.white, null);
+                c.ClassIcon.rectTransform.Anchor(new Vector2(1, 1), new Vector2(46, 46), new Vector2(-22, -25), new Vector2(1, 1));
+                c.Initial = UIKit.Text(c.Portrait.transform, "Initial", "", 1, Color.clear);
+                c.Initial.gameObject.SetActive(false);
+                c.Stars = StarRow.Create(bg.transform, 32);
+                ((RectTransform)c.Stars.transform).Anchor(new Vector2(0.5f, 1), new Vector2(280, 36), new Vector2(0, -266), new Vector2(0.5f, 1));
+                c.Name = UIKit.Text(bg.transform, "Name", "", 34, new Color(1f, 0.97f, 0.88f), TextAlignmentOptions.Center, bold: true);
+                c.Name.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(250, 44), new Vector2(0, -303), new Vector2(0.5f, 1));
+                c.Name.outlineWidth = 0.22f;
+                c.Name.outlineColor = new Color32(20, 12, 24, 255);
+                c.Power = UIKit.Text(bg.transform, "Power", "", 24, th.text, TextAlignmentOptions.Center, bold: true);
+                c.Power.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(150, 30), new Vector2(0, -34), new Vector2(0.5f, 1));
+                c.Power.outlineWidth = 0.25f;
+                c.Power.outlineColor = new Color32(0, 0, 0, 230);
+                c.Shards = ProgressBar.Create(bg.transform, 26);
+                ((RectTransform)c.Shards.transform).Anchor(new Vector2(0.5f, 0), new Vector2(250, 26), new Vector2(0, 22), new Vector2(0.5f, 0));
+            }
+            else
+            {
+                c.Portrait = UIKit.Image(bg.transform, "Portrait", Color.white, th.circle);
+                c.Portrait.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(190, 190), new Vector2(0, -26), new Vector2(0.5f, 1));
+                c.Initial = UIKit.Text(c.Portrait.transform, "Initial", "", 96, new Color(0, 0, 0, 0.55f), TextAlignmentOptions.Center, bold: true);
+                c.Initial.rectTransform.Stretch();
+                c.Stars = StarRow.Create(bg.transform, 34);
+                ((RectTransform)c.Stars.transform).Anchor(new Vector2(0.5f, 1), new Vector2(280, 40), new Vector2(0, -222), new Vector2(0.5f, 1));
+                c.Name = UIKit.Text(bg.transform, "Name", "", 36, th.text, TextAlignmentOptions.Center, bold: true);
+                c.Name.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(280, 50), new Vector2(0, -262), new Vector2(0.5f, 1));
+                c.Power = UIKit.Text(bg.transform, "Power", "", 28, th.textDim, TextAlignmentOptions.Center);
+                c.Power.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(280, 36), new Vector2(0, -308), new Vector2(0.5f, 1));
+                c.Shards = ProgressBar.Create(bg.transform, 36);
+                ((RectTransform)c.Shards.transform).Anchor(new Vector2(0.5f, 0), new Vector2(260, 36), new Vector2(0, 18), new Vector2(0.5f, 0));
+            }
             c.Name.textWrappingMode = TextWrappingModes.NoWrap;
             c.Name.enableAutoSizing = true;
-            c.Name.fontSizeMin = 22;
-            c.Name.fontSizeMax = 36;
-            c.Power = UIKit.Text(bg.transform, "Power", "", 28, th.textDim, TextAlignmentOptions.Center);
-            c.Power.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(280, 36), new Vector2(0, -308), new Vector2(0.5f, 1));
-            c.Shards = ProgressBar.Create(bg.transform, 36);
-            var sr = (RectTransform)c.Shards.transform;
-            sr.Anchor(new Vector2(0.5f, 0), new Vector2(260, 36), new Vector2(0, 18), new Vector2(0.5f, 0));
-            var lockImg = UIKit.Image(bg.transform, "Lock", th.locked.WithAlpha(0.55f), th.rounded);
-            lockImg.rectTransform.Stretch(0, 0, 0, 60);
+            c.Name.fontSizeMin = 18;
+            c.Name.fontSizeMax = c.Name.fontSize;
+            var lockImg = UIKit.Image(bg.transform, "Lock", th.locked.WithAlpha(c.Skinned ? 0.35f : 0.55f), th.rounded);
+            lockImg.rectTransform.Stretch(c.Skinned ? 16 : 0, c.Skinned ? 16 : 0, c.Skinned ? 16 : 0, c.Skinned ? 104 : 60);
             c.LockOverlay = lockImg.gameObject;
+            if (c.Skinned && th.iconLock != null)
+                UIKit.Image(lockImg.transform, "LockIcon", Color.white, th.iconLock).rectTransform.Anchor(new Vector2(0.5f, 0.62f), new Vector2(84, 84), new Vector2(0, 54));
             var lockText = UIKit.Text(lockImg.transform, "LockText", "", 34, th.text, TextAlignmentOptions.Center, bold: true);
-            lockText.rectTransform.Anchor(new Vector2(0.5f, 0.62f), new Vector2(270, 70));
+            lockText.rectTransform.Anchor(new Vector2(0.5f, c.Skinned ? 0.4f : 0.62f), new Vector2(260, 70));
             lockText.textWrappingMode = TextWrappingModes.NoWrap;
             lockText.enableAutoSizing = true;
             lockText.fontSizeMin = 18;
             lockText.fontSizeMax = 34;
+            lockText.outlineWidth = 0.2f;
+            lockText.outlineColor = new Color32(0, 0, 0, 220);
             c.Dot = RedDot.Attach(bg.transform, 44);
             return c;
         }
 
         public void Set(string name, Rarity rarity, Color rarityColor, Color tint, Sprite portrait, bool unlocked, int star, int maxStar, int shards, int shardsNeeded, string powerText, bool redDot)
         {
-            Frame.Set(rarity, rarityColor);
-            Portrait.sprite = portrait != null ? portrait : UIKit.Theme.circle;
-            Portrait.color = unlocked ? tint : Color.Lerp(tint, Color.black, 0.65f);
-            Initial.text = string.IsNullOrEmpty(name) ? "" : name.Substring(0, 1).ToUpperInvariant();
+            var th = UIKit.Theme;
+            var art = portrait != null;
+            if (Skinned)
+            {
+                Background.sprite = th.CardBack(rarity) != null ? th.CardBack(rarity) : th.rounded;
+                Background.type = th.CardBack(rarity) != null ? Image.Type.Simple : Image.Type.Sliced;
+                Background.color = unlocked ? Color.white : new Color(0.55f, 0.55f, 0.6f);
+                FrameArt.sprite = th.CardFrame(rarity);
+                Frame.Gem.sprite = th.RarityShape(rarity);
+                Frame.Gem.color = th.RarityGem(rarity) != null ? Color.white : rarityColor;
+            }
+            else Frame.Set(rarity, rarityColor);
+            Portrait.sprite = art ? portrait : th.circle;
+            Portrait.preserveAspect = true;
+            // Real art is drawn untinted (locked heroes become a dark silhouette); placeholders keep the tint.
+            var baseColor = art ? Color.white : tint;
+            Portrait.color = unlocked ? baseColor : art ? new Color(0.12f, 0.1f, 0.16f, 0.92f) : Color.Lerp(tint, Color.black, 0.65f);
+            Initial.text = art || string.IsNullOrEmpty(name) ? "" : name.Substring(0, 1).ToUpperInvariant();
             Name.text = name;
             Stars.gameObject.SetActive(unlocked);
             if (unlocked) Stars.Set(star, maxStar);
             Power.text = unlocked ? powerText : "";
             LockOverlay.SetActive(!unlocked);
             Shards.gameObject.SetActive(shardsNeeded > 0);
-            if (shardsNeeded > 0) Shards.Set(shards, shardsNeeded, shards >= shardsNeeded ? UIKit.Theme.positive : UIKit.Theme.secondary);
+            if (shardsNeeded > 0) Shards.Set(shards, shardsNeeded, shards >= shardsNeeded ? th.positive : th.secondary);
             Dot.Show(redDot);
+        }
+
+        /// <summary>Class badge (skinned cards only).</summary>
+        public void SetClass(HeroClass heroClass)
+        {
+            if (ClassIcon == null) return;
+            ClassIcon.sprite = UIKit.Theme.ClassIcon(heroClass);
+            ClassIcon.enabled = ClassIcon.sprite != null;
         }
     }
 
@@ -306,11 +378,12 @@ namespace Game.UI
             return c;
         }
 
-        public void Set(EquipmentSlot slot, Rarity rarity, Color rarityColor, string caption, string badge, bool redDot)
+        /// <summary><paramref name="icon"/> = the template's own art (drawn untinted); null = rarity-tinted slot icon.</summary>
+        public void Set(EquipmentSlot slot, Rarity rarity, Color rarityColor, string caption, string badge, bool redDot, Sprite icon = null)
         {
             Frame.Set(rarity, rarityColor);
-            Icon.sprite = UIKit.Theme.SlotIcon(slot);
-            Icon.color = Color.Lerp(rarityColor, Color.white, 0.25f);
+            Icon.sprite = icon != null ? icon : UIKit.Theme.SlotIcon(slot);
+            Icon.color = icon != null ? Color.white : Color.Lerp(rarityColor, Color.white, 0.25f);
             Caption.text = caption ?? "";
             Badge.text = badge ?? "";
             Dot.Show(redDot);
@@ -339,7 +412,8 @@ namespace Game.UI
             UIKit.HStack(bg.gameObject, 12, 14, TextAnchor.MiddleLeft, expandWidth: false);
             bg.Size(preferredWidth: 300, preferredHeight: 90);
             var chip = bg.gameObject.AddComponent<CurrencyChip>();
-            chip.Icon = UIKit.Image(bg.transform, "Icon", iconColor, UIKit.Theme.circle);
+            var gold = UIKit.Theme.iconGold;
+            chip.Icon = UIKit.Image(bg.transform, "Icon", gold != null ? Color.white : iconColor, gold != null ? gold : UIKit.Theme.circle);
             chip.Icon.Size(56, 56);
             chip.Amount = UIKit.Text(bg.transform, "Amount", "0", UIKit.Theme.fontLarge, UIKit.Theme.text, TextAlignmentOptions.Right, bold: true);
             chip.Amount.Size(preferredWidth: 200);

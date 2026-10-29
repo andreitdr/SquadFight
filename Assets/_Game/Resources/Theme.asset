@@ -45,11 +45,77 @@ MonoBehaviour:
   star: {fileID: 21300000, guid: 3ee3343b5865746be8b2cec74c4f31e2, type: 3}
   shard: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
   softDot: {fileID: 21300000, guid: c024ecf9912cf40e79a295233f66850e, type: 3}
-  iconWeapon: {fileID: 21300000, guid: 076670dc5270a4e7bb5d06ae6e4939e4, type: 3}
-  iconHelmet: {fileID: 21300000, guid: d51aff2a8b8e640fcb44c8ef5c80117b, type: 3}
-  iconChest: {fileID: 21300000, guid: 56fb0320fd23546558f9dc8b63099fd3, type: 3}
-  iconGloves: {fileID: 21300000, guid: 79f20d005be7d45c9921fd6dd4b795d6, type: 3}
-  iconBoots: {fileID: 21300000, guid: 1c653ec0b5a9342018b4521d7d5284ad, type: 3}
-  iconRing: {fileID: 21300000, guid: f3f1c07fa3a10494a962b3e043bf5615, type: 3}
+  iconWeapon: {fileID: 21300000, guid: 0f6eed33661084995ab63e243dcb41b9, type: 3}
+  iconHelmet: {fileID: 21300000, guid: db876147bb5a9473284b40cfe2d6276c, type: 3}
+  iconChest: {fileID: 21300000, guid: e131e42c1fd9a4dab8cf9a72af2ec70e, type: 3}
+  iconGloves: {fileID: 21300000, guid: 26090c237d6b948e1ae53ec9c6e7d9b6, type: 3}
+  iconBoots: {fileID: 21300000, guid: 3548f62108f7d4225b4854e4651973b9, type: 3}
+  iconRing: {fileID: 21300000, guid: 74f1e2b52b555417d98b3c045b6aff52, type: 3}
+  panelSprite: {fileID: 21300000, guid: 3356f9146c7ff42ada760507ae42c24e, type: 3}
+  buttonSprite: {fileID: 21300000, guid: 305de513f825f421a916926085ead397, type: 3}
+  barBackground: {fileID: 21300000, guid: a5ace94adad67417fa0070f395bc74f5, type: 3}
+  barFill: {fileID: 21300000, guid: 7ad99b78f7ea8484691f1993ee8938da, type: 3}
+  bubble: {fileID: 21300000, guid: efbc0cb7cda484824ae00f670cfd8f89, type: 3}
+  bubbleTail: {fileID: 21300000, guid: d72b7999b249242f48f36d0dd6eed490, type: 3}
+  glow: {fileID: 21300000, guid: 8fe4ca38f2cc049509789266252778b4, type: 3}
+  vignette: {fileID: 21300000, guid: ab893e4dd0c874a7ca00158ec253d0dc, type: 3}
+  ribbon: {fileID: 21300000, guid: 888114ca76e6141afaeaf209c3f8a97a, type: 3}
+  starFull: {fileID: 21300000, guid: e245eccd1bb1e4dd0b0f404ee6b118ca, type: 3}
+  starEmpty: {fileID: 21300000, guid: 664373dfdc2b54820845b027bbc5a51d, type: 3}
+  redDotSprite: {fileID: 21300000, guid: 5d019e455abe44b4889e4773fe707177, type: 3}
+  logo: {fileID: 21300000, guid: d31230f68970a4d41acd3f24de139a32, type: 3}
+  appBackground: {fileID: 21300000, guid: bdf0858ed7314470fbab8aa77ae2dcae, type: 3}
+  battleBackground: {fileID: 21300000, guid: 1c8c6c87b8dbc43a8bfd7c9486810131, type: 3}
+  iconGold: {fileID: 21300000, guid: 2e971acd2980346ec88a22c002abcdeb, type: 3}
+  iconShard: {fileID: 21300000, guid: 52a16206256c94149a8a31bc8b852a0d, type: 3}
+  iconPower: {fileID: 21300000, guid: 68abbad76ae3741319632db0600a38d1, type: 3}
+  iconLock: {fileID: 21300000, guid: c682887ad41014fb8bd9f1322d933db8, type: 3}
+  iconPause: {fileID: 21300000, guid: 7881d97330ebb42eebedb82db708d732, type: 3}
+  iconSpeed: {fileID: 21300000, guid: 8f5bfb86b638549539f6fa900e85554c, type: 3}
+  iconAuto: {fileID: 21300000, guid: eca388ab83dc1444397d2b464a4bed7f, type: 3}
+  iconSkip: {fileID: 21300000, guid: 60d4c87c39c9c4fafb4f2767c7219481, type: 3}
+  iconParty: {fileID: 21300000, guid: eb3eba8178b9d4c6380f455cddba3997, type: 3}
+  iconBoss: {fileID: 21300000, guid: 224b4a6aa65da4491a0c7f197bd2ad37, type: 3}
+  iconStory: {fileID: 21300000, guid: 54fd19aa54d2246f7bef661d0e987985, type: 3}
+  tabHome: {fileID: 21300000, guid: f59c6147a6cc444198b299b39f2fe59d, type: 3}
+  tabCampaign: {fileID: 21300000, guid: 3d5cf1c4d089e4ac59cfef0ccf044132, type: 3}
+  tabHeroes: {fileID: 21300000, guid: 6f5c9aab4d548484ba3aafaadce74244, type: 3}
+  tabInventory: {fileID: 21300000, guid: 1bd394dffb8084d35a421a76603d2250, type: 3}
+  tabSettings: {fileID: 21300000, guid: 682bb675224714127b017499057a0cde, type: 3}
+  rarityGems:
+  - {fileID: 21300000, guid: c277199b1aae44d8c8a6ede83546a7c0, type: 3}
+  - {fileID: 21300000, guid: c09db9c6247c54f4096f5c5ec08d6e21, type: 3}
+  - {fileID: 21300000, guid: 46ea6bcf1fc1346c193d27a5220291bf, type: 3}
+  - {fileID: 21300000, guid: 735f40b73b7fe45d0a1d57caacd9dc2c, type: 3}
+  - {fileID: 21300000, guid: 712b4a125e999461a8937359ef87b173, type: 3}
+  cardFrames:
+  - {fileID: 21300000, guid: 3feebc9d2a77f469db2a87e59e666663, type: 3}
+  - {fileID: 21300000, guid: 1cbbdb1380bd543bb9be2537fc426d49, type: 3}
+  - {fileID: 21300000, guid: 7196df879f1d44af986fc4d6d512b4c0, type: 3}
+  - {fileID: 21300000, guid: 68f188e093b3644cd9242697f1876062, type: 3}
+  - {fileID: 21300000, guid: 74b08d60697b44d61bbb8eeac00e8491, type: 3}
+  cardBacks:
+  - {fileID: 21300000, guid: a991634c435a04ada9891ab1e0ebb237, type: 3}
+  - {fileID: 21300000, guid: 2b6aae530c0164e539a6f9f5b878a01d, type: 3}
+  - {fileID: 21300000, guid: 2679897a52cc8449cbf579d4bda28eb5, type: 3}
+  - {fileID: 21300000, guid: a6719339e56e848ccb724ae80b789871, type: 3}
+  - {fileID: 21300000, guid: 6711a3fadde544edd84fc48795b58de0, type: 3}
+  classIcons:
+  - {fileID: 21300000, guid: f73510c9a24434a9ba7c3b1de1d03a0c, type: 3}
+  - {fileID: 21300000, guid: b41e28204e7174a37b47ce85e13112dc, type: 3}
+  - {fileID: 21300000, guid: b7d3328e0d6e3471081894d35d337dd6, type: 3}
+  - {fileID: 21300000, guid: e8b1beb426bb34e69bf7d39c8d2aa53c, type: 3}
+  - {fileID: 21300000, guid: 803419493c1c54f719e52ca6474f24b6, type: 3}
+  statusStun: {fileID: 21300000, guid: 6bb3ef1e884fb4ce295f7bf15dc43713, type: 3}
+  statusShield: {fileID: 21300000, guid: b9f59d2c631bb4c9a93e9b6065378aa8, type: 3}
+  statusHeal: {fileID: 21300000, guid: 45885f7878d39462db67417e621899e6, type: 3}
+  statusAttackUp: {fileID: 21300000, guid: 50616f8ac04a84034aa5c9f2fec3a612, type: 3}
+  statusAttackDown: {fileID: 21300000, guid: 7d430387f06274b3986960a0a45f52a4, type: 3}
+  statusDefenseUp: {fileID: 21300000, guid: fb71ccf0839ab433db6f2ca1cf747366, type: 3}
+  statusDefenseDown: {fileID: 21300000, guid: 93d014540dee844bc8ad704ab4f4f09e, type: 3}
+  statusSpeedUp: {fileID: 21300000, guid: 494ec452a70074cb2826a0e27894cd50, type: 3}
+  statusSpeedDown: {fileID: 21300000, guid: 31a7de53509454f81ab2d6b4fd2505d0, type: 3}
+  statusCritUp: {fileID: 21300000, guid: 084cc1015722e438bbe46a664527dd4e, type: 3}
+  statusCritDown: {fileID: 21300000, guid: 156ce97648c084f8fab98ffbc50bf33f, type: 3}
   screenTransition: 0.22
   popupTransition: 0.18

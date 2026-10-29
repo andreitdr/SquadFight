@@ -15,4 +15,4 @@ MonoBehaviour:
   id: beat_ch3_boss_pre
   speakerKey: enemy_red_dragon_name
   textKey: beat_ch3_boss_pre_text
-  portrait: {fileID: 21300000, guid: 73c991d359c344a82a02329d44b1e0d7, type: 3}
+  portrait: {fileID: 21300000, guid: 5fa6e105732ac405097a142ff1cfae4e, type: 3}

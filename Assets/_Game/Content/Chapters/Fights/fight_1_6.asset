@@ -34,6 +34,7 @@ MonoBehaviour:
   firstClearTable: {fileID: 11400000, guid: 89d90c2763c374c6ab6e4ff5a1baf2d6, type: 2}
   starTurnLimit: 0
   background: {fileID: 21300000, guid: 2cec9873de8db4db2a46de370e9b18ea, type: 3}
-  preBeats: []
+  preBeats:
+  - {fileID: 11400000, guid: 537d402df546e437789d851cf6c23368, type: 2}
   postBeats: []
   unlockConditions: []

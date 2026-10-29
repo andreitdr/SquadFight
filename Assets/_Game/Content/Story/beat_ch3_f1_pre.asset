@@ -15,4 +15,4 @@ MonoBehaviour:
   id: beat_ch3_f1_pre
   speakerKey: hero_archer_name
   textKey: beat_ch3_f1_pre_text
-  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  portrait: {fileID: 21300000, guid: 0a66095fcfb494c7b82f17818278e714, type: 3}

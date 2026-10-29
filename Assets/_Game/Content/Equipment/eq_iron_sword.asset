@@ -23,5 +23,5 @@ MonoBehaviour:
   - stat: 4
     value: 0.02
     kind: 0
-  icon: {fileID: 21300000, guid: 076670dc5270a4e7bb5d06ae6e4939e4, type: 3}
+  icon: {fileID: 21300000, guid: e870c0da5eca64e0db8c8696325dc70e, type: 3}
   setId: 

@@ -129,3 +129,13 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[18] Save v4** adds `tutorial` and `daily`; migration 3→4 marks the tutorial done for players who already fought (fixture `save_v3.json`).
 - **[18] Release gate for placeholders is a warning** while final art is missing; `BLOCK_PLACEHOLDERS=1` turns it into a build failure for the real 1.0 submission.
 - **[18] Not done (needs the owner):** final art/audio, game name, store accounts, keystore, device QA matrix, submission. Listed in MILESTONE-M3.md and STORE_LISTING.md.
+
+## Generated art & dialogue (owner request, 2026-10-30)
+- **Art is generated, not hand-painted**: `tools/art/` draws every sprite as layered SVG (chibi cut-out rig, gradients + ink outlines) and rasterises it with resvg. Output in `Assets/_Game/Art/Generated/` (labelled `generated-art`, not `placeholder`). Regenerating is deterministic.
+- **Battle animation = frame-by-frame sprites** (`SpriteAnimSet`, 6 clips per character, ~37 frames) played by `SpriteAnimator` on the uGUI unit image, instead of Unity Animator/2D Animation rigs: zero runtime setup, trivially swappable, and the frames include baked FX (swooshes, auras, tip glows). 360 px frames, 512 px for bosses.
+- **Swappable by design**: definitions/Theme gained optional art slots; every widget falls back to the old tinted shapes when a slot is empty. `Tools/Game/Art/Apply Generated Art` only fills empty/generated/placeholder slots, so hand-assigned art is never overwritten.
+- **9-slices stay grayscale** so the Theme colors (and button styles/tab highlights) keep working; icons, gems, stars, cards and characters are full color and drawn untinted.
+- **Hero cards are layered at runtime** (rarity back + 3:4 bust + ornate frame + gem + class icon + localized name) so names stay localized; `Art/Generated/Cards/` holds baked versions for showcase/store use only.
+- **Dialogue barks live in `Resources/Localization/strings_dialogue.csv`** (`line_<id>_<trigger>_<n>`), loaded by the existing CSV localizer; no importer change. Barks are presentation-only (UnityEngine.Random), rate-limited, and suppressed above ×3 speed and during skip, so they never affect the deterministic simulation.
+- **Story**: 21 new beats (hero introductions + banter) in `story.csv`, attached via `fights.csv`.
+- **Logo/text** use Liberation Sans (OFL, already in the project); no new third-party assets were added.

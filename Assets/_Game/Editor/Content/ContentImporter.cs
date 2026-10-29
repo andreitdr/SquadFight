@@ -207,8 +207,8 @@ namespace Game.EditorTools.Content
                         h.basicSkill = SkillRef(row, "basicSkill", true);
                         h.activeSkill = SkillRef(row, "activeSkill", false);
                         h.tint = ParseColor(row.Req("tint"), row.Context);
-                        h.portrait = PlaceholderArt.Get("circle");
-                        h.shardIcon = PlaceholderArt.Get("shard");
+                        if (h.portrait == null) h.portrait = PlaceholderArt.Get("circle"); // keep real art
+                        if (h.shardIcon == null) h.shardIcon = PlaceholderArt.Get("shard");
                     });
                 }
 
@@ -227,7 +227,7 @@ namespace Game.EditorTools.Content
                         e.basicSkill = SkillRef(row, "basicSkill", true);
                         e.activeSkill = SkillRef(row, "activeSkill", false);
                         e.tint = ParseColor(row.Req("tint"), row.Context);
-                        e.sprite = PlaceholderArt.Get(e.isBoss ? "star" : "diamond");
+                        if (e.sprite == null) e.sprite = PlaceholderArt.Get(e.isBoss ? "star" : "diamond"); // keep real art
                     });
                 }
 
@@ -245,7 +245,7 @@ namespace Game.EditorTools.Content
                         t.rarity = row.Enum<Rarity>("rarity");
                         t.stats = ParseModifiers(row.Req("stats"), row.Context);
                         t.setId = row.Str("setId");
-                        t.icon = PlaceholderArt.Get("icon_" + t.slot.ToString().ToLowerInvariant());
+                        if (t.icon == null) t.icon = PlaceholderArt.Get("icon_" + t.slot.ToString().ToLowerInvariant()); // keep real art
                     });
                 }
 
@@ -262,7 +262,7 @@ namespace Game.EditorTools.Content
                         var isUnit = heroes.ContainsKey(speaker) || enemies.ContainsKey(speaker);
                         b.speakerKey = isUnit ? speaker + "_name" : Text("speaker_" + speaker, row.Str("speakerName", speaker));
                         b.textKey = Text(id + "_text", row.Req("text"));
-                        b.portrait = PlaceholderArt.Get(heroes.ContainsKey(speaker) ? "circle" : enemies.ContainsKey(speaker) ? "diamond" : "rounded");
+                        if (b.portrait == null) b.portrait = PlaceholderArt.Get(heroes.ContainsKey(speaker) ? "circle" : enemies.ContainsKey(speaker) ? "diamond" : "rounded"); // keep real art
                     });
                 }
 
@@ -323,7 +323,7 @@ namespace Game.EditorTools.Content
                         f.dropTable = TableRef(row, "dropTable");
                         f.firstClearTable = TableRef(row, "firstClearTable");
                         f.starTurnLimit = row.Int("starTurnLimit");
-                        f.background = PlaceholderArt.Get("background");
+                        if (f.background == null) f.background = PlaceholderArt.Get("background");
                         f.preBeats = ParseList(row.Str("preBeats")).Select(b => BeatRef(row, b)).ToList();
                         f.postBeats = ParseList(row.Str("postBeats")).Select(b => BeatRef(row, b)).ToList();
                         f.unlockConditions = ParseConditions(row.Str("unlockConditions"), row.Context);

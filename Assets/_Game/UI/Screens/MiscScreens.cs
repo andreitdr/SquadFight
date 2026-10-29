@@ -48,7 +48,7 @@ namespace Game.UI
         {
             var item = _items[index];
             var card = rt.GetComponent<ItemCard>();
-            card.Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), ScreenKit.ItemName(Ctx, item), item.IsEquipped ? "E" : "", _vm.Badge(item.InstanceId));
+            card.Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), ScreenKit.ItemName(Ctx, item), item.IsEquipped ? "E" : "", _vm.Badge(item.InstanceId), ScreenKit.ItemIcon(Ctx, item));
             card.Button.onClick.RemoveAllListeners();
             card.Button.onClick.AddListener(() => ItemPopup.Show(Ctx, _vm, item.InstanceId));
         }
@@ -94,7 +94,7 @@ namespace Game.UI
             var head = UIKit.Rect("Head", Panel);
             UIKit.HStack(head.gameObject, Th.spacing, 0, TextAnchor.MiddleLeft, expandWidth: false);
             head.Size(preferredHeight: 220);
-            ItemCard.Create(head, 200).Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), "", "", false);
+            ItemCard.Create(head, 200).Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), "", "", false, ScreenKit.ItemIcon(Ctx, item));
             var col = UIKit.Rect("Col", head);
             UIKit.VStack(col.gameObject, 6, 0, TextAnchor.MiddleLeft);
             col.Size(preferredWidth: 620);
@@ -197,7 +197,7 @@ namespace Game.UI
             switch (l.Type)
             {
                 case RewardLine.Kind.Currency:
-                    UIKit.Image(panel.transform, "Icon", Th.warning, Th.circle).Size(100, 100);
+                    UIKit.Image(panel.transform, "Icon", Th.iconGold != null ? Color.white : Th.warning, Th.iconGold != null ? Th.iconGold : Th.circle).Size(100, 100);
                     var label = UIKit.Text(panel.transform, "Text", "", Th.fontBody, Th.text, TextAlignmentOptions.Left, bold: true);
                     label.Size(preferredWidth: 700);
                     var name = Ctx.T("currency_" + l.Id + "_name");
@@ -225,7 +225,7 @@ namespace Game.UI
                     if (l.Item.HasValue)
                     {
                         var it = l.Item.Value;
-                        card.Set(it.Slot, it.Rarity, ScreenKit.RarityColor(Ctx, it.Rarity), "", "", l.Better);
+                        card.Set(it.Slot, it.Rarity, ScreenKit.RarityColor(Ctx, it.Rarity), "", "", l.Better, ScreenKit.ItemIcon(Ctx, it));
                         text = ScreenKit.ItemName(Ctx, it) + (l.Better ? "  " + Ctx.T("better_item") : "");
                     }
                     else text = Ctx.T("item_auto_sold");

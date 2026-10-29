@@ -25,3 +25,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3230e3cb9ebff4c1da83b8be89967192, type: 2}
   unlockConditions: []
   clearReward: {fileID: 11400000, guid: 8c56db0d7b625482c849cfa99de456ce, type: 2}
+  background: {fileID: 21300000, guid: bcc14bfaaeff84ded9744bb9dafd926d, type: 3}
+  banner: {fileID: 21300000, guid: 37d6aa531282f4128a8af09c7ad311f7, type: 3}

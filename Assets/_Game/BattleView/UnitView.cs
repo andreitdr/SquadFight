@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Core;
+using Game.Data;
 using Game.UI;
 using TMPro;
 using UnityEngine;
@@ -18,14 +19,20 @@ namespace Game.BattleView
         private Image _hpFill, _shieldFill, _highlight;
         private RectTransform _statusRow;
         private readonly Dictionary<string, Image> _statusIcons = new Dictionary<string, Image>();
-        private Color _baseColor;
+        private Color _baseColor, _flashColor = Color.white;
         private Vector2 _home;
+        private float _size;
+        private bool _saidLowHp;
+
+        /// <summary>Frame animator when the unit has an animation set (null for placeholder art).</summary>
+        public SpriteAnimator Anim { get; private set; }
+        public float Size => _size;
         private int _flashTween, _moveTween;
 
         public Vector2 Home => _home;
         public bool Dead { get; private set; }
 
-        public static UnitView Create(Transform parent, Combatant c, string displayName, Sprite sprite, Color tint, Vector2 anchor, float size, Theme th)
+        public static UnitView Create(Transform parent, Combatant c, string displayName, Sprite sprite, Color tint, Vector2 anchor, float size, Theme th, SpriteAnimSet anim = null)
         {
             var root = UIKit.Rect("Unit_" + c.Index, parent);
             root.anchorMin = root.anchorMax = anchor;
@@ -38,15 +45,30 @@ namespace Game.BattleView
             v.MaxHp = c.MaxHp;
             v.Hp = c.Hp;
             v._home = Vector2.zero;
+            v._size = size;
             v._highlight = UIKit.Image(root, "Highlight", th.primary.WithAlpha(0f), th.softDot);
             v._highlight.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(size * 1.5f, size * 1.5f), new Vector2(0, size * 0.25f), new Vector2(0.5f, 1));
             v.Body = UIKit.Rect("Body", root);
             v.Body.Anchor(new Vector2(0.5f, 1), new Vector2(size, size), Vector2.zero, new Vector2(0.5f, 1));
-            v.BodyImage = UIKit.Image(v.Body, "Sprite", tint, sprite);
-            v.BodyImage.rectTransform.Stretch();
-            v._baseColor = tint;
-            var initial = UIKit.Text(v.BodyImage.transform, "Initial", displayName.Length > 0 ? displayName.Substring(0, 1) : "?", size * 0.45f, new Color(0, 0, 0, 0.5f), TextAlignmentOptions.Center, bold: true);
-            initial.rectTransform.Stretch();
+            if (anim != null && anim.FirstFrame != null)
+            {
+                // Frames carry padding for weapons/FX: grow the image and sit the feet on the body's bottom edge.
+                var frame = size * anim.displayScale;
+                v.BodyImage = UIKit.Image(v.Body, "Sprite", Color.white, anim.FirstFrame);
+                v.BodyImage.rectTransform.Anchor(new Vector2(0.5f, 0), new Vector2(frame, frame), new Vector2(0, -frame * anim.feetY), new Vector2(0.5f, 0));
+                v.BodyImage.preserveAspect = true;
+                v._baseColor = Color.white;
+                v._flashColor = new Color(1f, 0.42f, 0.42f);
+                v.Anim = SpriteAnimator.Attach(v.BodyImage, anim);
+            }
+            else
+            {
+                v.BodyImage = UIKit.Image(v.Body, "Sprite", tint, sprite);
+                v.BodyImage.rectTransform.Stretch();
+                v._baseColor = tint;
+                var initial = UIKit.Text(v.BodyImage.transform, "Initial", displayName.Length > 0 ? displayName.Substring(0, 1) : "?", size * 0.45f, new Color(0, 0, 0, 0.5f), TextAlignmentOptions.Center, bold: true);
+                initial.rectTransform.Stretch();
+            }
             var hpBg = UIKit.Image(root, "HpBg", new Color(0, 0, 0, 0.6f), th.rounded);
             hpBg.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(size, 22), new Vector2(0, -size - 8), new Vector2(0.5f, 1));
             v._hpFill = UIKit.Image(hpBg.transform, "Fill", c.Team == Team.Player ? th.positive : th.negative, th.rounded);
@@ -88,7 +110,7 @@ namespace Game.BattleView
         public void Flash(float duration)
         {
             Tween.Kill(_flashTween);
-            _flashTween = Tween.To(BodyImage, 1f, 0f, duration, k => BodyImage.color = Color.Lerp(_baseColor, Color.white, k));
+            _flashTween = Tween.To(BodyImage, 1f, 0f, duration, k => BodyImage.color = Color.Lerp(_baseColor, _flashColor, k));
         }
 
         /// <summary>Position in the parent's space (where the Fx layer draws).</summary>
@@ -110,9 +132,16 @@ namespace Game.BattleView
             _moveTween = Tween.To(rt, 0f, 1f, duration, k => rt.anchoredPosition = _home + new Vector2(Mathf.Sin(k * 40f) * strength * (1 - k), 0), Ease.Linear, () => rt.anchoredPosition = _home);
         }
 
-        public void AddStatus(string id, bool buff, Theme th)
+        public void AddStatus(string id, bool buff, Theme th, Sprite art = null)
         {
             if (_statusIcons.ContainsKey(id)) return;
+            if (art != null)
+            {
+                var badge = UIKit.Image(_statusRow, "S_" + id, Color.white, art);
+                badge.Size(34, 34);
+                _statusIcons[id] = badge;
+                return;
+            }
             var icon = UIKit.Image(_statusRow, "S_" + id, id == "stun" ? th.warning : buff ? th.positive : th.negative, id == "stun" ? th.star : th.triangle);
             icon.Size(26, 26);
             if (!buff && id != "stun") icon.rectTransform.localRotation = Quaternion.Euler(0, 0, 180);
@@ -137,8 +166,37 @@ namespace Game.BattleView
             Dead = true;
             ClearStatuses();
             var group = gameObject.TryGetComponent<CanvasGroup>(out var existing) ? existing : gameObject.AddComponent<CanvasGroup>();
+            if (Anim != null)
+            {
+                // The death clip does the fall; fade out once it has played.
+                Anim.Play(SpriteAnimSet.Death, hold: true);
+                Tween.Fade(group, 0.25f, duration, null, Anim.Length(SpriteAnimSet.Death) * 0.6f);
+                return;
+            }
             Tween.Fade(group, 0.15f, duration);
             Tween.Scale(Body, 1f, 0.7f, duration, Ease.InQuad);
+        }
+
+        // ---- animation hooks (no-ops for placeholder art)
+
+        public void PlayAction(bool skill) { if (Anim != null && !Dead) Anim.Play(skill ? SpriteAnimSet.Skill : SpriteAnimSet.Attack); }
+
+        public void PlayHit()
+        {
+            if (Anim == null || Dead) return;
+            if (Anim.Current == SpriteAnimSet.Idle || Anim.Current == SpriteAnimSet.Hit || Anim.Current == null) Anim.Play(SpriteAnimSet.Hit);
+        }
+
+        public void PlayVictory() { if (Anim != null && !Dead) Anim.Play(SpriteAnimSet.Victory); }
+
+        public void SetAnimSpeed(float speed) { if (Anim != null) Anim.Speed = speed; }
+
+        /// <summary>True once, the first time HP drops below the threshold (for "low HP" barks).</summary>
+        public bool CrossedLowHp(float threshold = 0.3f)
+        {
+            if (_saidLowHp || Dead || MaxHp <= 0 || (float)Hp / MaxHp >= threshold) return false;
+            _saidLowHp = true;
+            return true;
         }
     }
 }

@@ -14,6 +14,11 @@ namespace Game.Data
         [Tooltip("Leave empty for the default rule (previous chapter cleared).")]
         public List<UnlockConditionData> unlockConditions = new List<UnlockConditionData>();
         public DropTable clearReward;
+        [Header("Art")]
+        [Tooltip("Portrait battle background for this chapter's fights.")]
+        public Sprite background;
+        [Tooltip("Wide banner shown on the campaign screen.")]
+        public Sprite banner;
 
         public ChapterDef ToCore() => new ChapterDef
         {

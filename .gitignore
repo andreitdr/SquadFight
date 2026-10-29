@@ -122,3 +122,7 @@ InitTestScene*.unity*
 /DotnetTests/**/obj/
 !/DotnetTests/**/*.csproj
 /Builds/
+
+# Python art tooling
+__pycache__/
+.venv-art/
