@@ -12,6 +12,8 @@ namespace Game.Services
         public readonly List<string> BetterItems = new List<string>();
         /// <summary>Shards that overflowed past max star and were converted, per hero.</summary>
         public readonly Dictionary<string, int> ConvertedShards = new Dictionary<string, int>();
+        /// <summary>Items converted to currency because the inventory was full.</summary>
+        public readonly List<string> AutoSold = new List<string>();
         public readonly Dictionary<string, (int before, int after)> ShardProgress = new Dictionary<string, (int, int)>();
         public bool IsEmpty => Bundle == null || Bundle.IsEmpty;
     }

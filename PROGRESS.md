@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 10
+Current step: 11
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -13,7 +13,7 @@ Current step: 10
 | 07 | Stats & formulas | DONE | dotnet 140/140, Unity verified in step 08 run | branch coverage measured in step 16 |
 | 08 | Combat core | DONE | EditMode 161/161, dotnet 156/156 | |
 | 09 | Campaign progression | DONE | EditMode 178/178, dotnet 173/173 | recommended power filled by step-15 tool |
-| 10 | Rewards & drop tables (M1) | TODO | | |
+| 10 | Rewards & drop tables (M1) | DONE | EditMode 207/207, PlayMode 1/1, dotnet 202/202 | Second review pass done; balance pass in step 15 |
 | 11 | UI foundation | TODO | | |
 | 12 | UI screens | TODO | | |
 | 13 | Battle presentation (M2) | TODO | | |
@@ -80,6 +80,18 @@ Current step: 10
 - [x] Debug console plays 1-1 → last fight in order (`DebugConsole_PlaysWholeCampaignInOrder`, `UnlockChain_FightByFight_ThenNextChapter`).
 - [x] Progress persists after restart (`Progress_PersistsAcrossRestart_AndIsSavedImmediately`).
 - [x] Reordering = editing the Chapter asset only (`ReorderingChapterAsset_ChangesOrder`; importer orders by `order` column).
+
+### Step 10
+- [x] Editing a drop table asset changes rewards without code (all rewards come from DropTableDef via DropRoller; content import tested).
+- [x] Simulator output matches weights within tolerance (`Statistical_ObservedMatchesWeights` ±0.03; Drop Simulator report on real tables: |Δ| ≤ 0.012 picks/clear).
+- [x] Rewards persist; save has correct counts right after a fight without any tick (`RewardsPersist_SaveHasCorrectCountsAfterFight`).
+- [x] Atomic apply / rollback (`CompleteFight_FailureMidway_RollsBackProgressAndRewards`, `Apply_InvalidBundle_LeavesStateUnchanged`), first-clear once, pity, migration.
+- [x] Second review pass (subagent): 8 findings fixed + regression tests.
+
+### M1 milestone checks (2026-10-29)
+- Config validator: **0 errors, 0 warnings** on real content.
+- Headless simulated playthrough: campaign completed by all 9 runs (3 policies × 3 seeds).
+- Progression simulator (BalanceReports/progression.md): greedy 24 fights, casual 72, hardcore 264; no difficulty walls; first unlock at fight 1, second at fight 5. **Known balance gap:** campaign too easy for a greedy player (0 losses), gold barely spent, Rare+ heroes unlock late or not at all within one pass → step 15 balance pass.
 
 ## Pending owner questions (batched)
 - none

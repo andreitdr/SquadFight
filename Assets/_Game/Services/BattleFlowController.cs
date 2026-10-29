@@ -27,6 +27,7 @@ namespace Game.Services
 
         public Result CanStart(string fightId)
         {
+            if (Current != null && !Current.Finished) return Result.Fail(ErrorCode.InvalidArgument, "a battle is already in progress");
             if (!_session.Db.TryGetFight(fightId, out _)) return Result.Fail(ErrorCode.NotFound, fightId);
             if (!_session.Progress.IsFightUnlocked(fightId)) return Result.Fail(ErrorCode.FightLocked, fightId);
             if (_session.Party.Members.Count == 0) return Result.Fail(ErrorCode.InvalidArgument, "the party is empty");
@@ -47,28 +48,53 @@ namespace Game.Services
             return Result<ActiveBattle>.Success(Current);
         }
 
-        /// <summary>Finishes the current battle (runs any remaining turns instantly = "skip") and records the outcome.</summary>
+        /// <summary>
+        /// Finishes the current battle (runs any remaining turns instantly = "skip") and records the outcome.
+        /// The battle stays current until it is recorded, so a failure can be retried instead of losing a victory.
+        /// </summary>
         public Result<FightCompletion> Finish()
         {
             var battle = Current;
             if (battle == null || battle.Finished) return Result<FightCompletion>.Fail(ErrorCode.InvalidArgument, "no battle in progress");
-            var result = battle.Simulator.RunToEnd();
-            battle.Finished = true;
-            Current = null;
-            return _session.Progress.CompleteFight(battle.Fight.Id, result);
+            BattleResult result;
+            try { result = battle.Simulator.RunToEnd(); }
+            catch (System.Exception e)
+            {
+                _session.Context.Log.Error($"[Battle] simulation of {battle.Fight.Id} failed: {e}");
+                Discard();
+                return Result<FightCompletion>.Fail(ErrorCode.Unknown, e.Message);
+            }
+            return Record(battle, result);
         }
 
-        /// <summary>Leaves the battle: counts as a defeat (no victory rewards, consolation if configured).</summary>
+        /// <summary>Leaves the battle: counts as a defeat (no victory rewards, consolation if configured). A battle that already ended is finished normally.</summary>
         public Result<FightCompletion> Retreat()
         {
             var battle = Current;
             if (battle == null || battle.Finished) return Result<FightCompletion>.Fail(ErrorCode.InvalidArgument, "no battle in progress");
-            battle.Finished = true;
+            if (battle.Simulator.IsOver) return Finish();
             battle.Retreated = true;
-            Current = null;
             var result = battle.Simulator.BuildResult();
             result.Outcome = BattleOutcome.Defeat;
-            return _session.Progress.CompleteFight(battle.Fight.Id, result);
+            return Record(battle, result);
+        }
+
+        /// <summary>Drops the current battle without recording anything (e.g. it could not be presented).</summary>
+        public void Discard()
+        {
+            if (Current != null) Current.Finished = true;
+            Current = null;
+        }
+
+        private Result<FightCompletion> Record(ActiveBattle battle, BattleResult result)
+        {
+            var completion = _session.Progress.CompleteFight(battle.Fight.Id, result, unlockVerifiedAtStart: true);
+            if (completion.Ok)
+            {
+                battle.Finished = true;
+                if (Current == battle) Current = null;
+            }
+            return completion;
         }
 
         /// <summary>Headless: start and finish in one call (debug console, simulators, tests).</summary>

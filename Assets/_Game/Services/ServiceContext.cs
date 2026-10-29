@@ -53,7 +53,7 @@ namespace Game.Services
         public Transaction BeginTransaction()
         {
             if (_tx != null) throw new InvalidOperationException("Nested transactions are not supported.");
-            _tx = new Transaction(this, SaveSerializer.Clone(State.Data));
+            _tx = new Transaction(this, SaveSerializer.Clone(State.Data), Random?.GetState());
             return _tx;
         }
 
@@ -61,14 +61,16 @@ namespace Game.Services
         {
             private readonly ServiceContext _ctx;
             private readonly SaveData _snapshot;
+            private readonly ulong[] _rngSnapshot;
             private bool _done;
             internal readonly List<Action> Pending = new List<Action>();
             internal bool Dirty;
 
-            internal Transaction(ServiceContext ctx, SaveData snapshot)
+            internal Transaction(ServiceContext ctx, SaveData snapshot, ulong[] rngSnapshot)
             {
                 _ctx = ctx;
                 _snapshot = snapshot;
+                _rngSnapshot = rngSnapshot;
             }
 
             /// <summary>Keeps the changes: marks dirty, optionally saves immediately, then publishes queued events.</summary>
@@ -92,6 +94,8 @@ namespace Game.Services
                 _done = true;
                 _ctx._tx = null;
                 _ctx.State.Replace(_snapshot);
+                // The RNG lives outside SaveData; restore it too so a retry cannot re-roll rewards.
+                if (_rngSnapshot != null) _ctx.Random.SetState(_rngSnapshot);
                 _ctx.Log.Warning("[Services] Transaction rolled back.");
             }
         }

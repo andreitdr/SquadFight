@@ -20,6 +20,7 @@ namespace Game.Save
         public List<EquipmentSave> Equipment = new List<EquipmentSave>();
         public ProgressSave Progress = new ProgressSave();
         public SettingsSave Settings = new SettingsSave();
+        public PitySave Pity = new PitySave();
         /// <summary>Optional RNG state for reproducible drop sequences.</summary>
         public ulong[] RngState;
     }
@@ -65,6 +66,12 @@ namespace Game.Save
         public bool FirstClearClaimed;
     }
 
+    /// <summary>Bad-luck protection counters (step 10).</summary>
+    public sealed class PitySave
+    {
+        public int FightsWithoutShard;
+    }
+
     public sealed class SettingsSave
     {
         public float MusicVolume = 0.8f;
@@ -80,7 +87,7 @@ namespace Game.Save
 
     public static class SaveVersions
     {
-        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars".</summary>
-        public const int Current = 2;
+        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity" counters.</summary>
+        public const int Current = 3;
     }
 }

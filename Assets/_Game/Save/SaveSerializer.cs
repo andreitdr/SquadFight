@@ -162,6 +162,7 @@ namespace Game.Save
             d.Progress.ClaimedChapterRewards ??= new List<string>();
             d.Progress.SeenStoryBeats ??= new List<string>();
             d.Settings ??= new SettingsSave();
+            d.Pity ??= new PitySave();
             d.Heroes.RemoveAll(h => h == null || string.IsNullOrEmpty(h.HeroId));
             d.Equipment.RemoveAll(e => e == null || string.IsNullOrEmpty(e.InstanceId));
             d.Progress.Fights.RemoveAll(f => f == null || string.IsNullOrEmpty(f.FightId));

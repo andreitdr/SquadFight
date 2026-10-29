@@ -24,12 +24,12 @@ MonoBehaviour:
     amountMin: 60
     amountMax: 60
   - type: 1
-    refId: hero_cleric
+    refId: hero_rogue
     rarity: 0
     anySlot: 1
     slot: 0
     rarityWeights: []
     weight: 1
-    amountMin: 4
-    amountMax: 4
+    amountMin: 5
+    amountMax: 5
   groups: []

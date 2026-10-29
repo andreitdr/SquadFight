@@ -90,43 +90,54 @@ namespace Game.Services
         /// Records a finished battle: stars, clears, first-clear and chapter-clear rewards. Everything (progress + rewards)
         /// is applied in one transaction and saved immediately, before the result is shown.
         /// </summary>
-        public Result<FightCompletion> CompleteFight(string fightId, BattleResult battle)
+        /// <param name="unlockVerifiedAtStart">True when the battle was started through <see cref="BattleFlowController"/>, which
+        /// checked the unlock at start (party power may legitimately drop mid-battle; a won fight must still be recorded).</param>
+        public Result<FightCompletion> CompleteFight(string fightId, BattleResult battle, bool unlockVerifiedAtStart = false)
         {
             if (!_ctx.Db.TryGetFight(fightId, out var fight)) return Result<FightCompletion>.Fail(ErrorCode.NotFound, fightId);
-            if (!IsFightUnlocked(fightId)) return Result<FightCompletion>.Fail(ErrorCode.FightLocked, fightId);
+            if (!unlockVerifiedAtStart && !IsFightUnlocked(fightId)) return Result<FightCompletion>.Fail(ErrorCode.FightLocked, fightId);
             if (battle == null) return Result<FightCompletion>.Fail(ErrorCode.InvalidArgument, "battle result");
 
             var unlockedBefore = _ctx.Db.Fights.Where(f => IsFightUnlocked(f.Id)).Select(f => f.Id).ToList();
             var completion = new FightCompletion { FightId = fightId, Victory = battle.Victory, Battle = battle };
 
-            using (var tx = _ctx.BeginTransaction())
+            try
             {
-                var record = _ctx.State.GetOrCreateFight(fightId);
-                completion.PreviousBestStars = record.BestStars;
-                _ctx.State.Data.Progress.TotalFights++;
-
-                if (battle.Victory)
+                using (var tx = _ctx.BeginTransaction())
                 {
-                    completion.Stars = ProgressionRules.EvaluateStars(battle, fight, _ctx.Db.Rules);
-                    completion.FirstClear = !record.FirstClearClaimed;
-                    record.Cleared = true;
-                    record.Clears++;
-                    record.BestStars = System.Math.Max(record.BestStars, completion.Stars);
-                    record.FirstClearClaimed = true;
+                    var record = _ctx.State.GetOrCreateFight(fightId);
+                    completion.PreviousBestStars = record.BestStars;
+                    _ctx.State.Data.Progress.TotalFights++;
 
-                    var chapterId = fight.ChapterId;
-                    if (IsChapterCleared(chapterId) && !_ctx.State.Data.Progress.ClaimedChapterRewards.Contains(chapterId))
+                    if (battle.Victory)
                     {
-                        _ctx.State.Data.Progress.ClaimedChapterRewards.Add(chapterId);
-                        completion.ChapterCompletedId = chapterId;
-                    }
-                }
+                        completion.Stars = ProgressionRules.EvaluateStars(battle, fight, _ctx.Db.Rules);
+                        completion.FirstClear = !record.FirstClearClaimed;
+                        record.Cleared = true;
+                        record.Clears++;
+                        record.BestStars = System.Math.Max(record.BestStars, completion.Stars);
+                        record.FirstClearClaimed = true;
 
-                completion.Rewards = Rewards?.GrantFightRewards(fight, battle.Victory, completion.FirstClear, completion.ChapterCompletedId) ?? new RewardResult();
-                _ctx.Commit();
-                _ctx.Emit(new FightCompleted(fightId, battle.Victory, completion.Stars, completion.FirstClear));
-                if (completion.ChapterCompletedId != null) _ctx.Emit(new ChapterCompleted(completion.ChapterCompletedId));
-                tx.Complete(saveNow: true);
+                        var chapterId = fight.ChapterId;
+                        if (IsChapterCleared(chapterId) && !_ctx.State.Data.Progress.ClaimedChapterRewards.Contains(chapterId))
+                        {
+                            _ctx.State.Data.Progress.ClaimedChapterRewards.Add(chapterId);
+                            completion.ChapterCompletedId = chapterId;
+                        }
+                    }
+
+                    completion.Rewards = Rewards?.GrantFightRewards(fight, battle.Victory, completion.FirstClear, completion.ChapterCompletedId) ?? new RewardResult();
+                    _ctx.Commit();
+                    _ctx.Emit(new FightCompleted(fightId, battle.Victory, completion.Stars, completion.FirstClear));
+                    if (completion.ChapterCompletedId != null) _ctx.Emit(new ChapterCompleted(completion.ChapterCompletedId));
+                    tx.Complete(saveNow: true);
+                }
+            }
+            catch (System.Exception e)
+            {
+                // The transaction was rolled back by Dispose: nothing was recorded or granted.
+                _ctx.Log.Error($"[Progress] CompleteFight {fightId} failed and was rolled back: {e.Message}");
+                return Result<FightCompletion>.Fail(ErrorCode.Unknown, e.Message);
             }
 
             completion.NewlyUnlockedFights.AddRange(_ctx.Db.Fights.Where(f => IsFightUnlocked(f.Id) && !unlockedBefore.Contains(f.Id)).Select(f => f.Id));

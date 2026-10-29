@@ -41,4 +41,10 @@ Each fight rewards random items from a drop table defined in config before build
 > Read `00-overview.md` and `10-rewards-and-drop-tables.md`. Extend DropTable data, implement `DropRoller` in Core, `RewardService` in Services (transactional), pity counters with save migration, wire into `ProgressService.CompleteFight`, and add the editor Drop Simulator window. Provide statistical and atomicity tests.
 
 ## Decisions made
-- Pity enabled: ___
+- Pity enabled: no by default (config `pityEnabled`, `pityFightsWithoutShard`); counter in save (`pity.fightsWithoutShard`, migration v2→v3, fixture `save_v2.json`)
+- Pity shard = 1 shard of a hero the fight's main drop table can give (fallback: a random locked hero)
+- Drop rate multipliers: `currencyDropMultiplier`, `shardDropMultiplier` (amounts, min 1)
+- RandomEquipment rarity weights × rarity `dropWeightModifier`; template uniform within the slot filter
+- Full inventory never loses rewards: overflow items are converted to their sell value
+- Rewards are applied inside the fight-completion transaction and saved immediately; any failure rolls back progress + rewards
+- Second review pass for duplication/atomicity: done (see DECISIONS step 10)

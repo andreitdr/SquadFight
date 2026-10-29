@@ -31,6 +31,7 @@ namespace Game.Save
         public static MigrationRunner Default() => new MigrationRunner(new ISaveMigration[]
         {
             new Migration_1_To_2(),
+            new Migration_2_To_3(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -66,6 +67,21 @@ namespace Game.Save
                 if (h["stars"] == null) h["stars"] = h["star"];
                 h.Remove("star");
             }
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v2 → v3: adds pity counters (bad-luck protection) starting at zero.</summary>
+    public sealed class Migration_2_To_3 : ISaveMigration
+    {
+        public int From => 2;
+        public int To => 3;
+
+        public void Apply(JObject payload)
+        {
+            if (!(payload["pity"] is JObject)) payload["pity"] = new JObject { ["fightsWithoutShard"] = 0 };
         }
     }
 }

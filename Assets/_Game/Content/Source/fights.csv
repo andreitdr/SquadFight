@@ -1,6 +1,6 @@
 # waves: spawns joined by '+', waves separated by '/'; enemy@multiplier scales HP/ATK/DEF
 id,chapter,order,name,waves,recommendedPower,dropTable,firstClearTable,starTurnLimit,preBeats,postBeats,unlockConditions
-fight_1_1,chapter_1,1,Forest Edge,enemy_goblin@0.8+enemy_goblin@0.8,0,drops_ch1,first_ch1_a,0,beat_ch1_intro;beat_ch1_f1_pre,,
+fight_1_1,chapter_1,1,Forest Edge,enemy_goblin@0.8+enemy_goblin@0.8,0,drops_ch1,first_ch1_intro,0,beat_ch1_intro;beat_ch1_f1_pre,,
 fight_1_2,chapter_1,2,Wolf Den,enemy_wolf+enemy_wolf+enemy_goblin,0,drops_ch1,first_ch1_a,0,,,
 fight_1_3,chapter_1,3,Goblin Camp,enemy_goblin+enemy_goblin_shaman+enemy_goblin,0,drops_ch1,first_ch1_b,0,,,
 fight_1_4,chapter_1,4,Ambush,enemy_wolf@1.1+enemy_goblin@1.1+enemy_wolf@1.1 / enemy_goblin_shaman@1.1+enemy_goblin@1.1,0,drops_ch1,first_ch1_a,0,beat_ch1_f4_pre,,

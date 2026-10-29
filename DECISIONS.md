@@ -67,3 +67,11 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[09] Completing a fight is atomic and saved immediately** (progress + first-clear + chapter reward + drops in one transaction, then SaveNow) so killing the app on the result screen can neither lose nor duplicate rewards.
 - **[09] Debug `clear fight|chapter|all`** records 3-star victories with normal rewards; `fight <id> [seed]` simulates a real battle headlessly.
 - **[09] Campaign content** (placeholder story, owner may rewrite): Greenwood Road (goblins, Goblin King) → Crypt of Ash (undead, Lich) → Dragon's Peak (orcs/wyverns, Red Dragon). Hero acquisition is staged by chapter: Uncommon via ch1 first clears, Rare via ch1 boss/chapter + ch2, Epic via ch2 boss/chapter + ch3, Legendary Drakon via ch3 boss/chapter + rare ch3 drops. DEFAULTED – owner may override.
+
+## Step 10
+- **[10] Pity off by default** (approved default); counters saved (`pity`, save v3 via migration 2→3, fixture `save_v2.json`).
+- **[10] Rewards never lost to a full inventory** — surplus items are converted to their sell value (`RewardResult.AutoSold`).
+- **[10] Transactions also snapshot the RNG**, so a rolled-back completion cannot re-roll rewards on retry.
+- **[10] BattleFlow hardening (review pass):** one active battle at a time; unlock checked at start, not at completion; a battle stays current until recorded (failures are retryable); retreat after the simulator already won records the victory; simulation exceptions return a failure instead of crashing the UI; item-id collisions are re-rolled.
+- **[10] Headless campaign simulator built now** (Services/Simulation, policies greedy/casual/hardcore) because AUTOPILOT requires a progression run at M1; step 15 adds windows/reports on top.
+- **[10] First-clear of fight 1-1 grants the 20 shards to unlock Sister Maren** (onboarding: first unlock right after the first fight; tutorial in step 18).
