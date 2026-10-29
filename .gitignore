@@ -112,3 +112,11 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# macOS
+.DS_Store
+# Balance reports (step 15) and local test output
+/BalanceReports/
+/TestResults/
+/CoreTests/**/bin/
+/CoreTests/**/obj/

@@ -1,0 +1,37 @@
+# Step 13 — Battle Presentation
+
+**Depends on:** 08, 11. **Size:** L
+
+## Goal
+Make the simulated battle visible and fun: play the combat event stream with animations, VFX, damage numbers, and player controls.
+
+## Architecture
+- Simulation runs **first** (or step-by-step) in Core; `BattlePlayer` (Game.BattleView) consumes `BattleEvent`s and plays them as coroutines/async sequences.
+- Presentation never changes outcomes (so "skip battle" is just jump to result).
+- Placeholder visuals first (colored sprites + simple tweens); real art swaps in via `HeroDefinition`/`EnemyDefinition` visual refs.
+
+## Features
+- Battle scene layout: 2 rows/columns of positions for 5 vs 5, background per fight.
+- Unit views: sprite or Spine/2D-skeleton ready, idle/attack/hit/death states via Animator or tween.
+- HP bars, status icons, turn-order bar (next actors), floating damage/heal/crit numbers (pooled).
+- Skill buttons per hero (cooldown overlay), Auto toggle, speed ×1/×2/×3, Skip, Pause/Retreat (confirm).
+- VFX: basic hit flash, projectile, buff glow, death fade via pooled particle prefabs; screen shake (option in settings).
+- Wave transitions, boss intro banner, victory/defeat banner → hands off to Result screen (step 12).
+- Camera: orthographic, fixed; scales for different aspect ratios.
+- Audio hooks (events dispatched; sounds in step 14).
+
+## Tasks
+1. `BattleView` scene + prefabs for unit, HP bar, damage number, VFX.
+2. `BattlePlayer` event interpreter with an action queue and speed multiplier.
+3. HUD view model/view (skills, auto, speed, skip).
+4. Manual skill trigger → `QueuePlayerSkill` on simulator (simulation advances turn-by-turn in this mode).
+5. Pooling for numbers/VFX; zero allocations per frame in steady state (profile).
+6. Dev tool: replay a fight from seed in the Battle scene for debugging.
+
+## Acceptance criteria
+- A full 5v5 boss fight plays smoothly at 60 fps on a mid-range Android device.
+- Skip and ×3 speed yield the same final result as normal speed.
+- Presentation never desyncs HP bars from simulation state (assert in dev builds).
+
+## Prompt for Claude
+> Read `00-overview.md`, `08-combat-core.md` and `13-battle-presentation.md`. Implement the battle presentation in Game.BattleView: `BattlePlayer` that interprets `BattleEvent`s, unit/HP bar/damage-number/VFX components with pooling, HUD with auto/speed/skip/manual skills, and hand-off to the result screen. Use placeholder visuals. Provide the scene/prefab checklist and a desync assertion in dev builds.
