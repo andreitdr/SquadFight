@@ -122,3 +122,10 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[17] `VERSION.txt` not `VERSION`:** the uppercase file shadowed `<version>` in IL2CPP's C++ compile on case-insensitive APFS (build failed with 12 errors); renamed.
 - **[17] Offline guarantee enforced at build time** with `tools:node="remove"` on network permissions; checked on the real APK.
 - **[17] Release signing only from env vars** (`ANDROID_KEYSTORE_PATH`/`_BASE64`, `_PASS`, `ANDROID_KEYALIAS_NAME`, `_PASS`); release build fails loudly without them.
+
+## Step 18
+- **[18] D8 daily bonus off by default** (approved default); implemented and tested so it can be switched on in config.csv.
+- **[18] D9 no analytics** (approved default).
+- **[18] Save v4** adds `tutorial` and `daily`; migration 3→4 marks the tutorial done for players who already fought (fixture `save_v3.json`).
+- **[18] Release gate for placeholders is a warning** while final art is missing; `BLOCK_PLACEHOLDERS=1` turns it into a build failure for the real 1.0 submission.
+- **[18] Not done (needs the owner):** final art/audio, game name, store accounts, keystore, device QA matrix, submission. Listed in MILESTONE-M3.md and STORE_LISTING.md.

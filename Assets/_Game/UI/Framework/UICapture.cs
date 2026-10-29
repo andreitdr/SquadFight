@@ -7,6 +7,12 @@ namespace Game.UI
     /// Renders all UI canvases under a root into a PNG at a given resolution (temporarily switching them to
     /// Screen Space - Camera). Used by QA tests to produce screenshots for different aspect ratios in batch mode.
     /// </summary>
+    /// <summary>Components that lay themselves out per frame implement this so captures at another resolution refresh them.</summary>
+    public interface ICaptureRefresh
+    {
+        void RefreshForCapture();
+    }
+
     public static class UICapture
     {
         public static bool Capture(Transform uiRoot, int width, int height, string path, Camera worldCamera = null)
@@ -35,8 +41,9 @@ namespace Game.UI
                     canvases[i].planeDistance = 10f - canvases[i].sortingOrder * 0.01f;
                 }
                 Canvas.ForceUpdateCanvases();
-                foreach (var list in uiRoot.GetComponentsInChildren<RecycleList>()) list.ForceLayout();
+                foreach (var r in uiRoot.GetComponentsInChildren<ICaptureRefresh>()) r.RefreshForCapture();
                 Canvas.ForceUpdateCanvases();
+                foreach (var r in uiRoot.GetComponentsInChildren<ICaptureRefresh>()) r.RefreshForCapture();
                 if (worldCamera != null)
                 {
                     var old = worldCamera.targetTexture;

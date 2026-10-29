@@ -32,6 +32,7 @@ namespace Game.Save
         {
             new Migration_1_To_2(),
             new Migration_2_To_3(),
+            new Migration_3_To_4(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -82,6 +83,25 @@ namespace Game.Save
         public void Apply(JObject payload)
         {
             if (!(payload["pity"] is JObject)) payload["pity"] = new JObject { ["fightsWithoutShard"] = 0 };
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v3 → v4: tutorial and daily-bonus records. Existing players (any fight already played) skip the tutorial.</summary>
+    public sealed class Migration_3_To_4 : ISaveMigration
+    {
+        public int From => 3;
+        public int To => 4;
+
+        public void Apply(JObject payload)
+        {
+            var played = payload["progress"]?["totalFights"]?.Type == JTokenType.Integer && (long)payload["progress"]["totalFights"] > 0;
+            if (!(payload["tutorial"] is JObject))
+                payload["tutorial"] = new JObject { ["step"] = played ? 999 : 0, ["skipped"] = played, ["seenTips"] = new JArray() };
+            if (!(payload["daily"] is JObject))
+                payload["daily"] = new JObject { ["lastClaimDate"] = "", ["streak"] = 0 };
         }
     }
 }

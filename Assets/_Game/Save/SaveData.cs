@@ -21,6 +21,8 @@ namespace Game.Save
         public ProgressSave Progress = new ProgressSave();
         public SettingsSave Settings = new SettingsSave();
         public PitySave Pity = new PitySave();
+        public TutorialSave Tutorial = new TutorialSave();
+        public DailyBonusSave Daily = new DailyBonusSave();
         /// <summary>Optional RNG state for reproducible drop sequences.</summary>
         public ulong[] RngState;
     }
@@ -72,6 +74,23 @@ namespace Game.Save
         public int FightsWithoutShard;
     }
 
+    /// <summary>Onboarding progress (step 18): resumes after a restart.</summary>
+    public sealed class TutorialSave
+    {
+        /// <summary>Index of the next scripted step; equal to the step count when finished.</summary>
+        public int Step;
+        public bool Skipped;
+        public List<string> SeenTips = new List<string>();
+    }
+
+    /// <summary>Optional daily login bonus (config flag).</summary>
+    public sealed class DailyBonusSave
+    {
+        /// <summary>Local calendar date of the last claim (yyyy-MM-dd), empty if never.</summary>
+        public string LastClaimDate = "";
+        public int Streak;
+    }
+
     public sealed class SettingsSave
     {
         public float MusicVolume = 0.8f;
@@ -87,7 +106,7 @@ namespace Game.Save
 
     public static class SaveVersions
     {
-        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity" counters.</summary>
-        public const int Current = 3;
+        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily".</summary>
+        public const int Current = 4;
     }
 }

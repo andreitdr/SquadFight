@@ -60,6 +60,11 @@ namespace Game.Data
         public int pityFightsWithoutShard = 5;
         public bool showDropOdds;
 
+        [Header("Meta")]
+        [Tooltip("D8: daily login bonus (device clock, tamper tolerant). Off by default.")]
+        public bool dailyBonusEnabled;
+        public DropTable dailyBonusTable;
+
         public GameRules ToRules() => new GameRules
         {
             PartySize = partySize,
@@ -82,6 +87,8 @@ namespace Game.Data
             PityEnabled = pityEnabled,
             PityFightsWithoutShard = pityFightsWithoutShard,
             ShowDropOdds = showDropOdds,
+            DailyBonusEnabled = dailyBonusEnabled,
+            DailyBonusTableId = dailyBonusTable ? dailyBonusTable.id : null,
         };
     }
 }

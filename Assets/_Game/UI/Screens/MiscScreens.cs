@@ -198,7 +198,11 @@ namespace Game.UI
             {
                 case RewardLine.Kind.Currency:
                     UIKit.Image(panel.transform, "Icon", Th.warning, Th.circle).Size(100, 100);
-                    text = $"+{CurrencyChip.FormatAmount(l.Amount)} {Ctx.T("currency_" + l.Id + "_name")}";
+                    var label = UIKit.Text(panel.transform, "Text", "", Th.fontBody, Th.text, TextAlignmentOptions.Left, bold: true);
+                    label.Size(preferredWidth: 700);
+                    var name = Ctx.T("currency_" + l.Id + "_name");
+                    var amount = l.Amount;
+                    Tween.To(label, 0, amount, 0.6f, v => label.text = $"+{CurrencyChip.FormatAmount((long)v)} {name}", Ease.OutCubic, delay: delay);
                     break;
                 case RewardLine.Kind.Shards:
                     var portrait = ScreenKit.Portrait(Ctx, panel.transform, l.Id, 100);
@@ -282,6 +286,11 @@ namespace Game.UI
             speed = UIKit.Button(_content, "Speed", Ctx.F("battle_speed_value", s.BattleSpeed), () => { _vm.CycleBattleSpeed(); speed.SetLabel(Ctx.F("battle_speed_value", s.BattleSpeed)); }, UIKit.ButtonStyle.Ghost);
             UIKit.Button(_content, "Credits", Ctx.T("credits"), () => MessagePopup.Show(Ctx, Ctx.T("credits"), Ctx.T("credits_body")), UIKit.ButtonStyle.Ghost);
             UIKit.Button(_content, "Privacy", Ctx.T("privacy_policy"), () => MessagePopup.Show(Ctx, Ctx.T("privacy_policy"), Ctx.T("privacy_body")), UIKit.ButtonStyle.Ghost);
+            UIKit.Button(_content, "Tutorial", Ctx.T("replay_tutorial"), () =>
+            {
+                Ctx.Session.Tutorial.Restart();
+                UIScreensSetup.ShowHome(Ctx);
+            }, UIKit.ButtonStyle.Ghost);
             UIKit.Button(_content, "DebugInfo", Ctx.T("copy_debug_info"), () =>
             {
                 GUIUtility.systemCopyBuffer = Ctx.DebugInfo();

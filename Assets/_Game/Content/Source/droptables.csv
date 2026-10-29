@@ -52,3 +52,7 @@ first_ch3_boss,G,,,,HeroShard,hero_dragonknight,,,,1,80,80
 first_ch3_boss,G,,,,RandomEquipment,,,,Legendary=100,1,1,1
 clear_ch3,G,,,,Currency,gold,,,,1,1500,1500
 clear_ch3,G,,,,HeroShard,hero_dragonknight,,,,1,80,80
+first_ch1_intro,G,,,,Equipment,eq_wooden_sword,Common,,,1,1,1
+daily_bonus,G,,,,Currency,gold,,,,1,100,100
+daily_bonus,a,1,1,false,RandomHeroShardByRarity,,Common,,,60,2,3
+daily_bonus,a,,,,RandomHeroShardByRarity,,Uncommon,,,40,1,2

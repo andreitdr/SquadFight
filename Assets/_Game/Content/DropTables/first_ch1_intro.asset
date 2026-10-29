@@ -32,4 +32,13 @@ MonoBehaviour:
     weight: 1
     amountMin: 20
     amountMax: 20
+  - type: 3
+    refId: eq_wooden_sword
+    rarity: 0
+    anySlot: 1
+    slot: 0
+    rarityWeights: []
+    weight: 1
+    amountMin: 1
+    amountMax: 1
   groups: []

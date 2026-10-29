@@ -24,6 +24,8 @@ namespace Game.UI
             TabBar.Create(ctx, Dots);
             ctx.Manager.Replace<HomeScreen>(clearStack: true);
             ctx.Manager.RefreshChrome();
+            if (ctx.Manager.GetComponentInChildren<TutorialOverlay>(true) == null && !ctx.Session.Tutorial.IsComplete) TutorialOverlay.Create(ctx);
+            DailyBonusPopup.ShowIfAvailable(ctx);
         }
     }
 }

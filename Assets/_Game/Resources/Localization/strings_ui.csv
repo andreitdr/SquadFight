@@ -187,3 +187,36 @@ retreat_body,The fight counts as lost (no rewards).,Lupta se consideră pierdut�
 # ---- step 16 ----
 copy_debug_info,Copy debug info,Copiază informațiile de depanare
 debug_info_copied,Debug info copied. Paste it into your bug report.,Informațiile au fost copiate. Lipește-le în raportul de eroare.
+# ---- step 18 tutorial / tips / daily ----
+tut_skip,Skip tutorial,Sari peste tutorial
+tut_skip_title,Skip the tutorial?,Sari peste tutorial?
+tut_skip_body,You can replay it any time from Settings.,Îl poți relua oricând din Setări.
+tut_continue,Welcome! Tap Continue to start your first fight.,Bun venit! Atinge Continuă pentru prima luptă.
+tut_fight,These are the enemies and possible rewards. Tap Fight!,Aceștia sunt inamicii și recompensele posibile. Atinge Luptă!
+tut_result_home,"Victory! You earned shards for Sister Maren. Let's go back home.","Victorie! Ai primit fragmente pentru Sora Maren. Hai înapoi acasă."
+tut_heroes_tab,Open your heroes.,Deschide eroii.
+tut_pick_hero,Sister Maren has enough shards. Tap her card.,Sora Maren are destule fragmente. Atinge cartea ei.
+tut_unlock,Shards unlock heroes. Tap Unlock!,Fragmentele deblochează eroi. Atinge Deblochează!
+tut_unlock_ok,A new hero joins you!,Un erou nou ți se alătură!
+tut_add_party,Add her to your party of 5.,Adaug-o în echipa ta de 5.
+tut_equip_slot,Heroes wear equipment. Tap the weapon slot.,Eroii poartă echipament. Atinge slotul de armă.
+tut_equip_item,Green numbers mean an upgrade. Equip the sword.,Numerele verzi înseamnă o îmbunătățire. Echipează sabia.
+tut_home_tab,Great! Back to Home.,Super! Înapoi acasă.
+tut_continue2,Your party is stronger now. Continue!,Echipa ta e mai puternică acum. Continuă!
+tut_fight2,"You're ready. Good luck, hero!","Ești pregătit. Mult noroc, erou!"
+replay_tutorial,Replay tutorial,Reia tutorialul
+got_it,Got it,Am înțeles
+tip_shards_title,Hero shards,Fragmente de erou
+tip_shards_body,"Collect shards from fights to unlock this hero. Rarer heroes need more shards.","Colectează fragmente din lupte ca să deblochezi eroul. Eroii mai rari au nevoie de mai multe."
+tip_starup_title,Star up!,Crește stelele!
+tip_starup_body,"Extra shards raise a hero's stars, boosting all stats.","Fragmentele în plus cresc stelele eroului și toate statisticile."
+tip_equipment_title,Equipment,Echipament
+tip_equipment_body,"Higher rarity items have stronger stats. An item worn by another hero can be moved.","Obiectele mai rare au statistici mai mari. Un obiect purtat de alt erou poate fi mutat."
+tip_party_power_title,Party power,Puterea echipei
+tip_party_power_body,"Compare your party power with the recommended power before a fight.","Compară puterea echipei cu puterea recomandată înainte de luptă."
+tip_daily_title,Daily reward,Recompensa zilnică
+tip_daily_body,Come back every day for a reward.,Revino zilnic pentru o recompensă.
+daily_title,Daily reward,Recompensa zilnică
+daily_body,Day {0} in a row!,Ziua {0} la rând!
+claim,Claim,Revendică
+daily_claimed,Received: {0},Ai primit: {0}

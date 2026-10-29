@@ -1,0 +1,8 @@
+{
+  "format": "squadfight-save",
+  "version": 3,
+  "counter": 11,
+  "savedUtc": "2026-05-02T00:00:00Z",
+  "sha256": "c5dba3296d0c61dd7798509ca9e43bdcc9acc67a33d7473f4dff9e87f4937c16",
+  "payload": "{\"version\":3,\"createdUtc\":\"2026-05-01T00:00:00Z\",\"lastSavedUtc\":\"2026-05-02T00:00:00Z\",\"currencies\":{\"gold\":777},\"heroes\":[{\"heroId\":\"hero_knight\",\"unlocked\":true,\"stars\":2,\"shards\":4}],\"party\":[\"hero_knight\",null,null,null,null],\"equipment\":[],\"progress\":{\"fights\":[{\"fightId\":\"fight_1_1\",\"cleared\":true,\"bestStars\":3,\"clears\":2,\"firstClearClaimed\":true}],\"claimedChapterRewards\":[],\"seenStoryBeats\":[\"beat_ch1_intro\"],\"totalFights\":2},\"settings\":{\"musicVolume\":0.8,\"sfxVolume\":1.0,\"language\":\"en\",\"vibration\":true,\"screenShake\":true,\"reduceMotion\":false,\"battleSpeed\":2.0,\"autoSkill\":true},\"pity\":{\"fightsWithoutShard\":2},\"rngState\":null}"
+}

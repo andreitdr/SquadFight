@@ -20,6 +20,8 @@ namespace Game.Services
         public ProgressService Progress { get; }
         public RewardService Rewards { get; }
         public SettingsService Settings { get; }
+        public TutorialService Tutorial { get; }
+        public DailyBonusService Daily { get; }
         public BattleFlowController Battles { get; }
 
         public GameSession(GameDatabase db, SaveData data, ISaveScheduler saver = null, IRandom random = null, IClock clock = null, IGameLogger log = null)
@@ -42,6 +44,8 @@ namespace Game.Services
             Progress.Rewards = Rewards;
             Battles = new BattleFlowController(this);
             Settings = new SettingsService(Context);
+            Tutorial = new TutorialService(Context);
+            Daily = new DailyBonusService(Context, Rewards);
         }
 
         public int PartyPower => Roster.GetTotalPower(Party.Members);

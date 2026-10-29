@@ -163,6 +163,9 @@ namespace Game.Save
             d.Progress.SeenStoryBeats ??= new List<string>();
             d.Settings ??= new SettingsSave();
             d.Pity ??= new PitySave();
+            d.Tutorial ??= new TutorialSave();
+            d.Tutorial.SeenTips ??= new List<string>();
+            d.Daily ??= new DailyBonusSave();
             d.Heroes.RemoveAll(h => h == null || string.IsNullOrEmpty(h.HeroId));
             d.Equipment.RemoveAll(e => e == null || string.IsNullOrEmpty(e.InstanceId));
             d.Progress.Fights.RemoveAll(f => f == null || string.IsNullOrEmpty(f.FightId));

@@ -9,11 +9,20 @@ using UnityEngine.UI;
 
 namespace Game.UI
 {
-    /// <summary>Marks a UI element the tutorial can point at (step 18). Registered by id while active.</summary>
-    public sealed class TutorialAnchor : MonoBehaviour
+    /// <summary>Marks a UI element the tutorial can point at (step 18). Registered by id while active; reports taps.</summary>
+    public sealed class TutorialAnchor : MonoBehaviour, UnityEngine.EventSystems.IPointerClickHandler
     {
         public static readonly Dictionary<string, TutorialAnchor> Active = new Dictionary<string, TutorialAnchor>();
+        /// <summary>Raised when any anchor is tapped (before or after its Button handler – both receive the click).</summary>
+        public static event Action<string> Tapped;
         public string Id;
+
+        public void OnPointerClick(UnityEngine.EventSystems.PointerEventData e)
+        {
+            var sel = GetComponent<Selectable>();
+            if (sel != null && !sel.IsInteractable()) return;
+            Tapped?.Invoke(Id);
+        }
 
         public static TutorialAnchor Mark(Component c, string id)
         {

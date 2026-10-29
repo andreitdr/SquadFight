@@ -170,6 +170,8 @@ namespace Game.Services
                 PityEnabled = CB("pityEnabled", false),
                 PityFightsWithoutShard = (int)CF("pityFightsWithoutShard", 5),
                 ShowDropOdds = CB("showDropOdds", false),
+                DailyBonusEnabled = CB("dailyBonusEnabled", false),
+                DailyBonusTableId = Null(C("dailyBonusTable", "")),
             };
             return db.Index();
         }

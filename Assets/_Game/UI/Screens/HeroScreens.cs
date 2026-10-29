@@ -45,6 +45,7 @@ namespace Game.UI
             card.Button.onClick.RemoveAllListeners();
             card.Button.onClick.AddListener(() => Ctx.Manager.Push<HeroDetailScreen>(e.Def.Id));
             var anchor = item.TryGetComponent<TutorialAnchor>(out var existing) ? existing : item.gameObject.AddComponent<TutorialAnchor>();
+            if (anchor.Id != null && TutorialAnchor.Active.TryGetValue(anchor.Id, out var prev) && prev == anchor) TutorialAnchor.Active.Remove(anchor.Id);
             anchor.Id = "hero_" + e.Def.Id;
             TutorialAnchor.Active[anchor.Id] = anchor;
         }
@@ -79,7 +80,11 @@ namespace Game.UI
             Refresh();
         }
 
-        public override void OnShow() => Refresh();
+        public override void OnShow()
+        {
+            Refresh();
+            TipPopup.ShowOnce(Ctx, _vm.Unlocked ? (_vm.StarUpInfo.CanUpgrade ? "tip_starup" : null) : "tip_shards");
+        }
 
         private void Refresh()
         {
@@ -113,7 +118,7 @@ namespace Game.UI
             BuildProgression();
 
             if (_vm.Unlocked && !_vm.InParty)
-                UIKit.Button(_content, "AddParty", Ctx.T("add_to_party"), () => ScreenKit.Report(Ctx, _vm.AddToParty()), UIKit.ButtonStyle.Secondary);
+                TutorialAnchor.Mark(UIKit.Button(_content, "AddParty", Ctx.T("add_to_party"), () => ScreenKit.Report(Ctx, _vm.AddToParty()), UIKit.ButtonStyle.Secondary), "hero_add_party");
 
             // Stats
             Section("stats");
@@ -240,6 +245,7 @@ namespace Game.UI
         {
             var a = (EquipmentPickerArgs)Args;
             _vm = new EquipmentPickerViewModel(Ctx.Session, a.HeroId, a.SlotIndex);
+            TipPopup.ShowOnce(Ctx, "tip_equipment");
             _vm.Changed += _ => Refresh();
             var body = ScreenKit.Header(Ctx, Root, ScreenKit.SlotName(Ctx, _vm.Slot) + " · " + ScreenKit.HeroName(Ctx, a.HeroId));
             var scroll = UIKit.ScrollView(body, "Scroll", out _content, Th.spacing, Th.padding);
@@ -349,6 +355,7 @@ namespace Game.UI
         protected override void Build()
         {
             _vm = new PartyViewModel(Ctx.Session);
+            TipPopup.ShowOnce(Ctx, "tip_party_power");
             _vm.Changed += _ => Refresh();
             var body = ScreenKit.Header(Ctx, Root, Ctx.T("tab_party"));
             _slots = UIKit.Rect("Slots", body).TopBand(230, 10);

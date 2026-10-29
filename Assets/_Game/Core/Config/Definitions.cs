@@ -243,5 +243,9 @@ namespace Game.Core
         public bool PityEnabled;
         public int PityFightsWithoutShard = 5;
         public bool ShowDropOdds;
+
+        // Meta (step 18)
+        public bool DailyBonusEnabled;
+        public string DailyBonusTableId;
     }
 }

@@ -45,3 +45,14 @@ Turn a working game into a shippable one: onboarding, juice, content completion,
 
 ## Prompt for Claude
 > Read `00-overview.md` and `18-polish-tutorial-release.md`. Implement `TutorialService` with saved progress, anchors and overlay masking, contextual first-time tips, the placeholder-asset audit tool, and the optional daily bonus (behind a config flag). Draft the privacy policy text (offline, no data collected), `THIRD_PARTY_NOTICES.md` generator, and a store-listing checklist file I can fill in.
+
+## Decisions made
+- TutorialService (13 scripted steps, saved after each step, skippable, replayable from Settings); overlay = 4 blockers around the target anchor (only the target is tappable), pulsing ring, hint, Skip
+- Guided first session: fight 1-1 first clear grants Sister Maren's 20 shards + a Wooden Sword → unlock → add to party → equip → second fight
+- Existing players (save v3 with fights played) skip the tutorial via migration 3→4
+- Contextual tips once each after the tutorial (shards, star-up, equipment, party power)
+- D8 daily bonus implemented behind `dailyBonusEnabled` (default off): local date, claims only on a strictly later date (clock rewinds never pay), gaps reset the streak
+- D9 no analytics/crash reporting (offline, no INTERNET permission)
+- Placeholder audit tool + release-build warning (BLOCK_PLACEHOLDERS=1 makes it fatal for the final 1.0 build); 35 placeholder assets remain (no final art yet)
+- Legal/store: PRIVACY_POLICY.md, THIRD_PARTY_NOTICES.md (generated), STORE_LISTING.md checklist
+- Polish: gold count-up on results, unlock celebration, rarity glow, button press scale/sound/haptics, reduce-motion setting

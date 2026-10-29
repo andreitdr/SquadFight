@@ -391,6 +391,9 @@ namespace Game.EditorTools.Content
                     gc.pityEnabled = CfgBool(cfg, "pityEnabled", false);
                     gc.pityFightsWithoutShard = (int)CfgFloat(cfg, "pityFightsWithoutShard", 5);
                     gc.showDropOdds = CfgBool(cfg, "showDropOdds", false);
+                    gc.dailyBonusEnabled = CfgBool(cfg, "dailyBonusEnabled", false);
+                    var daily = Cfg(cfg, "dailyBonusTable", "");
+                    gc.dailyBonusTable = string.IsNullOrEmpty(daily) ? null : tables.TryGetValue(daily, out var dbt) ? dbt : throw new FormatException($"config dailyBonusTable: unknown table '{daily}'");
                 });
 
                 ReportOrphans();

@@ -1,6 +1,6 @@
 # Progress
-Last updated: 2026-10-29
-Current step: 18
+Last updated: 2026-10-30
+Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -21,7 +21,7 @@ Current step: 18
 | 15 | Balance & content tools | DONE | EditMode 237/237, dotnet 225/225 | gold surplus noted |
 | 16 | Testing & QA | DONE | EditMode 247/247, PlayMode 13/13, dotnet 235/235 | device matrix pending (owner deferred) |
 | 17 | Mobile optimization & builds | DONE | EditMode 254/254; Android dev APK built | device profiling pending |
-| 18 | Polish, tutorial, release (M3) | TODO | | |
+| 18 | Polish, tutorial, release (M3) | DONE | EditMode 262/262, PlayMode 14/14, dotnet 243/243 | final art, store submission and device QA need the owner |
 
 ## Environment
 - Unity project root: `/Volumes/SSD/Projects/SquadFight/SquadFight`
@@ -135,6 +135,14 @@ Current step: 18
 - [x] Release AAB from one command: `./build.sh android-release` (needs keystore env vars — owner); dev APK built and verified here.
 - [x] Manifest has no network permission (aapt on the built APK); game runs fully offline by design.
 
+### Step 18
+- [~] New player completes the tutorial without guidance: scripted overlay + PlayMode test drives the first steps with real pointer events; real-user test pending.
+- [ ] No placeholder assets in release: **35 placeholders remain** (no final art provided) — audit in PLACEHOLDER_AUDIT.md.
+- [ ] Store checklists complete / RC on device matrix / 1.0 submitted: **owner actions** (accounts, keystore, art, devices).
+
+### M3 milestone checks (2026-10-30)
+- Config validator 0/0; BalanceCli progression: all 9 runs complete (casual 72–92 fights); headless playthrough + 500-fight soak green; Android IL2CPP dev APK builds (47 MB) with no network permission.
+
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)
 
@@ -142,5 +150,6 @@ Current step: 18
 - Step 01: Boot → Main on an Android device/emulator (Editor PlayMode verified).
 - Step 03: IL2CPP release build loads/saves correctly (stripping/AOT) – smoke test on device.
 - Step 04: debug console usable on device (4-finger tap).
+- Step 18: tutorial with real first-time players; release AAB signing (keystore); store submission.
 - Step 13: full boss battle at 60 fps on a mid-range Android device; touch controls (skill buttons, pause/back) on device.
 - Step 11: 60 fps scrolling of the 1,000-item list on a mid-range Android device; notch/safe area on a real notched phone.

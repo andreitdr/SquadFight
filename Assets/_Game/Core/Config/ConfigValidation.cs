@@ -156,6 +156,7 @@ namespace Game.Core
                 r.Error("rules", $"defeat consolation table '{g.DefeatConsolationTableId}' does not exist");
             if (g.CurrencyDropMultiplier < 0 || g.ShardDropMultiplier < 0) r.Error("rules", "drop multipliers must be >= 0");
             if (g.PityEnabled && g.PityFightsWithoutShard < 1) r.Error("rules", "pity threshold must be >= 1");
+            if (g.DailyBonusEnabled && !db.TryGetDropTable(g.DailyBonusTableId, out _)) r.Error("rules", "daily bonus is enabled but its table is missing");
         }
 
         private static void ValidateUnit(string ctx, StatBlock stats, string basic, string active, string nameKey, GameDatabase db, ValidationReport r)
@@ -342,7 +343,7 @@ namespace Game.Core
             var entries = AllEntries(db).ToList();
             var usedTables = new HashSet<string>(db.Fights.Where(f => f != null).SelectMany(f => new[] { f.DropTableId, f.FirstClearTableId })
                 .Concat(db.Chapters.Where(c => c != null).Select(c => c.ClearRewardTableId))
-                .Append(db.Rules.DefeatConsolationTableId)
+                .Append(db.Rules.DefeatConsolationTableId).Append(db.Rules.DailyBonusTableId)
                 .Where(s => !string.IsNullOrEmpty(s)));
             foreach (var h in db.Heroes.Where(h => h != null))
             {

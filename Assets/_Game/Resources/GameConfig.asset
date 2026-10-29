@@ -111,6 +111,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07341a0e96f1b4ef8821b2af2ff5c732, type: 2}
   - {fileID: 11400000, guid: 9416a1971d5ab44bb9e1ed9e51c6628c, type: 2}
   - {fileID: 11400000, guid: 8c56db0d7b625482c849cfa99de456ce, type: 2}
+  - {fileID: 11400000, guid: efd35df5e41cf48e282de7d88ee68a56, type: 2}
   rarityConfig: {fileID: 11400000, guid: ae92a9d83480b4e12bcfc648366a6fdf, type: 2}
   starConfig: {fileID: 11400000, guid: 0644ab3d975db44e280626e0a13ea3e8, type: 2}
   combatConfig: {fileID: 11400000, guid: f4ef3d1ebffef4ac1a524b950656babe, type: 2}
@@ -142,3 +143,5 @@ MonoBehaviour:
   pityEnabled: 0
   pityFightsWithoutShard: 5
   showDropOdds: 0
+  dailyBonusEnabled: 0
+  dailyBonusTable: {fileID: 11400000, guid: efd35df5e41cf48e282de7d88ee68a56, type: 2}

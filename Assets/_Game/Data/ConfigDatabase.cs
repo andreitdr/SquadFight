@@ -82,6 +82,7 @@ namespace Game.Data
             foreach (var e in c.extraEnemies) AddUnique(EnemyAssets, e);
             foreach (var t in c.extraDropTables) AddUnique(DropTableAssets, t);
             AddUnique(DropTableAssets, c.defeatConsolation);
+            AddUnique(DropTableAssets, c.dailyBonusTable);
             foreach (var h in HeroAssets) { AddUnique(SkillAssets, h.basicSkill); AddUnique(SkillAssets, h.activeSkill); }
             foreach (var e in EnemyAssets) { AddUnique(SkillAssets, e.basicSkill); AddUnique(SkillAssets, e.activeSkill); }
             foreach (var s in c.extraSkills) AddUnique(SkillAssets, s);

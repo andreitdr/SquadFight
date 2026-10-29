@@ -9,7 +9,7 @@ namespace Game.UI
     /// Virtualized, pooled vertical list/grid: only the rows in view (+1 buffer row) exist, recycled while scrolling.
     /// No layout groups (cheap to scroll 1,000+ items at 60 fps).
     /// </summary>
-    public sealed class RecycleList : MonoBehaviour
+    public sealed class RecycleList : MonoBehaviour, ICaptureRefresh
     {
         private ScrollRect _scroll;
         private RectTransform _content;
@@ -79,6 +79,8 @@ namespace Game.UI
 
         /// <summary>Immediate re-layout (e.g. after the canvas resolution changed).</summary>
         public void ForceLayout() => Layout();
+
+        public void RefreshForCapture() => Layout();
 
         private void Layout()
         {
