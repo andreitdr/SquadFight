@@ -30,7 +30,7 @@ namespace Game.Services
             Currency = new CurrencyService(Context);
             Roster = new RosterService(Context);
             Roster.Currency = Currency;
-            Inventory = new InventoryService(Context);
+            Inventory = new InventoryService(Context) { Roster = Roster, Currency = Currency };
             Party = new PartyService(Context, Roster);
         }
 

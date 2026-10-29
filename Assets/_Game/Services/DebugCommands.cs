@@ -51,6 +51,11 @@ namespace Game.Services
                 case "shards":
                     if (a.Length < 3) return "Usage: give shards <heroId> <n>";
                     return Report(_s.Roster.AddShards(a[1], Int(a[2])), $"+{a[2]} shards {a[1]} (now {_s.Roster.GetShards(a[1])})");
+                case "item":
+                    var template = _s.Db.GetEquipment(a[1]);
+                    var rarity = a.Length > 2 ? (Rarity)Enum.Parse(typeof(Rarity), a[2], true) : template.Rarity;
+                    var item = EquipmentFactory.Create(template, rarity, _s.Random, _s.Db);
+                    return Report(_s.Inventory.AddItem(item), $"+{item}");
                 default:
                     return Report(_s.Currency.Add(a[0], long.Parse(a[1], CultureInfo.InvariantCulture)), $"{a[0]} = {_s.Currency.Get(a[0])}");
             }

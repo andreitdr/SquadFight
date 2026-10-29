@@ -12,14 +12,26 @@ enemy_wolf_name,Wolf
 eq_chainmail_name,Chainmail
 eq_cloth_gloves_name,Cloth Gloves
 eq_copper_ring_name,Copper Ring
+eq_crown_of_ages_name,Crown of Ages
+eq_dragonscale_mail_name,Dragonscale Mail
+eq_gold_ring_name,Gold Ring
+eq_hunter_gauntlets_name,Hunter Gauntlets
 eq_iron_helm_name,Iron Helm
 eq_iron_sword_name,Iron Sword
+eq_knight_helm_name,Knight Helm
 eq_leather_cap_name,Leather Cap
 eq_leather_gloves_name,Leather Gloves
 eq_padded_vest_name,Padded Vest
+eq_plate_armor_name,Plate Armor
+eq_runed_greatsword_name,Runed Greatsword
 eq_sandals_name,Sandals
+eq_shadow_grips_name,Shadow Grips
 eq_silver_ring_name,Silver Ring
+eq_starfire_ring_name,Starfire Ring
+eq_steel_blade_name,Steel Blade
+eq_swift_boots_name,Swift Boots
 eq_travel_boots_name,Travel Boots
+eq_windwalkers_name,Windwalkers
 eq_wooden_sword_name,Wooden Sword
 fight_1_1_name,Forest Edge
 fight_1_2_name,Wolf Den

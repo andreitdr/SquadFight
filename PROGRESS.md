@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 06
+Current step: 07
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -8,8 +8,8 @@ Current step: 06
 | 02 | Data model & config | DONE | EditMode 49/49, PlayMode 1/1, dotnet 45/45 | Some heroes unobtainable until ch2-3 content (step 09/10) – validator warnings |
 | 03 | Save system | DONE | EditMode 102/102 (all), dotnet 98/98 | Second review pass done; IL2CPP device smoke test pending |
 | 04 | Player state & services | DONE | (same run) | Debug console in-Editor manual check pending |
-| 05 | Heroes, shards & unlocking | DONE | dotnet 111/111 (Unity run with step 06) | |
-| 06 | Equipment system | TODO | | |
+| 05 | Heroes, shards & unlocking | DONE | dotnet 111/111, Unity verified in step 06 run | |
+| 06 | Equipment system | DONE | EditMode 133/133, dotnet 129/129 | |
 | 07 | Stats & formulas | TODO | | |
 | 08 | Combat core | TODO | | |
 | 09 | Campaign progression | TODO | | |
@@ -60,6 +60,11 @@ Current step: 06
 - [x] Debug console shards/unlock/starup follow config exactly (`DebugConsole_ShardsAndUnlockWork`).
 - [x] Edge cases: exact threshold, insufficient, double unlock, star cap, overflow conversion, party rules (HeroProgressionTests, 13 tests).
 - [x] Changing RarityConfig changes behaviour without code (`ChangingRarityConfig_ChangesBehaviour`).
+
+### Step 06
+- [x] Equipment state survives save/load exactly (`EquipmentState_SurvivesSaveLoadExactly`, `RolledStats_UsedForEquipmentStats_AndSurviveSave`).
+- [x] `GetEquipmentStats` equals manual calculation for all 5 rarities (parameterised test).
+- [x] New slot = enum + config only (`SlotLayoutIsConfig_AddingASlotNeedsNoCode` adds a second weapon slot via config).
 
 ## Pending owner questions (batched)
 - none

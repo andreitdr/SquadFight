@@ -36,6 +36,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a8cf78f2d066541e48e3928030d83a09, type: 2}
   - {fileID: 11400000, guid: ff0ab26dc31914d0ba2b2cf285bd4532, type: 2}
   - {fileID: 11400000, guid: ea4f743bc4bb049a49ecd00219a1677f, type: 2}
+  - {fileID: 11400000, guid: 1e565ce4c3054461ca0cc20ea5261925, type: 2}
+  - {fileID: 11400000, guid: eb1919ae083594511a1dfa25dbe74a28, type: 2}
+  - {fileID: 11400000, guid: 8eb4dd77d6923407f8c9acdc883a29b8, type: 2}
+  - {fileID: 11400000, guid: 8de632bc104314495a53d8f3f914810d, type: 2}
+  - {fileID: 11400000, guid: 55c6716eb0f9e49daae7e10dad87bd35, type: 2}
+  - {fileID: 11400000, guid: 3bb7bd18d65cd4d31b5a84b6ac3aa2e8, type: 2}
+  - {fileID: 11400000, guid: 431539098c79947a19637430dad7d3b9, type: 2}
+  - {fileID: 11400000, guid: 808c1ee3e30524f17b7ab09bcae55689, type: 2}
+  - {fileID: 11400000, guid: 22c5409ca31284a90bf160290ca55087, type: 2}
+  - {fileID: 11400000, guid: 4ae8431c3d53f415c943c5b769d5024f, type: 2}
+  - {fileID: 11400000, guid: c267334e7f79d4e1d927c03e09139850, type: 2}
+  - {fileID: 11400000, guid: 218cc05cd051742768b88e483380bf63, type: 2}
   chapters:
   - {fileID: 11400000, guid: 542ad77e8870548f49cd51d9e020bf8b, type: 2}
   extraEnemies:

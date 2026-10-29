@@ -43,5 +43,7 @@ Events: `ItemAdded`, `ItemEquipped`, `ItemUnequipped`, `ItemSold`.
 > Read `00-overview.md` and `06-equipment-system.md`. Implement `EquipmentInstance`, factory, slot rules in Game.Core and extend `InventoryService` for equip/unequip/swap/query/sell with events and save integration. Rolled stat variation is behind a config flag. Provide unit tests as listed. No UI.
 
 ## Decisions made
-- Roll variation enabled: ___
-- Inventory limit: ___
+- Roll variation enabled: no (config flag `equipmentRollVariation`, ±`rollVariationPercent`; implemented + tested)
+- Inventory limit: none (D3 default; `inventoryLimit` 0 = unlimited; AddItem fails with InventoryFull when set)
+- Instance ids are GUIDs generated from the game RNG (deterministic under a seed)
+- Equip without slot index: first empty compatible slot, else replace the first compatible slot

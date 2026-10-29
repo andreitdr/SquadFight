@@ -45,3 +45,10 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[05] D1 consume shards on unlock, manual unlock, D2 overflow → gold** (approved defaults). Leftover shards are converted the moment max star is reached (they could never be used).
 - **[05] Star-up shard cost = ceil(star table cost × rarity starCostMultiplier)**, plus the star level's currency cost.
 - **[05] Debug `unlock <hero> force`** grants the missing shards first (handy for QA).
+
+## Step 06
+- **[06] Roll variation off by default** (flag + percent in config.csv). Rolled values are stored in the save and never change.
+- **[06] D3 no inventory limit** (approved default). When a limit is configured, `AddItem` returns InventoryFull (reward handling decided in step 10).
+- **[06] Item instance ids are v4-format GUIDs from the game RNG**, so seeded simulations and tests are fully deterministic.
+- **[06] Auto slot choice:** first empty compatible slot, else replace the first compatible slot; moving an item from another hero or another slot is allowed (no duplication). Selling: rarity `itemSellValue` gold, blocked while equipped.
+- **[06] Content:** 24 templates = 6 slot kinds × 4 tiers (Common/Uncommon/Rare/Epic templates; any template can drop at any rarity, Legendary via rarity weights).
