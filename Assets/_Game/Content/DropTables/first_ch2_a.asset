@@ -24,7 +24,7 @@ MonoBehaviour:
     amountMin: 120
     amountMax: 120
   - type: 1
-    refId: hero_paladin
+    refId: hero_hunter
     rarity: 0
     anySlot: 1
     slot: 0

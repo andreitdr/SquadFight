@@ -24,7 +24,7 @@ MonoBehaviour:
     amountMin: 600
     amountMax: 600
   - type: 1
-    refId: hero_bard
+    refId: hero_stormcaller
     rarity: 0
     anySlot: 1
     slot: 0

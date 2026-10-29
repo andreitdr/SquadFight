@@ -66,14 +66,14 @@ MonoBehaviour:
       slot: 0
       rarityWeights:
       - rarity: 1
-        weight: 30
+        weight: 25
       - rarity: 2
         weight: 50
       - rarity: 3
-        weight: 17
+        weight: 21
       - rarity: 4
-        weight: 3
-      weight: 65
+        weight: 4
+      weight: 70
       amountMin: 1
       amountMax: 1
     - type: 0
@@ -82,6 +82,6 @@ MonoBehaviour:
       anySlot: 1
       slot: 0
       rarityWeights: []
-      weight: 35
+      weight: 30
       amountMin: 50
       amountMax: 80

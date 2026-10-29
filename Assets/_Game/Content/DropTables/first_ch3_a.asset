@@ -24,12 +24,12 @@ MonoBehaviour:
     amountMin: 200
     amountMax: 200
   - type: 1
-    refId: hero_stormcaller
+    refId: hero_bard
     rarity: 0
     anySlot: 1
     slot: 0
     rarityWeights: []
     weight: 1
-    amountMin: 6
-    amountMax: 6
+    amountMin: 15
+    amountMax: 15
   groups: []

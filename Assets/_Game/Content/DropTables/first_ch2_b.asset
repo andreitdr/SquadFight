@@ -24,14 +24,14 @@ MonoBehaviour:
     amountMin: 150
     amountMax: 150
   - type: 1
-    refId: hero_hunter
+    refId: hero_stormcaller
     rarity: 0
     anySlot: 1
     slot: 0
     rarityWeights: []
     weight: 1
-    amountMin: 5
-    amountMax: 5
+    amountMin: 10
+    amountMax: 10
   - type: 4
     refId: 
     rarity: 0

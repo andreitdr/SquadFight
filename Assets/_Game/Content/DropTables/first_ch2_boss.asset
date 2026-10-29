@@ -30,8 +30,8 @@ MonoBehaviour:
     slot: 0
     rarityWeights: []
     weight: 1
-    amountMin: 20
-    amountMax: 20
+    amountMin: 30
+    amountMax: 30
   - type: 4
     refId: 
     rarity: 0

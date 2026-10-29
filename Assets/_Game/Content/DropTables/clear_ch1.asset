@@ -30,6 +30,6 @@ MonoBehaviour:
     slot: 0
     rarityWeights: []
     weight: 1
-    amountMin: 10
-    amountMax: 10
+    amountMin: 20
+    amountMax: 20
   groups: []

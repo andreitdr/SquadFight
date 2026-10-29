@@ -137,7 +137,7 @@ namespace Game.Services
     /// </summary>
     public static class CampaignSimulator
     {
-        public static CampaignReport Run(GameDatabase db, IPlayerPolicy policy, ulong seed, int maxFights = 5000)
+        public static CampaignReport Run(GameDatabase db, IPlayerPolicy policy, ulong seed, int maxFights = 5000, Action<string, GameSession> onBeforeFirstAttempt = null)
         {
             var clock = new ManualClock();
             var session = new GameSession(db, NewGameFactory.Create(db, clock), null, new SeededRandom(seed), clock);
@@ -162,7 +162,11 @@ namespace Game.Services
                 farmNext = false;
                 var fs = stats[target];
                 var power = session.PartyPower;
-                if (fs.Attempts == 0) fs.PartyPowerAtFirstAttempt = power;
+                if (fs.Attempts == 0)
+                {
+                    fs.PartyPowerAtFirstAttempt = power;
+                    onBeforeFirstAttempt?.Invoke(target, session);
+                }
                 var r = session.Battles.RunInstant(target);
                 if (!r.Ok) { report.StuckAt = target + ": " + r; break; }
                 report.TotalFights++;

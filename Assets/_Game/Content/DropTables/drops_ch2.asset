@@ -21,8 +21,8 @@ MonoBehaviour:
     slot: 0
     rarityWeights: []
     weight: 1
-    amountMin: 40
-    amountMax: 60
+    amountMin: 45
+    amountMax: 65
   groups:
   - minRolls: 1
     maxRolls: 1
@@ -34,8 +34,8 @@ MonoBehaviour:
       anySlot: 1
       slot: 0
       rarityWeights: []
-      weight: 35
-      amountMin: 1
+      weight: 40
+      amountMin: 2
       amountMax: 3
     - type: 2
       refId: 
@@ -43,7 +43,7 @@ MonoBehaviour:
       anySlot: 1
       slot: 0
       rarityWeights: []
-      weight: 50
+      weight: 45
       amountMin: 1
       amountMax: 2
     - type: 2
@@ -66,14 +66,14 @@ MonoBehaviour:
       slot: 0
       rarityWeights:
       - rarity: 0
-        weight: 35
+        weight: 30
       - rarity: 1
         weight: 45
       - rarity: 2
-        weight: 18
+        weight: 22
       - rarity: 3
-        weight: 2
-      weight: 60
+        weight: 3
+      weight: 65
       amountMin: 1
       amountMax: 1
     - type: 0
@@ -82,6 +82,6 @@ MonoBehaviour:
       anySlot: 1
       slot: 0
       rarityWeights: []
-      weight: 40
+      weight: 35
       amountMin: 30
       amountMax: 50
