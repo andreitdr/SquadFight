@@ -1,0 +1,8 @@
+{
+  "format": "squadfight-save",
+  "version": 1,
+  "counter": 7,
+  "savedUtc": "2026-01-02T00:00:00Z",
+  "sha256": "5f22a02d06810b1dc193f8d409f0e696de243e31262745761bc58be2a8c0f3e7",
+  "payload": "{\"version\":1,\"createdUtc\":\"2026-01-01T00:00:00Z\",\"lastSavedUtc\":\"2026-01-02T00:00:00Z\",\"currencies\":{\"gold\":345},\"heroes\":[{\"heroId\":\"hero_knight\",\"unlocked\":true,\"star\":2,\"shards\":3},{\"heroId\":\"hero_cleric\",\"unlocked\":false,\"star\":0,\"shards\":12}],\"party\":[\"hero_knight\",null,null,null,null],\"equipment\":[{\"instanceId\":\"5b1f2e8a-0000-4000-8000-000000000001\",\"templateId\":\"eq_wooden_sword\",\"rarity\":\"Uncommon\",\"rolledStats\":null,\"equippedByHeroId\":\"hero_knight\",\"equippedSlotIndex\":0,\"acquiredOrder\":1}],\"progress\":{\"fights\":[{\"fightId\":\"fight_1_1\",\"cleared\":true,\"bestStars\":3,\"clears\":4,\"firstClearClaimed\":true}],\"claimedChapterRewards\":[],\"seenStoryBeats\":[\"beat_ch1_intro\"],\"totalFights\":4},\"settings\":{\"musicVolume\":0.5,\"sfxVolume\":0.7,\"language\":\"en\",\"vibration\":false,\"screenShake\":true,\"reduceMotion\":false,\"battleSpeed\":2.0,\"autoSkill\":true},\"rngState\":null}"
+}

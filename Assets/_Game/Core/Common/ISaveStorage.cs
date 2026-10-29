@@ -5,8 +5,11 @@ namespace Game.Core
     {
         bool Exists(string key);
 
-        /// <summary>Returns null when the key does not exist or cannot be read.</summary>
+        /// <summary>Returns null when the key does not exist; throws (IOException etc.) when it exists but cannot be read.</summary>
         string Read(string key);
+
+        /// <summary>Keys starting with <paramref name="prefix"/>.</summary>
+        System.Collections.Generic.IEnumerable<string> List(string prefix);
 
         /// <summary>Writes the full content durably (flushed to disk) under the key, replacing any previous value.</summary>
         void Write(string key, string content);

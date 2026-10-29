@@ -7,8 +7,8 @@ namespace Game.Tests.EditMode
     public class ArchitectureTests
     {
         [TestCase(typeof(SeededRandom))]
-        [TestCase(typeof(Game.Save.AssemblyMarker))]
-        [TestCase(typeof(Game.Services.AssemblyMarker))]
+        [TestCase(typeof(Game.Save.SaveData))]
+        [TestCase(typeof(Game.Services.GameSession))]
         public void PureAssembly_HasNoUnityReferences(System.Type marker)
         {
             var asm = marker.Assembly;

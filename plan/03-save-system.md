@@ -45,5 +45,8 @@ Reliable local saving with no data loss on crash, kill, or app update. This is t
 > Read `00-overview.md` and `03-save-system.md`. Implement the save system in Game.Save exactly as specified: models, envelope with checksum, atomic file storage with backup/corruption handling, migration framework with a sample migration, `SaveManager` with debounced auto-save and lifecycle hooks. Provide EditMode tests for every failure scenario listed, using `InMemorySaveStorage`/a temp directory.
 
 ## Decisions made
-- JSON library: ___
-- Obfuscation: none / light
+- JSON library: Newtonsoft (`com.unity.nuget.newtonsoft-json` 3.2.2), camelCase, enums as strings, `DateParseHandling.None`
+- Obfuscation: none (SHA-256 over counter+payload for corruption detection only)
+- Envelope has a monotonic save counter; load picks the newest intact of main/tmp, then bak
+- Intact-but-unreadable / future-version / IO-error saves are never quarantined or overwritten: session goes read-only
+- Second review pass done (subagent): 7 findings fixed with regression tests

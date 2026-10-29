@@ -1,0 +1,13 @@
+<!-- IL2CPP managed code stripping: keep types that are created by reflection (Newtonsoft save (de)serialization). -->
+<linker>
+  <assembly fullname="Game.Core" preserve="all" />
+  <assembly fullname="Game.Save" preserve="all" />
+  <assembly fullname="Newtonsoft.Json">
+    <type fullname="Newtonsoft.Json.Converters.StringEnumConverter" preserve="all" />
+    <type fullname="Newtonsoft.Json.Serialization.DefaultContractResolver" preserve="all" />
+    <type fullname="Newtonsoft.Json.Serialization.CamelCaseNamingStrategy" preserve="all" />
+  </assembly>
+  <assembly fullname="System.Core">
+    <type fullname="System.Linq.Expressions.Interpreter.LightLambda" preserve="all" />
+  </assembly>
+</linker>
