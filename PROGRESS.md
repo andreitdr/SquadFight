@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 07
+Current step: 08
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -10,7 +10,7 @@ Current step: 07
 | 04 | Player state & services | DONE | (same run) | Debug console in-Editor manual check pending |
 | 05 | Heroes, shards & unlocking | DONE | dotnet 111/111, Unity verified in step 06 run | |
 | 06 | Equipment system | DONE | EditMode 133/133, dotnet 129/129 | |
-| 07 | Stats & formulas | TODO | | |
+| 07 | Stats & formulas | DONE | dotnet 140/140 (Unity run with step 08) | branch coverage measured in step 16 |
 | 08 | Combat core | TODO | | |
 | 09 | Campaign progression | TODO | | |
 | 10 | Rewards & drop tables (M1) | TODO | | |
@@ -65,6 +65,10 @@ Current step: 07
 - [x] Equipment state survives save/load exactly (`EquipmentState_SurvivesSaveLoadExactly`, `RolledStats_UsedForEquipmentStats_AndSurviveSave`).
 - [x] `GetEquipmentStats` equals manual calculation for all 5 rarities (parameterised test).
 - [x] New slot = enum + config only (`SlotLayoutIsConfig_AddingASlotNeedsNoCode` adds a second weapon slot via config).
+
+### Step 07
+- [x] Changing defK / star multipliers changes results as tests predict (`Damage_DefKChangesMitigation`, `StatPipeline_ChangingStarMultiplierChangesResult`).
+- [x] No engine refs (ArchitectureTests); formula branches covered by FormulaTests (min damage, zero/negative defense, crit cap, crit dmg < 1, negative attack, property test over random gear).
 
 ## Pending owner questions (batched)
 - none

@@ -35,3 +35,9 @@ final = ( heroBase × starMultiplier  +  equipmentFlat ) × ( 1 + equipmentPerce
 
 ## Prompt for Claude
 > Read `00-overview.md` and `07-stats-and-formulas.md`. Implement `StatCalculator`, `DamageCalculator`, `PowerRating` in Game.Core and `CombatConfig` in Game.Data, with validation and thorough unit tests using hand-computed values. Expose a `RosterService.GetFinalStats(heroId)` convenience in Game.Services.
+
+## Decisions made
+- Final stats clamp: no negative stats, crit chance ≤ `critChanceCap`, crit damage ≥ ×1
+- Rounding: damage/heal rounded half away from zero to int; minDamage floor applied before crit
+- Crit roll consumes RNG only when 0 < chance < 1 (determinism unaffected)
+- Power = round(Σ stat × weight); weights in config.csv `combat.powerWeights`

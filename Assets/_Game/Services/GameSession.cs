@@ -31,8 +31,11 @@ namespace Game.Services
             Roster = new RosterService(Context);
             Roster.Currency = Currency;
             Inventory = new InventoryService(Context) { Roster = Roster, Currency = Currency };
+            Roster.Inventory = Inventory;
             Party = new PartyService(Context, Roster);
         }
+
+        public int PartyPower => Roster.GetTotalPower(Party.Members);
 
         /// <summary>The live data to persist (RNG state captured so drop sequences continue after restart).</summary>
         public SaveData ExportForSave()

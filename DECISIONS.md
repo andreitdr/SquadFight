@@ -52,3 +52,7 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[06] Item instance ids are v4-format GUIDs from the game RNG**, so seeded simulations and tests are fully deterministic.
 - **[06] Auto slot choice:** first empty compatible slot, else replace the first compatible slot; moving an item from another hero or another slot is allowed (no duplication). Selling: rarity `itemSellValue` gold, blocked while equipped.
 - **[06] Content:** 24 templates = 6 slot kinds × 4 tiers (Common/Uncommon/Rare/Epic templates; any template can drop at any rarity, Legendary via rarity weights).
+
+## Step 07
+- **[07] Pipeline** `final = (base × star + flat) × (1 + percent)`; combat buffs add to the percent term (step 08). HP/damage are integers (round half away from zero); min-damage floor before crit.
+- **[07] Power weights** MaxHp 0.1, Attack 1, Defense 0.8, Speed 0.5, CritChance 100, CritDamage 20 (content; tuned in step 15).
