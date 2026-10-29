@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 08
+Current step: 09
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -10,8 +10,8 @@ Current step: 08
 | 04 | Player state & services | DONE | (same run) | Debug console in-Editor manual check pending |
 | 05 | Heroes, shards & unlocking | DONE | dotnet 111/111, Unity verified in step 06 run | |
 | 06 | Equipment system | DONE | EditMode 133/133, dotnet 129/129 | |
-| 07 | Stats & formulas | DONE | dotnet 140/140 (Unity run with step 08) | branch coverage measured in step 16 |
-| 08 | Combat core | TODO | | |
+| 07 | Stats & formulas | DONE | dotnet 140/140, Unity verified in step 08 run | branch coverage measured in step 16 |
+| 08 | Combat core | DONE | EditMode 161/161, dotnet 156/156 | |
 | 09 | Campaign progression | TODO | | |
 | 10 | Rewards & drop tables (M1) | TODO | | |
 | 11 | UI foundation | TODO | | |
@@ -69,6 +69,12 @@ Current step: 08
 ### Step 07
 - [x] Changing defK / star multipliers changes results as tests predict (`Damage_DefKChangesMitigation`, `StatPipeline_ChangingStarMultiplierChangesResult`).
 - [x] No engine refs (ArchitectureTests); formula branches covered by FormulaTests (min damage, zero/negative defense, crit cap, crit dmg < 1, negative attack, property test over random gear).
+
+### Step 08
+- [x] Pure Core, deterministic: 1,000 seeds × 2 runs identical hashes (`Determinism_1000Seeds_IdenticalEventStreams`).
+- [x] Every effect/targeting rule tested; turn cap prevents infinite loops (`Timeout_AfterMaxRounds_NoInfiniteLoop`).
+- [x] Scripted 1v1 matches hand calculation and the text log reads correctly (`Scripted1v1_MatchesHandCalculation`; editor tool output checked).
+- [x] 5v5 < 5 ms (measured avg well below in dotnet and Unity runs).
 
 ## Pending owner questions (batched)
 - none

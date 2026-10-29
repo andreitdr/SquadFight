@@ -56,3 +56,9 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 ## Step 07
 - **[07] Pipeline** `final = (base × star + flat) × (1 + percent)`; combat buffs add to the percent term (step 08). HP/damage are integers (round half away from zero); min-damage floor before crit.
 - **[07] Power weights** MaxHp 0.1, Attack 1, Defense 0.8, Speed 0.5, CritChance 100, CritDamage 20 (content; tuned in step 15).
+
+## Step 08
+- **[08] Round-based turn order** (all living units once per round by speed→slot→id); max rounds = turns cap (100 → Timeout = defeat).
+- **[08] Cooldowns tick at the end of the holder's turn**; statuses/shields count the holder's turns (own-turn application skips one tick so "2 turns" means 2 full turns).
+- **[08] Enemy stat multipliers do not scale speed** (keeps turn order readable across chapters).
+- **[08] Flat `BattleEvent` records** (index-based) instead of a class hierarchy: trivial to hash, log and replay.

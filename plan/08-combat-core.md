@@ -42,3 +42,13 @@ turns taken, survivors, per-hero damage dealt/taken (used for 3-star ratings and
 
 ## Prompt for Claude
 > Read `00-overview.md`, `07-stats-and-formulas.md`, and `08-combat-core.md`. Implement the combat simulator in Game.Core: combatants, turn order, skills/effects/status, targeting, waves, AI, event stream, result stats, timeout. Add `BattleSetupFactory` in Game.Services that builds a battle from PartyService + a FightDefinition. Include determinism and performance tests and an editor "Simulate fight" log tool. No visuals.
+
+## Decisions made
+- "Turn" = round: every living unit acts once per round, ordered by effective speed (desc), then slot, then id; timeout after `maxRounds` (100) counts as defeat
+- Cooldown N: used on turn t, usable again on turn t+N (decremented at end of the holder's turn); `initialCooldown` delays first use
+- Statuses/shields last N of the holder's turns; applied during the holder's own turn they skip that turn's tick
+- Stacking: Refresh (reset duration), Stack (new instance up to maxStacks, refreshes the others), Ignore
+- RandomEnemies picks with replacement; a hit whose target died retargets another living enemy
+- Enemy difficulty multiplier scales HP/ATK/DEF only (not speed/crit); MaxHp buffs are not applied mid-battle
+- Manual mode (`AutoSkills=false`): only queued skills fire; enemies always use skills when ready
+- Events are flat records referencing combatants by index; `BattleSimulator.Hash` for determinism checks
