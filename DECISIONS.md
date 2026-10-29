@@ -97,3 +97,7 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[13] Turn-by-turn playback** of the simulator; presentation never mutates simulation state (PlayMode test: presented boss fight hash == pure simulation hash).
 - **[13] Editor gotcha fixed:** `GetComponent<T>() ?? AddComponent<T>()` breaks on Unity's fake-null in the Editor → `TryGetComponent` everywhere.
 - **[13] Per-frame allocations:** pooled FX; small coroutine allocations per event remain (profile on device in step 17).
+
+## Owner decisions at M2 (2026-10-29)
+- **D5 changed by the owner: keep the CSV `TableLocalizer`** (no Unity Localization / Addressables). Assumption A12 and step 14 updated.
+- **Device tests skipped for now (owner):** M3 ships with Editor/batch verification; device checks remain listed under "Pending verifications" in PROGRESS.md.

@@ -17,6 +17,8 @@ Sound, user settings persistence, and localization-ready text so adding language
 - `IHaptics` implementation (Android/iOS) honoring vibration setting.
 
 ## Localization
+> **Owner decision (2026-10-29, M2):** D5 changed — keep the lightweight CSV localizer (`ILocalizer` → `TableLocalizer`, tables in `Resources/Localization/*.csv`) instead of Unity Localization. Everything below applies to the CSV tables.
+
 - Use Unity Localization package, **or** a lightweight own `ILocalizer` with CSV/JSON tables (D5, default: Unity Localization for plurals + fallback).
 - All strings keyed (`hero_knight_name`); no literals in UI code.
 - Language detection on first run (system language → supported or English), changeable in Settings.

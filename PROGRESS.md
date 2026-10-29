@@ -114,7 +114,7 @@ Current step: 14
 - Config validator: 0 errors, 0 warnings. Progression simulator: all 9 runs complete (24 / 72 / 264 fights). Headless + PlayMode full loop (boot → campaign → preview → battle scene → result → heroes/party/bag/settings) passes.
 
 ## Pending owner questions (batched)
-- none
+- none (M2 answers: CSV localizer; skip device tests for now)
 
 ## Pending verifications (need real Unity / device)
 - Step 01: Boot → Main on an Android device/emulator (Editor PlayMode verified).

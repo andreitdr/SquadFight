@@ -37,7 +37,7 @@ Core loop:
 | A9 | Engine | The **owner's existing empty Unity project** (version as found in `ProjectVersion.txt`; do not upgrade), uGUI + TextMeshPro, new Input System. Render pipeline = whatever the template provides; game is 2D. | 01, 11 |
 | A10 | Art | Placeholder art first; final art is swappable via config references. | 13, 15 |
 | A11 | Orientation | Portrait. | 11 |
-| A12 | Languages | English first, localization-ready from day 1. | 14 |
+| A12 | Languages | English first, localization-ready from day 1. **Owner decision (M2): lightweight CSV localizer (`TableLocalizer`) instead of the Unity Localization package.** | 14 |
 
 ## 4. Architecture
 
