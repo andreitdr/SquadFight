@@ -1,4 +1,5 @@
 using Game.Core;
+using Game.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,15 @@ namespace Game.App
             services.Register<IClock>(new SystemClock());
             services.Register<IRandom>(SeededRandom.FromTime());
             services.Register(gameObject.AddComponent<SceneLoader>());
+
+            var config = ConfigDatabase.LoadFromResources();
+            if (config == null)
+            {
+                logger.Error($"[Boot] GameConfig not found in Resources/{GameConfig.ResourcePath}. Run Tools/Game/Content/Import CSV Content.");
+                return;
+            }
+            services.Register(config);
+            services.Register<IConfigProvider>(config);
             AppContext.Set(services);
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD

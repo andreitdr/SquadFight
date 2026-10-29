@@ -1,0 +1,93 @@
+key,en
+beat_ch1_boss_pre_text,Who dares enter MY forest? Crush them!
+beat_ch1_end_text,"The Goblin King falls, but he was only taking orders. Someone else is gathering an army."
+beat_ch1_f1_pre_text,"Stay behind me. Whatever comes out of those trees, we face it together."
+beat_ch1_intro_text,Goblins have been raiding the Greenwood road. Three young heroes set out to stop them.
+chapter_1_name,The Greenwood Road
+currency_gold_name,Gold
+enemy_goblin_king_name,Goblin King
+enemy_goblin_name,Goblin
+enemy_goblin_shaman_name,Goblin Shaman
+enemy_wolf_name,Wolf
+eq_chainmail_name,Chainmail
+eq_cloth_gloves_name,Cloth Gloves
+eq_copper_ring_name,Copper Ring
+eq_iron_helm_name,Iron Helm
+eq_iron_sword_name,Iron Sword
+eq_leather_cap_name,Leather Cap
+eq_leather_gloves_name,Leather Gloves
+eq_padded_vest_name,Padded Vest
+eq_sandals_name,Sandals
+eq_silver_ring_name,Silver Ring
+eq_travel_boots_name,Travel Boots
+eq_wooden_sword_name,Wooden Sword
+fight_1_1_name,Forest Edge
+fight_1_2_name,Wolf Den
+fight_1_3_name,Goblin Camp
+fight_1_4_name,Old Bridge
+fight_1_5_name,The Goblin King
+hero_apprentice_lore,An eager apprentice whose spells sometimes work exactly as planned.
+hero_apprentice_name,Pip
+hero_archer_lore,A keen-eyed archer who never misses twice.
+hero_archer_name,Lyra
+hero_bard_lore,A bard whose songs make cowards brave.
+hero_bard_name,Fennick
+hero_cleric_lore,A healer from the mountain abbey.
+hero_cleric_name,Sister Maren
+hero_dragonknight_lore,The last rider of the red dragons.
+hero_dragonknight_name,Drakon
+hero_hunter_lore,A tracker raised by the forest itself.
+hero_hunter_name,Kael Wildheart
+hero_knight_lore,A steadfast knight sworn to guard the Greenwood road.
+hero_knight_name,Aldric
+hero_paladin_lore,A paladin whose shield has never broken.
+hero_paladin_name,Seraphine
+hero_rogue_lore,A rogue who fights for coin and
+hero_rogue_name,Vex
+hero_stormcaller_lore,She speaks and the sky answers.
+hero_stormcaller_name,Zara Stormcaller
+skill_aegis_desc,Shields all allies and hardens the caster.
+skill_aegis_name,Aegis
+skill_anthem_desc,Raises all allies' attack and heals them a little.
+skill_anthem_name,Battle Anthem
+skill_backstab_desc,A devastating strike on one enemy.
+skill_backstab_name,Backstab
+skill_bolt_desc,Hurls a bolt of raw magic.
+skill_bolt_name,Arcane Bolt
+skill_boss_smash_desc,Hits every enemy and may stun.
+skill_boss_smash_name,Ground Smash
+skill_chain_lightning_desc,Shocks all enemies; may stun.
+skill_chain_lightning_name,Chain Lightning
+skill_chord_desc,A painful note aimed at one enemy.
+skill_chord_name,Sharp Chord
+skill_cleave_desc,Hits two random enemies.
+skill_cleave_name,Cleave
+skill_dragon_fury_desc,Scorches all enemies; fury grows with each use.
+skill_dragon_fury_name,Dragon Fury
+skill_enemy_bite_desc,A savage bite.
+skill_enemy_bite_name,Bite
+skill_enemy_hex_desc,Weakens one enemy's attack.
+skill_enemy_hex_name,Hex
+skill_enemy_hit_desc,A basic attack.
+skill_enemy_hit_name,Strike
+skill_enemy_mend_desc,Heals the most wounded ally.
+skill_enemy_mend_name,Dark Mend
+skill_fireball_desc,Burns every enemy.
+skill_fireball_name,Fireball
+skill_heal_desc,Heals the most wounded ally.
+skill_heal_name,Mending Light
+skill_marked_desc,Strong shot that weakens the target's defense.
+skill_marked_name,Hunter's Mark
+skill_shield_bash_desc,Heavy blow that may stun the target.
+skill_shield_bash_name,Shield Bash
+skill_shot_desc,Fires an arrow at one enemy.
+skill_shot_name,Quick Shot
+skill_slash_desc,Strikes one enemy.
+skill_slash_name,Slash
+skill_smite_desc,A holy strike.
+skill_smite_name,Smite
+skill_stab_desc,A quick dagger thrust.
+skill_stab_name,Stab
+skill_volley_desc,Three arrows at random enemies.
+skill_volley_name,Volley
+speaker_narrator,Narrator

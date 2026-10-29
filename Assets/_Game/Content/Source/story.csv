@@ -1,0 +1,6 @@
+# speaker: a hero/enemy id (uses its name) or any other id with speakerName
+id,speaker,speakerName,text
+beat_ch1_intro,narrator,Narrator,"Goblins have been raiding the Greenwood road. Three young heroes set out to stop them."
+beat_ch1_f1_pre,hero_knight,,"Stay behind me. Whatever comes out of those trees, we face it together."
+beat_ch1_boss_pre,enemy_goblin_king,,"Who dares enter MY forest? Crush them!"
+beat_ch1_end,narrator,Narrator,"The Goblin King falls, but he was only taking orders. Someone else is gathering an army."

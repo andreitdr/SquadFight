@@ -56,5 +56,8 @@ Define every piece of game content as data. All balance, rewards, and story cont
 > Read `00-overview.md` and `02-data-model-and-config.md`. Implement the enums/StatBlock in Game.Core and all ScriptableObject types in Game.Data, `ConfigDatabase`, and the editor `ConfigValidator` with build hook. Generate a small set of sample content via an editor menu script (`Tools/Game/Create Sample Content`). Write EditMode tests for validator rules. Keep all balance numbers in assets, none in code.
 
 ## Decisions made
-- Stat list final: ___
-- Rarity multipliers: ___
+- Stat list final: MaxHp, Attack, Defense, Speed, CritChance, CritDamage (StatBlock sized from the enum)
+- Rarity multipliers (equipment): Common 1.0 / Uncommon 1.3 / Rare 1.7 / Epic 2.2 / Legendary 3.0 (content, tunable in rarities.csv)
+- Content authored as CSV + idempotent importer (started step-15 tool early); SOs reference each other by object, drop entries by string id
+- Core holds pure config models (`GameDatabase`) + pure validator; editor validator adds asset checks; build hook blocks invalid config
+- Star levels also carry a primary-currency cost (gold sink), 0 allowed

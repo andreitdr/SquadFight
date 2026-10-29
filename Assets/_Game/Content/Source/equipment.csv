@@ -1,0 +1,14 @@
+# stats: Stat=value (flat) or Stat=value% (percent of the stat). Instance stats = template stats x rarity multiplier.
+id,name,slot,rarity,stats,setId
+eq_wooden_sword,Wooden Sword,Weapon,Common,Attack=10,
+eq_iron_sword,Iron Sword,Weapon,Uncommon,Attack=16;CritChance=0.02,
+eq_leather_cap,Leather Cap,Helmet,Common,MaxHp=40;Defense=3,
+eq_iron_helm,Iron Helm,Helmet,Uncommon,MaxHp=60;Defense=6,
+eq_padded_vest,Padded Vest,Chest,Common,MaxHp=60;Defense=5,
+eq_chainmail,Chainmail,Chest,Uncommon,MaxHp=90;Defense=9,
+eq_cloth_gloves,Cloth Gloves,Gloves,Common,Attack=4;CritChance=0.01,
+eq_leather_gloves,Leather Gloves,Gloves,Uncommon,Attack=7;CritChance=0.02,
+eq_sandals,Sandals,Boots,Common,Speed=4,
+eq_travel_boots,Travel Boots,Boots,Uncommon,Speed=7;MaxHp=20,
+eq_copper_ring,Copper Ring,Ring,Common,Attack=5%,
+eq_silver_ring,Silver Ring,Ring,Uncommon,MaxHp=5%;CritDamage=0.05,

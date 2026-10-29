@@ -1,0 +1,5 @@
+id,name,isBoss,maxHp,attack,defense,speed,critChance,critDamage,basicSkill,activeSkill,tint
+enemy_goblin,Goblin,false,300,35,10,90,0.05,1.5,skill_enemy_hit,,#7CB518
+enemy_wolf,Wolf,false,250,40,5,120,0.1,1.5,skill_enemy_bite,,#9C9C9C
+enemy_goblin_shaman,Goblin Shaman,false,220,30,8,95,0.05,1.5,skill_enemy_hit,skill_enemy_mend,#2A9D8F
+enemy_goblin_king,Goblin King,true,1500,60,25,85,0.1,1.5,skill_enemy_hit,skill_boss_smash,#606C38

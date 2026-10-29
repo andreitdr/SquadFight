@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb25aeca2a864df494a15f13df50bd1, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Game.Data::Game.Data.GameConfig
+  heroes:
+  - {fileID: 11400000, guid: e2413acdfd0ef4c0eb91d46beae9772c, type: 2}
+  - {fileID: 11400000, guid: 8fe7f91564b4843e9b18af8210e9df55, type: 2}
+  - {fileID: 11400000, guid: 76f6698e7f87b42aebdbf138958fc6cb, type: 2}
+  - {fileID: 11400000, guid: 585d516fd5eef463489dadc797e10f6a, type: 2}
+  - {fileID: 11400000, guid: bd80a2459c8764a2490c1d5c6aa1054e, type: 2}
+  - {fileID: 11400000, guid: c2bc9b77f6ab242d1b2cf601c0a5e73b, type: 2}
+  - {fileID: 11400000, guid: b90c9ecf115c644ef978af3d8cd4be95, type: 2}
+  - {fileID: 11400000, guid: 840f06bcdc70f4f35b01a95737fa6a59, type: 2}
+  - {fileID: 11400000, guid: 439f3db943d794019ab7086faf38702c, type: 2}
+  - {fileID: 11400000, guid: 98ef9309326954a6fbdf54927c20bd2b, type: 2}
+  equipment:
+  - {fileID: 11400000, guid: 4a318682a044c4cb8874dd0ccbeb858e, type: 2}
+  - {fileID: 11400000, guid: 88e620797089e4895b835cab408ca5f0, type: 2}
+  - {fileID: 11400000, guid: bb97c1140306d4310b61c332e9aa45eb, type: 2}
+  - {fileID: 11400000, guid: 18aa969451c6d44c08036211192dcd5b, type: 2}
+  - {fileID: 11400000, guid: ecd6d29c67c4e448aaba62f302ae2b9e, type: 2}
+  - {fileID: 11400000, guid: 7e7322e12522f4371b3c9e5b68c8975b, type: 2}
+  - {fileID: 11400000, guid: 7070c3fb70bfe4b3c81a4d75e2539b83, type: 2}
+  - {fileID: 11400000, guid: 10e8271a0751744cba9357cbdb268b0f, type: 2}
+  - {fileID: 11400000, guid: 5c009994cdcca4c74b1c30e20f6fd10f, type: 2}
+  - {fileID: 11400000, guid: a8cf78f2d066541e48e3928030d83a09, type: 2}
+  - {fileID: 11400000, guid: ff0ab26dc31914d0ba2b2cf285bd4532, type: 2}
+  - {fileID: 11400000, guid: ea4f743bc4bb049a49ecd00219a1677f, type: 2}
+  chapters:
+  - {fileID: 11400000, guid: 542ad77e8870548f49cd51d9e020bf8b, type: 2}
+  extraEnemies:
+  - {fileID: 11400000, guid: ac69ef43f5e1c4ba79f00385d1bbdaad, type: 2}
+  - {fileID: 11400000, guid: 7e8f70e3472704398ac3a6bc4ad29562, type: 2}
+  - {fileID: 11400000, guid: 1d8e01f45955f4c23a7008d4dad80335, type: 2}
+  - {fileID: 11400000, guid: 650f00f57f359419a9e938fc8e923715, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 0c333a1cc90324fafb5fda074e38dd83, type: 2}
+  - {fileID: 11400000, guid: 77c010a0fbb26472ea5e81170f521488, type: 2}
+  - {fileID: 11400000, guid: 3c8c0898d5e4c4601aec0191abaf5f79, type: 2}
+  - {fileID: 11400000, guid: 06165a3879e8948a89910256ecd57708, type: 2}
+  - {fileID: 11400000, guid: eb52919648ca245d88eb8336e5d58ac6, type: 2}
+  - {fileID: 11400000, guid: d19958837171f48b9b24f11ef44535d8, type: 2}
+  - {fileID: 11400000, guid: 4e1add18456ec480e888a3444a07f8f9, type: 2}
+  - {fileID: 11400000, guid: 6848abdfd715045b7ba5c6638e5382f1, type: 2}
+  - {fileID: 11400000, guid: fbfc83c6ccf5741dc9c882eef17a149e, type: 2}
+  - {fileID: 11400000, guid: 8f05c920ec59f443fa2ae50267ee5844, type: 2}
+  - {fileID: 11400000, guid: 67aff6c4785984888bd03d68f95b40bf, type: 2}
+  - {fileID: 11400000, guid: e1001c67ec715493ea7f41b30ec0540e, type: 2}
+  - {fileID: 11400000, guid: dd4828bdabf1040138eb3bde0a4bca3b, type: 2}
+  - {fileID: 11400000, guid: 1857603c780124761b71d10ab08fa3df, type: 2}
+  - {fileID: 11400000, guid: f0bf8dec7f144424993a758b073719fd, type: 2}
+  - {fileID: 11400000, guid: e0ae6fb9bb16847969ca92c06f8f2996, type: 2}
+  - {fileID: 11400000, guid: d18217164f0ed4effaedeeb87ef6473c, type: 2}
+  - {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  - {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
+  - {fileID: 11400000, guid: 105435c995ddf4cf08a562c02b434607, type: 2}
+  - {fileID: 11400000, guid: a2d0775a354e24152ac5b01d542f44ce, type: 2}
+  - {fileID: 11400000, guid: 7eb92d8d33242454b8708a9ceb79be9d, type: 2}
+  extraDropTables:
+  - {fileID: 11400000, guid: 4f32d8c06545b4441b32e385a10dce96, type: 2}
+  rarityConfig: {fileID: 11400000, guid: ae92a9d83480b4e12bcfc648366a6fdf, type: 2}
+  starConfig: {fileID: 11400000, guid: 0644ab3d975db44e280626e0a13ea3e8, type: 2}
+  combatConfig: {fileID: 11400000, guid: f4ef3d1ebffef4ac1a524b950656babe, type: 2}
+  partySize: 5
+  startingHeroes:
+  - {fileID: 11400000, guid: e2413acdfd0ef4c0eb91d46beae9772c, type: 2}
+  - {fileID: 11400000, guid: 8fe7f91564b4843e9b18af8210e9df55, type: 2}
+  - {fileID: 11400000, guid: 76f6698e7f87b42aebdbf138958fc6cb, type: 2}
+  currencies:
+  - id: gold
+    nameKey: currency_gold_name
+    icon: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  startingCurrencies:
+  - currencyId: gold
+    amount: 200
+  primaryCurrencyId: gold
+  consumeShardsOnUnlock: 1
+  shardOverflowCurrencyId: gold
+  slotLayout: 00000000010000000200000003000000040000000500000005000000i
+  inventoryLimit: 0
+  equipmentRollVariation: 0
+  rollVariationPercent: 0.1
+  sellEnabled: 1
+  starsEnabled: 1
+  defaultStarTurnLimit: 15
+  defeatConsolation: {fileID: 0}
+  currencyDropMultiplier: 1
+  shardDropMultiplier: 1
+  pityEnabled: 0
+  pityFightsWithoutShard: 5
+  showDropOdds: 0

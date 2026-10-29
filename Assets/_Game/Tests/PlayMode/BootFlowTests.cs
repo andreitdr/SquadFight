@@ -25,6 +25,9 @@ namespace Game.Tests.PlayMode
             while (SceneManager.GetActiveScene().name != SceneNames.Main && Time.realtimeSinceStartup < timeout) yield return null;
             Assert.AreEqual(SceneNames.Main, SceneManager.GetActiveScene().name);
             Assert.IsTrue(AppContext.IsBooted);
+            var config = AppContext.Services.Get<Game.Core.IConfigProvider>();
+            Assert.Greater(config.Database.Heroes.Count, 0, "sample content must load in Boot");
+            LogAssert.NoUnexpectedReceived();
         }
     }
 }

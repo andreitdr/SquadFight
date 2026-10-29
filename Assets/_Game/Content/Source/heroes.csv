@@ -1,0 +1,11 @@
+id,name,rarity,class,maxHp,attack,defense,speed,critChance,critDamage,basicSkill,activeSkill,tint,lore
+hero_knight,Aldric,Common,Tank,600,40,30,90,0.05,1.5,skill_slash,skill_shield_bash,#8FA3BF,A steadfast knight sworn to guard the Greenwood road.
+hero_archer,Lyra,Common,Ranger,400,55,12,110,0.15,1.5,skill_shot,skill_volley,#6FBF73,A keen-eyed archer who never misses twice.
+hero_apprentice,Pip,Common,Mage,380,60,10,100,0.08,1.5,skill_bolt,skill_fireball,#E07A5F,An eager apprentice whose spells sometimes work exactly as planned.
+hero_cleric,Sister Maren,Uncommon,Support,450,45,18,105,0.05,1.5,skill_smite,skill_heal,#F2E8CF,A healer from the mountain abbey.
+hero_rogue,Vex,Uncommon,Warrior,420,65,14,125,0.2,1.8,skill_stab,skill_backstab,#6D597A,A rogue who fights for coin and, occasionally, for friends.
+hero_paladin,Seraphine,Rare,Tank,800,55,40,92,0.05,1.5,skill_slash,skill_aegis,#F4D35E,A paladin whose shield has never broken.
+hero_hunter,Kael Wildheart,Rare,Ranger,520,75,18,115,0.15,1.6,skill_shot,skill_marked,#386641,A tracker raised by the forest itself.
+hero_stormcaller,Zara Stormcaller,Epic,Mage,560,95,20,108,0.1,1.6,skill_bolt,skill_chain_lightning,#4EA8DE,She speaks and the sky answers.
+hero_bard,Fennick,Epic,Support,600,60,25,118,0.08,1.5,skill_chord,skill_anthem,#E5989B,A bard whose songs make cowards brave.
+hero_dragonknight,Drakon,Legendary,Warrior,1000,110,45,105,0.15,1.75,skill_cleave,skill_dragon_fury,#C1121F,The last rider of the red dragons.

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1dfaed12913464db8da722cde2e35a, type: 3}
+  m_Name: RarityConfig
+  m_EditorClassIdentifier: Game.Data::Game.Data.RarityConfig
+  entries:
+  - rarity: 0
+    color: {r: 0.6901961, g: 0.7058824, b: 0.7294118, a: 1}
+    equipmentStatMultiplier: 1
+    shardsToUnlock: 10
+    starCostMultiplier: 1
+    dropWeightModifier: 1
+    itemSellValue: 10
+    overflowCurrencyPerShard: 5
+  - rarity: 1
+    color: {r: 0.30980393, g: 0.7490196, b: 0.3529412, a: 1}
+    equipmentStatMultiplier: 1.3
+    shardsToUnlock: 20
+    starCostMultiplier: 1.25
+    dropWeightModifier: 1
+    itemSellValue: 25
+    overflowCurrencyPerShard: 10
+  - rarity: 2
+    color: {r: 0.23921569, g: 0.54509807, b: 1, a: 1}
+    equipmentStatMultiplier: 1.7
+    shardsToUnlock: 40
+    starCostMultiplier: 1.5
+    dropWeightModifier: 1
+    itemSellValue: 60
+    overflowCurrencyPerShard: 20
+  - rarity: 3
+    color: {r: 0.64705884, g: 0.29411766, b: 1, a: 1}
+    equipmentStatMultiplier: 2.2
+    shardsToUnlock: 80
+    starCostMultiplier: 2
+    dropWeightModifier: 1
+    itemSellValue: 150
+    overflowCurrencyPerShard: 40
+  - rarity: 4
+    color: {r: 1, g: 0.6666667, b: 0.13333334, a: 1}
+    equipmentStatMultiplier: 3
+    shardsToUnlock: 160
+    starCostMultiplier: 3
+    dropWeightModifier: 1
+    itemSellValue: 400
+    overflowCurrencyPerShard: 80

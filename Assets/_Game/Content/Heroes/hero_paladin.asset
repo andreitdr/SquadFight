@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_paladin
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_paladin
+  nameKey: hero_paladin_name
+  loreKey: hero_paladin_lore
+  rarity: 2
+  heroClass: 0
+  baseStats:
+    values:
+    - 800
+    - 55
+    - 40
+    - 92
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: 0c333a1cc90324fafb5fda074e38dd83, type: 2}
+  activeSkill: {fileID: 11400000, guid: dd4828bdabf1040138eb3bde0a4bca3b, type: 2}
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.95686275, g: 0.827451, b: 0.36862746, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
