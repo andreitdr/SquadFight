@@ -21,6 +21,8 @@ namespace Game.UI
         /// <summary>Called when the player wants to leave the app from the root screen.</summary>
         public Action Quit = () => { };
         public string AppVersion = "dev";
+        /// <summary>Builds the offline bug-report text (Settings → Copy debug info).</summary>
+        public Func<string> DebugInfo = () => "";
         /// <summary>Released when the UIManager is destroyed (scene change): long-lived view models, bus subscriptions.</summary>
         public readonly System.Collections.Generic.List<IDisposable> SceneDisposables = new System.Collections.Generic.List<IDisposable>();
 

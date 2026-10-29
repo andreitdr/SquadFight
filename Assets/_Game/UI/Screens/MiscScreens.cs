@@ -282,6 +282,11 @@ namespace Game.UI
             speed = UIKit.Button(_content, "Speed", Ctx.F("battle_speed_value", s.BattleSpeed), () => { _vm.CycleBattleSpeed(); speed.SetLabel(Ctx.F("battle_speed_value", s.BattleSpeed)); }, UIKit.ButtonStyle.Ghost);
             UIKit.Button(_content, "Credits", Ctx.T("credits"), () => MessagePopup.Show(Ctx, Ctx.T("credits"), Ctx.T("credits_body")), UIKit.ButtonStyle.Ghost);
             UIKit.Button(_content, "Privacy", Ctx.T("privacy_policy"), () => MessagePopup.Show(Ctx, Ctx.T("privacy_policy"), Ctx.T("privacy_body")), UIKit.ButtonStyle.Ghost);
+            UIKit.Button(_content, "DebugInfo", Ctx.T("copy_debug_info"), () =>
+            {
+                GUIUtility.systemCopyBuffer = Ctx.DebugInfo();
+                Ctx.Manager.Toast(Ctx.T("debug_info_copied"));
+            }, UIKit.ButtonStyle.Ghost);
             UIKit.Button(_content, "Reset", Ctx.T("reset_progress"), ResetProgress, UIKit.ButtonStyle.Danger);
             UIKit.Text(_content, "Version", Ctx.F("version_value", Ctx.AppVersion), Th.fontSmall, Th.textDim, TextAlignmentOptions.Center).Size(preferredHeight: 60);
         }

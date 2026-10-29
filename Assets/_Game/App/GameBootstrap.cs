@@ -32,6 +32,8 @@ namespace Game.App
             DontDestroyOnLoad(gameObject);
 
             var services = new ServiceLocator();
+            var logCapture = LogCapture.Install(gameObject, SaveFolderOverride ?? Application.persistentDataPath);
+            services.Register(logCapture);
             var logger = new UnityLogger();
             services.Register<IGameLogger>(logger);
             services.Register<IClock>(new SystemClock());

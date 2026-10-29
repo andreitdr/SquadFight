@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 16
+Current step: 17
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -19,7 +19,7 @@ Current step: 16
 | 13 | Battle presentation (M2) | DONE | EditMode 222/222, PlayMode 12/12, dotnet 217/217 | 60 fps on mid-range Android pending |
 | 14 | Audio, settings, localization | DONE | EditMode 232/232, PlayMode 12/12, dotnet 222/222 | background audio pause on device pending |
 | 15 | Balance & content tools | DONE | EditMode 237/237, dotnet 225/225 | gold surplus noted |
-| 16 | Testing & QA | TODO | | |
+| 16 | Testing & QA | DONE | EditMode 247/247, PlayMode 13/13, dotnet 235/235 | device matrix pending (owner deferred) |
 | 17 | Mobile optimization & builds | TODO | | |
 | 18 | Polish, tutorial, release (M3) | TODO | | |
 
@@ -123,6 +123,12 @@ Current step: 16
 - [x] Editing one CSV and re-importing updates exactly that asset, no duplicates (`EditingOneCsvRow_UpdatesExactlyThatAsset_NoDuplicates`; export→import no-op).
 - [x] Progression simulator completes the whole campaign in seconds (BalanceCli: 9 runs in ~3 s) and flags walls.
 - [x] Same seed ⇒ identical reports (`Reports_AreDeterministic`, `SameSeed_IdenticalReport`).
+
+### Step 16
+- [~] CI green: workflow written; pure job self-contained; Unity jobs need the owner's license secrets (not run on GitHub yet). Local equivalents all green.
+- [x] Coverage targets met (Core 96% lines, Services 95.5%).
+- [x] Headless playthrough deterministic (`Playthrough_IsDeterministic`, `NewGame_..._StateIdentical`).
+- [~] Device matrix checklist: pending (owner deferred device tests at M2).
 
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)

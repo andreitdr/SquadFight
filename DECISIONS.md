@@ -111,3 +111,8 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[15] Balance targets (validated on 12 unseen seeds):** casual player (2 replays per new fight) clears the campaign in 72–110 fights, 10/12 runs never need more than one retry; all 7 obtainable heroes unlock spaced through the campaign (Maren@1, Vex≈16, Seraphine≈22–30, Kael≈35, Zara≈46–55, Fennick≈64–72, Drakon at the end). Greedy (no farming) must farm at some walls (genre-typical); hardcore never loses.
 - **[15] Known balance gap:** gold accumulates (≈12k earned vs ≈600 spent by a casual player); shards are the real bottleneck. Options for later: raise star gold costs, add a gold sink (e.g. shard shop) — DEFAULTED, owner may decide.
 - **[15] Exporter scope** limited to the inspector-tuned tables; fights/drop tables/skills are authored in CSV only.
+
+## Step 16
+- **[16] Coverage via coverlet in the dotnet harness** (Unity Code Coverage package not added: the pure assemblies hold all logic and are compiled from the same files).
+- **[16] Offline bug reports:** in-memory ring buffer of the last 300 log lines, persisted to `last_log.txt`; Settings → Copy debug info puts version/device/save summary/log on the clipboard. Nothing is uploaded.
+- **[16] CI needs owner secrets** (Unity license, keystore) to run the Unity jobs; the pure job runs without secrets.

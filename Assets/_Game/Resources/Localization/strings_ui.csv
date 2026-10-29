@@ -184,3 +184,6 @@ resume,Resume,Continuă
 retreat,Retreat,Retragere
 retreat_title,Retreat?,Te retragi?
 retreat_body,The fight counts as lost (no rewards).,Lupta se consideră pierdută (fără recompense).
+# ---- step 16 ----
+copy_debug_info,Copy debug info,Copiază informațiile de depanare
+debug_info_copied,Debug info copied. Paste it into your bug report.,Informațiile au fost copiate. Lipește-le în raportul de eroare.

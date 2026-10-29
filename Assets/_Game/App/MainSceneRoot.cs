@@ -46,6 +46,7 @@ namespace Game.App
                 AppVersion = Application.version,
                 Quit = Application.Quit,
             };
+            ctx.DebugInfo = () => LogCapture.BuildDebugInfo(session, services.TryGet<LogCapture>(out var lc) ? lc : null);
             ctx.StartBattle = fightId =>
             {
                 var start = session.Battles.Start(fightId);

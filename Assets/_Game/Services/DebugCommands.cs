@@ -24,6 +24,7 @@ namespace Game.Services
             Register("starup", a => a.Length < 1 ? "Usage: starup <heroId>" : Report(_s.Roster.UpgradeStar(a[0]), $"{a[0]} is now ★{_s.Roster.GetStar(a[0])}"));
             Register("fight", a => a.Length < 1 ? "Usage: fight <fightId> [seed]" : Fight(a));
             Register("clear", Clear);
+            Register("soak", a => Soak(a.Length > 0 ? Int(a[0]) : 100));
             Register("reset", _ => { _s.ResetToNewGame(); return "Progress reset."; });
         }
 
@@ -104,6 +105,26 @@ namespace Game.Services
                 cleared++;
             }
             return $"Cleared {cleared} fight(s).";
+        }
+
+        /// <summary>Plays N instant fights (farming the last cleared fight after a loss) and reports errors — QA soak test.</summary>
+        private string Soak(int n)
+        {
+            var policy = new CasualPolicy();
+            string lastCleared = null;
+            var farm = false;
+            int wins = 0, losses = 0, errors = 0;
+            for (var i = 0; i < n; i++)
+            {
+                var next = _s.Progress.GetNextRecommendedFight();
+                var target = farm && lastCleared != null ? lastCleared : next;
+                var r = _s.Battles.RunInstant(target);
+                if (!r.Ok) { errors++; continue; }
+                if (r.Value.Victory) { wins++; if (target == next) lastCleared = next; farm = false; }
+                else { losses++; farm = true; }
+                policy.Manage(_s);
+            }
+            return $"Soak {n}: {wins} wins, {losses} losses, {errors} errors, {_s.Progress.TotalClearedFights}/{_s.Db.Fights.Count} cleared, power {_s.PartyPower}";
         }
 
         private string List(string[] a)

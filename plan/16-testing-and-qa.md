@@ -40,3 +40,11 @@ Catch regressions automatically and verify the game on real devices.
 
 ## Prompt for Claude
 > Read `00-overview.md` and `16-testing-and-qa.md`. Review existing tests for gaps against the table, add missing ones (including the headless full-loop integration test and perf/leak tests), add CI workflow files, `QA_CHECKLIST.md`, the soak auto-player, and the on-device debug-info/log export. Report the coverage numbers and any untested risky areas.
+
+## Decisions made / results
+- Coverage measured with coverlet on the pure assemblies (dotnet harness) instead of Unity Code Coverage: **Core 96.0% lines / 75.6% branches, Services 95.5% / 80.0%, Save 93.9% / 84.8%, ViewModels ~80%** (targets ≥90% Core, ≥80% Services: met)
+- Headless full loop on real content (pure CSV loader): new game → 25 fights → rewards → unlock → equip → save → reload → identical; deterministic; 500-fight soak with 0 errors and a consistent save
+- PlayMode: full scene loop + screen tour, presented battles == simulation, 20 Main↔Battle round trips (memory +0.02 MB, no leaked UI/bus handlers)
+- CI: GitHub Actions (pure tests + BalanceCli on every push; GameCI Unity tests with license secrets; Android release on v* tags)
+- `QA_CHECKLIST.md` (device matrix, checklists, manual script, exploit review, bug template, severity); dev console `soak N`; Settings → Copy debug info (log ring buffer + last_log.txt, never sent anywhere)
+- Untested / risky areas: anything device-specific (File.Replace on Android storage, IL2CPP stripping of save types, haptics, audio interruptions, real frame times), uGUI views beyond the scripted tour
