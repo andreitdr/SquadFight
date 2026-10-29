@@ -11,7 +11,7 @@ drops_ch1,gear,,,,Currency,gold,,,,40,15,30
 first_ch1_intro,G,,,,Currency,gold,,,,1,60,60
 first_ch1_intro,G,,,,HeroShard,hero_cleric,,,,1,20,20
 first_ch1_a,G,,,,Currency,gold,,,,1,60,60
-first_ch1_a,G,,,,HeroShard,hero_rogue,,,,1,7,7
+first_ch1_a,G,,,,HeroShard,hero_rogue,,,,1,10,10
 first_ch1_b,G,,,,Currency,gold,,,,1,80,80
 first_ch1_b,G,,,,HeroShard,hero_paladin,,,,1,5,5
 first_ch1_b,G,,,,RandomEquipment,,,,Uncommon=100,1,1,1

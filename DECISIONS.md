@@ -106,3 +106,8 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[14] No AudioMixer** — volumes applied on AudioSources (same behaviour; a mixer can be added later using `AudioMath.LinearToDb`).
 - **[14] Placeholder audio is synthesized** by `tools/generate_placeholder_audio.py` (CC0, listed in AUDIO_CREDITS.md, labelled `placeholder`). Music: Vorbis streaming; SFX: ADPCM decompress-on-load; mono.
 - **[14] Romanian content text** (hero/item/fight names, story) still falls back to English: 160 keys untranslated; UI is fully translated. DEFAULTED – owner may provide translations (add an `ro` column via Generate Key Stubs).
+
+## Step 15
+- **[15] Balance targets (validated on 12 unseen seeds):** casual player (2 replays per new fight) clears the campaign in 72–110 fights, 10/12 runs never need more than one retry; all 7 obtainable heroes unlock spaced through the campaign (Maren@1, Vex≈16, Seraphine≈22–30, Kael≈35, Zara≈46–55, Fennick≈64–72, Drakon at the end). Greedy (no farming) must farm at some walls (genre-typical); hardcore never loses.
+- **[15] Known balance gap:** gold accumulates (≈12k earned vs ≈600 spent by a casual player); shards are the real bottleneck. Options for later: raise star gold costs, add a gold sink (e.g. shard shop) — DEFAULTED, owner may decide.
+- **[15] Exporter scope** limited to the inspector-tuned tables; fights/drop tables/skills are authored in CSV only.

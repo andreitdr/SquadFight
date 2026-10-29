@@ -70,7 +70,7 @@ namespace Game.Data
         public EffectDef ToCore() => new EffectDef
         {
             Type = type, Target = target, Power = power, Stat = stat, Value = value, Duration = duration,
-            Stacking = stacking, MaxStacks = maxStacks, StatusId = statusId, Chance = chance,
+            Stacking = stacking, MaxStacks = maxStacks, StatusId = string.IsNullOrEmpty(statusId) ? null : statusId, Chance = chance,
         };
     }
 

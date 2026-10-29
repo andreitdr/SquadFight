@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 15 (IN PROGRESS)
+Current step: 16
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -18,7 +18,7 @@ Current step: 15 (IN PROGRESS)
 | 12 | UI screens | DONE | EditMode 222/222, PlayMode 9/9, dotnet 217/217 | device pass pending; battle presentation in step 13 |
 | 13 | Battle presentation (M2) | DONE | EditMode 222/222, PlayMode 12/12, dotnet 217/217 | 60 fps on mid-range Android pending |
 | 14 | Audio, settings, localization | DONE | EditMode 232/232, PlayMode 12/12, dotnet 222/222 | background audio pause on device pending |
-| 15 | Balance & content tools | DOING | dotnet 225/225 last run | See 'Step 15 resume notes' |
+| 15 | Balance & content tools | DONE | EditMode 237/237, dotnet 225/225 | gold surplus noted |
 | 16 | Testing & QA | TODO | | |
 | 17 | Mobile optimization & builds | TODO | | |
 | 18 | Polish, tutorial, release (M3) | TODO | | |
@@ -119,16 +119,10 @@ Current step: 15 (IN PROGRESS)
 - [~] Audio stops/resumes on background: `AudioListener.pause` on pause/focus (code); device check pending.
 - [x] Every used key has English text (`EveryUsedKey_HasEnglishText`, 317 keys); all UI keys translated to ro.
 
-### Step 15 resume notes (session paused at usage limit, 2026-10-29)
-Done (uncommitted work committed as WIP):
-- `Services/Simulation/ContentCsvLoader.cs` — pure CSV → GameDatabase (needs a Unity EditMode test asserting equality with `ConfigDatabase(GameConfig)`, compare sorted by id, ignore ColorHex/BackgroundKey).
-- `Services/Simulation/FightBalance.cs` — N seeded battles per fight, presets, snapshots at first attempt; `CampaignSimulator.Run(..., onBeforeFirstAttempt)`.
-- `DotnetTests/BalanceCli` — `dotnet run -c Release --project DotnetTests/BalanceCli -- progression|fights <policy> <seed>|tune|validate` (3 s for 9 campaign runs).
-- New hero reward schedule in `droptables.csv` (each chapter unlocks specific heroes; random shards fuel star-ups) — imported.
-Remaining for step 15:
-1. Difficulty: the `tune` command (targets 0.85/0.75/0.62 first-try win rate) overshoots → casual players hit walls. Retry with gentler targets (~0.95 normal / 0.85 late / 0.75 boss) or tune against the casual player's power *after* its replays; accept when casual has no walls and greedy needs some farming. Then reimport + update recommendedPower (party power at casual first clear).
-2. Editor windows: Fight Balance window, CSV exporter (round-trip idempotency test), curve visualizer, config diff, reports to BalanceReports/.
-3. Tests: loader equivalence, exporter idempotency, simulator determinism; fill step-15 decisions; commit `step-15`.
+### Step 15
+- [x] Editing one CSV and re-importing updates exactly that asset, no duplicates (`EditingOneCsvRow_UpdatesExactlyThatAsset_NoDuplicates`; export→import no-op).
+- [x] Progression simulator completes the whole campaign in seconds (BalanceCli: 9 runs in ~3 s) and flags walls.
+- [x] Same seed ⇒ identical reports (`Reports_AreDeterministic`, `SameSeed_IdenticalReport`).
 
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)

@@ -15,7 +15,7 @@ switch (cmd)
 {
     case "progression":
         foreach (var p in new[] { "greedy", "casual", "hardcore" })
-            foreach (var seed in new ulong[] { 1, 2, 3 })
+            foreach (var seed in (args.Length > 1 ? args[1] : "1,2,3").Split(',').Select(ulong.Parse))
             {
                 var r = CampaignSimulator.Run(db, Policy(p), seed);
                 var losses = r.Fights.Sum(f => f.Attempts - f.Wins);
@@ -41,24 +41,26 @@ switch (cmd)
     {
         // Sets each fight's enemy multipliers so a casual player's FIRST attempt wins at a target rate, then writes fights.csv.
         var csvPath = Path.Combine(root, "Assets/_Game/Content/Source/fights.csv");
+        var seeds = new ulong[] { 1, 2, 3, 4, 5, 6, 7, 8 };
         for (var pass = 0; pass < 3; pass++)
         {
-            var snaps = FightBalance.SnapshotsAtFirstAttempt(db, new CasualPolicy(), 1);
+            var snaps = seeds.Select(sd => FightBalance.SnapshotsAtFirstAttempt(db, new CasualPolicy(), sd)).ToList();
             foreach (var chapter in db.Chapters)
                 for (var i = 0; i < chapter.FightIds.Count; i++)
                 {
                     var f = db.GetFight(chapter.FightIds[i]);
-                    if (!snaps.TryGetValue(f.Id, out var data)) continue;
+                    var states = snaps.Where(m => m.ContainsKey(f.Id)).Select(m => m[f.Id]).ToList();
+                    if (states.Count == 0) continue;
                     var boss = f.Waves.Any(w => w.Spawns.Any(sp => db.GetEnemy(sp.EnemyId).IsBoss));
-                    var target = f.Id == db.Fights[0].Id ? 0.98 : boss ? 0.62 : i >= 5 ? 0.75 : i == 0 ? 0.9 : 0.85;
+                    var ch1 = chapter == db.Chapters[0];
+                    var target = f.Id == db.Fights[0].Id ? 0.99 : boss ? (ch1 ? 0.85 : 0.75) : ch1 ? (i < 4 ? 0.95 : 0.92) : i >= 5 ? 0.82 : i == 0 ? 0.92 : 0.88;
                     var baseline = f.Waves.SelectMany(w => w.Spawns).Select(sp => sp.StatMultiplier).ToList();
                     double lo = 0.2, hi = 8;
                     for (var it = 0; it < 14; it++)
                     {
                         var mid = Math.Sqrt(lo * hi);
                         Apply(f, baseline, mid);
-                        var s = new GameSession(db, Game.Save.SaveSerializer.Clone(data), null, new SeededRandom(1), new ManualClock());
-                        var wr = FightBalance.Run(s, f, 80, 11, "tune").WinRate;
+                        var wr = states.Min(d => FightBalance.Run(new GameSession(db, Game.Save.SaveSerializer.Clone(d), null, new SeededRandom(1), new ManualClock()), f, 40, 11, "tune").WinRate);
                         if (wr > target) lo = mid; else hi = mid;
                     }
                     Apply(f, baseline, Math.Sqrt(lo * hi));
@@ -79,6 +81,32 @@ switch (cmd)
         }
         File.WriteAllLines(csvPath, lines);
         Console.WriteLine("wrote " + csvPath);
+        break;
+    }
+    case "recommend":
+    {
+        // recommendedPower = median party power of casual players at their first attempt (rounded to 10).
+        var csvPath = Path.Combine(root, "Assets/_Game/Content/Source/fights.csv");
+        var powers = db.Fights.ToDictionary(f => f.Id, f => new System.Collections.Generic.List<int>());
+        foreach (var seed in Enumerable.Range(1, 8).Select(i => (ulong)i))
+        {
+            var r = CampaignSimulator.Run(db, new CasualPolicy(), seed);
+            foreach (var fs in r.Fights) if (fs.Attempts > 0) powers[fs.FightId].Add(fs.PartyPowerAtFirstAttempt);
+        }
+        var lines = File.ReadAllLines(csvPath).ToList();
+        var header = lines.First(l => !l.StartsWith("#")).Split(',');
+        var col = Array.IndexOf(header, "recommendedPower");
+        for (var li = 0; li < lines.Count; li++)
+        {
+            if (lines[li].StartsWith("#") || lines[li].StartsWith("id,")) continue;
+            var cells = lines[li].Split(',');
+            if (!powers.TryGetValue(cells[0], out var list) || list.Count == 0) continue;
+            list.Sort();
+            cells[col] = (Math.Round(list[list.Count / 2] / 10.0) * 10).ToString(System.Globalization.CultureInfo.InvariantCulture);
+            lines[li] = string.Join(",", cells);
+        }
+        File.WriteAllLines(csvPath, lines);
+        Console.WriteLine("recommended power written");
         break;
     }
     case "validate":

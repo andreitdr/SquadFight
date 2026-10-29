@@ -30,3 +30,10 @@ Make tuning a fun-to-play economy practical: simulate thousands of fights/playth
 
 ## Prompt for Claude
 > Read `00-overview.md` and `15-balance-and-content-tools.md`. Implement the editor tools: CSV importer/exporter with documented schema, fight balance simulator, progression simulator with pluggable player policies, report export, and curve visualizer. Reuse Core simulators — do not duplicate game logic. Provide tests for idempotency and determinism.
+
+## Decisions made
+- Pure `ContentCsvLoader` (CSV → GameDatabase) so balance runs outside Unity; a Unity test proves it equals the asset pipeline
+- `DotnetTests/BalanceCli` for fast iteration; editor windows reuse the same pure simulators (no duplicated game logic)
+- Difficulty fitted per fight: enemy multipliers chosen so the WEAKEST of 8 simulated casual players wins its first attempt with ≈99% (1-1), 95% (ch1 early), 92% (ch1 late / chapter openers), 88% (normal), 82% (late chapter), 85%/75% (bosses ch1/other), then ×0.97 safety (×0.9 for 1-5)
+- Hero schedule: each chapter's first clears / boss / chapter rewards unlock specific heroes; random shards fuel star-ups
+- Exporter covers the tuned tables (heroes, enemies, equipment, rarities, stars); fights/drops/skills stay CSV-first

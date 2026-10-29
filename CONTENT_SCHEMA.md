@@ -36,3 +36,13 @@ Numbers use `.` as decimal separator. Enums are case-insensitive.
 ## Adding content without the CSVs
 Every type also has a `Create > Game > …` asset menu. A new hero = one `HeroDefinition` asset added to `GameConfig.heroes`
 (and a drop that gives its shards). Run **Tools/Game/Validate Config** afterwards; builds are blocked on validation errors.
+
+## Balance workflow (step 15)
+- **Export**: `Tools/Game/Content/Export Tables to CSV` writes heroes/enemies/equipment/rarities/stars back from the assets (Inspector edits → spreadsheet). Export→import is a no-op (tested).
+- **Fast simulations outside Unity** (seconds): `dotnet run -c Release --project DotnetTests/BalanceCli -- <command>`
+  - `progression [seeds]` — greedy/casual/hardcore campaign runs (fights, losses, gold, walls, unlock times)
+  - `fights casual 1` — win rate per fight at the casual player's first attempt
+  - `tune` — re-fits enemy multipliers in fights.csv to target first-attempt win rates (weakest of 8 simulated players)
+  - `recommend` — writes `recommendedPower` (median casual party power at first attempt)
+  - `validate` — config validation on the CSVs
+- **In the Editor** (`Tools/Game/Balance/…`): Fight Balance Simulator, Run Progression Simulator, Drop Simulator, Economy Report, Star & Stat Curves, Save Config Snapshot / Diff Last Two Snapshots. Reports go to `BalanceReports/` (git-ignored).
