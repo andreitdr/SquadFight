@@ -44,3 +44,11 @@ FightRef GetNextRecommendedFight()
 
 ## Prompt for Claude
 > Read `00-overview.md` and `09-campaign-progression.md`. Implement `ProgressionRules` (Core), `ProgressService`, `BattleFlowController`, story beat data/provider, plus sample chapter content. Hook CompleteFight to a `RewardService` interface stub (implemented in step 10). Provide unit tests as listed.
+
+## Decisions made
+- Stars (config on): win = 1, +1 no hero died, +1 within the fight's round limit (`starTurnLimit`, default `defaultStarTurnLimit`); stars off → a win is 1
+- Fight completion (progress + rewards) runs in one service transaction and is saved immediately (SaveNow) before the result screen
+- Retreat = defeat (consolation table if configured); defeats still count in `progress.totalFights`
+- Battle seeds are drawn from the persisted game RNG; replays pass a fixed seed; "skip" = `RunToEnd` (same outcome)
+- Story beats: unseen pre/post beats shown once, gallery shows seen beats; `replay` flag shows all
+- Content: 3 chapters × 8 fights (boss at fight 8 with a turn limit), 14 enemies (3 bosses); recommended power left 0 for the step-15 tool

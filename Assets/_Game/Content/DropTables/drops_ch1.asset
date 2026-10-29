@@ -22,30 +22,43 @@ MonoBehaviour:
     rarityWeights: []
     weight: 1
     amountMin: 20
-    amountMax: 40
+    amountMax: 35
   groups:
   - minRolls: 1
-    maxRolls: 2
+    maxRolls: 1
     withoutReplacement: 0
     entries:
+    - type: 2
+      refId: 
+      rarity: 0
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 30
+      amountMin: 1
+      amountMax: 2
     - type: 2
       refId: 
       rarity: 1
       anySlot: 1
       slot: 0
       rarityWeights: []
-      weight: 40
+      weight: 50
       amountMin: 1
       amountMax: 2
-    - type: 1
-      refId: hero_cleric
-      rarity: 0
+    - type: 2
+      refId: 
+      rarity: 2
       anySlot: 1
       slot: 0
       rarityWeights: []
       weight: 20
-      amountMin: 2
-      amountMax: 3
+      amountMin: 1
+      amountMax: 1
+  - minRolls: 1
+    maxRolls: 1
+    withoutReplacement: 0
+    entries:
     - type: 4
       refId: 
       rarity: 0
@@ -53,12 +66,12 @@ MonoBehaviour:
       slot: 0
       rarityWeights:
       - rarity: 0
-        weight: 70
+        weight: 75
       - rarity: 1
-        weight: 25
+        weight: 22
       - rarity: 2
-        weight: 5
-      weight: 30
+        weight: 3
+      weight: 55
       amountMin: 1
       amountMax: 1
     - type: 0
@@ -67,6 +80,6 @@ MonoBehaviour:
       anySlot: 1
       slot: 0
       rarityWeights: []
-      weight: 10
-      amountMin: 20
-      amountMax: 50
+      weight: 45
+      amountMin: 15
+      amountMax: 30

@@ -22,3 +22,7 @@ skill_enemy_bite,Bite,A savage bite.,SingleEnemy,1,0,0,Damage:1.1
 skill_enemy_hex,Hex,Weakens one enemy's attack.,SingleEnemy,1,3,1,Damage:0.6|Status:Attack:-0.2:2
 skill_enemy_mend,Dark Mend,Heals the most wounded ally.,LowestHpAlly,1,3,1,Heal:1.2
 skill_boss_smash,Ground Smash,Hits every enemy and may stun.,AllEnemies,1,3,1,Damage:0.9|Stun:1:0.3
+skill_enemy_volley,Bone Volley,Two arrows at random enemies.,RandomEnemies,2,3,1,Damage:0.75
+skill_enemy_roar,War Roar,Raises all allies' attack.,AllAllies,1,4,1,Status:Attack:0.2:2
+skill_boss_dark_nova,Dark Nova,Necrotic blast that weakens every enemy.,AllEnemies,1,3,1,Damage:0.9|Status:Attack:-0.15:2
+skill_boss_fire_breath,Fire Breath,Engulfs every enemy in flame.,AllEnemies,1,3,1,Damage:1.1

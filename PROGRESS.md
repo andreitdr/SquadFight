@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 09
+Current step: 10
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -12,7 +12,7 @@ Current step: 09
 | 06 | Equipment system | DONE | EditMode 133/133, dotnet 129/129 | |
 | 07 | Stats & formulas | DONE | dotnet 140/140, Unity verified in step 08 run | branch coverage measured in step 16 |
 | 08 | Combat core | DONE | EditMode 161/161, dotnet 156/156 | |
-| 09 | Campaign progression | TODO | | |
+| 09 | Campaign progression | DONE | EditMode 178/178, dotnet 173/173 | recommended power filled by step-15 tool |
 | 10 | Rewards & drop tables (M1) | TODO | | |
 | 11 | UI foundation | TODO | | |
 | 12 | UI screens | TODO | | |
@@ -75,6 +75,11 @@ Current step: 09
 - [x] Every effect/targeting rule tested; turn cap prevents infinite loops (`Timeout_AfterMaxRounds_NoInfiniteLoop`).
 - [x] Scripted 1v1 matches hand calculation and the text log reads correctly (`Scripted1v1_MatchesHandCalculation`; editor tool output checked).
 - [x] 5v5 < 5 ms (measured avg well below in dotnet and Unity runs).
+
+### Step 09
+- [x] Debug console plays 1-1 → last fight in order (`DebugConsole_PlaysWholeCampaignInOrder`, `UnlockChain_FightByFight_ThenNextChapter`).
+- [x] Progress persists after restart (`Progress_PersistsAcrossRestart_AndIsSavedImmediately`).
+- [x] Reordering = editing the Chapter asset only (`ReorderingChapterAsset_ChangesOrder`; importer orders by `order` column).
 
 ## Pending owner questions (batched)
 - none

@@ -17,6 +17,8 @@ namespace Game.Services
         public RosterService Roster { get; }
         public PartyService Party { get; }
         public InventoryService Inventory { get; }
+        public ProgressService Progress { get; }
+        public BattleFlowController Battles { get; }
 
         public GameSession(GameDatabase db, SaveData data, ISaveScheduler saver = null, IRandom random = null, IClock clock = null, IGameLogger log = null)
         {
@@ -33,6 +35,8 @@ namespace Game.Services
             Inventory = new InventoryService(Context) { Roster = Roster, Currency = Currency };
             Roster.Inventory = Inventory;
             Party = new PartyService(Context, Roster);
+            Progress = new ProgressService(Context, Roster, Party);
+            Battles = new BattleFlowController(this);
         }
 
         public int PartyPower => Roster.GetTotalPower(Party.Members);

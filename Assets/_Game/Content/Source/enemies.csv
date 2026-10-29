@@ -3,3 +3,13 @@ enemy_goblin,Goblin,false,300,35,10,90,0.05,1.5,skill_enemy_hit,,#7CB518
 enemy_wolf,Wolf,false,250,40,5,120,0.1,1.5,skill_enemy_bite,,#9C9C9C
 enemy_goblin_shaman,Goblin Shaman,false,220,30,8,95,0.05,1.5,skill_enemy_hit,skill_enemy_mend,#2A9D8F
 enemy_goblin_king,Goblin King,true,1500,60,25,85,0.1,1.5,skill_enemy_hit,skill_boss_smash,#606C38
+enemy_skeleton,Skeleton,false,500,45,30,85,0.05,1.5,skill_enemy_hit,,#E9E3D5
+enemy_ghoul,Ghoul,false,380,60,12,125,0.1,1.5,skill_enemy_bite,,#8E7DBE
+enemy_cultist,Cultist,false,340,50,14,100,0.05,1.5,skill_enemy_hit,skill_enemy_hex,#5E2B5C
+enemy_bone_archer,Bone Archer,false,320,55,10,110,0.1,1.5,skill_enemy_hit,skill_enemy_volley,#C8C2AE
+enemy_lich,The Lich,true,3200,85,40,95,0.1,1.5,skill_enemy_hit,skill_boss_dark_nova,#3A0CA3
+enemy_orc_brute,Orc Brute,false,900,80,45,88,0.05,1.5,skill_enemy_hit,skill_enemy_roar,#6A994E
+enemy_orc_shaman,Orc Shaman,false,600,70,25,100,0.05,1.5,skill_enemy_hit,skill_enemy_mend,#A7C957
+enemy_wyvern,Wyvern,false,700,95,25,135,0.1,1.6,skill_enemy_bite,,#BC4749
+enemy_dragon_priest,Dragon Priest,false,650,85,28,105,0.05,1.5,skill_enemy_hit,skill_enemy_hex,#9D0208
+enemy_red_dragon,Red Dragon,true,6500,130,60,100,0.1,1.6,skill_enemy_bite,skill_boss_fire_breath,#D00000

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27280a3049df49d488520497a16de7a, type: 3}
+  m_Name: chapter_2
+  m_EditorClassIdentifier: Game.Data::Game.Data.ChapterDefinition
+  id: chapter_2
+  nameKey: chapter_2_name
+  fights:
+  - {fileID: 11400000, guid: 8bc3a190c591e4efa887ab26c56ecc2b, type: 2}
+  - {fileID: 11400000, guid: 87377ab5ce68b41a78afc90dceb8dcd8, type: 2}
+  - {fileID: 11400000, guid: 647ec57e9249b4ed78441163c7870f19, type: 2}
+  - {fileID: 11400000, guid: c01fbc92aa1a44eadb92dccdd16bdb71, type: 2}
+  - {fileID: 11400000, guid: 0746a9b090f7c4cbc861f677bf872c73, type: 2}
+  - {fileID: 11400000, guid: 4745221f776ac408f8e55a549145f9f8, type: 2}
+  - {fileID: 11400000, guid: c0e517f70d6034d7cb2549faed952bdd, type: 2}
+  - {fileID: 11400000, guid: 8891ecd8c57f44ec391b4cfd6e144039, type: 2}
+  unlockConditions: []
+  clearReward: {fileID: 11400000, guid: bac7bf5ce3e894d39a35f74d13900956, type: 2}

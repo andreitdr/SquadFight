@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d431c006401f744a5b25c4944b56ec3d, type: 3}
+  m_Name: first_ch3_boss
+  m_EditorClassIdentifier: Game.Data::Game.Data.DropTable
+  id: first_ch3_boss
+  guaranteed:
+  - type: 0
+    refId: gold
+    rarity: 0
+    anySlot: 1
+    slot: 0
+    rarityWeights: []
+    weight: 1
+    amountMin: 1000
+    amountMax: 1000
+  - type: 1
+    refId: hero_dragonknight
+    rarity: 0
+    anySlot: 1
+    slot: 0
+    rarityWeights: []
+    weight: 1
+    amountMin: 40
+    amountMax: 40
+  - type: 4
+    refId: 
+    rarity: 0
+    anySlot: 1
+    slot: 0
+    rarityWeights:
+    - rarity: 4
+      weight: 100
+    weight: 1
+    amountMin: 1
+    amountMax: 1
+  groups: []

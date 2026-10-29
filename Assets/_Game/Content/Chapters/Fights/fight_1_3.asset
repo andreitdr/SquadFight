@@ -22,14 +22,9 @@ MonoBehaviour:
       statMultiplier: 1
     - enemy: {fileID: 11400000, guid: ac69ef43f5e1c4ba79f00385d1bbdaad, type: 2}
       statMultiplier: 1
-  - spawns:
-    - enemy: {fileID: 11400000, guid: 7e8f70e3472704398ac3a6bc4ad29562, type: 2}
-      statMultiplier: 1.1
-    - enemy: {fileID: 11400000, guid: 7e8f70e3472704398ac3a6bc4ad29562, type: 2}
-      statMultiplier: 1.1
-  recommendedPower: 700
+  recommendedPower: 0
   dropTable: {fileID: 11400000, guid: 4f32d8c06545b4441b32e385a10dce96, type: 2}
-  firstClearTable: {fileID: 0}
+  firstClearTable: {fileID: 11400000, guid: e29492420be9c49c8ab4476fe3cec4ba, type: 2}
   starTurnLimit: 0
   background: {fileID: 21300000, guid: 2cec9873de8db4db2a46de370e9b18ea, type: 3}
   preBeats: []

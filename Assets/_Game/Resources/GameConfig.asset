@@ -50,11 +50,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 218cc05cd051742768b88e483380bf63, type: 2}
   chapters:
   - {fileID: 11400000, guid: 542ad77e8870548f49cd51d9e020bf8b, type: 2}
+  - {fileID: 11400000, guid: e37a0020018454bb9b91c0e9ec60127d, type: 2}
+  - {fileID: 11400000, guid: aaaf5a8b26131413f8920fcded0d27c4, type: 2}
   extraEnemies:
   - {fileID: 11400000, guid: ac69ef43f5e1c4ba79f00385d1bbdaad, type: 2}
   - {fileID: 11400000, guid: 7e8f70e3472704398ac3a6bc4ad29562, type: 2}
   - {fileID: 11400000, guid: 1d8e01f45955f4c23a7008d4dad80335, type: 2}
   - {fileID: 11400000, guid: 650f00f57f359419a9e938fc8e923715, type: 2}
+  - {fileID: 11400000, guid: f7d8f81068350427c819dd5093b341a6, type: 2}
+  - {fileID: 11400000, guid: d0a4b87d9c0da4c52af6baf77954d58e, type: 2}
+  - {fileID: 11400000, guid: 163defde683be4622a1fb3be6dbc3b47, type: 2}
+  - {fileID: 11400000, guid: b2d1e673086574a369f0943b393ea713, type: 2}
+  - {fileID: 11400000, guid: cf48b7cb1996f4b8d85a780c3eb7c837, type: 2}
+  - {fileID: 11400000, guid: 8e33a0f36b9b940ddba81865571a6add, type: 2}
+  - {fileID: 11400000, guid: bd6b867585bca4b76a92bcde02052458, type: 2}
+  - {fileID: 11400000, guid: 95b3d08bd17214ffabb5ade5adffc3a3, type: 2}
+  - {fileID: 11400000, guid: 30b19fcfb8892470d91a4a8588795551, type: 2}
+  - {fileID: 11400000, guid: 99dcf29ee5c7c42cc82baca1c5d94d8c, type: 2}
   extraSkills:
   - {fileID: 11400000, guid: 0c333a1cc90324fafb5fda074e38dd83, type: 2}
   - {fileID: 11400000, guid: 77c010a0fbb26472ea5e81170f521488, type: 2}
@@ -78,8 +90,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 105435c995ddf4cf08a562c02b434607, type: 2}
   - {fileID: 11400000, guid: a2d0775a354e24152ac5b01d542f44ce, type: 2}
   - {fileID: 11400000, guid: 7eb92d8d33242454b8708a9ceb79be9d, type: 2}
+  - {fileID: 11400000, guid: 1994790e2912341a5b574cedabb85f86, type: 2}
+  - {fileID: 11400000, guid: 1da7719b9e6d34c70934ce915726d086, type: 2}
+  - {fileID: 11400000, guid: 79f13311c5f1d4e5ab8bd57a80d49291, type: 2}
+  - {fileID: 11400000, guid: 6ad52403855014c80ba12e654a92b006, type: 2}
   extraDropTables:
   - {fileID: 11400000, guid: 4f32d8c06545b4441b32e385a10dce96, type: 2}
+  - {fileID: 11400000, guid: 89d90c2763c374c6ab6e4ff5a1baf2d6, type: 2}
+  - {fileID: 11400000, guid: e29492420be9c49c8ab4476fe3cec4ba, type: 2}
+  - {fileID: 11400000, guid: bb05a5cf985924ea19dabd424f0a20de, type: 2}
+  - {fileID: 11400000, guid: 3b5eb4dc942374cb191e287f06190b0b, type: 2}
+  - {fileID: 11400000, guid: 89dfc2d4f29da41f497cea64d8d7be58, type: 2}
+  - {fileID: 11400000, guid: 8f00003116bde4535be858e21494e5e1, type: 2}
+  - {fileID: 11400000, guid: 8ca5044df75744c8abc2caada740100b, type: 2}
+  - {fileID: 11400000, guid: 12db79c120f4144cca458a55ab55ab54, type: 2}
+  - {fileID: 11400000, guid: bac7bf5ce3e894d39a35f74d13900956, type: 2}
+  - {fileID: 11400000, guid: 2fd05bf80855a42b880e0e1231ebda2e, type: 2}
+  - {fileID: 11400000, guid: a59f7c96753c642b4b777a8febc7aa3c, type: 2}
+  - {fileID: 11400000, guid: 07341a0e96f1b4ef8821b2af2ff5c732, type: 2}
+  - {fileID: 11400000, guid: 9416a1971d5ab44bb9e1ed9e51c6628c, type: 2}
+  - {fileID: 11400000, guid: 8c56db0d7b625482c849cfa99de456ce, type: 2}
   rarityConfig: {fileID: 11400000, guid: ae92a9d83480b4e12bcfc648366a6fdf, type: 2}
   starConfig: {fileID: 11400000, guid: 0644ab3d975db44e280626e0a13ea3e8, type: 2}
   combatConfig: {fileID: 11400000, guid: f4ef3d1ebffef4ac1a524b950656babe, type: 2}

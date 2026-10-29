@@ -1,2 +1,4 @@
 id,order,name,clearReward,unlockConditions
-chapter_1,1,The Greenwood Road,,
+chapter_1,1,The Greenwood Road,clear_ch1,
+chapter_2,2,The Crypt of Ash,clear_ch2,
+chapter_3,3,Dragon's Peak,clear_ch3,

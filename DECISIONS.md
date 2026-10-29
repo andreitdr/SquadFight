@@ -62,3 +62,8 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[08] Cooldowns tick at the end of the holder's turn**; statuses/shields count the holder's turns (own-turn application skips one tick so "2 turns" means 2 full turns).
 - **[08] Enemy stat multipliers do not scale speed** (keeps turn order readable across chapters).
 - **[08] Flat `BattleEvent` records** (index-based) instead of a class hierarchy: trivial to hash, log and replay.
+
+## Step 09
+- **[09] Completing a fight is atomic and saved immediately** (progress + first-clear + chapter reward + drops in one transaction, then SaveNow) so killing the app on the result screen can neither lose nor duplicate rewards.
+- **[09] Debug `clear fight|chapter|all`** records 3-star victories with normal rewards; `fight <id> [seed]` simulates a real battle headlessly.
+- **[09] Campaign content** (placeholder story, owner may rewrite): Greenwood Road (goblins, Goblin King) → Crypt of Ash (undead, Lich) → Dragon's Peak (orcs/wyverns, Red Dragon). Hero acquisition is staged by chapter: Uncommon via ch1 first clears, Rare via ch1 boss/chapter + ch2, Epic via ch2 boss/chapter + ch3, Legendary Drakon via ch3 boss/chapter + rare ch3 drops. DEFAULTED – owner may override.

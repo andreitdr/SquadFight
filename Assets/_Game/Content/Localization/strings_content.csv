@@ -1,14 +1,37 @@
 key,en
 beat_ch1_boss_pre_text,Who dares enter MY forest? Crush them!
-beat_ch1_end_text,"The Goblin King falls, but he was only taking orders. Someone else is gathering an army."
+beat_ch1_end_text,"The Goblin King falls, but he was only taking orders. A trail of black candles leads north, to the old crypt."
 beat_ch1_f1_pre_text,"Stay behind me. Whatever comes out of those trees, we face it together."
+beat_ch1_f4_pre_text,Wolves and goblins working together? Someone is training them.
 beat_ch1_intro_text,Goblins have been raiding the Greenwood road. Three young heroes set out to stop them.
+beat_ch2_boss_pre_text,The living always come to me in the end. You are merely early.
+beat_ch2_end_text,With its last breath the Lich laughs: the army was never his. It belongs to the dragon of the Peak.
+beat_ch2_f1_pre_text,I read about this place. Mostly the part that said 'never go in'.
+beat_ch2_f5_pre_text,These cultists are not raising the dead for fun. They are building an army.
+beat_ch2_intro_text,"Beneath the hills lies the Crypt of Ash, sealed for a hundred years. The seal is broken."
+beat_ch3_boss_pre_text,Little heroes. I have burned kingdoms. I will not even remember your names.
+beat_ch3_end_text,"The Red Dragon falls and the sky clears. The road home is long, but it is finally safe."
+beat_ch3_f1_pre_text,"Orcs, wyverns, and a dragon at the top. Nobody said this would be easy."
+beat_ch3_f5_pre_text,The priests are feeding the dragon's fire. Stop them and the beast weakens.
+beat_ch3_intro_text,Dragon's Peak burns on the horizon. Orc warbands march under a crimson banner.
 chapter_1_name,The Greenwood Road
+chapter_2_name,The Crypt of Ash
+chapter_3_name,Dragon's Peak
 currency_gold_name,Gold
+enemy_bone_archer_name,Bone Archer
+enemy_cultist_name,Cultist
+enemy_dragon_priest_name,Dragon Priest
+enemy_ghoul_name,Ghoul
 enemy_goblin_king_name,Goblin King
 enemy_goblin_name,Goblin
 enemy_goblin_shaman_name,Goblin Shaman
+enemy_lich_name,The Lich
+enemy_orc_brute_name,Orc Brute
+enemy_orc_shaman_name,Orc Shaman
+enemy_red_dragon_name,Red Dragon
+enemy_skeleton_name,Skeleton
 enemy_wolf_name,Wolf
+enemy_wyvern_name,Wyvern
 eq_chainmail_name,Chainmail
 eq_cloth_gloves_name,Cloth Gloves
 eq_copper_ring_name,Copper Ring
@@ -36,8 +59,27 @@ eq_wooden_sword_name,Wooden Sword
 fight_1_1_name,Forest Edge
 fight_1_2_name,Wolf Den
 fight_1_3_name,Goblin Camp
-fight_1_4_name,Old Bridge
-fight_1_5_name,The Goblin King
+fight_1_4_name,Ambush
+fight_1_5_name,Old Bridge
+fight_1_6_name,Howling Hills
+fight_1_7_name,Warband Gate
+fight_1_8_name,The Goblin King
+fight_2_1_name,Broken Seal
+fight_2_2_name,Ossuary
+fight_2_3_name,Hungry Dark
+fight_2_4_name,Candle Hall
+fight_2_5_name,The Ritual
+fight_2_6_name,Bone Gallery
+fight_2_7_name,Crypt Heart
+fight_2_8_name,The Lich
+fight_3_1_name,Foothills
+fight_3_2_name,Wyvern Cliffs
+fight_3_3_name,Orc Camp
+fight_3_4_name,Burning Pass
+fight_3_5_name,Fire Temple
+fight_3_6_name,Sky Bridge
+fight_3_7_name,Dragon's Gate
+fight_3_8_name,The Red Dragon
 hero_apprentice_lore,An eager apprentice whose spells sometimes work exactly as planned.
 hero_apprentice_name,Pip
 hero_archer_lore,A keen-eyed archer who never misses twice.
@@ -66,6 +108,10 @@ skill_backstab_desc,A devastating strike on one enemy.
 skill_backstab_name,Backstab
 skill_bolt_desc,Hurls a bolt of raw magic.
 skill_bolt_name,Arcane Bolt
+skill_boss_dark_nova_desc,Necrotic blast that weakens every enemy.
+skill_boss_dark_nova_name,Dark Nova
+skill_boss_fire_breath_desc,Engulfs every enemy in flame.
+skill_boss_fire_breath_name,Fire Breath
 skill_boss_smash_desc,Hits every enemy and may stun.
 skill_boss_smash_name,Ground Smash
 skill_chain_lightning_desc,Shocks all enemies; may stun.
@@ -84,6 +130,10 @@ skill_enemy_hit_desc,A basic attack.
 skill_enemy_hit_name,Strike
 skill_enemy_mend_desc,Heals the most wounded ally.
 skill_enemy_mend_name,Dark Mend
+skill_enemy_roar_desc,Raises all allies' attack.
+skill_enemy_roar_name,War Roar
+skill_enemy_volley_desc,Two arrows at random enemies.
+skill_enemy_volley_name,Bone Volley
 skill_fireball_desc,Burns every enemy.
 skill_fireball_name,Fireball
 skill_heal_desc,Heals the most wounded ally.

@@ -20,5 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 667a1a00b68224febb186f3b5d6a1625, type: 2}
   - {fileID: 11400000, guid: 9edcfd43b94454d3891574290ef7de70, type: 2}
   - {fileID: 11400000, guid: f752d86382e95400bb95f26400128a39, type: 2}
+  - {fileID: 11400000, guid: 685261c95069640449260a7fbf240f99, type: 2}
+  - {fileID: 11400000, guid: 9547e7ccfa2834a818907cfde117b878, type: 2}
+  - {fileID: 11400000, guid: 5cf8a540a4af24df69d269bc9db6a9f7, type: 2}
   unlockConditions: []
-  clearReward: {fileID: 0}
+  clearReward: {fileID: 11400000, guid: 3b5eb4dc942374cb191e287f06190b0b, type: 2}

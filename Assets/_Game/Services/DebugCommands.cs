@@ -22,6 +22,8 @@ namespace Game.Services
             Register("party", _ => string.Join(" | ", _s.Party.GetSlots().Select(h => h ?? "-")));
             Register("unlock", a => a.Length < 1 ? "Usage: unlock <heroId> [force]" : Unlock(a));
             Register("starup", a => a.Length < 1 ? "Usage: starup <heroId>" : Report(_s.Roster.UpgradeStar(a[0]), $"{a[0]} is now ★{_s.Roster.GetStar(a[0])}"));
+            Register("fight", a => a.Length < 1 ? "Usage: fight <fightId> [seed]" : Fight(a));
+            Register("clear", Clear);
             Register("reset", _ => { _s.ResetToNewGame(); return "Progress reset."; });
         }
 
@@ -71,6 +73,37 @@ namespace Game.Services
                 if (info.Have < info.Need) _s.Roster.AddShards(id, info.Need - info.Have);
             }
             return Report(_s.Roster.UnlockHero(id), $"{id} unlocked");
+        }
+
+        private string Fight(string[] a)
+        {
+            var r = _s.Battles.RunInstant(a[0], a.Length > 1 ? (ulong?)ulong.Parse(a[1], CultureInfo.InvariantCulture) : null);
+            if (!r.Ok) return "Failed: " + r;
+            var c = r.Value;
+            return $"{c.FightId}: {(c.Victory ? "Victory ★" + c.Stars : "Defeat")} in {c.Battle.Rounds} rounds. Rewards: {(c.Rewards?.Bundle?.ToString() ?? "none")}";
+        }
+
+        /// <summary>"clear fight id" | "clear chapter id" | "clear all": records 3-star victories (with normal rewards) in campaign order.</summary>
+        private string Clear(string[] a)
+        {
+            if (a.Length < 1) return "Usage: clear fight <id> | clear chapter <id> | clear all";
+            var ids = new List<string>();
+            switch (a[0].ToLowerInvariant())
+            {
+                case "fight": if (a.Length < 2) return "Usage: clear fight <id>"; ids.Add(a[1]); break;
+                case "chapter": if (a.Length < 2) return "Usage: clear chapter <id>"; ids.AddRange(_s.Db.GetChapter(a[1]).FightIds); break;
+                case "all": foreach (var c in _s.Db.Chapters) ids.AddRange(c.FightIds); break;
+                default: return "Usage: clear fight <id> | clear chapter <id> | clear all";
+            }
+            var cleared = 0;
+            foreach (var id in ids)
+            {
+                var win = new BattleResult { Outcome = BattleOutcome.Victory, Rounds = 1 };
+                var r = _s.Progress.CompleteFight(id, win);
+                if (!r.Ok) return $"Cleared {cleared}; stopped at {id}: {r}";
+                cleared++;
+            }
+            return $"Cleared {cleared} fight(s).";
         }
 
         private string List(string[] a)
