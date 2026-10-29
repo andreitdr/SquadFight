@@ -24,6 +24,8 @@ namespace Game.App
                 return;
             }
             var ctx = UIContextFactory.Create(services);
+            QualityTiers.BattleFrameRate();
+            BattleScreen.RichEffects = QualityTiers.RichEffects;
             Manager = UIManager.Create(ctx, transform);
             services.Get<SceneLoader>().Transition = this;
             ctx.Quit = () => { };

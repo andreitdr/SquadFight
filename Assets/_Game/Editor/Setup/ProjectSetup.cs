@@ -34,6 +34,10 @@ namespace Game.EditorTools
             PlayerSettings.Android.forceInternetPermission = false;
 
             PlayerSettings.gcIncremental = true;
+            PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.Android, ManagedStrippingLevel.Medium);
+            PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.iOS, ManagedStrippingLevel.Medium);
+            PlayerSettings.iOS.appleEnableAutomaticSigning = true;
+            // D7: Android Auto Backup / iCloud backup stay ON so progress survives a reinstall (offline-game friendly).
             PlayerSettings.runInBackground = false;
             AssetDatabase.SaveAssets();
             Debug.Log("[ProjectSetup] Player settings applied.");

@@ -116,3 +116,9 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[16] Coverage via coverlet in the dotnet harness** (Unity Code Coverage package not added: the pure assemblies hold all logic and are compiled from the same files).
 - **[16] Offline bug reports:** in-memory ring buffer of the last 300 log lines, persisted to `last_log.txt`; Settings → Copy debug info puts version/device/save summary/log on the clipboard. Nothing is uploaded.
 - **[16] CI needs owner secrets** (Unity license, keystore) to run the Unity jobs; the pure job runs without secrets.
+
+## Step 17
+- **[17] D6 size target < 150 MB; D7 backups ON** (approved-default style decisions; owner may override).
+- **[17] `VERSION.txt` not `VERSION`:** the uppercase file shadowed `<version>` in IL2CPP's C++ compile on case-insensitive APFS (build failed with 12 errors); renamed.
+- **[17] Offline guarantee enforced at build time** with `tools:node="remove"` on network permissions; checked on the real APK.
+- **[17] Release signing only from env vars** (`ANDROID_KEYSTORE_PATH`/`_BASE64`, `_PASS`, `ANDROID_KEYALIAS_NAME`, `_PASS`); release build fails loudly without them.

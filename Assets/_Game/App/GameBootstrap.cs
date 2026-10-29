@@ -30,6 +30,8 @@ namespace Game.App
                 return;
             }
             DontDestroyOnLoad(gameObject);
+            QualityTiers.Apply();
+            Screen.sleepTimeout = SleepTimeout.SystemSetting;
 
             var services = new ServiceLocator();
             var logCapture = LogCapture.Install(gameObject, SaveFolderOverride ?? Application.persistentDataPath);

@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 17
+Current step: 18
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -20,7 +20,7 @@ Current step: 17
 | 14 | Audio, settings, localization | DONE | EditMode 232/232, PlayMode 12/12, dotnet 222/222 | background audio pause on device pending |
 | 15 | Balance & content tools | DONE | EditMode 237/237, dotnet 225/225 | gold surplus noted |
 | 16 | Testing & QA | DONE | EditMode 247/247, PlayMode 13/13, dotnet 235/235 | device matrix pending (owner deferred) |
-| 17 | Mobile optimization & builds | TODO | | |
+| 17 | Mobile optimization & builds | DONE | EditMode 254/254; Android dev APK built | device profiling pending |
 | 18 | Polish, tutorial, release (M3) | TODO | | |
 
 ## Environment
@@ -129,6 +129,11 @@ Current step: 17
 - [x] Coverage targets met (Core 96% lines, Services 95.5%).
 - [x] Headless playthrough deterministic (`Playthrough_IsDeterministic`, `NewGame_..._StateIdentical`).
 - [~] Device matrix checklist: pending (owner deferred device tests at M2).
+
+### Step 17
+- [~] Targets on low-end device: pending device (PERF_REPORT.md task list); Editor/batch measurements recorded.
+- [x] Release AAB from one command: `./build.sh android-release` (needs keystore env vars — owner); dev APK built and verified here.
+- [x] Manifest has no network permission (aapt on the built APK); game runs fully offline by design.
 
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)

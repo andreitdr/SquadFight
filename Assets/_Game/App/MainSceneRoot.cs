@@ -17,6 +17,7 @@ namespace Game.App
             if (!AppContext.IsBooted) return; // SceneEntryGuard is loading Boot
             var services = AppContext.Services;
             var ctx = UIContextFactory.Create(services);
+            QualityTiers.MenuFrameRate();
             Manager = UIManager.Create(ctx, transform);
             services.Get<SceneLoader>().Transition = this;
             UIScreensSetup.ShowHome(ctx);

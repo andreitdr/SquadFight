@@ -27,6 +27,10 @@ namespace Game.BattleView
         /// <summary>Tests force a high speed to play whole battles quickly.</summary>
         public static float? SpeedOverride;
 
+        /// <summary>Low quality tier turns off decorative sparks/projectiles.</summary>
+        public static bool RichEffects = true;
+        private readonly System.Collections.Generic.List<(Image dot, TextMeshProUGUI letter)> _orderDots = new System.Collections.Generic.List<(Image, TextMeshProUGUI)>();
+
         private BattleScreenArgs _args;
         private BattleSimulator _sim;
         private RectTransform _stage;
@@ -210,16 +214,28 @@ namespace Game.BattleView
             ((Image)_autoButton.targetGraphic).color = _sim.AutoSkills ? Th.positive : Th.panelAlt;
         }
 
+        /// <summary>Pooled dots (no allocations per turn once 8 exist).</summary>
         private void RefreshTurnOrder()
         {
-            UIKit.Clear(_turnOrder);
-            foreach (var c in _sim.UpcomingThisRound.Take(8))
+            var upcoming = _sim.UpcomingThisRound;
+            for (var i = 0; i < 8; i++)
             {
-                var dot = UIKit.Image(_turnOrder, "T", c.Team == Team.Player ? Th.positive : Th.negative, Th.circle);
-                dot.Size(70, 70);
+                if (i >= _orderDots.Count)
+                {
+                    var dot = UIKit.Image(_turnOrder, "T", Color.white, Th.circle);
+                    dot.Size(70, 70);
+                    var t = UIKit.Text(dot.transform, "I", "", 34, Color.black.WithAlpha(0.6f), TextAlignmentOptions.Center, bold: true);
+                    t.rectTransform.Stretch();
+                    _orderDots.Add((dot, t));
+                }
+                var (img, letter) = _orderDots[i];
+                var active = i < upcoming.Count;
+                img.gameObject.SetActive(active);
+                if (!active) continue;
+                var c = upcoming[i];
+                img.color = c.Team == Team.Player ? Th.positive : Th.negative;
                 var name = c.Team == Team.Player ? ScreenKit.HeroName(Ctx, c.DefId) : ScreenKit.EnemyName(Ctx, c.DefId);
-                var t = UIKit.Text(dot.transform, "I", name.Length > 0 ? name.Substring(0, 1) : "?", 34, Color.black.WithAlpha(0.6f), TextAlignmentOptions.Center, bold: true);
-                t.rectTransform.Stretch();
+                letter.text = name.Length > 0 ? name.Substring(0, 1) : "?";
             }
         }
 
@@ -346,12 +362,12 @@ namespace Game.BattleView
                     var ranged = c.Team == Team.Player ? IsRanged(c.DefId) : c.Basic != null && c.DefId.Contains("shaman") || c.DefId.Contains("archer") || c.DefId.Contains("cultist") || c.DefId.Contains("priest") || c.DefId.Contains("lich");
                     if (first != null && first.Team != actor.Team)
                     {
-                        if (ranged)
+                        if (ranged && RichEffects)
                             foreach (var ti in e.Targets.Distinct())
                                 if (_units.TryGetValue(ti, out var tv)) _fx.Projectile(actor.LocalPos, tv.LocalPos, isActive ? Th.primary : Th.text, D(0.25f));
                         else actor.Lunge(first.LocalPos, D(0.28f));
                     }
-                    else if (first != null) _fx.Spark(first.LocalPos, Th.positive, 220, D(0.35f));
+                    else if (first != null && RichEffects) _fx.Spark(first.LocalPos, Th.positive, 220, D(0.35f));
                     return 0.3f;
                 }
                 case BattleEventType.Stunned:

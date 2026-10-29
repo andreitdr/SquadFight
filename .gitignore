@@ -121,3 +121,4 @@ InitTestScene*.unity*
 /DotnetTests/**/bin/
 /DotnetTests/**/obj/
 !/DotnetTests/**/*.csproj
+/Builds/

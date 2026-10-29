@@ -44,3 +44,12 @@ Small, fast, battery-friendly builds that run well on low-end phones and pass st
 
 ## Prompt for Claude
 > Read `00-overview.md` and `17-mobile-optimization-and-builds.md`. Implement the build script (Android AAB/APK, iOS project), version management, DEV_BUILD stripping, quality tier auto-selection, link.xml/stripping config, manifest cleanup (no INTERNET permission), and document the optimization checklist results needing device profiling as a task list for me. Provide code for pooling/allocation fixes found by reviewing hot paths.
+
+## Decisions made
+- D6: APK/AAB size target < 150 MB (dev APK is 47 MB)
+- D7: Android Auto Backup and iCloud backup stay ON (progress survives reinstall)
+- Version name from `VERSION.txt` (a file named `VERSION` breaks IL2CPP builds on macOS), build number from BUILD_NUMBER or yyMMddHH
+- DEV features gated by `UNITY_EDITOR || DEVELOPMENT_BUILD` (dev builds = BuildOptions.Development) instead of a custom DEV_BUILD define
+- INTERNET/ACCESS_NETWORK_STATE removed in the merged manifest by a Gradle post-processor (verified with aapt)
+- Quality tiers by RAM/cores; low tier 30 fps menus and lighter effects
+- Device profiling: task list in PERF_REPORT.md (owner deferred device tests)
