@@ -44,5 +44,6 @@ Events: `ShardsChanged`, `HeroUnlocked`, `HeroStarUpgraded`.
 > Read `00-overview.md` and `05-heroes-shards-and-unlocking.md`. Implement `HeroProgressionRules` in Game.Core and extend `RosterService`/`PartyService` for unlocking and star-ups with events and save integration. Use defaults D1=consume shards on unlock, manual unlock, overflow converted to currency. Provide thorough unit tests. No UI.
 
 ## Decisions made
-- D1 consume vs keep: ___
-- D2 overflow handling: ___
+- D1 consume vs keep: consume (config `consumeShardsOnUnlock`)
+- D2 overflow handling: converted to `shardOverflowCurrency` at `overflowCurrencyPerShard` (per rarity), both for incoming shards at max star and leftovers when max star is reached
+- Unlock is manual; star-ups also cost primary currency (`stars.csv currencyCost`); shard cost × rarity `starCostMultiplier`

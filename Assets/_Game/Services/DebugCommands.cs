@@ -20,6 +20,8 @@ namespace Game.Services
             Register("give", Give);
             Register("list", List);
             Register("party", _ => string.Join(" | ", _s.Party.GetSlots().Select(h => h ?? "-")));
+            Register("unlock", a => a.Length < 1 ? "Usage: unlock <heroId> [force]" : Unlock(a));
+            Register("starup", a => a.Length < 1 ? "Usage: starup <heroId>" : Report(_s.Roster.UpgradeStar(a[0]), $"{a[0]} is now ★{_s.Roster.GetStar(a[0])}"));
             Register("reset", _ => { _s.ResetToNewGame(); return "Progress reset."; });
         }
 
@@ -46,9 +48,24 @@ namespace Game.Services
             if (a.Length < 2) return "Usage: give <currency> <amount> | give shards <heroId> <n> | give item <templateId> [rarity]";
             switch (a[0].ToLowerInvariant())
             {
+                case "shards":
+                    if (a.Length < 3) return "Usage: give shards <heroId> <n>";
+                    return Report(_s.Roster.AddShards(a[1], Int(a[2])), $"+{a[2]} shards {a[1]} (now {_s.Roster.GetShards(a[1])})");
                 default:
                     return Report(_s.Currency.Add(a[0], long.Parse(a[1], CultureInfo.InvariantCulture)), $"{a[0]} = {_s.Currency.Get(a[0])}");
             }
+        }
+
+        /// <summary>"unlock hero" uses normal rules; "unlock hero force" grants the missing shards first.</summary>
+        private string Unlock(string[] a)
+        {
+            var id = a[0];
+            if (a.Length > 1 && a[1] == "force" && !_s.Roster.IsUnlocked(id))
+            {
+                var info = _s.Roster.GetUnlockInfo(id);
+                if (info.Have < info.Need) _s.Roster.AddShards(id, info.Need - info.Have);
+            }
+            return Report(_s.Roster.UnlockHero(id), $"{id} unlocked");
         }
 
         private string List(string[] a)

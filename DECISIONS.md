@@ -40,3 +40,8 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[04] Party:** fixed-length list (nulls = empty). Assigning a hero already in the party moves/swaps it rather than failing. An empty party is allowed in the service; starting a fight requires ≥1 member.
 - **[04] RNG state** is saved with the player state so drop sequences continue across restarts (no free re-rolls by restarting).
 - **[04] `SaveReconciler`** runs after every load to adapt old saves to new content (adds heroes, clamps stars, fixes equip links, removes duplicate instance ids).
+
+## Step 05
+- **[05] D1 consume shards on unlock, manual unlock, D2 overflow → gold** (approved defaults). Leftover shards are converted the moment max star is reached (they could never be used).
+- **[05] Star-up shard cost = ceil(star table cost × rarity starCostMultiplier)**, plus the star level's currency cost.
+- **[05] Debug `unlock <hero> force`** grants the missing shards first (handy for QA).

@@ -29,6 +29,7 @@ namespace Game.Services
             Context = new ServiceContext(db, State, Bus, saver, Random, Clock, log);
             Currency = new CurrencyService(Context);
             Roster = new RosterService(Context);
+            Roster.Currency = Currency;
             Inventory = new InventoryService(Context);
             Party = new PartyService(Context, Roster);
         }

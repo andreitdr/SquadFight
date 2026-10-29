@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 05
+Current step: 06
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -8,7 +8,7 @@ Current step: 05
 | 02 | Data model & config | DONE | EditMode 49/49, PlayMode 1/1, dotnet 45/45 | Some heroes unobtainable until ch2-3 content (step 09/10) – validator warnings |
 | 03 | Save system | DONE | EditMode 102/102 (all), dotnet 98/98 | Second review pass done; IL2CPP device smoke test pending |
 | 04 | Player state & services | DONE | (same run) | Debug console in-Editor manual check pending |
-| 05 | Heroes, shards & unlocking | TODO | | |
+| 05 | Heroes, shards & unlocking | DONE | dotnet 111/111 (Unity run with step 06) | |
 | 06 | Equipment system | TODO | | |
 | 07 | Stats & formulas | TODO | | |
 | 08 | Combat core | TODO | | |
@@ -55,6 +55,11 @@ Current step: 05
 - [x] State built from SaveData, mutated, exported to identical format (`State_ExportsIdenticalFormat_AndRoundTrips`).
 - [x] Invariants: no negative currency, no party duplicates, size ≤ 5, only unlocked heroes (CoreServicesTests).
 - [x] Debug console: `DebugConsole` (IMGUI) compiled only under `UNITY_EDITOR || DEVELOPMENT_BUILD`; command logic tested (`DebugCommands_GiveListReset`). Visual check on device pending.
+
+### Step 05
+- [x] Debug console shards/unlock/starup follow config exactly (`DebugConsole_ShardsAndUnlockWork`).
+- [x] Edge cases: exact threshold, insufficient, double unlock, star cap, overflow conversion, party rules (HeroProgressionTests, 13 tests).
+- [x] Changing RarityConfig changes behaviour without code (`ChangingRarityConfig_ChangesBehaviour`).
 
 ## Pending owner questions (batched)
 - none
