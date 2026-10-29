@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 11
+Current step: 12
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -14,7 +14,7 @@ Current step: 11
 | 08 | Combat core | DONE | EditMode 161/161, dotnet 156/156 | |
 | 09 | Campaign progression | DONE | EditMode 178/178, dotnet 173/173 | recommended power filled by step-15 tool |
 | 10 | Rewards & drop tables (M1) | DONE | EditMode 207/207, PlayMode 1/1, dotnet 202/202 | Second review pass done; balance pass in step 15 |
-| 11 | UI foundation | TODO | | |
+| 11 | UI foundation | DONE | EditMode 211/211, PlayMode 7/7, dotnet 206/206 | 60 fps scroll on device pending |
 | 12 | UI screens | TODO | | |
 | 13 | Battle presentation (M2) | TODO | | |
 | 14 | Audio, settings, localization | TODO | | |
@@ -93,6 +93,12 @@ Current step: 11
 - Headless simulated playthrough: campaign completed by all 9 runs (3 policies × 3 seeds).
 - Progression simulator (BalanceReports/progression.md): greedy 24 fights, casual 72, hardcore 264; no difficulty walls; first unlock at fight 1, second at fight 5. **Known balance gap:** campaign too easy for a greedy player (0 losses), gold barely spent, Rare+ heroes unlock late or not at all within one pass → step 15 balance pass.
 
+### Step 11
+- [x] Gallery renders at 16:9, 19.5:9 and 4:3 (PlayMode capture `TestResults/screens/gallery_*.png`, inspected; tablet layout centred). Real notched devices pending.
+- [x] Back pops popups then screens, asks to quit at the root; popped screens are destroyed (`Navigation_PushPopBack_DestroysInstances`, `Replace_ClearStack_LeavesOneScreen`).
+- [x] No service mutation in views: views only call view models / services through VM commands (code review; screens in step 12 follow the same rule).
+- [x] Pooled list ×1000: < 30 live items, < 40 ever created, layout < 2 ms per scroll step (`RecycleList_1000Items_StaysBoundedAndFast`). Profiler check on device pending.
+
 ## Pending owner questions (batched)
 - none
 
@@ -100,3 +106,4 @@ Current step: 11
 - Step 01: Boot → Main on an Android device/emulator (Editor PlayMode verified).
 - Step 03: IL2CPP release build loads/saves correctly (stripping/AOT) – smoke test on device.
 - Step 04: debug console usable on device (4-finger tap).
+- Step 11: 60 fps scrolling of the 1,000-item list on a mid-range Android device; notch/safe area on a real notched phone.

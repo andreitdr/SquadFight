@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63dd8fde03fb44645a89e263b60e03d6, type: 3}
+  m_Name: Theme
+  m_EditorClassIdentifier: Game.UI::Game.UI.Theme
+  font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  fontSmall: 34
+  fontBody: 42
+  fontLarge: 52
+  fontTitle: 64
+  fontHuge: 96
+  background: {r: 0.08, g: 0.09, b: 0.13, a: 1}
+  panel: {r: 0.14, g: 0.16, b: 0.22, a: 1}
+  panelAlt: {r: 0.19, g: 0.21, b: 0.29, a: 1}
+  primary: {r: 0.96, g: 0.69, b: 0.2, a: 1}
+  primaryText: {r: 0.12, g: 0.08, b: 0.02, a: 1}
+  secondary: {r: 0.27, g: 0.45, b: 0.78, a: 1}
+  text: {r: 0.95, g: 0.95, b: 0.97, a: 1}
+  textDim: {r: 0.65, g: 0.68, b: 0.76, a: 1}
+  positive: {r: 0.35, g: 0.85, b: 0.45, a: 1}
+  negative: {r: 0.95, g: 0.35, b: 0.35, a: 1}
+  warning: {r: 1, g: 0.8, b: 0.25, a: 1}
+  overlay: {r: 0, g: 0, b: 0, a: 0.7}
+  redDot: {r: 0.95, g: 0.2, b: 0.25, a: 1}
+  locked: {r: 0.25, g: 0.25, b: 0.3, a: 1}
+  spacing: 24
+  padding: 36
+  buttonHeight: 140
+  minTouchTarget: 126
+  rounded: {fileID: 21300000, guid: 51c4fb1bc86084d5689e78ec487e4c68, type: 3}
+  pixel: {fileID: 21300000, guid: a327104b7f53944a4a1a6f5f1769e74c, type: 3}
+  circle: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  ring: {fileID: 21300000, guid: fd8db0c5a1e644ab992fc273a1ffa7c0, type: 3}
+  diamond: {fileID: 21300000, guid: 73c991d359c344a82a02329d44b1e0d7, type: 3}
+  triangle: {fileID: 21300000, guid: 6057be96f6a3f45ae9d8abcb6b93ed7e, type: 3}
+  star: {fileID: 21300000, guid: 3ee3343b5865746be8b2cec74c4f31e2, type: 3}
+  shard: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  softDot: {fileID: 21300000, guid: c024ecf9912cf40e79a295233f66850e, type: 3}
+  iconWeapon: {fileID: 21300000, guid: 076670dc5270a4e7bb5d06ae6e4939e4, type: 3}
+  iconHelmet: {fileID: 21300000, guid: d51aff2a8b8e640fcb44c8ef5c80117b, type: 3}
+  iconChest: {fileID: 21300000, guid: 56fb0320fd23546558f9dc8b63099fd3, type: 3}
+  iconGloves: {fileID: 21300000, guid: 79f20d005be7d45c9921fd6dd4b795d6, type: 3}
+  iconBoots: {fileID: 21300000, guid: 1c653ec0b5a9342018b4521d7d5284ad, type: 3}
+  iconRing: {fileID: 21300000, guid: f3f1c07fa3a10494a962b3e043bf5615, type: 3}
+  screenTransition: 0.22
+  popupTransition: 0.18

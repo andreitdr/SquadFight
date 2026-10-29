@@ -18,5 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="../../Assets/_Game/Tests/Fixtures/**/*.json" LinkBase="Fixtures" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../Assets/_Game/Resources/Localization/*.csv" LinkBase="Localization" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

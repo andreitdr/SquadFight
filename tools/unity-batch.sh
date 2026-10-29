@@ -7,6 +7,8 @@ set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VERSION="$(sed -n 's/^m_EditorVersion: //p' "$ROOT/ProjectSettings/ProjectVersion.txt")"
 UNITY="${UNITY:-/Volumes/SSD/Apps/UnityEditors/$VERSION/Unity.app/Contents/MacOS/Unity}"
+# GRAPHICS=1 keeps the GPU device (needed to render screenshots in PlayMode tests).
+NOGFX=-nographics; [[ "${GRAPHICS:-0}" == "1" ]] && NOGFX=""
 mkdir -p "$ROOT/Logs" "$ROOT/TestResults"
 LOG="$ROOT/Logs/batch-$1.log"
 summarize() {
@@ -14,12 +16,12 @@ summarize() {
   grep -E "Scripts have compiler errors|executeMethod.*(failed|could not)|Exception" "$LOG" | head -20
 }
 case "$1" in
-  compile) "$UNITY" -batchmode -nographics -quit -projectPath "$ROOT" -logFile "$LOG"; code=$?; summarize ;;
-  exec)    "$UNITY" -batchmode -nographics -quit -projectPath "$ROOT" -logFile "$LOG" -executeMethod "$2"; code=$?; summarize ;;
+  compile) "$UNITY" -batchmode $NOGFX -quit -projectPath "$ROOT" -logFile "$LOG"; code=$?; summarize ;;
+  exec)    "$UNITY" -batchmode $NOGFX -quit -projectPath "$ROOT" -logFile "$LOG" -executeMethod "$2"; code=$?; summarize ;;
   test)
     RES="$ROOT/TestResults/$2.xml"; rm -f "$RES"
     extra=(); [[ -n "${3:-}" ]] && extra=(-testFilter "$3")
-    "$UNITY" -batchmode -nographics -projectPath "$ROOT" -logFile "$LOG" -runTests -testPlatform "$2" -testResults "$RES" ${extra[@]+"${extra[@]}"}; code=$?
+    "$UNITY" -batchmode $NOGFX -projectPath "$ROOT" -logFile "$LOG" -runTests -testPlatform "$2" -testResults "$RES" ${extra[@]+"${extra[@]}"}; code=$?
     summarize
     if [[ -f "$RES" ]]; then
       python3 - "$RES" <<'PY'

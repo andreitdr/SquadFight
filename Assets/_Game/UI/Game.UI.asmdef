@@ -3,8 +3,10 @@
     "rootNamespace": "Game.UI",
     "references": [
         "Game.Core",
+        "Game.Save",
         "Game.Data",
         "Game.Services",
+        "Game.ViewModels",
         "Unity.TextMeshPro",
         "UnityEngine.UI",
         "Unity.InputSystem"
@@ -12,8 +14,10 @@
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],

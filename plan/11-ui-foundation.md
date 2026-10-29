@@ -34,3 +34,12 @@ A reusable mobile UI framework: navigation, theming, safe areas, view-model bind
 
 ## Prompt for Claude
 > Read `00-overview.md` and `11-ui-foundation.md`. Implement the UI framework in Game.UI: UIManager, ScreenBase/PopupBase, Theme, SafeAreaFitter, widget scripts, pooled scroll list, minimal tween helper, and a UI Gallery scene-builder editor script. Provide the prefab/hierarchy setup as a checklist for me where code can't create it. Include ViewModel unit tests.
+
+## Decisions made
+- D4: own minimal tween helper (`Game.UI.Tween`), unscaled time, global ReduceMotion switch
+- UI hierarchy is built in code (`UIKit` + `Theme` in Resources); no prefabs, so no prefab checklist is needed
+- View models live in a separate engine-free assembly `Game.ViewModels` (tested in Unity and the dotnet harness)
+- Localization runs through `ILocalizer`; runtime implementation is `TableLocalizer` over `Resources/Localization/*.csv` (decision on Unity Localization deferred to step 14, see DECISIONS)
+- LiberationSans (TMP essentials) has no ★ glyph: stars are sprites (`StarRow`); Romanian diacritics are covered
+- Rarity is shown by color AND a shape gem (circle/diamond/triangle/shard/star) for colorblind players
+- QA screenshots are rendered from PlayMode tests (`UICapture`, GRAPHICS=1) into `TestResults/screens/`

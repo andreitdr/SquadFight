@@ -5,6 +5,7 @@
         "Game.Core",
         "Game.Data",
         "Game.Save",
+        "Game.ViewModels",
         "Game.Services",
         "Game.UI",
         "Game.BattleView",

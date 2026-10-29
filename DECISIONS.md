@@ -75,3 +75,11 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[10] BattleFlow hardening (review pass):** one active battle at a time; unlock checked at start, not at completion; a battle stays current until recorded (failures are retryable); retreat after the simulator already won records the victory; simulation exceptions return a failure instead of crashing the UI; item-id collisions are re-rolled.
 - **[10] Headless campaign simulator built now** (Services/Simulation, policies greedy/casual/hardcore) because AUTOPILOT requires a progression run at M1; step 15 adds windows/reports on top.
 - **[10] First-clear of fight 1-1 grants the 20 shards to unlock Sister Maren** (onboarding: first unlock right after the first fight; tutorial in step 18).
+
+## Step 11
+- **[11] D4 own tween helper** (approved default).
+- **[11] Code-built uGUI** (`UIKit` factory + `Theme` asset) as decided in step 01; widgets are MonoBehaviours created at runtime; layers = Background, Screens (+top bar/tab bar chrome), Popups, Toasts, Overlay; CanvasScaler 1080×1920, match 0.5; SafeAreaFitter per layer.
+- **[11] New assembly `Game.ViewModels`** (noEngineReferences) so view-model logic is unit-testable outside Unity.
+- **[11] Interim localizer `TableLocalizer`** (CSV, en fallback, CLDR plurals for en/ro). D5 (Unity Localization) is the approved default for step 14; whether to keep the CSV localizer instead will be a batched owner question at M2 (it is behind `ILocalizer`, so either is cheap).
+- **[11] TMP essentials** are extracted from the ugui package by `tools/extract_unitypackage.py` (Unity's package import is asynchronous in batch mode).
+- **[11] Stars rendered as sprites** (font lacks ★).

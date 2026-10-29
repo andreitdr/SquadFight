@@ -1,0 +1,74 @@
+key,en,ro
+# ---- common ----
+ok,OK,OK
+cancel,Cancel,Anulează
+confirm,Confirm,Confirmă
+close,Close,Închide
+back,Back,Înapoi
+yes,Yes,Da
+no,No,Nu
+continue,Continue,Continuă
+loading,Loading…,Se încarcă…
+locked,Locked,Blocat
+gold,Gold,Aur
+power,Power,Putere
+power_value,Power {0},Putere {0}
+quit_title,Quit game?,Ieși din joc?
+quit_body,Your progress is saved.,Progresul tău este salvat.
+# ---- tabs ----
+tab_campaign,Campaign,Campanie
+tab_heroes,Heroes,Eroi
+tab_party,Party,Echipă
+tab_inventory,Bag,Inventar
+tab_settings,Settings,Setări
+# ---- rarity / stats / slots ----
+rarity_common,Common,Comun
+rarity_uncommon,Uncommon,Neobișnuit
+rarity_rare,Rare,Rar
+rarity_epic,Epic,Epic
+rarity_legendary,Legendary,Legendar
+stat_maxhp,HP,Viață
+stat_attack,Attack,Atac
+stat_defense,Defense,Apărare
+stat_speed,Speed,Viteză
+stat_critchance,Crit Chance,Șansă critică
+stat_critdamage,Crit Damage,Daune critice
+slot_weapon,Weapon,Armă
+slot_helmet,Helmet,Coif
+slot_chest,Chest,Armură
+slot_gloves,Gloves,Mănuși
+slot_boots,Boots,Cizme
+slot_ring,Ring,Inel
+class_tank,Tank,Tanc
+class_warrior,Warrior,Războinic
+class_ranger,Ranger,Arcaș
+class_mage,Mage,Mag
+class_support,Support,Suport
+# ---- plurals ----
+shards_count.one,{0} shard,{0} fragment
+shards_count.few,{0} shards,{0} fragmente
+shards_count.other,{0} shards,{0} de fragmente
+fights_count.one,{0} fight,{0} luptă
+fights_count.few,{0} fights,{0} lupte
+fights_count.other,{0} fights,{0} de lupte
+# ---- errors ----
+error_unknown,Something went wrong.,Ceva nu a mers bine.
+error_invalidargument,That is not possible right now.,Nu este posibil acum.
+error_notfound,Not found.,Nu a fost găsit.
+error_insufficientfunds,Not enough gold.,Nu ai destul aur.
+error_insufficientshards,Not enough shards.,Nu ai destule fragmente.
+error_alreadyunlocked,Hero already unlocked.,Eroul este deja deblocat.
+error_notunlocked,Unlock this hero first.,Deblochează mai întâi eroul.
+error_maxstarreached,Already at max stars.,Are deja numărul maxim de stele.
+error_partyfull,The party is full.,Echipa este completă.
+error_duplicateinparty,Already in the party.,Este deja în echipă.
+error_herolocked,This hero is locked.,Acest erou este blocat.
+error_invalidslot,Invalid slot.,Slot invalid.
+error_slotincompatible,That item does not fit there.,Obiectul nu se potrivește acolo.
+error_itemequipped,Unequip the item first.,Scoate mai întâi obiectul.
+error_inventoryfull,Your bag is full.,Inventarul este plin.
+error_fightlocked,Clear the previous fight first.,Termină mai întâi lupta anterioară.
+error_alreadyclaimed,Already claimed.,Deja revendicat.
+error_featuredisabled,This feature is disabled.,Această funcție este dezactivată.
+# ---- gallery ----
+gallery_title,UI Gallery,Galerie UI

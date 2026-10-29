@@ -10,6 +10,7 @@
     <Compile Include="../../Assets/_Game/Core/**/*.cs" />
     <Compile Include="../../Assets/_Game/Save/**/*.cs" />
     <Compile Include="../../Assets/_Game/Services/**/*.cs" />
+    <Compile Include="../../Assets/_Game/ViewModels/**/*.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

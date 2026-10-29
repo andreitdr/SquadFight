@@ -43,6 +43,7 @@ namespace Game.EditorTools
         public static void RunAllBatch()
         {
             ApplyPlayerSettings();
+            UISetup.Run();
             SceneBuilder.BuildAllScenes();
             AssetDatabase.SaveAssets();
         }

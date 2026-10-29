@@ -20,6 +20,7 @@ namespace Game.EditorTools
         public const string BootPath = ScenesFolder + "/Boot.unity";
         public const string MainPath = ScenesFolder + "/Main.unity";
         public const string BattlePath = ScenesFolder + "/Battle.unity";
+        public const string GalleryPath = ScenesFolder + "/Dev/UIGallery.unity";
         private const string TemplateSample = "Assets/Scenes/SampleScene.unity";
 
         /// <summary>Extra builders registered by later steps (UI root, battle root) – keyed by scene path.</summary>
@@ -30,8 +31,21 @@ namespace Game.EditorTools
         {
             MigrateTemplateSampleScene();
             BuildScene(BootPath, BuildBoot);
-            BuildScene(MainPath, scene => BuildContentScene(scene, new Color(0.10f, 0.11f, 0.15f)));
+            BuildScene(MainPath, scene =>
+            {
+                BuildContentScene(scene, new Color(0.10f, 0.11f, 0.15f));
+                new GameObject("MainSceneRoot").AddComponent<MainSceneRoot>();
+            });
             BuildScene(BattlePath, scene => BuildContentScene(scene, new Color(0.08f, 0.09f, 0.12f)));
+            System.IO.Directory.CreateDirectory(ScenesFolder + "/Dev");
+            BuildScene(GalleryPath, scene =>
+            {
+                CreateCamera(new Color(0.08f, 0.09f, 0.13f));
+                var es = new GameObject("EventSystem");
+                es.AddComponent<EventSystem>();
+                es.AddComponent<InputSystemUIInputModule>();
+                new GameObject("UIGalleryRoot").AddComponent<Game.UI.UIGalleryRoot>();
+            });
             EditorBuildSettings.scenes = new[]
             {
                 new EditorBuildSettingsScene(BootPath, true),

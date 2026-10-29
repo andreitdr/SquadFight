@@ -2,6 +2,7 @@ using Game.Core;
 using Game.Data;
 using Game.Save;
 using Game.Services;
+using Game.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -57,6 +58,9 @@ namespace Game.App
             services.Register<ISaveScheduler>(saveManager);
             services.Register(session);
             services.Register(session.Bus);
+            var localizer = LocalizationLoader.Load(session.State.Data.Settings.Language);
+            services.Register<ILocalizer>(localizer);
+            services.Register(localizer);
             AppContext.Set(services);
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD

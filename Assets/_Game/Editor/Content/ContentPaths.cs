@@ -13,7 +13,7 @@ namespace Game.EditorTools.Content
         public const string Fights = Root + "/Chapters/Fights";
         public const string Story = Root + "/Story";
         public const string Config = Root + "/Config";
-        public const string Localization = Root + "/Localization";
+        public const string Localization = "Assets/_Game/Resources/Localization";
         public const string GameConfigAsset = "Assets/_Game/Resources/GameConfig.asset";
         public const string ContentStrings = Localization + "/strings_content.csv";
     }
