@@ -1,0 +1,24 @@
+{
+    "name": "Game.App",
+    "rootNamespace": "Game.App",
+    "references": [
+        "Game.Core",
+        "Game.Data",
+        "Game.Save",
+        "Game.Services",
+        "Game.UI",
+        "Game.BattleView",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

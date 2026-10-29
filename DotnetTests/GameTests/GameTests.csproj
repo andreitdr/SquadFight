@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Runs the pure EditMode tests (everything under Tests/EditMode except the Unity/ folder) outside Unity, with coverage. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>$(DefineConstants);DOTNET_HARNESS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Assets/_Game/Tests/EditMode/**/*.cs" Exclude="../../Assets/_Game/Tests/EditMode/Unity/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../GameLib/GameLib.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../Assets/_Game/Tests/Fixtures/**/*.json" LinkBase="Fixtures" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

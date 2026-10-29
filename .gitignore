@@ -118,5 +118,6 @@ InitTestScene*.unity*
 # Balance reports (step 15) and local test output
 /BalanceReports/
 /TestResults/
-/CoreTests/**/bin/
-/CoreTests/**/obj/
+/DotnetTests/**/bin/
+/DotnetTests/**/obj/
+!/DotnetTests/**/*.csproj

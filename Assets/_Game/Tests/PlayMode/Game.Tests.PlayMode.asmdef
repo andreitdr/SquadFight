@@ -1,0 +1,30 @@
+{
+    "name": "Game.Tests.PlayMode",
+    "rootNamespace": "Game.Tests.PlayMode",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Game.Core",
+        "Game.Data",
+        "Game.Save",
+        "Game.Services",
+        "Game.UI",
+        "Game.BattleView",
+        "Game.App",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

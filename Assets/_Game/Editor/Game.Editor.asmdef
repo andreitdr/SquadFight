@@ -1,0 +1,27 @@
+{
+    "name": "Game.Editor",
+    "rootNamespace": "Game.EditorTools",
+    "references": [
+        "Game.Core",
+        "Game.Data",
+        "Game.Save",
+        "Game.Services",
+        "Game.UI",
+        "Game.BattleView",
+        "Game.App",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,9 @@
+<Project>
+  <!-- Applies to the dotnet harness in DotnetTests/ (Unity ignores this file for its own compilation). -->
+  <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+</Project>
