@@ -44,7 +44,7 @@ namespace Game.UI
             ScreenKit.SetHeroCard(Ctx, card, e);
             card.Button.onClick.RemoveAllListeners();
             card.Button.onClick.AddListener(() => Ctx.Manager.Push<HeroDetailScreen>(e.Def.Id));
-            var anchor = item.GetComponent<TutorialAnchor>() ?? item.gameObject.AddComponent<TutorialAnchor>();
+            var anchor = item.TryGetComponent<TutorialAnchor>(out var existing) ? existing : item.gameObject.AddComponent<TutorialAnchor>();
             anchor.Id = "hero_" + e.Def.Id;
             TutorialAnchor.Active[anchor.Id] = anchor;
         }

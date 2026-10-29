@@ -171,3 +171,16 @@ reset_confirm_1,"This deletes all heroes, items and campaign progress.","Aceasta
 reset_confirm_2,Are you absolutely sure? This cannot be undone.,Ești absolut sigur? Acțiunea nu poate fi anulată.
 progress_reset,Progress reset.,Progres resetat.
 version_value,Version {0},Versiunea {0}
+# ---- step 13 battle ----
+wave_progress,Wave {0}/{1},Valul {0}/{1}
+round_n,Round {0},Runda {0}
+auto,Auto,Auto
+boss_banner,BOSS!,ȘEF!
+stunned,Stunned,Amețit
+crit,Crit!,Critic!
+timeout,Out of time,Timp expirat
+paused,Paused,Pauză
+resume,Resume,Continuă
+retreat,Retreat,Retragere
+retreat_title,Retreat?,Te retragi?
+retreat_body,The fight counts as lost (no rewards).,Lupta se consideră pierdută (fără recompense).

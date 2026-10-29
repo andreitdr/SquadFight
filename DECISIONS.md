@@ -91,3 +91,9 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[12] SceneLoader queues** a load requested while another is finishing (bug found by the PlayMode tour: the Battle scene requested Main during the loader's fade-in and was ignored).
 - **[12] Tests boot the real game on a temp save folder** (`GameBootstrap.SaveFolderOverride`) so they never touch the developer's save.
 - **[12] Romanian table:** UI strings translated; content names/story remain English (fall back) until a translator pass. DEFAULTED – owner may override.
+
+## Step 13
+- **[13] uGUI battlefield** instead of world-space sprites + camera: one scaling model, shared theme/widgets, code-built like the menus; art swaps through Hero/EnemyDefinition sprites. Camera stays as a solid background.
+- **[13] Turn-by-turn playback** of the simulator; presentation never mutates simulation state (PlayMode test: presented boss fight hash == pure simulation hash).
+- **[13] Editor gotcha fixed:** `GetComponent<T>() ?? AddComponent<T>()` breaks on Unity's fake-null in the Editor → `TryGetComponent` everywhere.
+- **[13] Per-frame allocations:** pooled FX; small coroutine allocations per event remain (profile on device in step 17).

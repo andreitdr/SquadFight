@@ -38,6 +38,7 @@ namespace Game.Tests.PlayMode
         [UnitySetUp]
         public IEnumerator SetUp()
         {
+            Game.BattleView.BattleScreen.SpeedOverride = 60f;
             _saveDir = Path.Combine(Path.GetTempPath(), "squadfight-tour-" + System.Guid.NewGuid().ToString("N"));
             yield return BootFresh(_saveDir);
         }
@@ -46,6 +47,7 @@ namespace Game.Tests.PlayMode
         public IEnumerator TearDown()
         {
             GameBootstrap.SaveFolderOverride = null;
+            Game.BattleView.BattleScreen.SpeedOverride = null;
             foreach (var go in Object.FindObjectsByType<GameBootstrap>()) Object.Destroy(go.gameObject);
             AppContext.Reset();
             yield return null;
@@ -80,7 +82,7 @@ namespace Game.Tests.PlayMode
             // Start the fight: Battle scene resolves it and Main shows the result.
             ctx.StartBattle(fight);
             yield return WaitFor(() => SceneManager.GetActiveScene().name == SceneNames.Battle, 10);
-            yield return WaitFor(() => SceneManager.GetActiveScene().name == SceneNames.Main && Object.FindAnyObjectByType<MainSceneRoot>()?.Manager?.Top is ResultScreen, 20);
+            yield return WaitFor(() => SceneManager.GetActiveScene().name == SceneNames.Main && Object.FindAnyObjectByType<MainSceneRoot>()?.Manager?.Top is ResultScreen, 90);
             m = Manager;
             ctx = m.Context;
             yield return new WaitForSecondsRealtime(1.5f);

@@ -70,7 +70,18 @@ namespace Game.App
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             gameObject.AddComponent<DebugOverlay>();
-            gameObject.AddComponent<DebugConsole>().Commands = new DebugCommands(session);
+            var commands = new DebugCommands(session);
+            // "battle <fightId> [seed]": play a fight in the Battle scene (replay a specific seed for debugging).
+            commands.Register("battle", a =>
+            {
+                if (a.Length < 1) return "Usage: battle <fightId> [seed]";
+                var seed = a.Length > 1 ? (ulong?)ulong.Parse(a[1], System.Globalization.CultureInfo.InvariantCulture) : null;
+                var start = session.Battles.Start(a[0], seed);
+                if (!start.Ok) return "Failed: " + start;
+                AppContext.Services.Get<SceneLoader>().Load(SceneNames.Battle);
+                return $"Battle {a[0]} seed {start.Value.Seed}";
+            });
+            gameObject.AddComponent<DebugConsole>().Commands = commands;
 #endif
         }
 

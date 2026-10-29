@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 13
+Current step: 14
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -16,7 +16,7 @@ Current step: 13
 | 10 | Rewards & drop tables (M1) | DONE | EditMode 207/207, PlayMode 1/1, dotnet 202/202 | Second review pass done; balance pass in step 15 |
 | 11 | UI foundation | DONE | EditMode 211/211, PlayMode 7/7, dotnet 206/206 | 60 fps scroll on device pending |
 | 12 | UI screens | DONE | EditMode 222/222, PlayMode 9/9, dotnet 217/217 | device pass pending; battle presentation in step 13 |
-| 13 | Battle presentation (M2) | TODO | | |
+| 13 | Battle presentation (M2) | DONE | EditMode 222/222, PlayMode 12/12, dotnet 217/217 | 60 fps on mid-range Android pending |
 | 14 | Audio, settings, localization | TODO | | |
 | 15 | Balance & content tools | TODO | | |
 | 16 | Testing & QA | TODO | | |
@@ -105,6 +105,14 @@ Current step: 13
 - [x] No dead ends: every screen has back/tab navigation; Result → Next/Retry/Home.
 - [x] 16:9 / 19.5:9 / tablet: gallery captured at all three; screen tour at 19.5:9 (tour_*.png). Real devices pending.
 
+### Step 13
+- [~] 5v5 boss fight smooth at 60 fps on a mid-range Android device → **pending device**; Editor run of a full boss fight completes with no errors.
+- [x] Skip and ×3 (tested at ×60) give the same result as normal: `FullBossBattle_PlayedFast_MatchesSimulation_NoDesync` (event-stream hash identical), `Skip_GivesSameOutcomeAsFullSimulation`.
+- [x] HP bars never desync: dev-build assert after every turn; test asserts 0 desyncs.
+
+### M2 milestone checks (2026-10-29)
+- Config validator: 0 errors, 0 warnings. Progression simulator: all 9 runs complete (24 / 72 / 264 fights). Headless + PlayMode full loop (boot → campaign → preview → battle scene → result → heroes/party/bag/settings) passes.
+
 ## Pending owner questions (batched)
 - none
 
@@ -112,4 +120,5 @@ Current step: 13
 - Step 01: Boot → Main on an Android device/emulator (Editor PlayMode verified).
 - Step 03: IL2CPP release build loads/saves correctly (stripping/AOT) – smoke test on device.
 - Step 04: debug console usable on device (4-finger tap).
+- Step 13: full boss battle at 60 fps on a mid-range Android device; touch controls (skill buttons, pause/back) on device.
 - Step 11: 60 fps scrolling of the 1,000-item list on a mid-range Android device; notch/safe area on a real notched phone.

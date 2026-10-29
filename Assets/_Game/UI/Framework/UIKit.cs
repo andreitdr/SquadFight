@@ -161,7 +161,7 @@ namespace Game.UI
 
         public static LayoutElement Size(this Component c, float preferredWidth = -1, float preferredHeight = -1, float flexibleWidth = -1, float flexibleHeight = -1, float minHeight = -1)
         {
-            var le = c.GetComponent<LayoutElement>() ?? c.gameObject.AddComponent<LayoutElement>();
+            var le = c.TryGetComponent<LayoutElement>(out var existing) ? existing : c.gameObject.AddComponent<LayoutElement>();
             if (preferredWidth >= 0) { le.preferredWidth = preferredWidth; le.minWidth = Mathf.Min(le.minWidth > 0 ? le.minWidth : preferredWidth, preferredWidth); }
             if (preferredHeight >= 0) { le.preferredHeight = preferredHeight; le.minHeight = Mathf.Max(le.minHeight, minHeight >= 0 ? minHeight : preferredHeight); }
             // A fixed preferred size means "do not stretch" unless a flexible size is given (overrides layout-group flex).
