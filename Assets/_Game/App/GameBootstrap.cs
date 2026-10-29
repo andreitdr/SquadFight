@@ -1,5 +1,7 @@
 using Game.Core;
 using Game.Data;
+using Game.Save;
+using Game.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,10 +42,26 @@ namespace Game.App
             }
             services.Register(config);
             services.Register<IConfigProvider>(config);
+
+            // Save + player state
+            var clock = services.Get<IClock>();
+            var saveManager = new SaveManager(new SaveStore(new FileSaveStorage(Application.persistentDataPath), clock), clock, logger);
+            var db = config.Database;
+            var load = saveManager.Load(() => NewGameFactory.Create(db, clock));
+            foreach (var fix in SaveReconciler.Reconcile(load.Data, db)) logger.Warning("[Save] reconcile: " + fix);
+            var session = new GameSession(db, load.Data, saveManager, services.Get<IRandom>(), clock, logger);
+            saveManager.Bind(session.ExportForSave);
+            if (load.Source == LoadSource.NewGame) saveManager.SaveNow();
+            gameObject.AddComponent<SaveLifecycle>().Manager = saveManager;
+            services.Register(saveManager);
+            services.Register<ISaveScheduler>(saveManager);
+            services.Register(session);
+            services.Register(session.Bus);
             AppContext.Set(services);
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             gameObject.AddComponent<DebugOverlay>();
+            gameObject.AddComponent<DebugConsole>().Commands = new DebugCommands(session);
 #endif
         }
 

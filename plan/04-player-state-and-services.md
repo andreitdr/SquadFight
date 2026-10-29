@@ -38,3 +38,10 @@ A single authoritative in-memory player state, mutated only through service meth
 
 ## Prompt for Claude
 > Read `00-overview.md` and `04-player-state-and-services.md`. Implement EventBus, Result types, CurrencyService, PartyService, InventoryService and read-side of RosterService in Game.Services, plus `GameSession` composition and a new-game initializer driven by `GameConfig`. Add a dev-only debug console. Write unit tests for all invariants. Do not implement shard/unlock logic yet (step 05) or equipment stat logic (step 06).
+
+## Decisions made
+- Services are pure C# (`Game.Services`, noEngineReferences); Unity glue in `Game.App`
+- `ServiceContext` transactions: snapshot + deferred events + single dirty mark; rollback restores the snapshot
+- Party assign onto an occupied slot / existing member swaps instead of failing; party stored as fixed-length list with nulls
+- `SaveReconciler` repairs saves against current content on every load (never deletes items or shards)
+- Debug console = IMGUI overlay (backquote / 4-finger tap), compiled only in Editor/development builds

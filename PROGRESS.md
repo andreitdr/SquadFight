@@ -1,13 +1,13 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 03
+Current step: 05
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
 | 01 | Project setup | DONE | EditMode 7/7, PlayMode 1/1, dotnet 7/7 | Android device run pending (see below) |
 | 02 | Data model & config | DONE | EditMode 49/49, PlayMode 1/1, dotnet 45/45 | Some heroes unobtainable until ch2-3 content (step 09/10) – validator warnings |
-| 03 | Save system | TODO | | |
-| 04 | Player state & services | TODO | | |
+| 03 | Save system | DONE | EditMode 102/102 (all), dotnet 98/98 | Second review pass done; IL2CPP device smoke test pending |
+| 04 | Player state & services | DONE | (same run) | Debug console in-Editor manual check pending |
 | 05 | Heroes, shards & unlocking | TODO | | |
 | 06 | Equipment system | TODO | | |
 | 07 | Stats & formulas | TODO | | |
@@ -45,8 +45,21 @@ Current step: 03
 - [x] Validator rules tested (24 cases: duplicate/bad ids, missing refs, bad weights/amounts, star gaps, rarity gaps, slot layout, unobtainable hero warning).
 - [x] Importer idempotent: 2nd import = 63 unchanged; test `Importer_PreviewOfCommittedSources_IsClean`.
 
+### Step 03
+- [x] Kill loses ≤ ~1 s: debounce writes 1 s after first change (test `Debounce_SavesAtMostOneSecondAfterFirstChange`) + flush on pause/focus/quit (`SaveLifecycle`).
+- [x] Corrupt `save.json` never crashes; backup restores (tests for truncated/garbage/hostile files, both corrupt → new game, interrupted tmp, crash before replace, read errors).
+- [x] Old fixture saves load through migrations (`V1Fixture_MigratesToCurrent`).
+- [x] Second self-review pass (subagent) for data loss/duplication/crash: 7 findings fixed, regression tests added.
+
+### Step 04
+- [x] State built from SaveData, mutated, exported to identical format (`State_ExportsIdenticalFormat_AndRoundTrips`).
+- [x] Invariants: no negative currency, no party duplicates, size ≤ 5, only unlocked heroes (CoreServicesTests).
+- [x] Debug console: `DebugConsole` (IMGUI) compiled only under `UNITY_EDITOR || DEVELOPMENT_BUILD`; command logic tested (`DebugCommands_GiveListReset`). Visual check on device pending.
+
 ## Pending owner questions (batched)
 - none
 
 ## Pending verifications (need real Unity / device)
 - Step 01: Boot → Main on an Android device/emulator (Editor PlayMode verified).
+- Step 03: IL2CPP release build loads/saves correctly (stripping/AOT) – smoke test on device.
+- Step 04: debug console usable on device (4-finger tap).
