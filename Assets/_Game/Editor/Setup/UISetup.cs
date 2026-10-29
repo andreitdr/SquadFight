@@ -46,7 +46,7 @@ namespace Game.EditorTools
                 Directory.CreateDirectory(Path.GetDirectoryName(ThemePath));
                 AssetDatabase.CreateAsset(theme, ThemePath);
             }
-            theme.font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(TmpFontPath);
+            theme.font = FontSetup.EnsureDynamicFont() ?? AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(TmpFontPath);
             theme.rounded = PlaceholderArt.Get("rounded");
             theme.pixel = PlaceholderArt.Get("pixel");
             theme.circle = PlaceholderArt.Get("circle");

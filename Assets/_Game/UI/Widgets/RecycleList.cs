@@ -20,6 +20,7 @@ namespace Game.UI
         private readonly List<int> _toRelease = new List<int>();
         private int _count;
         private Vector2 _lastPos = new Vector2(float.NaN, float.NaN);
+        private float _lastWidth = -1;
 
         public int Columns { get; private set; } = 1;
         public float ItemHeight { get; private set; }
@@ -76,9 +77,21 @@ namespace Game.UI
 
         private void LateUpdate() => Layout();
 
+        /// <summary>Immediate re-layout (e.g. after the canvas resolution changed).</summary>
+        public void ForceLayout() => Layout();
+
         private void Layout()
         {
             if (_content == null) return;
+            var width = _content.rect.width;
+            if (!Mathf.Approximately(width, _lastWidth))
+            {
+                // Viewport got its final size (or rotated): cell widths change, rebind everything.
+                _lastWidth = width;
+                foreach (var kv in _visible) Release(kv.Value);
+                _visible.Clear();
+                _lastPos = new Vector2(float.NaN, float.NaN);
+            }
             var pos = _content.anchoredPosition;
             var viewHeight = ((RectTransform)_scroll.viewport).rect.height;
             if (pos == _lastPos && _visible.Count > 0) return;
@@ -97,7 +110,6 @@ namespace Game.UI
                 _visible.Remove(i);
             }
 
-            var width = _content.rect.width;
             var cellW = (width - Padding * 2 - Spacing * (Columns - 1)) / Columns;
             for (var i = first; i <= last; i++)
             {

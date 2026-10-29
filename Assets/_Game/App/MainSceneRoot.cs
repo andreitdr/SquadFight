@@ -20,6 +20,8 @@ namespace Game.App
             Manager = UIManager.Create(ctx, transform);
             services.Get<SceneLoader>().Transition = this;
             UIScreensSetup.ShowHome(ctx);
+            var completion = services.Get<BattleHandoff>().TakeCompletion();
+            if (completion != null) Manager.Push<ResultScreen>(completion);
         }
 
         public IEnumerator FadeOut() => Manager != null ? Manager.FadeOut() : null;
@@ -42,7 +44,17 @@ namespace Game.App
                 AppVersion = Application.version,
                 Quit = Application.Quit,
             };
-            ctx.StartBattle = fightId => services.Get<SceneLoader>().Load(SceneNames.Battle);
+            ctx.StartBattle = fightId =>
+            {
+                var start = session.Battles.Start(fightId);
+                if (!start.Ok)
+                {
+                    ctx.Manager.Toast(ctx.T(Game.ViewModels.ErrorKeys.For(start.Code)));
+                    return;
+                }
+                services.Get<BattleHandoff>().FightId = fightId;
+                services.Get<SceneLoader>().Load(SceneNames.Battle);
+            };
             return ctx;
         }
     }

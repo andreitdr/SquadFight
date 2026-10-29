@@ -35,6 +35,8 @@ namespace Game.UI
                     canvases[i].planeDistance = 10f - canvases[i].sortingOrder * 0.01f;
                 }
                 Canvas.ForceUpdateCanvases();
+                foreach (var list in uiRoot.GetComponentsInChildren<RecycleList>()) list.ForceLayout();
+                Canvas.ForceUpdateCanvases();
                 if (worldCamera != null)
                 {
                     var old = worldCamera.targetTexture;

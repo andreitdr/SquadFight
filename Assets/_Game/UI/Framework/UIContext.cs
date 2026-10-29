@@ -21,8 +21,11 @@ namespace Game.UI
         /// <summary>Called when the player wants to leave the app from the root screen.</summary>
         public Action Quit = () => { };
         public string AppVersion = "dev";
+        /// <summary>Released when the UIManager is destroyed (scene change): long-lived view models, bus subscriptions.</summary>
+        public readonly System.Collections.Generic.List<IDisposable> SceneDisposables = new System.Collections.Generic.List<IDisposable>();
 
         public string T(string key) => L != null ? L.Get(key) : key;
         public string F(string key, params object[] args) => L != null ? L.Format(key, args) : key;
+        public string Plural(string key, long count) => L != null ? L.Plural(key, count) : key;
     }
 }

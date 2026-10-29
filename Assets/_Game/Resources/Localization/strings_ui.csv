@@ -72,3 +72,102 @@ error_alreadyclaimed,Already claimed.,Deja revendicat.
 error_featuredisabled,This feature is disabled.,Această funcție este dezactivată.
 # ---- gallery ----
 gallery_title,UI Gallery,Galerie UI
+# ---- step 12 screens ----
+tab_home,Home,Acasă
+on,On,Pornit
+off,Off,Oprit
+all,All,Toate
+empty,Empty,Gol
+next,Next,Înainte
+skip,Skip,Sari peste
+great,Great!,Super!
+boss,Boss,Șef
+unlock_ready,Ready to unlock!,Gata de deblocat!
+starup_ready,Star-up available!,Poți crește nivelul de stele!
+chapter_title,Chapter {0}: {1},Capitolul {0}: {1}
+chapter_progress,"{0}/{1} fights · {2}/{3} stars","{0}/{1} lupte · {2}/{3} stele"
+chapter_locked,Clear the previous chapter to unlock,Termină capitolul anterior pentru a-l debloca
+chapter_cleared,Chapter cleared: {0}!,Capitol terminat: {0}!
+campaign_complete,Campaign complete! Replay fights to get stronger.,Campanie terminată! Rejoacă lupte pentru a deveni mai puternic.
+next_fight,Next: {0},Următoarea: {0}
+stars_total,Stars {0}/{1},Stele {0}/{1}
+replay,Replay,Rejoacă
+retry,Retry,Încearcă din nou
+story_replay,Story,Poveste
+recommended_power,Recommended power {0},Putere recomandată {0}
+start_fight,Fight!,Luptă!
+enemies,Enemies,Inamici
+wave_n,Wave {0},Valul {0}
+possible_rewards,Possible rewards,Recompense posibile
+shards_of,Shards: {0},Fragmente: {0}
+random_shards,Random {0} hero shards,Fragmente de erou {0} aleatorii
+equipment_rarities,Equipment ({0}),Echipament ({0})
+first_clear_bonus,+ First-clear bonus!,+ Bonus la prima victorie!
+power_vs_recommended,Power {0} / {1},Putere {0} / {1}
+underpowered_hint,"Your party may be too weak. Upgrade heroes, equip items or replay earlier fights.","Echipa ta poate fi prea slabă. Îmbunătățește eroii, echipează obiecte sau rejoacă lupte anterioare."
+edit_party,Edit party,Editează echipa
+auto_skills,Auto skills,Abilități automate
+star_rules,"Stars: win · no hero falls · win within {0} rounds","Stele: victorie · niciun erou căzut · victorie în {0} runde"
+sort_rarity,Rarity,Raritate
+sort_power,Power,Putere
+sort_name,Name,Nume
+add_to_party,Add to party,Adaugă în echipă
+stats,Stats,Statistici
+stat_breakdown,"Base × {0} (stars) + equipment","Bază × {0} (stele) + echipament"
+skills,Skills,Abilități
+skill_basic,basic,de bază
+skill_active,active,activă
+cooldown_turns,{0}-turn cooldown,reîncărcare {0} ture
+equipment,Equipment,Echipament
+auto_equip,Equip best items,Echipează cele mai bune
+lore,Lore,Poveste
+unlock_cost,Unlock ({0} shards),Deblochează ({0} fragmente)
+unlock_hint,Collect shards from fights to unlock this hero.,Colectează fragmente din lupte pentru a debloca eroul.
+max_star,Maximum stars reached,Număr maxim de stele atins
+starup_cost,"Star up: {0} shards + {1} gold (+{2:0}% stats)","Crește stelele: {0} fragmente + {1} aur (+{2:0}% statistici)"
+star_reached,Now {0} stars!,Acum {0} stele!
+currently_equipped,Equipped,Echipat
+unequip,Unequip,Scoate
+slot_empty,Nothing equipped,Nimic echipat
+choose_item,Choose an item,Alege un obiect
+no_items_for_slot,No items for this slot yet. Win fights to find some!,Încă nu ai obiecte pentru acest slot. Câștigă lupte ca să găsești!
+equipped_by,Equipped by {0},Echipat de {0}
+equip,Equip,Echipează
+move_item_title,Move item?,Muți obiectul?
+move_item_body,This item will be taken from {0}.,Obiectul va fi luat de la {0}.
+hero_unlocked,Hero unlocked!,Erou deblocat!
+hero_unlockable,{0} can be unlocked!,{0} poate fi deblocat!
+auto_fill,Auto-fill,Completare automată
+party_hint,"Tap a hero to add or remove. Tap two slots to swap.","Atinge un erou ca să-l adaugi sau să-l scoți. Atinge două sloturi ca să le schimbi."
+item_count,{0} items,{0} obiecte
+bulk_sell,Sell spare commons,Vinde obiectele comune în plus
+nothing_to_sell,Nothing to sell.,Nimic de vândut.
+bulk_sell_body,"Sell {0} items that are not upgrades for {1} gold?","Vinzi {0} obiecte care nu sunt îmbunătățiri pentru {1} aur?"
+sold_n,Sold {0} items.,Ai vândut {0} obiecte.
+sell_for,Sell ({0} gold),Vinde ({0} aur)
+victory,Victory!,Victorie!
+defeat,Defeat,Înfrângere
+new_best,New best!,Nou record!
+defeat_hint,"Upgrade your heroes, equip better items or try an earlier fight.","Îmbunătățește eroii, echipează obiecte mai bune sau încearcă o luptă anterioară."
+no_rewards,No rewards this time.,Nicio recompensă de data aceasta.
+next_fight_button,Next fight,Lupta următoare
+shards_converted,Converted to gold (max stars),Transformate în aur (stele maxime)
+better_item,(better!),(mai bun!)
+item_auto_sold,Bag full: sold for gold,Inventar plin: vândut pentru aur
+music_volume,Music,Muzică
+sfx_volume,Sound effects,Efecte sonore
+language_value,Language: {0},Limba: {0}
+language_name,English,Română
+vibration,Vibration,Vibrații
+screen_shake,Screen shake,Tremurare ecran
+reduce_motion,Reduce motion,Reduce animațiile
+battle_speed_value,Default battle speed: ×{0},Viteză implicită a luptei: ×{0}
+credits,Credits,Credite
+credits_body,"Design, code and placeholder art: generated for SquadFight. Font: Liberation Sans (OFL). Built with Unity.","Design, cod și grafică provizorie: generate pentru SquadFight. Font: Liberation Sans (OFL). Realizat cu Unity."
+privacy_policy,Privacy policy,Politica de confidențialitate
+privacy_body,"SquadFight works fully offline. It collects no personal data, has no accounts, ads or analytics, and never connects to the internet. Your progress is stored only on this device.","SquadFight funcționează complet offline. Nu colectează date personale, nu are conturi, reclame sau analize și nu se conectează niciodată la internet. Progresul tău este salvat doar pe acest dispozitiv."
+reset_progress,Reset progress,Resetează progresul
+reset_confirm_1,"This deletes all heroes, items and campaign progress.","Aceasta șterge toți eroii, obiectele și progresul din campanie."
+reset_confirm_2,Are you absolutely sure? This cannot be undone.,Ești absolut sigur? Acțiunea nu poate fi anulată.
+progress_reset,Progress reset.,Progres resetat.
+version_value,Version {0},Versiunea {0}

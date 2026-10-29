@@ -146,6 +146,9 @@ namespace Game.UI
             {
                 var index = i;
                 tabs._buttons[i] = UIKit.Button(row, "Tab" + i, labels[i], () => tabs.Select(index), UIKit.ButtonStyle.Ghost, UIKit.Theme.fontBody);
+                var label = tabs._buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+                label.fontSizeMin = 16;
+                ((RectTransform)label.transform).Stretch(6, 6, 6, 6);
             }
             tabs.Select(selected, notify: false);
             return tabs;
@@ -244,8 +247,12 @@ namespace Game.UI
             var lockImg = UIKit.Image(bg.transform, "Lock", th.locked.WithAlpha(0.55f), th.rounded);
             lockImg.rectTransform.Stretch(0, 0, 0, 60);
             c.LockOverlay = lockImg.gameObject;
-            var lockText = UIKit.Text(lockImg.transform, "LockText", "", 40, th.text, TextAlignmentOptions.Center, bold: true);
-            lockText.rectTransform.Anchor(new Vector2(0.5f, 0.6f), new Vector2(120, 120));
+            var lockText = UIKit.Text(lockImg.transform, "LockText", "", 34, th.text, TextAlignmentOptions.Center, bold: true);
+            lockText.rectTransform.Anchor(new Vector2(0.5f, 0.62f), new Vector2(270, 70));
+            lockText.textWrappingMode = TextWrappingModes.NoWrap;
+            lockText.enableAutoSizing = true;
+            lockText.fontSizeMin = 18;
+            lockText.fontSizeMax = 34;
             c.Dot = RedDot.Attach(bg.transform, 44);
             return c;
         }

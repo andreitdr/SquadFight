@@ -26,6 +26,7 @@ namespace Game.UI
         private bool _toastShowing;
         private int _loadingCount;
 
+        public UIContext Context => _ctx;
         public IReadOnlyList<ScreenBase> Screens => _screens;
         public IReadOnlyList<PopupBase> Popups => _popups;
         public ScreenBase Top => _screens.Count > 0 ? _screens[_screens.Count - 1] : null;
@@ -44,8 +45,19 @@ namespace Game.UI
             m._ctx = ctx;
             ctx.Manager = m;
             UIKit.Theme = ctx.Theme;
+            PrewarmFont(ctx.Theme);
             m.BuildLayers();
             return m;
+        }
+
+        /// <summary>Dynamic font: add glyphs TMP needs before first use (the ellipsis is looked up without dynamic add).</summary>
+        public const string PrewarmCharacters = "…→·×%+-0123456789ăâîșțĂÂÎȘȚ";
+        private static bool _prewarmed;
+
+        private static void PrewarmFont(Theme theme)
+        {
+            if (_prewarmed || theme.font == null || theme.font.atlasPopulationMode != TMPro.AtlasPopulationMode.Dynamic) return;
+            _prewarmed = theme.font.TryAddCharacters(PrewarmCharacters, out _);
         }
 
         private RectTransform Canvas(string name, int order, bool safeArea)
@@ -311,6 +323,9 @@ namespace Game.UI
         {
             foreach (var p in _popups) if (p != null) p.OnClosed();
             foreach (var s in _screens) if (s != null) s.OnClosed();
+            if (_ctx == null) return;
+            foreach (var d in _ctx.SceneDisposables) d.Dispose();
+            _ctx.SceneDisposables.Clear();
         }
     }
 }

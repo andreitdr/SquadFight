@@ -84,7 +84,7 @@ namespace Game.UI
             t.alignment = align;
             t.raycastTarget = false;
             t.textWrappingMode = TextWrappingModes.Normal;
-            t.overflowMode = TextOverflowModes.Ellipsis;
+            t.overflowMode = TextOverflowModes.Truncate; // TMP ellipsis lookup fails on the dynamic font (see DECISIONS step 12)
             if (bold) t.fontStyle = FontStyles.Bold;
             return t;
         }
@@ -164,8 +164,11 @@ namespace Game.UI
             var le = c.GetComponent<LayoutElement>() ?? c.gameObject.AddComponent<LayoutElement>();
             if (preferredWidth >= 0) { le.preferredWidth = preferredWidth; le.minWidth = Mathf.Min(le.minWidth > 0 ? le.minWidth : preferredWidth, preferredWidth); }
             if (preferredHeight >= 0) { le.preferredHeight = preferredHeight; le.minHeight = Mathf.Max(le.minHeight, minHeight >= 0 ? minHeight : preferredHeight); }
+            // A fixed preferred size means "do not stretch" unless a flexible size is given (overrides layout-group flex).
             if (flexibleWidth >= 0) le.flexibleWidth = flexibleWidth;
+            else if (preferredWidth >= 0) le.flexibleWidth = 0;
             if (flexibleHeight >= 0) le.flexibleHeight = flexibleHeight;
+            else if (preferredHeight >= 0) le.flexibleHeight = 0;
             return le;
         }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63dd8fde03fb44645a89e263b60e03d6, type: 3}
   m_Name: Theme
   m_EditorClassIdentifier: Game.UI::Game.UI.Theme
-  font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  font: {fileID: 11400000, guid: e7440240ceb0f49079290afddd8dd52d, type: 2}
   fontSmall: 34
   fontBody: 42
   fontLarge: 52

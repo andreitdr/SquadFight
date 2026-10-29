@@ -19,6 +19,7 @@ namespace Game.Services
         public InventoryService Inventory { get; }
         public ProgressService Progress { get; }
         public RewardService Rewards { get; }
+        public SettingsService Settings { get; }
         public BattleFlowController Battles { get; }
 
         public GameSession(GameDatabase db, SaveData data, ISaveScheduler saver = null, IRandom random = null, IClock clock = null, IGameLogger log = null)
@@ -40,6 +41,7 @@ namespace Game.Services
             Rewards = new RewardService(Context, Currency, Roster, Inventory, Party);
             Progress.Rewards = Rewards;
             Battles = new BattleFlowController(this);
+            Settings = new SettingsService(Context);
         }
 
         public int PartyPower => Roster.GetTotalPower(Party.Members);

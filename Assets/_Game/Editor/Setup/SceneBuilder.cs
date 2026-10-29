@@ -36,7 +36,11 @@ namespace Game.EditorTools
                 BuildContentScene(scene, new Color(0.10f, 0.11f, 0.15f));
                 new GameObject("MainSceneRoot").AddComponent<MainSceneRoot>();
             });
-            BuildScene(BattlePath, scene => BuildContentScene(scene, new Color(0.08f, 0.09f, 0.12f)));
+            BuildScene(BattlePath, scene =>
+            {
+                BuildContentScene(scene, new Color(0.08f, 0.09f, 0.12f));
+                new GameObject("BattleSceneRoot").AddComponent<BattleSceneRoot>();
+            });
             System.IO.Directory.CreateDirectory(ScenesFolder + "/Dev");
             BuildScene(GalleryPath, scene =>
             {

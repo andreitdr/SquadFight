@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 12
+Current step: 13
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -15,7 +15,7 @@ Current step: 12
 | 09 | Campaign progression | DONE | EditMode 178/178, dotnet 173/173 | recommended power filled by step-15 tool |
 | 10 | Rewards & drop tables (M1) | DONE | EditMode 207/207, PlayMode 1/1, dotnet 202/202 | Second review pass done; balance pass in step 15 |
 | 11 | UI foundation | DONE | EditMode 211/211, PlayMode 7/7, dotnet 206/206 | 60 fps scroll on device pending |
-| 12 | UI screens | TODO | | |
+| 12 | UI screens | DONE | EditMode 222/222, PlayMode 9/9, dotnet 217/217 | device pass pending; battle presentation in step 13 |
 | 13 | Battle presentation (M2) | TODO | | |
 | 14 | Audio, settings, localization | TODO | | |
 | 15 | Balance & content tools | TODO | | |
@@ -98,6 +98,12 @@ Current step: 12
 - [x] Back pops popups then screens, asks to quit at the root; popped screens are destroyed (`Navigation_PushPopBack_DestroysInstances`, `Replace_ClearStack_LeavesOneScreen`).
 - [x] No service mutation in views: views only call view models / services through VM commands (code review; screens in step 12 follow the same rule).
 - [x] Pooled list ×1000: < 30 live items, < 40 ever created, layout < 2 ms per scroll step (`RecycleList_1000Items_StaysBoundedAndFast`). Profiler check on device pending.
+
+### Step 12
+- [x] Full loop playable in the Editor: PlayMode `FullLoop_AndEveryScreen` boots the game, opens Campaign → Preview → Battle scene → Result, unlocks a hero, opens picker, party, bag, settings; save written before the result shows. (Battle presentation itself = step 13; device pass pending.)
+- [x] No raw keys/placeholder text: every key used exists in strings_ui.csv/strings_content.csv (screenshots inspected; missing-key tool in step 14).
+- [x] No dead ends: every screen has back/tab navigation; Result → Next/Retry/Home.
+- [x] 16:9 / 19.5:9 / tablet: gallery captured at all three; screen tour at 19.5:9 (tour_*.png). Real devices pending.
 
 ## Pending owner questions (batched)
 - none

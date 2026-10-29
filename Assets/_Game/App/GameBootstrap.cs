@@ -19,6 +19,9 @@ namespace Game.App
         /// <summary>Scene to open after boot instead of <see cref="firstScene"/> (set when a non-Boot scene is played directly in the Editor).</summary>
         internal static string PendingScene;
 
+        /// <summary>Tests point the save folder somewhere temporary so they never touch the player's save.</summary>
+        public static string SaveFolderOverride;
+
         private void Awake()
         {
             if (AppContext.IsBooted)
@@ -46,7 +49,7 @@ namespace Game.App
 
             // Save + player state
             var clock = services.Get<IClock>();
-            var saveManager = new SaveManager(new SaveStore(new FileSaveStorage(Application.persistentDataPath), clock), clock, logger);
+            var saveManager = new SaveManager(new SaveStore(new FileSaveStorage(SaveFolderOverride ?? Application.persistentDataPath), clock), clock, logger);
             var db = config.Database;
             var load = saveManager.Load(() => NewGameFactory.Create(db, clock));
             foreach (var fix in SaveReconciler.Reconcile(load.Data, db)) logger.Warning("[Save] reconcile: " + fix);
@@ -61,6 +64,8 @@ namespace Game.App
             var localizer = LocalizationLoader.Load(session.State.Data.Settings.Language);
             services.Register<ILocalizer>(localizer);
             services.Register(localizer);
+            services.Register(new BattleHandoff());
+            Tween.ReduceMotion = session.State.Data.Settings.ReduceMotion;
             AppContext.Set(services);
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD

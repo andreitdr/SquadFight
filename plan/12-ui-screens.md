@@ -47,3 +47,13 @@ Persistent top bar: currencies, (optional) player name. Bottom tab bar: Campaign
 
 ## Prompt for Claude
 > Read `00-overview.md`, `11-ui-foundation.md` and `12-ui-screens.md`. Implement the listed screens in Game.UI with view models bound to existing services, one screen at a time in the order given. For each screen give me the prefab/hierarchy checklist and a short manual test script. Include view-model unit tests.
+
+## Decisions made
+- Tabs: Home · Campaign · Heroes · Bag · Settings; Home is the stack root, tab screens sit directly on it (back returns Home); Party is reached from Home, Fight Preview and Hero Detail
+- Every screen has a pure view model in `Game.ViewModels` (unit tested); views only call VM commands; failed commands show a localized toast
+- Battle hand-off: Main starts the battle (BattleFlowController) → Battle scene presents/records it → Main shows the Result screen (`BattleHandoff`)
+- Red dots: hero unlockable / star-up affordable; unequipped item that raises a party hero's power
+- Story beats shown before the fight (Start) and after a victory (Result); replay from Campaign → Story
+- Language switch rebuilds chrome + stack (all visible text updates)
+- No prefabs (code-built UI), so no prefab checklist; manual test script lives in QA_CHECKLIST.md (step 16)
+- Visual QA: PlayMode `ScreenTourTests` renders every screen to `TestResults/screens/tour_*.png` (inspected)

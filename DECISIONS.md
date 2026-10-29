@@ -83,3 +83,11 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **[11] Interim localizer `TableLocalizer`** (CSV, en fallback, CLDR plurals for en/ro). D5 (Unity Localization) is the approved default for step 14; whether to keep the CSV localizer instead will be a batched owner question at M2 (it is behind `ILocalizer`, so either is cheap).
 - **[11] TMP essentials** are extracted from the ugui package by `tools/extract_unitypackage.py` (Unity's package import is asynchronous in batch mode).
 - **[11] Stars rendered as sprites** (font lacks ★).
+
+## Step 12
+- **[12] Navigation model:** Home root + tab screens pushed on it; Fight Preview/Result hide the tab bar; Android back closes popups → pops → asks to quit at Home.
+- **[12] Result screen** is shown after the save already contains the outcome (step 09/10 atomic completion), so a kill on this screen loses nothing.
+- **[12] Dynamic TMP font** `Art/Fonts/GameFont SDF` generated from LiberationSans.ttf (covers Romanian diacritics); text overflow = Truncate because TMP's ellipsis lookup ignores dynamic glyphs (cosmetic; auto-sizing handles long labels). Polish item for step 18.
+- **[12] SceneLoader queues** a load requested while another is finishing (bug found by the PlayMode tour: the Battle scene requested Main during the loader's fade-in and was ignored).
+- **[12] Tests boot the real game on a temp save folder** (`GameBootstrap.SaveFolderOverride`) so they never touch the developer's save.
+- **[12] Romanian table:** UI strings translated; content names/story remain English (fall back) until a translator pass. DEFAULTED – owner may override.
