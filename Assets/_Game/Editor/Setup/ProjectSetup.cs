@@ -44,6 +44,7 @@ namespace Game.EditorTools
         {
             ApplyPlayerSettings();
             UISetup.Run();
+            AudioSetup.Build();
             SceneBuilder.BuildAllScenes();
             AssetDatabase.SaveAssets();
         }

@@ -101,3 +101,8 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 ## Owner decisions at M2 (2026-10-29)
 - **D5 changed by the owner: keep the CSV `TableLocalizer`** (no Unity Localization / Addressables). Assumption A12 and step 14 updated.
 - **Device tests skipped for now (owner):** M3 ships with Editor/batch verification; device checks remain listed under "Pending verifications" in PROGRESS.md.
+
+## Step 14
+- **[14] No AudioMixer** — volumes applied on AudioSources (same behaviour; a mixer can be added later using `AudioMath.LinearToDb`).
+- **[14] Placeholder audio is synthesized** by `tools/generate_placeholder_audio.py` (CC0, listed in AUDIO_CREDITS.md, labelled `placeholder`). Music: Vorbis streaming; SFX: ADPCM decompress-on-load; mono.
+- **[14] Romanian content text** (hero/item/fight names, story) still falls back to English: 160 keys untranslated; UI is fully translated. DEFAULTED – owner may provide translations (add an `ro` column via Generate Key Stubs).

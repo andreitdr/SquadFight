@@ -50,6 +50,9 @@ namespace Game.EditorTools
                 if (!f.background) report.Warn("fight:" + f.id, "no background sprite");
             }
             CheckAssetIdsMatchNames(report, cdb);
+            var loc = LocalizationTools.LoadTables();
+            foreach (var key in LocalizationTools.ContentKeys(cdb).Distinct())
+                if (!string.IsNullOrEmpty(key) && !loc.HasIn(TableLocalizer.Fallback, key)) report.Error("localization", $"key '{key}' has no English text (players would see the raw key)");
             CheckOrphanAssets(report, cdb);
             return report;
         }

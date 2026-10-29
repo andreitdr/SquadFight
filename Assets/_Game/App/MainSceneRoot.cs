@@ -20,6 +20,7 @@ namespace Game.App
             Manager = UIManager.Create(ctx, transform);
             services.Get<SceneLoader>().Transition = this;
             UIScreensSetup.ShowHome(ctx);
+            services.Get<IAudioService>().PlayMusic("music_menu");
             var completion = services.Get<BattleHandoff>().TakeCompletion();
             if (completion != null) Manager.Push<ResultScreen>(completion);
         }
@@ -41,6 +42,7 @@ namespace Game.App
                 L = services.Get<ILocalizer>(),
                 Theme = Theme.Load(),
                 Haptics = services.TryGet<IHaptics>(out var h) ? h : NullHaptics.Instance,
+                PlaySfx = services.TryGet<IAudioService>(out var a) ? a.PlaySfx : (System.Action<string>)(_ => { }),
                 AppVersion = Application.version,
                 Quit = Application.Quit,
             };

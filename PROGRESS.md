@@ -1,6 +1,6 @@
 # Progress
 Last updated: 2026-10-29
-Current step: 14
+Current step: 15
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -17,7 +17,7 @@ Current step: 14
 | 11 | UI foundation | DONE | EditMode 211/211, PlayMode 7/7, dotnet 206/206 | 60 fps scroll on device pending |
 | 12 | UI screens | DONE | EditMode 222/222, PlayMode 9/9, dotnet 217/217 | device pass pending; battle presentation in step 13 |
 | 13 | Battle presentation (M2) | DONE | EditMode 222/222, PlayMode 12/12, dotnet 217/217 | 60 fps on mid-range Android pending |
-| 14 | Audio, settings, localization | TODO | | |
+| 14 | Audio, settings, localization | DONE | EditMode 232/232, PlayMode 12/12, dotnet 222/222 | background audio pause on device pending |
 | 15 | Balance & content tools | TODO | | |
 | 16 | Testing & QA | TODO | | |
 | 17 | Mobile optimization & builds | TODO | | |
@@ -112,6 +112,12 @@ Current step: 14
 
 ### M2 milestone checks (2026-10-29)
 - Config validator: 0 errors, 0 warnings. Progression simulator: all 9 runs complete (24 / 72 / 264 fights). Headless + PlayMode full loop (boot → campaign → preview → battle scene → result → heroes/party/bag/settings) passes.
+
+### Step 14
+- [x] Changing language at runtime updates all visible text (PlayMode `LanguageSwitch_UpdatesVisibleText`).
+- [x] Volume/vibration persist across restarts (`SettingsPersistAcrossRestart`; settings live in the save).
+- [~] Audio stops/resumes on background: `AudioListener.pause` on pause/focus (code); device check pending.
+- [x] Every used key has English text (`EveryUsedKey_HasEnglishText`, 317 keys); all UI keys translated to ro.
 
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)

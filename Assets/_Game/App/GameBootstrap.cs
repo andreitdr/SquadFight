@@ -65,6 +65,21 @@ namespace Game.App
             services.Register<ILocalizer>(localizer);
             services.Register(localizer);
             services.Register(new BattleHandoff());
+
+            // Audio + haptics, driven by settings.
+            var library = Resources.Load<AudioLibrary>(AudioLibrary.ResourcePath);
+            var audio = AudioService.Create(gameObject, library);
+            audio.SetMusicVolume(session.Settings.MusicVolume);
+            audio.SetSfxVolume(session.Settings.SfxVolume);
+            services.Register<IAudioService>(audio);
+            services.Register<IHaptics>(new MobileHaptics(() => session.Settings.Vibration));
+            session.Bus.Subscribe<SettingsChanged>(_ =>
+            {
+                audio.SetMusicVolume(session.Settings.MusicVolume);
+                audio.SetSfxVolume(session.Settings.SfxVolume);
+                Tween.ReduceMotion = session.Settings.ReduceMotion;
+            });
+            ButtonFeedback.OnPressed = () => audio.PlaySfx("ui_click");
             Tween.ReduceMotion = session.State.Data.Settings.ReduceMotion;
             AppContext.Set(services);
 

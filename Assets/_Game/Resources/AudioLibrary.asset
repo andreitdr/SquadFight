@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0c0fedf6186441a829b11f464bd2bb, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: Game.Data::Game.Data.AudioLibrary
+  sfx:
+  - id: battle_start
+    clips:
+    - {fileID: 8300000, guid: e927f4116fa074a3790486a365c44be2, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: boss
+    clips:
+    - {fileID: 8300000, guid: 24e4d22d3b13a49e5bcbf6e77d491150, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: crit
+    clips:
+    - {fileID: 8300000, guid: 8532c70177b43473d80bc96e5fe04fc8, type: 3}
+    volume: 0.9
+    pitchVariance: 0.08
+    cooldown: 0.04
+  - id: death
+    clips:
+    - {fileID: 8300000, guid: 746621c5fe16248a5b191b96a8ccba9f, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: defeat
+    clips:
+    - {fileID: 8300000, guid: aaf6ebea160e24addb8747a4e5c45ea9, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: equip
+    clips:
+    - {fileID: 8300000, guid: 43c73a81990094d8ba990ce941c976d3, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: heal
+    clips:
+    - {fileID: 8300000, guid: 0a3f7a8402cbd4333832ee2e0e6ae876, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: hit
+    clips:
+    - {fileID: 8300000, guid: cafac1428b24042709f15c14cb6cad28, type: 3}
+    volume: 0.9
+    pitchVariance: 0.08
+    cooldown: 0.04
+  - id: reward
+    clips:
+    - {fileID: 8300000, guid: a8a2592625c29433ebf6cd8da7f0814f, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: sell
+    clips:
+    - {fileID: 8300000, guid: 7570ecef443b24a4585ad42c6928d90d, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: skill
+    clips:
+    - {fileID: 8300000, guid: bb6206205f42240bcaafa03b3add157d, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: starup
+    clips:
+    - {fileID: 8300000, guid: 0655734c82ada4fa58ce8e54af0d4b85, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: ui_click
+    clips:
+    - {fileID: 8300000, guid: 78dc00676351b40e2aba2586470da199, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: unlock
+    clips:
+    - {fileID: 8300000, guid: 8b35496e346d941e7b36dc87c7d2c0a6, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  - id: victory
+    clips:
+    - {fileID: 8300000, guid: 5e07ec592bb5f449ea79223378b0cb88, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    cooldown: 0.04
+  music:
+  - id: music_battle
+    clips:
+    - {fileID: 8300000, guid: f70b67f1586864138acc756d1115b4a2, type: 3}
+    volume: 0.7
+    pitchVariance: 0
+    cooldown: 0
+  - id: music_boss
+    clips:
+    - {fileID: 8300000, guid: 89164c91fcc1141eebf3c90d326aeeb6, type: 3}
+    volume: 0.7
+    pitchVariance: 0
+    cooldown: 0
+  - id: music_menu
+    clips:
+    - {fileID: 8300000, guid: 8db14e8a573c94a8789499be7c278c61, type: 3}
+    volume: 0.7
+    pitchVariance: 0
+    cooldown: 0

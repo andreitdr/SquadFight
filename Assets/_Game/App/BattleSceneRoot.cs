@@ -27,6 +27,8 @@ namespace Game.App
             Manager = UIManager.Create(ctx, transform);
             services.Get<SceneLoader>().Transition = this;
             ctx.Quit = () => { };
+            var boss = battle.Setup.EnemyWaves.Exists(w => w.Exists(e => e.IsBoss));
+            services.Get<Game.Core.IAudioService>().PlayMusic(boss ? "music_boss" : "music_battle");
             Screen = Manager.Push<BattleScreen>(new BattleScreenArgs { Battle = battle, Leave = retreat => Resolve(retreat) });
         }
 
