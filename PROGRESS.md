@@ -125,7 +125,7 @@ Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 - [x] Same seed ⇒ identical reports (`Reports_AreDeterministic`, `SameSeed_IdenticalReport`).
 
 ### Step 16
-- [~] CI green: workflow written; pure job self-contained; Unity jobs need the owner's license secrets (not run on GitHub yet). Local equivalents all green.
+- [x] Tests run locally only (`tools/test-all.sh`); GitHub CI removed at the owner's request (2026-10-31).
 - [x] Coverage targets met (Core 96% lines, Services 95.5%).
 - [x] Headless playthrough deterministic (`Playthrough_IsDeterministic`, `NewGame_..._StateIdentical`).
 - [~] Device matrix checklist: pending (owner deferred device tests at M2).
@@ -150,7 +150,7 @@ Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 
 ### Android release pipeline (owner request, 2026-10-31)
 - [x] `BuildAndroidReleaseApk` / `BuildAndroidReleaseAll` (`./build.sh android-apk|android-release-all`): signed APK + AAB with one versionCode. Verified locally with a throwaway keystore passed as base64 (CI path): apksigner verifies, no network permissions, arm64-v8a.
-- [x] CI: `v*` tag → tests → signed APK + AAB attached to a GitHub Release (tag must equal VERSION.txt). [~] Not run on GitHub yet: needs the Unity license + keystore secrets (BUILD.md).
+- [x] Releases: signed APK built locally (`tools/build-apk.sh`) after each push to main; the owner uploads it to GitHub Releases. No CI.
 - [x] Project-local emulator (`tools/android-emulator.sh`, `AndroidEmulator/` gitignored): release APK installs, boots to Home, tutorial + touch input reach the Fight Preview.
 
 ## Pending owner questions (batched)

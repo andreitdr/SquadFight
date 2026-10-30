@@ -29,7 +29,9 @@ namespace Game.Tests.EditMode.UnityTests
         [Test]
         public void Version_FromFile()
         {
-            StringAssert.IsMatch(@"^\d+\.\d+\.\d+$", BuildScript.VersionName);
+            // Release "1.2.0" or pre-release "1.2.0-beta.1" / "0.0.1-alpha1"; iOS gets the numeric part only.
+            StringAssert.IsMatch(@"^\d+\.\d+\.\d+(-(alpha|beta|rc)\.?\d+)?$", BuildScript.VersionName);
+            StringAssert.IsMatch(@"^\d+\.\d+\.\d+$", BuildScript.NumericVersionName);
             Assert.Greater(BuildScript.BuildNumber, 0);
         }
     }

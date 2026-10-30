@@ -37,7 +37,7 @@ Date: 2026-10-30 · Commit: `step-18`
 ## What only you can do before 1.0
 1. **Final art and audio.** 35 placeholder assets remain; see `PLACEHOLDER_AUDIT.md`. Drop finals into `Art/Final` and `Audio/Final` with the same names, then rebuild the theme and audio library.
 2. **Identity.** Choose the final game name and package id (package id `com.andreitdr.squadfight` cannot change after the first upload). Provide a support email for the privacy policy.
-3. **Accounts and signing.** You need a Google Play and Apple developer account, plus an upload keystore (see `BUILD.md`). Set up the CI secrets if you want GitHub builds.
+3. **Accounts and signing.** You need a Google Play and Apple developer account, plus an upload keystore (see `BUILD.md`). APKs are built locally with `tools/build-apk.sh` (no GitHub CI).
 4. **Device QA.** Run the matrix and the performance task list (`QA_CHECKLIST.md`, `PERF_REPORT.md`). You deferred this at M2.
 5. **Optional decisions:**
    - Turn on the daily bonus (`dailyBonusEnabled` in `config.csv`).

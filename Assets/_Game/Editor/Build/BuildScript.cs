@@ -58,7 +58,7 @@ namespace Game.EditorTools
         [MenuItem("Tools/Game/Build/Android Release APK")]
         public static void BuildAndroidReleaseApk() => BuildAndroid(release: true, appBundle: false);
 
-        /// <summary>CI release: signed AAB (Play) and signed APK (sideload) in one Editor session.</summary>
+        /// <summary>Signed AAB and signed APK in one Editor session (shared versionCode).</summary>
         public static void BuildAndroidReleaseAll()
         {
             BuildAndroid(release: true);

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Local signed release APK (CI builds no Android/iOS; the owner uploads APKs to GitHub Releases by hand). Usage:
+# Local signed release APK (no CI; the owner uploads APKs to GitHub Releases by hand). Usage:
 #   tools/build-apk.sh setup    # once: create the upload keystore and save its password in the macOS Keychain (prompts you)
 #   tools/build-apk.sh          # build Builds/Android/SquadFight-<version>-<build>.apk, signed with that keystore
 # The keystore lives outside the repo (~/.squadfight, override with SQUADFIGHT_KEYSTORE); the password only ever lives

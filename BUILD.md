@@ -11,6 +11,7 @@ Unity 6000.6.7f1 with Android + iOS modules. Close the Editor before command-lin
 | `tools/build-apk.sh` | signed release APK using the keystore + Keychain password from `tools/build-apk.sh setup` (run after every push to `main`) |
 | `./build.sh ios` | `Builds/iOS/` Xcode project (open on a Mac, sign, archive) |
 | `./build.sh ios-sim` | `Builds/iOS-Simulator/` dev Xcode project for the iOS Simulator (arm64); then `xcodebuild -project Builds/iOS-Simulator/Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug CODE_SIGNING_ALLOWED=NO build` |
+| `tools/test-all.sh` | every test suite (dotnet + BalanceCli + Unity EditMode/PlayMode); run before pushing |
 | `./build.sh tests` / `validate` / `setup` | tests, config validation, player settings + scene/theme/audio regeneration |
 
 Windows: `build.ps1 <same target>`.
@@ -27,8 +28,11 @@ Keep the keystore and password backed up: every APK of the game must be signed w
 install the update over the old version (players would have to uninstall and lose their save).
 
 ## Releasing a new version (built on your Mac, uploaded by hand)
-**CI never builds Android or iOS and never publishes a release** — GitHub Actions only runs the tests.
-After every push to `main`, a signed release APK is built locally on the Mac:
+**There is no GitHub CI.** Tests, builds and releases all run on the Mac:
+```bash
+tools/test-all.sh           # before every push to main: pure C# tests, content validation, Unity EditMode + PlayMode
+```
+After every push to `main`, a signed release APK is built locally:
 ```bash
 tools/build-apk.sh          # → Builds/Android/SquadFight-<version>-<build>.apk
 ```

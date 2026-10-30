@@ -169,3 +169,7 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **CI no longer builds Android or iOS** and has no release job or tag trigger; it only runs tests on pushes to `main` and PRs. Its token is read-only for contents, so it cannot publish a release.
 - **A signed release APK is built on the owner's Mac after every push to `main`** (`tools/build-apk.sh`); the owner uploads it to GitHub Releases by hand (pre-release for `-alpha/-beta/-rc` versions). GitHub only, no stores.
 - **Keystore password only in the macOS Keychain**: `tools/build-apk.sh setup` lets the owner type it into `keytool` and `security` in their own terminal; builds read it from the Keychain, so it is never in the repo, CI secrets or chat. The keystore (`~/.squadfight/`) stays outside the repo.
+
+## No GitHub CI: tests run locally (owner request, 2026-10-31; supersedes the CI decisions above)
+- **`.github/workflows/ci.yml` removed**: nothing runs on GitHub. `tools/test-all.sh` runs every suite (dotnet tests, BalanceCli validate + progression, Unity EditMode + PlayMode) on the Mac before each push to `main`; the signed APK is still built locally after each push (`tools/build-apk.sh`).
+- **No Unity license / keystore secrets on GitHub** are needed any more.
