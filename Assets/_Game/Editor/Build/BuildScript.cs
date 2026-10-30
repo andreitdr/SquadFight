@@ -79,7 +79,20 @@ namespace Game.EditorTools
         public static void BuildIos()
         {
             ApplyCommon(release: true);
+            PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             Run(BuildTarget.iOS, Path.Combine(OutputRoot, "iOS"), release: true);
+        }
+
+        /// <summary>Development Xcode project for the iOS Simulator (Apple Silicon, arm64); compile with xcodebuild -sdk iphonesimulator.</summary>
+        [MenuItem("Tools/Game/Build/iOS Simulator Project (dev)")]
+        public static void BuildIosSimulator()
+        {
+            ApplyCommon(release: false);
+            var previous = PlayerSettings.iOS.sdkVersion;
+            PlayerSettings.iOS.sdkVersion = iOSSdkVersion.SimulatorSDK;
+            PlayerSettings.iOS.simulatorSdkArchitecture = AppleMobileArchitectureSimulator.ARM64;
+            try { Run(BuildTarget.iOS, Path.Combine(OutputRoot, "iOS-Simulator"), release: false); }
+            finally { PlayerSettings.iOS.sdkVersion = previous; }
         }
 
         private static void Run(BuildTarget target, string path, bool release)

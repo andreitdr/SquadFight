@@ -7,6 +7,7 @@ Unity 6000.6.7f1 with Android + iOS modules. Close the Editor before command-lin
 | `./build.sh android-dev` | `Builds/Android/SquadFight-<version>-<build>-dev.apk` — development build (debug console, FPS overlay, desync checks) |
 | `./build.sh android-release` | `Builds/Android/SquadFight-<version>-<build>.aab` — release App Bundle for Google Play |
 | `./build.sh ios` | `Builds/iOS/` Xcode project (open on a Mac, sign, archive) |
+| `./build.sh ios-sim` | `Builds/iOS-Simulator/` dev Xcode project for the iOS Simulator (arm64); then `xcodebuild -project Builds/iOS-Simulator/Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug CODE_SIGNING_ALLOWED=NO build` |
 | `./build.sh tests` / `validate` / `setup` | tests, config validation, player settings + scene/theme/audio regeneration |
 
 Windows: `build.ps1 <same target>`.

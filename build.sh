@@ -24,5 +24,6 @@ case "${1:-}" in
   android-dev)     run build-android-dev -quit -executeMethod Game.EditorTools.BuildScript.BuildAndroidDev ;;
   android-release) run build-android-release -quit -executeMethod Game.EditorTools.BuildScript.BuildAndroidRelease ;;
   ios)             run build-ios -quit -executeMethod Game.EditorTools.BuildScript.BuildIos ;;
-  *) echo "usage: $0 setup|validate|tests|android-dev|android-release|ios" >&2; exit 2 ;;
+  ios-sim)         run build-ios-sim -quit -executeMethod Game.EditorTools.BuildScript.BuildIosSimulator ;;
+  *) echo "usage: $0 setup|validate|tests|android-dev|android-release|ios|ios-sim" >&2; exit 2 ;;
 esac
