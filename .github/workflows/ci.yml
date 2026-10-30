@@ -1,7 +1,7 @@
 # CI: pure tests + Unity EditMode/PlayMode tests on pushes to main and on PRs. Pushes to main NEVER build an APK.
 # Android builds (signed APK on a GitHub Release; GitHub only, nothing goes to any store) run only for version tags:
 #   v1.2.0            → release      (marked "Latest")
-#   v1.2.0-beta.1     → pre-release  (also -alpha.N / -rc.N; not marked "Latest")
+#   v1.2.0-beta.1     → pre-release  (also -alpha.N / -rc.N, dot optional: v0.0.1-alpha1; not marked "Latest")
 # The tag must equal VERSION.txt with a "v" prefix. Secrets: UNITY_LICENSE, UNITY_EMAIL, UNITY_PASSWORD,
 # ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASS, ANDROID_KEYALIAS_NAME, ANDROID_KEYALIAS_PASS (see BUILD.md).
 name: CI
@@ -85,9 +85,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: false
-      - name: Tag must be vX.Y.Z or vX.Y.Z-(alpha|beta|rc).N and match VERSION.txt
+      - name: Tag must be vX.Y.Z or vX.Y.Z-(alpha|beta|rc)[.]N and match VERSION.txt
         run: |
-          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta|rc)\.[0-9]+)?$ ]]; then
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta|rc)\.?[0-9]+)?$ ]]; then
             echo "::error::Tag $GITHUB_REF_NAME is not a release (v1.2.0) or pre-release (v1.2.0-beta.1) tag."
             exit 1
           fi

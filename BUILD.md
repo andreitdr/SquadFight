@@ -42,7 +42,7 @@ a GitHub Release named after the tag) happens only when you push a version tag. 
 | Tag | Build | GitHub Release |
 |---|---|---|
 | `v1.1.0` | release | normal release, marked **Latest** |
-| `v1.1.0-beta.1` (also `-alpha.N`, `-rc.N`) | pre-release | marked **Pre-release**, never "Latest" |
+| `v1.1.0-beta.1` (also `-alpha.N`, `-rc.N`; the dot is optional: `v0.0.1-alpha1`) | pre-release | marked **Pre-release**, never "Latest" |
 | anything else (`v1.1`, `v1.1.0-test`, …) | none (the job stops with an error) | — |
 
 Both channels are release-signed with the same upload key, so a tester can install a pre-release and later update to

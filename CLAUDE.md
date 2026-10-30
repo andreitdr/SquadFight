@@ -12,5 +12,5 @@ Only ask the owner what AUTOPILOT.md says to ask. Specs live in `plan/`.
 - Releases and pre-releases are **GitHub only** (signed APK on a GitHub Release). Nothing goes to Google Play, the App Store or any other store; CI builds no AAB.
 - Android builds happen **only** for version tags (see `BUILD.md` → "Releasing a new version"):
   - `vX.Y.Z` → **release** (GitHub Release marked Latest)
-  - `vX.Y.Z-beta.N` (or `-alpha.N`, `-rc.N`) → **pre-release** (GitHub Release marked Pre-release)
+  - `vX.Y.Z-beta.N` (or `-alpha.N`, `-rc.N`; dot optional, e.g. `v0.0.1-alpha1`) → **pre-release** (GitHub Release marked Pre-release)
 - The version tag is the explicit release signal. Create and push one only when the owner explicitly asks for a release / pre-release, never as part of a normal push. The tag must equal `VERSION.txt` (bump it and commit first). Plain `git push origin main` never pushes tags (do not use `--tags` / `--follow-tags`).
