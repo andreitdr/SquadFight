@@ -156,3 +156,9 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 ## Audio starts muted (owner request, 2026-10-31)
 - **Music and SFX volume start at 0**; the player turns them up in Settings. New games use the 0 defaults; existing saves are muted once by save migration v4→v5 (other settings kept).
 - **PlayMode tests run silent**: a namespace-wide `[SetUpFixture]` sets `AudioListener.volume = 0` for the run (some tests boot with the real save, whose volumes may be up) and restores it afterwards.
+
+## Release and pre-release builds (owner request, 2026-10-31)
+- **Pushes to `main` never build an APK**: they run tests only. Android builds run only for version tags.
+- **Two channels by tag**: `vX.Y.Z` → release (GitHub "Latest"); `vX.Y.Z-(alpha|beta|rc).N` → pre-release (GitHub "Pre-release", never "Latest"). Other `v…` tags are rejected by the job. The tag must equal `VERSION.txt`.
+- **Pre-releases are release-signed, not development builds**: same upload key as releases, so testers can update from a beta to the release without uninstalling (a debug-signed dev build could not be updated in place).
+- **iOS version name drops the pre-release suffix** (`1.1.0-beta.1` → `1.1.0`) because CFBundleShortVersionString accepts digits and dots only.

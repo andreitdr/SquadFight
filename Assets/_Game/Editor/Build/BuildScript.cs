@@ -20,6 +20,9 @@ namespace Game.EditorTools
 
         public static string VersionName => File.Exists("VERSION.txt") ? File.ReadAllText("VERSION.txt").Trim() : "0.1.0";
 
+        /// <summary>VersionName without a pre-release suffix ("1.2.0-beta.1" → "1.2.0"): iOS only accepts digits and dots.</summary>
+        public static string NumericVersionName => VersionName.Split('-')[0];
+
         private static int? _buildNumber;
 
         /// <summary>Fixed for the Editor session so the AAB and APK of one release share a versionCode.</summary>
@@ -103,6 +106,7 @@ namespace Game.EditorTools
         public static void BuildIos()
         {
             ApplyCommon(release: true);
+            PlayerSettings.bundleVersion = NumericVersionName;
             PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK;
             Run(BuildTarget.iOS, Path.Combine(OutputRoot, "iOS"), release: true);
         }
@@ -112,6 +116,7 @@ namespace Game.EditorTools
         public static void BuildIosSimulator()
         {
             ApplyCommon(release: false);
+            PlayerSettings.bundleVersion = NumericVersionName;
             var previous = PlayerSettings.iOS.sdkVersion;
             PlayerSettings.iOS.sdkVersion = iOSSdkVersion.SimulatorSDK;
             PlayerSettings.iOS.simulatorSdkArchitecture = AppleMobileArchitectureSimulator.ARM64;

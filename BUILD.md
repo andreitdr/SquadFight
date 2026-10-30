@@ -35,15 +35,33 @@ Keep the keystore and passwords backed up: every APK of the game must be signed 
 install the update over the old version (players would have to uninstall and lose their save).
 
 ## Releasing a new version (GitHub Actions)
-Pushing a tag `v<version>` runs `.github/workflows/ci.yml`: tests, then a signed **APK** and **AAB** are built and attached
-to a GitHub Release named after the tag (tags containing `-`, e.g. `v1.1.0-beta.1`, are marked pre-release).
+**Rule: pushing to `main` never builds an APK** — it only runs the tests. An Android build (signed **APK** + **AAB**,
+attached to a GitHub Release named after the tag) happens only when you push a version tag:
+
+| Tag | Build | GitHub Release |
+|---|---|---|
+| `v1.1.0` | release | normal release, marked **Latest** |
+| `v1.1.0-beta.1` (also `-alpha.N`, `-rc.N`) | pre-release | marked **Pre-release**, never "Latest" |
+| anything else (`v1.1`, `v1.1.0-test`, …) | none (the job stops with an error) | — |
+
+Both channels are release-signed with the same upload key, so a tester can install a pre-release and later update to
+the release without uninstalling. The tag must equal `VERSION.txt` with a `v` in front, or the job stops.
+
+Pre-release (testers):
+```bash
+echo 1.1.0-beta.1 > VERSION.txt
+git commit -am "pre-release: 1.1.0-beta.1"
+git tag v1.1.0-beta.1
+git push origin main v1.1.0-beta.1
+```
+Release:
 ```bash
 echo 1.1.0 > VERSION.txt
 git commit -am "release: 1.1.0"
 git tag v1.1.0
 git push origin main v1.1.0
 ```
-The tag must match `VERSION.txt` or the job stops. Creating the release from the GitHub web UI with a new `v…` tag works
+The Android version name shows the suffix (`1.1.0-beta.1`); iOS builds drop it (`1.1.0`) because iOS accepts only digits. Creating the release from the GitHub web UI with a new `v…` tag works
 too; the files are added to that release. Download the `.apk` from the release page and open it on the phone
 (allow "install unknown apps" once).
 
