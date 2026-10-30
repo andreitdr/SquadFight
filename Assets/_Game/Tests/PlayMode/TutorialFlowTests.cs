@@ -82,6 +82,16 @@ namespace Game.Tests.PlayMode
             Assert.IsTrue(overlay.Visible, $"overlay visible for {anchorId}");
             var hole = ScreenRect((RectTransform)overlay.transform.Find("Root/Hole"));
             var target = ScreenRect(TutorialAnchor.Active[anchorId].Rect);
+            var popup = TutorialAnchor.Active[anchorId].GetComponentInParent<PopupBase>();
+            if (popup != null)
+            {
+                var hint = ScreenRect((RectTransform)overlay.transform.Find("Root/Hint"));
+                var panel = ScreenRect(popup.PanelRect);
+                // Only when the screen leaves room for it beside the panel (the batch-mode window is small).
+                var need = hint.height * 1.5f;
+                if (panel.yMin >= need || Screen.height - panel.yMax >= need)
+                    Assert.IsFalse(hint.Overlaps(panel), $"hint for {anchorId} stays off the popup: hint={hint} panel={panel}");
+            }
             // The overlay blocks scrolling, so the target must be on screen (and inside its scroll view's viewport).
             Assert.IsTrue(target.yMin >= 0 && target.yMax <= Screen.height, $"{anchorId} on screen: {target}");
             var scroll = TutorialAnchor.Active[anchorId].GetComponentInParent<UnityEngine.UI.ScrollRect>();

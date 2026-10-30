@@ -187,9 +187,9 @@ namespace Game.UI
             partyRow.Size(preferredHeight: 150);
             foreach (var id in _vm.PartySlots) ScreenKit.Portrait(Ctx, partyRow, id, 140);
             var power = UIKit.Text(_content, "Power", _vm.RecommendedPower > 0 ? Ctx.F("power_vs_recommended", _vm.PartyPower, _vm.RecommendedPower) : Ctx.F("power_value", _vm.PartyPower),
-                Th.fontLarge, _vm.IsUnderpowered ? Th.negative : Th.positive, TextAlignmentOptions.Center, bold: true);
+                Th.fontLarge, _vm.IsUnderpowered ? Th.negative : _vm.IsClose ? Th.warning : Th.positive, TextAlignmentOptions.Center, bold: true);
             power.Size(preferredHeight: 70);
-            if (_vm.IsUnderpowered) UIKit.Text(_content, "Warn", Ctx.T("underpowered_hint"), Th.fontSmall, Th.textDim, TextAlignmentOptions.Center).Size(preferredHeight: 60);
+            if (_vm.IsUnderpowered) UIKit.Text(_content, "Warn", Ctx.T("underpowered_hint"), Th.fontSmall, Th.textDim, TextAlignmentOptions.Center).Size(preferredHeight: 110);
             var edit = UIKit.Button(_content, "EditParty", Ctx.T("edit_party"), () => Ctx.Manager.Push<PartyScreen>(), UIKit.ButtonStyle.Secondary);
             TutorialAnchor.Mark(edit, "preview_party");
             ScreenKit.Toggle(Ctx, _content, Ctx.T("auto_skills"), () => _vm.AutoSkill, v => _vm.SetAutoSkill(v));

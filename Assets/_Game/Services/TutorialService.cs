@@ -12,8 +12,21 @@ namespace Game.Services
         /// <summary>TutorialAnchor id to highlight; tapping it advances.</summary>
         public string Anchor;
         public string TextKey;
+        /// <summary>Step to restart from after an app restart: screens are not restored, so deeper steps go back to one reachable from Home.</summary>
+        public int ResumeAt;
+        /// <summary>True when the player already did this step's action (e.g. before a restart): entering it skips <see cref="SkipCount"/> steps.</summary>
+        public Func<PlayerState, bool> AlreadyDone;
+        public int SkipCount = 1;
 
-        public TutorialStep(string id, string anchor, string textKey) { Id = id; Anchor = anchor; TextKey = textKey; }
+        public TutorialStep(string id, string anchor, string textKey, int resumeAt, Func<PlayerState, bool> alreadyDone = null, int skipCount = 1)
+        {
+            Id = id;
+            Anchor = anchor;
+            TextKey = textKey;
+            ResumeAt = resumeAt;
+            AlreadyDone = alreadyDone;
+            SkipCount = skipCount;
+        }
     }
 
     public readonly struct TutorialChanged { }
@@ -26,27 +39,54 @@ namespace Game.Services
     {
         private readonly ServiceContext _ctx;
 
+        public const string FirstFight = "fight_1_1", SecondFight = "fight_1_2", GuidedHero = "hero_cleric";
+
+        // Steps whose target disappears once done (unlock, add to party, equip, fights) are skipped when already done, so a
+        // restart in the middle never waits on a button that no longer exists. Popup steps right after an action are
+        // skipped together with it (SkipCount 2): their popup only shows when the action happens.
         public static readonly IReadOnlyList<TutorialStep> Steps = new[]
         {
-            new TutorialStep("continue", "home_continue", "tut_continue"),
-            new TutorialStep("fight", "preview_start", "tut_fight"),
-            new TutorialStep("result_home", "result_home", "tut_result_home"),
-            new TutorialStep("heroes_tab", "tab_heroes", "tut_heroes_tab"),
-            new TutorialStep("pick_hero", "hero_hero_cleric", "tut_pick_hero"),
-            new TutorialStep("unlock", "hero_unlock", "tut_unlock"),
-            new TutorialStep("unlock_ok", "unlock_ok", "tut_unlock_ok"),
-            new TutorialStep("add_party", "hero_add_party", "tut_add_party"),
-            new TutorialStep("equip_slot", "equip_slot0", "tut_equip_slot"),
-            new TutorialStep("equip_item", "picker_first", "tut_equip_item"),
-            new TutorialStep("home_tab", "tab_home", "tut_home_tab"),
-            new TutorialStep("continue2", "home_continue", "tut_continue2"),
-            new TutorialStep("fight2", "preview_start", "tut_fight2"),
+            new TutorialStep("continue", "home_continue", "tut_continue", 0, s => Cleared(s, FirstFight), 3),
+            new TutorialStep("fight", "preview_start", "tut_fight", 0),
+            new TutorialStep("result_home", "result_home", "tut_result_home", 0),
+            new TutorialStep("heroes_tab", "tab_heroes", "tut_heroes_tab", 3),
+            new TutorialStep("pick_hero", "hero_" + GuidedHero, "tut_pick_hero", 3),
+            new TutorialStep("unlock", "hero_unlock", "tut_unlock", 3, s => s.GetHero(GuidedHero)?.Unlocked == true, 2),
+            new TutorialStep("unlock_ok", "unlock_ok", "tut_unlock_ok", 3),
+            new TutorialStep("add_party", "hero_add_party", "tut_add_party", 3, s => s.Data.Party.Contains(GuidedHero)),
+            new TutorialStep("equip_slot", "equip_slot0", "tut_equip_slot", 3, s => s.Data.Equipment.Any(e => e.EquippedByHeroId == GuidedHero && e.EquippedSlotIndex == 0), 2),
+            new TutorialStep("equip_item", "picker_first", "tut_equip_item", 3),
+            new TutorialStep("home_tab", "tab_home", "tut_home_tab", 10),
+            new TutorialStep("continue2", "home_continue", "tut_continue2", 11, s => Cleared(s, SecondFight), 2),
+            new TutorialStep("fight2", "preview_start", "tut_fight2", 11),
         };
+
+        private static bool Cleared(PlayerState s, string fightId) => s.GetFight(fightId)?.Cleared == true;
 
         /// <summary>One-time contextual tips (shown by the UI the first time the situation occurs).</summary>
         public static readonly string[] Tips = { "tip_shards", "tip_starup", "tip_equipment", "tip_party_power", "tip_daily" };
 
-        public TutorialService(ServiceContext ctx) => _ctx = ctx;
+        public TutorialService(ServiceContext ctx)
+        {
+            _ctx = ctx;
+            Resume();
+        }
+
+        /// <summary>
+        /// After a restart the app opens on Home: go back to the step's resume point and skip what the player already did.
+        /// Not saved here; the next commit persists it.
+        /// </summary>
+        private void Resume()
+        {
+            if (IsComplete) return;
+            S.Step = Steps[S.Step].ResumeAt;
+            SkipDone();
+        }
+
+        private void SkipDone()
+        {
+            while (!IsComplete && Steps[S.Step].AlreadyDone?.Invoke(_ctx.State) == true) S.Step += Steps[S.Step].SkipCount;
+        }
 
         private Game.Save.TutorialSave S => _ctx.State.Data.Tutorial;
 
@@ -60,6 +100,7 @@ namespace Game.Services
             var step = Current;
             if (step == null || step.Anchor != anchorId) return false;
             S.Step++;
+            SkipDone();
             _ctx.Commit();
             _ctx.Emit(new TutorialChanged());
             return true;

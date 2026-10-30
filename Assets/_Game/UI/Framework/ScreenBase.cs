@@ -52,6 +52,8 @@ namespace Game.UI
         protected UIContext Ctx { get; private set; }
         protected Theme Th => Ctx.Theme;
         protected RectTransform Panel { get; private set; }
+        /// <summary>The visible panel (the tutorial keeps its hint off it).</summary>
+        public RectTransform PanelRect => Panel;
         public CanvasGroup Group { get; private set; }
         public virtual bool CloseOnBackdrop => true;
         public virtual float PanelWidth => 940;

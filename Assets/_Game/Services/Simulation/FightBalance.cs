@@ -14,11 +14,14 @@ namespace Game.Services
         public int PartyPower;
         public int Runs;
         public int Wins;
+        /// <summary>Wins in which no hero fell.</summary>
+        public int Flawless;
         public double AvgRounds;
         /// <summary>Average fraction of total party HP lost (wins and losses).</summary>
         public double AvgHpLost;
         public readonly int[] Stars = new int[4];
         public double WinRate => Runs == 0 ? 0 : (double)Wins / Runs;
+        public double FlawlessRate => Runs == 0 ? 0 : (double)Flawless / Runs;
 
         public string ToMarkdownRow() =>
             $"| {FightId} | {Preset} | {PartyPower} | {Runs} | {WinRate:P0} | {AvgRounds:0.0} | {AvgHpLost:P0} | {string.Join("/", Stars)} |";
@@ -39,6 +42,7 @@ namespace Game.Services
                 var sim = new BattleSimulator(setup, new SeededRandom(seed + (ulong)i * 7919UL));
                 var r = sim.RunToEnd();
                 if (r.Victory) result.Wins++;
+                if (r.Victory && sim.Players.All(p => p.Alive)) result.Flawless++;
                 rounds += r.Rounds;
                 var max = sim.Players.Sum(p => (double)p.MaxHp);
                 hpLost += max <= 0 ? 0 : sim.Players.Sum(p => (double)(p.MaxHp - p.Hp)) / max;
@@ -47,6 +51,24 @@ namespace Game.Services
             result.AvgRounds = rounds / Math.Max(1, runs);
             result.AvgHpLost = hpLost / Math.Max(1, runs);
             return result;
+        }
+
+        /// <summary>
+        /// The party a player has in the tutorial: the starting heroes for the first fight; for the second, plus the guided
+        /// hero (unlocked, in the party) wearing the first-clear weapon in slot 0, exactly as the script makes them do.
+        /// </summary>
+        public static GameSession TutorialParty(GameDatabase db, bool afterFirstFight)
+        {
+            var clock = new ManualClock();
+            var s = new GameSession(db, NewGameFactory.Create(db, clock), null, new SeededRandom(1), clock);
+            if (!afterFirstFight) return s;
+            s.State.GetOrCreateHero(TutorialService.GuidedHero).Unlocked = true;
+            s.State.GetOrCreateHero(TutorialService.GuidedHero).Stars = 1;
+            s.Party.Add(TutorialService.GuidedHero);
+            var sword = EquipmentFactory.Create(db.Equipment.Where(e => e.Slot == db.Rules.SlotLayout[0]).OrderBy(e => e.Rarity).First(), Rarity.Common, s.Random, db);
+            s.Inventory.AddItem(sword);
+            s.Inventory.Equip(TutorialService.GuidedHero, sword.InstanceId, 0);
+            return s;
         }
 
         /// <summary>A party preset: the given heroes unlocked at a star level, each wearing one item per slot of the given rarity.</summary>

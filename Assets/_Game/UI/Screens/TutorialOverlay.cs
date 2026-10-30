@@ -145,11 +145,23 @@ namespace Game.UI
             _hole.sizeDelta = max - min;
             var pulse = 1f + 0.06f * Mathf.Sin(Time.unscaledTime * 6f);
             _ring.localScale = new Vector3(pulse, pulse, 1);
-            // Hint above the target when it is in the lower half, else below.
+            // Hint above the target when it is in the lower half, else below. A target inside a popup keeps the hint off the
+            // whole panel (it would cover the popup's text), on whichever side has room.
             var below = (min.y + max.y) / 2f > size.y / 2f;
+            float avoidMin = min.y, avoidMax = max.y;
+            var popup = a.GetComponentInParent<PopupBase>();
+            if (popup != null && popup.PanelRect != null)
+            {
+                popup.PanelRect.GetWorldCorners(_corners);
+                var pMin = canvasRect.InverseTransformPoint(_corners[0]).y + half.y;
+                var pMax = canvasRect.InverseTransformPoint(_corners[2]).y + half.y;
+                var need = _hint.sizeDelta.y + 100;
+                if (pMin >= need) { below = true; avoidMin = pMin; }
+                else if (size.y - pMax >= need) { below = false; avoidMax = pMax; }
+            }
             _hint.anchorMin = _hint.anchorMax = Vector2.zero;
             _hint.pivot = new Vector2(0.5f, below ? 1f : 0f);
-            _hint.anchoredPosition = new Vector2(Mathf.Clamp((min.x + max.x) / 2f, 450, Mathf.Max(450, size.x - 450)), below ? min.y - 60 : max.y + 60);
+            _hint.anchoredPosition = new Vector2(Mathf.Clamp((min.x + max.x) / 2f, 450, Mathf.Max(450, size.x - 450)), below ? avoidMin - 60 : avoidMax + 60);
         }
 
         /// <summary>Centres <paramref name="target"/> in its scroll view when it is not fully visible; true if it scrolled.</summary>

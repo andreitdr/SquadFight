@@ -42,7 +42,9 @@ switch (cmd)
         // Sets each fight's enemy multipliers so a casual player's FIRST attempt wins at a target rate, then writes fights.csv.
         var csvPath = Path.Combine(root, "Assets/_Game/Content/Source/fights.csv");
         var seeds = new ulong[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-        for (var pass = 0; pass < 3; pass++)
+        // "tune tutorial" only re-tunes the two tutorial fights.
+        var passes = args.Length > 1 && args[1] == "tutorial" ? 0 : 3;
+        for (var pass = 0; pass < passes; pass++)
         {
             var snaps = seeds.Select(sd => FightBalance.SnapshotsAtFirstAttempt(db, new CasualPolicy(), sd)).ToList();
             foreach (var chapter in db.Chapters)
@@ -53,6 +55,7 @@ switch (cmd)
                     if (states.Count == 0) continue;
                     var boss = f.Waves.Any(w => w.Spawns.Any(sp => db.GetEnemy(sp.EnemyId).IsBoss));
                     var ch1 = chapter == db.Chapters[0];
+                    if (TutorialFight(f) >= 0) continue; // tuned for the tutorial party below
                     var target = f.Id == db.Fights[0].Id ? 0.99 : boss ? (ch1 ? 0.85 : 0.75) : ch1 ? (i < 4 ? 0.95 : 0.92) : i >= 5 ? 0.82 : i == 0 ? 0.92 : 0.88;
                     var baseline = f.Waves.SelectMany(w => w.Spawns).Select(sp => sp.StatMultiplier).ToList();
                     double lo = 0.2, hi = 8;
@@ -66,6 +69,21 @@ switch (cmd)
                     Apply(f, baseline, Math.Sqrt(lo * hi));
                 }
             Console.WriteLine("pass " + pass + " done");
+        }
+        // The two tutorial fights: the scripted party should win without losing a hero (onboarding, no deaths).
+        foreach (var f in db.Fights.Where(fd => TutorialFight(fd) >= 0))
+        {
+            var party = FightBalance.TutorialParty(db, TutorialFight(f) == 1);
+            var baseline = f.Waves.SelectMany(w => w.Spawns).Select(sp => sp.StatMultiplier).ToList();
+            double lo = 0.2, hi = 8;
+            for (var it = 0; it < 14; it++)
+            {
+                var mid = Math.Sqrt(lo * hi);
+                Apply(f, baseline, mid);
+                if (FightBalance.Run(party, f, 200, 11, "tutorial").FlawlessRate > 0.95) lo = mid; else hi = mid;
+            }
+            Apply(f, baseline, lo);
+            Console.WriteLine($"{f.Id}: tutorial party flawless {FightBalance.Run(party, f, 200, 11, "tutorial").FlawlessRate:P0}");
         }
         // Write multipliers back (only the waves column changes).
         var lines = File.ReadAllLines(csvPath).ToList();
@@ -109,10 +127,21 @@ switch (cmd)
         Console.WriteLine("recommended power written");
         break;
     }
+    case "tutorial":
+        // How the scripted tutorial parties fare in the two tutorial fights.
+        foreach (var f in db.Fights.Where(fd => TutorialFight(fd) >= 0))
+        {
+            var r = FightBalance.Run(FightBalance.TutorialParty(db, TutorialFight(f) == 1), f, 200, 11, "tutorial");
+            Console.WriteLine($"{f.Id}: power {r.PartyPower} vs recommended {f.RecommendedPower}, win {r.WinRate:P0}, flawless {r.FlawlessRate:P0}");
+        }
+        break;
     case "validate":
         Console.WriteLine(ConfigValidation.Validate(db));
         break;
 }
+
+// 0 = the first tutorial fight, 1 = the second, -1 = not a tutorial fight.
+int TutorialFight(FightDef f) => f.Id == TutorialService.FirstFight ? 0 : f.Id == TutorialService.SecondFight ? 1 : -1;
 
 static void Apply(FightDef f, System.Collections.Generic.List<float> baseline, double scale)
 {

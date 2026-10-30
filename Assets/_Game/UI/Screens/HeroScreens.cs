@@ -309,7 +309,8 @@ namespace Game.UI
             card.Set(item.Slot, item.Rarity, ScreenKit.RarityColor(Ctx, item.Rarity), ScreenKit.RarityName(Ctx, item.Rarity), "", false, ScreenKit.ItemIcon(Ctx, item));
             var texts = UIKit.Rect("Texts", panel.transform);
             UIKit.VStack(texts.gameObject, 4, 0, TextAnchor.MiddleLeft);
-            texts.Size(preferredWidth: isCurrent ? 740 : 500);
+            // The text column gives way on narrow screens (tall phones are narrower than the 1080 reference) so the row fits.
+            texts.Size(preferredWidth: isCurrent ? 740 : 500).minWidth = 200;
             UIKit.Text(texts, "Name", ScreenKit.ItemName(Ctx, item), Th.fontBody, ScreenKit.RarityColor(Ctx, item.Rarity), TextAlignmentOptions.Left, bold: true).Size(preferredHeight: 52);
             var stats = string.Join("\n", _vm.ItemStats(item.InstanceId).Select(m => ScreenKit.FormatModifier(Ctx, m)));
             UIKit.Text(texts, "Stats", stats, Th.fontSmall, Th.text).Size(preferredHeight: 110);

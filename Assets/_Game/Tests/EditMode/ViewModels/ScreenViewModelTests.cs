@@ -144,6 +144,19 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
+        public void Preview_WarnsOnlyWellBelowRecommendedPower()
+        {
+            var vm = new FightPreviewViewModel(_s, "fight_1");
+            var power = vm.PartyPower;
+            vm.Fight.RecommendedPower = power;
+            Assert.IsFalse(vm.IsUnderpowered || vm.IsClose, "at the recommendation");
+            vm.Fight.RecommendedPower = (int)(power / 0.95f);
+            Assert.IsTrue(vm.IsClose && !vm.IsUnderpowered, "5% under is close, no warning");
+            vm.Fight.RecommendedPower = (int)(power / 0.8f);
+            Assert.IsTrue(vm.IsUnderpowered && !vm.IsClose, "20% under warns");
+        }
+
+        [Test]
         public void Result_LinesWithProgressAndHighlights()
         {
             var c = _s.Battles.RunInstant("fight_1", 5).Value;

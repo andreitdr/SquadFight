@@ -206,7 +206,11 @@ namespace Game.ViewModels
 
         public int PartyPower => _s.PartyPower;
         public int RecommendedPower => Fight.RecommendedPower;
-        public bool IsUnderpowered => RecommendedPower > 0 && PartyPower < RecommendedPower;
+        /// <summary>Recommended power is the median casual player's power, so being a little under is normal: warn only below this share.</summary>
+        public const float UnderpoweredRatio = 0.9f;
+        public bool IsUnderpowered => RecommendedPower > 0 && PartyPower < RecommendedPower * UnderpoweredRatio;
+        /// <summary>Slightly under the recommendation: shown as a caution colour, without the warning.</summary>
+        public bool IsClose => RecommendedPower > 0 && !IsUnderpowered && PartyPower < RecommendedPower;
         public string[] PartySlots => _s.Party.GetSlots();
         public bool AutoSkill => _s.Settings.AutoSkill;
         public bool FirstClearAvailable => !_s.Progress.GetFightProgress(Fight.Id).FirstClearClaimed && !string.IsNullOrEmpty(Fight.FirstClearTableId);

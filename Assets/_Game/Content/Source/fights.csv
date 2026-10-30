@@ -1,7 +1,7 @@
 # waves: spawns joined by '+', waves separated by '/'; enemy@multiplier scales HP/ATK/DEF
 id,chapter,order,name,waves,recommendedPower,dropTable,firstClearTable,starTurnLimit,preBeats,postBeats,unlockConditions
-fight_1_1,chapter_1,1,Forest Edge,enemy_goblin@2.03+enemy_goblin@2.03,600,drops_ch1,first_ch1_intro,0,beat_ch1_intro;beat_ch1_f1_pre,,
-fight_1_2,chapter_1,2,Wolf Den,enemy_wolf@1.73+enemy_wolf@1.73+enemy_goblin@1.73,830,drops_ch1,first_ch1_a,0,beat_ch1_f2_pre;beat_ch1_f2_pre_b,,
+fight_1_1,chapter_1,1,Forest Edge,enemy_goblin@1.47+enemy_goblin@1.47,600,drops_ch1,first_ch1_intro,0,beat_ch1_intro;beat_ch1_f1_pre,,
+fight_1_2,chapter_1,2,Wolf Den,enemy_wolf@1.18+enemy_wolf@1.18+enemy_goblin@1.18,830,drops_ch1,first_ch1_a,0,beat_ch1_f2_pre;beat_ch1_f2_pre_b,,
 fight_1_3,chapter_1,3,Goblin Camp,enemy_goblin@2.07+enemy_goblin_shaman@2.07+enemy_goblin@2.07,870,drops_ch1,first_ch1_b,0,,beat_ch1_f3_post,
 fight_1_4,chapter_1,4,Ambush,enemy_wolf@1.75+enemy_goblin@1.75+enemy_wolf@1.75 / enemy_goblin_shaman@1.75+enemy_goblin@1.75,920,drops_ch1,first_ch1_a,0,beat_ch1_f4_pre,,
 fight_1_5,chapter_1,5,Old Bridge,enemy_goblin@2.24+enemy_goblin@2.24+enemy_goblin_shaman@2.24+enemy_wolf@2.24,1190,drops_ch1,first_ch1_b,0,beat_ch1_f5_pre,,

@@ -139,3 +139,9 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **Dialogue barks live in `Resources/Localization/strings_dialogue.csv`** (`line_<id>_<trigger>_<n>`), loaded by the existing CSV localizer; no importer change. Barks are presentation-only (UnityEngine.Random), rate-limited, and suppressed above ×3 speed and during skip, so they never affect the deterministic simulation.
 - **Story**: 21 new beats (hero introductions + banter) in `story.csv`, attached via `fights.csv`.
 - **Logo/text** use Liberation Sans (OFL, already in the project); no new third-party assets were added.
+
+## Tutorial fixes from the iOS Simulator play-test (2026-10-31)
+- **Tutorial resumes from a screen reachable from Home**: each step has a resume point (deeper hero/equip steps restart at the Heroes tab) and an "already done" check (hero unlocked, in party, weapon equipped, fight cleared) so a restart never waits on a button that no longer exists. Popup steps are skipped together with the action that opens them.
+- **Tutorial fights are tuned for the scripted party, not the casual simulator**: `BalanceCli tune tutorial` sets fight 1-1/1-2 so the exact tutorial party wins without losing a hero ≥ 95% of the time (multipliers 2.03→1.47 and 1.73→1.18). Low-HP focus-fire AI is unchanged; later fights keep their casual-player targets.
+- **Power warning only below 90% of the recommendation**: recommended power is the median casual player's power, so 90–100% shows a caution colour without the "too weak" text (the tutorial party is at 97% for fight 1-2).
+- **Tutorial hint stays off popup panels** (below the panel if there is room, else above).
