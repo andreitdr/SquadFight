@@ -1,4 +1,4 @@
-# Command-line builds on Windows. Usage: ./build.ps1 android-dev|android-release|ios|tests|validate|setup
+# Command-line builds on Windows. Usage: ./build.ps1 android-dev|android-release|android-apk|android-release-all|ios|tests|validate|setup
 param([Parameter(Mandatory=$true)][string]$Target)
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -17,6 +17,8 @@ switch ($Target) {
                       Run "tests-play" @("-runTests","-testPlatform","PlayMode","-testResults","$Root/TestResults/playmode.xml") }
   "android-dev"     { Run "build-android-dev" @("-quit","-executeMethod","Game.EditorTools.BuildScript.BuildAndroidDev") }
   "android-release" { Run "build-android-release" @("-quit","-executeMethod","Game.EditorTools.BuildScript.BuildAndroidRelease") }
+  "android-apk"     { Run "build-android-apk" @("-quit","-executeMethod","Game.EditorTools.BuildScript.BuildAndroidReleaseApk") }
+  "android-release-all" { Run "build-android-release-all" @("-quit","-executeMethod","Game.EditorTools.BuildScript.BuildAndroidReleaseAll") }
   "ios"             { Run "build-ios" @("-quit","-executeMethod","Game.EditorTools.BuildScript.BuildIos") }
-  default           { throw "usage: build.ps1 setup|validate|tests|android-dev|android-release|ios" }
+  default           { throw "usage: build.ps1 setup|validate|tests|android-dev|android-release|android-apk|android-release-all|ios" }
 }

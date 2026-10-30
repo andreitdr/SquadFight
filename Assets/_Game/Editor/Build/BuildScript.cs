@@ -20,14 +20,16 @@ namespace Game.EditorTools
 
         public static string VersionName => File.Exists("VERSION.txt") ? File.ReadAllText("VERSION.txt").Trim() : "0.1.0";
 
-        public static int BuildNumber
+        private static int? _buildNumber;
+
+        /// <summary>Fixed for the Editor session so the AAB and APK of one release share a versionCode.</summary>
+        public static int BuildNumber => _buildNumber ??= ReadBuildNumber();
+
+        private static int ReadBuildNumber()
         {
-            get
-            {
-                var env = Environment.GetEnvironmentVariable("BUILD_NUMBER");
-                if (int.TryParse(env, NumberStyles.Integer, CultureInfo.InvariantCulture, out var n) && n > 0) return n;
-                return int.Parse(DateTime.UtcNow.ToString("yyMMddHH", CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
-            }
+            var env = Environment.GetEnvironmentVariable("BUILD_NUMBER");
+            if (int.TryParse(env, NumberStyles.Integer, CultureInfo.InvariantCulture, out var n) && n > 0) return n;
+            return int.Parse(DateTime.UtcNow.ToString("yyMMddHH", CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
         }
 
         private static string[] Scenes => EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray();
@@ -49,18 +51,32 @@ namespace Game.EditorTools
         [MenuItem("Tools/Game/Build/Android Release AAB")]
         public static void BuildAndroidRelease() => BuildAndroid(release: true);
 
-        private static void BuildAndroid(bool release)
+        /// <summary>Signed release APK for sideloading / GitHub Releases (same signing as the AAB).</summary>
+        [MenuItem("Tools/Game/Build/Android Release APK")]
+        public static void BuildAndroidReleaseApk() => BuildAndroid(release: true, appBundle: false);
+
+        /// <summary>CI release: signed AAB (Play) and signed APK (sideload) in one Editor session.</summary>
+        public static void BuildAndroidReleaseAll()
+        {
+            BuildAndroid(release: true);
+            BuildAndroid(release: true, appBundle: false);
+        }
+
+        private static void BuildAndroid(bool release) => BuildAndroid(release, appBundle: release);
+
+        private static void BuildAndroid(bool release, bool appBundle)
         {
             ApplyCommon(release);
-            EditorUserBuildSettings.buildAppBundle = release;
+            EditorUserBuildSettings.buildAppBundle = appBundle;
             PlayerSettings.Android.useCustomKeystore = false;
+            string decodedKeystore = null;
             if (release)
             {
                 var keystore = Environment.GetEnvironmentVariable("ANDROID_KEYSTORE_PATH");
                 var b64 = Environment.GetEnvironmentVariable("ANDROID_KEYSTORE_BASE64");
                 if (string.IsNullOrEmpty(keystore) && !string.IsNullOrEmpty(b64))
                 {
-                    keystore = Path.Combine(Path.GetTempPath(), "squadfight-upload.keystore");
+                    keystore = decodedKeystore = Path.Combine(Path.GetTempPath(), "squadfight-upload.keystore");
                     File.WriteAllBytes(keystore, Convert.FromBase64String(b64));
                 }
                 if (string.IsNullOrEmpty(keystore) || !File.Exists(keystore))
@@ -71,8 +87,16 @@ namespace Game.EditorTools
                 PlayerSettings.Android.keyaliasName = Environment.GetEnvironmentVariable("ANDROID_KEYALIAS_NAME");
                 PlayerSettings.Android.keyaliasPass = Environment.GetEnvironmentVariable("ANDROID_KEYALIAS_PASS");
             }
-            var file = release ? $"SquadFight-{VersionName}-{BuildNumber}.aab" : $"SquadFight-{VersionName}-{BuildNumber}-dev.apk";
-            Run(BuildTarget.Android, Path.Combine(OutputRoot, "Android", file), release);
+            var file = $"SquadFight-{VersionName}-{BuildNumber}{(release ? "" : "-dev")}.{(appBundle ? "aab" : "apk")}";
+            try { Run(BuildTarget.Android, Path.Combine(OutputRoot, "Android", file), release); }
+            finally
+            {
+                // Keep the local keystore path out of ProjectSettings.asset (it would otherwise be saved and committed).
+                PlayerSettings.Android.useCustomKeystore = false;
+                PlayerSettings.Android.keystoreName = "";
+                PlayerSettings.Android.keyaliasName = "";
+                if (decodedKeystore != null) File.Delete(decodedKeystore);
+            }
         }
 
         [MenuItem("Tools/Game/Build/iOS Xcode Project")]

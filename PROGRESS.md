@@ -148,11 +148,16 @@ Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 - Fixed: tutorial lost the Sister Maren highlight on the Heroes list (recycled cards re-registered stale anchor ids); hole drawn at a pre-layout rect on slow first frames (overlay now waits 2 frames per new target); weapon-slot target off screen inside the scroll view with input blocked = player stuck (overlay now scrolls targets into view); circular ring replaced by a frame that fits wide buttons; Skip button moved into the safe area (it overlapped the top bar under the notch). `FullScript_HighlightsEveryTarget` PlayMode test walks all 13 steps and checks the hole sits on an on-screen target.
 - Follow-up fixes (same day): tutorial resumes correctly after a restart (resume points + already-done checks, EditMode tests); hint kept off popup panels (PlayMode check); tutorial fights 1-1/1-2 eased so the scripted party wins with no deaths ≥ 95% (`BalanceCli tune tutorial`; progression still completes in all 9 runs, casual 72–92 fights); fight preview warns only below 90% of recommended power (90–100% = caution colour); equipment picker rows fit narrow screens. Still open: FMOD output-device error in the simulator (check on device).
 
+### Android release pipeline (owner request, 2026-10-31)
+- [x] `BuildAndroidReleaseApk` / `BuildAndroidReleaseAll` (`./build.sh android-apk|android-release-all`): signed APK + AAB with one versionCode. Verified locally with a throwaway keystore passed as base64 (CI path): apksigner verifies, no network permissions, arm64-v8a.
+- [x] CI: `v*` tag → tests → signed APK + AAB attached to a GitHub Release (tag must equal VERSION.txt). [~] Not run on GitHub yet: needs the Unity license + keystore secrets (BUILD.md).
+- [x] Project-local emulator (`tools/android-emulator.sh`, `AndroidEmulator/` gitignored): release APK installs, boots to Home, tutorial + touch input reach the Fight Preview.
+
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)
 
 ## Pending verifications (need real Unity / device)
-- Step 01: Boot → Main on an Android device/emulator (Editor PlayMode verified).
+- Step 01: Boot → Main on a real Android device (verified on the arm64 emulator 2026-10-31).
 - Step 03: IL2CPP release build loads/saves correctly (stripping/AOT) – smoke test on device.
 - Step 04: debug console usable on device (4-finger tap).
 - Step 18: tutorial with real first-time players; release AAB signing (keystore); store submission.

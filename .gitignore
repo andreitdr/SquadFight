@@ -126,3 +126,11 @@ InitTestScene*.unity*
 # Python art tooling
 __pycache__/
 .venv-art/
+
+# Signing keys (never commit; CI uses secrets)
+*.keystore
+*.jks
+.lfs-assets-id
+
+# Local Android emulator (tools/android-emulator.sh)
+/AndroidEmulator/

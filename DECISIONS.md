@@ -140,6 +140,13 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **Story**: 21 new beats (hero introductions + banter) in `story.csv`, attached via `fights.csv`.
 - **Logo/text** use Liberation Sans (OFL, already in the project); no new third-party assets were added.
 
+## Android APK releases on GitHub (owner request, 2026-10-31)
+- **Release trigger = pushing a `v<version>` tag** (or creating a GitHub Release with a new tag). CI builds a signed APK and AAB in one Editor session (`BuildScript.BuildAndroidReleaseAll`, shared versionCode) and attaches both to the GitHub Release via `softprops/action-gh-release`.
+- **Tag must equal `VERSION.txt`**: one source of truth for the version name; the job fails early with a hint otherwise.
+- **The APK is release-signed with the upload keystore, never debug-signed**: a debug key differs per CI runner, so phones would refuse updates over a previous install. No keystore secrets → the build fails with the BUILD.md hint.
+- **Local keystore path is cleared from PlayerSettings after each Android build** so it never lands in `ProjectSettings.asset`.
+- **LFS objects cached in the release job** to save LFS bandwidth quota.
+
 ## Tutorial fixes from the iOS Simulator play-test (2026-10-31)
 - **Tutorial resumes from a screen reachable from Home**: each step has a resume point (deeper hero/equip steps restart at the Heroes tab) and an "already done" check (hero unlocked, in party, weapon equipped, fight cleared) so a restart never waits on a button that no longer exists. Popup steps are skipped together with the action that opens them.
 - **Tutorial fights are tuned for the scripted party, not the casual simulator**: `BalanceCli tune tutorial` sets fight 1-1/1-2 so the exact tutorial party wins without losing a hero ≥ 95% of the time (multipliers 2.03→1.47 and 1.73→1.18). Low-HP focus-fire AI is unchanged; later fights keep their casual-player targets.

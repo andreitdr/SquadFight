@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Command-line builds. Usage:
-#   ./build.sh android-dev | android-release | ios | tests | validate | setup
+#   ./build.sh android-dev | android-release | android-apk | android-release-all | ios | tests | validate | setup
 # UNITY env var overrides the editor path. Android signing via env vars (see BUILD.md).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -23,7 +23,9 @@ case "${1:-}" in
                    run tests-play -runTests -testPlatform PlayMode -testResults "$ROOT/TestResults/playmode.xml" ;;
   android-dev)     run build-android-dev -quit -executeMethod Game.EditorTools.BuildScript.BuildAndroidDev ;;
   android-release) run build-android-release -quit -executeMethod Game.EditorTools.BuildScript.BuildAndroidRelease ;;
+  android-apk)     run build-android-apk -quit -executeMethod Game.EditorTools.BuildScript.BuildAndroidReleaseApk ;;
+  android-release-all) run build-android-release-all -quit -executeMethod Game.EditorTools.BuildScript.BuildAndroidReleaseAll ;;
   ios)             run build-ios -quit -executeMethod Game.EditorTools.BuildScript.BuildIos ;;
   ios-sim)         run build-ios-sim -quit -executeMethod Game.EditorTools.BuildScript.BuildIosSimulator ;;
-  *) echo "usage: $0 setup|validate|tests|android-dev|android-release|ios|ios-sim" >&2; exit 2 ;;
+  *) echo "usage: $0 setup|validate|tests|android-dev|android-release|android-apk|android-release-all|ios|ios-sim" >&2; exit 2 ;;
 esac
