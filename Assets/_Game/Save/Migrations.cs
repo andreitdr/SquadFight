@@ -33,6 +33,7 @@ namespace Game.Save
             new Migration_1_To_2(),
             new Migration_2_To_3(),
             new Migration_3_To_4(),
+            new Migration_4_To_5(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -102,6 +103,23 @@ namespace Game.Save
                 payload["tutorial"] = new JObject { ["step"] = played ? 999 : 0, ["skipped"] = played, ["seenTips"] = new JArray() };
             if (!(payload["daily"] is JObject))
                 payload["daily"] = new JObject { ["lastClaimDate"] = "", ["streak"] = 0 };
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v4 → v5: audio starts muted for everyone (music and SFX volume 0); other settings are kept.</summary>
+    public sealed class Migration_4_To_5 : ISaveMigration
+    {
+        public int From => 4;
+        public int To => 5;
+
+        public void Apply(JObject payload)
+        {
+            if (!(payload["settings"] is JObject settings)) return;
+            settings["musicVolume"] = 0f;
+            settings["sfxVolume"] = 0f;
         }
     }
 }

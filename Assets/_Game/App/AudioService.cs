@@ -19,7 +19,7 @@ namespace Game.App
         private readonly Dictionary<string, float> _lastPlayed = new Dictionary<string, float>();
         private int _activeMusic;
         private string _currentTrack;
-        private float _musicGain = 0.64f, _sfxGain = 1f;
+        private float _musicGain, _sfxGain;
         private bool _muted;
         private Coroutine _fade;
 

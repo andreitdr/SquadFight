@@ -152,3 +152,7 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **Tutorial fights are tuned for the scripted party, not the casual simulator**: `BalanceCli tune tutorial` sets fight 1-1/1-2 so the exact tutorial party wins without losing a hero ≥ 95% of the time (multipliers 2.03→1.47 and 1.73→1.18). Low-HP focus-fire AI is unchanged; later fights keep their casual-player targets.
 - **Power warning only below 90% of the recommendation**: recommended power is the median casual player's power, so 90–100% shows a caution colour without the "too weak" text (the tutorial party is at 97% for fight 1-2).
 - **Tutorial hint stays off popup panels** (below the panel if there is room, else above).
+
+## Audio starts muted (owner request, 2026-10-31)
+- **Music and SFX volume start at 0**; the player turns them up in Settings. New games use the 0 defaults; existing saves are muted once by save migration v4→v5 (other settings kept).
+- **PlayMode tests run silent**: a namespace-wide `[SetUpFixture]` sets `AudioListener.volume = 0` for the run (some tests boot with the real save, whose volumes may be up) and restores it afterwards.

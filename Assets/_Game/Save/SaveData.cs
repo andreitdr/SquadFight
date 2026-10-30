@@ -93,8 +93,9 @@ namespace Game.Save
 
     public sealed class SettingsSave
     {
-        public float MusicVolume = 0.8f;
-        public float SfxVolume = 1f;
+        /// <summary>New games start muted; the player turns audio up in Settings.</summary>
+        public float MusicVolume = 0f;
+        public float SfxVolume = 0f;
         /// <summary>Empty = detect from the system language on first run.</summary>
         public string Language = "";
         public bool Vibration = true;
@@ -106,7 +107,7 @@ namespace Game.Save
 
     public static class SaveVersions
     {
-        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily".</summary>
-        public const int Current = 4;
+        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily". v5: audio muted.</summary>
+        public const int Current = 5;
     }
 }

@@ -105,7 +105,18 @@ namespace Game.Tests.EditMode
             Assert.AreEqual(12, r.Data.Heroes.Single(h => h.HeroId == "hero_cleric").Shards);
             Assert.AreEqual(345, r.Data.Currencies["gold"]);
             Assert.AreEqual(7, r.Counter);
-            Assert.AreEqual(0.5f, r.Data.Settings.MusicVolume, 1e-6f);
+            Assert.AreEqual(0f, r.Data.Settings.MusicVolume, "v5 mutes audio");
+        }
+
+        [Test]
+        public void V3Fixture_MigratesToMutedAudio_KeepsOtherSettings()
+        {
+            var r = new SaveSerializer().Decode(Fixtures.Read("save_v3.json"));
+            Assert.AreEqual(DecodeStatus.Ok, r.Status, r.Error);
+            Assert.AreEqual(0f, r.Data.Settings.MusicVolume);
+            Assert.AreEqual(0f, r.Data.Settings.SfxVolume);
+            Assert.AreEqual("en", r.Data.Settings.Language);
+            Assert.AreEqual(2f, r.Data.Settings.BattleSpeed);
         }
 
         [Test]
