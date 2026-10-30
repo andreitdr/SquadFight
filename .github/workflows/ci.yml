@@ -12,6 +12,11 @@ on:
     tags: ["v[0-9]+.[0-9]+.[0-9]+", "v[0-9]+.[0-9]+.[0-9]+-*"]
   pull_request:
 
+# Read-only by default: only the tag-gated android-release job below may write (create a GitHub Release).
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   pure-tests:
     name: Pure C# tests + content validation
@@ -72,6 +77,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Never release from a branch push
+        if: github.ref_type != 'tag'
+        run: |
+          echo "::error::Releases come only from version tags (vX.Y.Z / vX.Y.Z-beta.N), never from a push to $GITHUB_REF_NAME."
+          exit 1
       - uses: actions/checkout@v4
         with:
           lfs: false
@@ -125,6 +135,7 @@ jobs:
             Builds/Android/*.apk
             Builds/size-report.md
       - name: Publish GitHub Release
+        if: github.ref_type == 'tag'
         uses: softprops/action-gh-release@v2
         with:
           name: SquadFight ${{ github.ref_name }}
