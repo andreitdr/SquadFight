@@ -8,9 +8,8 @@ This project is built autonomously. **At the start of every session:**
 Only ask the owner what AUTOPILOT.md says to ask. Specs live in `plan/`.
 
 ## Release rules (owner decision, 2026-10-31 — always follow)
-- **Nothing is built or released when pushing to `main`, unless the owner explicitly asks for a release or pre-release.** Pushes to `main` only run tests. Do not change CI to build or release on push; CI is read-only except the tag-gated release job.
-- Releases and pre-releases are **GitHub only** (signed APK on a GitHub Release). Nothing goes to Google Play, the App Store or any other store; CI builds no AAB.
-- Android builds happen **only** for version tags (see `BUILD.md` → "Releasing a new version"):
-  - `vX.Y.Z` → **release** (GitHub Release marked Latest)
-  - `vX.Y.Z-beta.N` (or `-alpha.N`, `-rc.N`; dot optional, e.g. `v0.0.1-alpha1`) → **pre-release** (GitHub Release marked Pre-release)
-- The version tag is the explicit release signal. Create and push one only when the owner explicitly asks for a release / pre-release, never as part of a normal push. The tag must equal `VERSION.txt` (bump it and commit first). Plain `git push origin main` never pushes tags (do not use `--tags` / `--follow-tags`).
+- **After every push to `main`, build a new signed release APK locally** with `tools/build-apk.sh` (Unity Editor must be closed) and tell the owner the APK path. If the keystore is missing, ask the owner to run `tools/build-apk.sh setup` in their own terminal.
+- **CI never builds Android or iOS and never publishes releases.** Do not add build/release jobs to `.github/workflows`; CI only runs tests.
+- The owner uploads APKs to GitHub Releases by hand. Releases are **GitHub only**: nothing goes to Google Play, the App Store or any other store.
+- **Never commit, print or ask for the keystore password in chat.** It lives only in the macOS Keychain (service `squadfight-android-keystore`); the keystore lives outside the repo (`~/.squadfight/`). The owner types the password only into their own terminal (`tools/build-apk.sh setup`).
+- Create or push version tags only when the owner explicitly asks. Plain `git push origin main` (no `--tags` / `--follow-tags`).

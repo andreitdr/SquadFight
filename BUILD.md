@@ -7,7 +7,8 @@ Unity 6000.6.7f1 with Android + iOS modules. Close the Editor before command-lin
 | `./build.sh android-dev` | `Builds/Android/SquadFight-<version>-<build>-dev.apk` — development build (debug console, FPS overlay, desync checks) |
 | `./build.sh android-release` | `Builds/Android/SquadFight-<version>-<build>.aab` — release App Bundle for Google Play |
 | `./build.sh android-apk` | `Builds/Android/SquadFight-<version>-<build>.apk` — signed release APK to install directly on phones |
-| `./build.sh android-release-all` | both of the above with the same build number (what CI runs on a release) |
+| `./build.sh android-release-all` | both of the above with the same build number |
+| `tools/build-apk.sh` | signed release APK using the keystore + Keychain password from `tools/build-apk.sh setup` (run after every push to `main`) |
 | `./build.sh ios` | `Builds/iOS/` Xcode project (open on a Mac, sign, archive) |
 | `./build.sh ios-sim` | `Builds/iOS-Simulator/` dev Xcode project for the iOS Simulator (arm64); then `xcodebuild -project Builds/iOS-Simulator/Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug CODE_SIGNING_ALLOWED=NO build` |
 | `./build.sh tests` / `validate` / `setup` | tests, config validation, player settings + scene/theme/audio regeneration |
@@ -16,63 +17,36 @@ Windows: `build.ps1 <same target>`.
 
 ## Versioning
 - **Version name** = `VERSION.txt` (never name it `VERSION`: it breaks IL2CPP builds on macOS) (semantic, e.g. `1.0.0`). Bump it for each release / pre-release.
-- **Build number** (Android `versionCode`, iOS build) = `BUILD_NUMBER` env var if set (CI), else `yyMMddHH` UTC.
+- **Build number** (Android `versionCode`, iOS build) = `BUILD_NUMBER` env var if set, else `yyMMddHH` UTC.
 
 ## Android signing (release only, never commit keys)
-Create an upload key once:
-```bash
-keytool -genkeypair -v -keystore squadfight-upload.keystore -alias upload -keyalg RSA -keysize 2048 -validity 10000
-```
-Then, before `./build.sh android-release`:
-```bash
-export ANDROID_KEYSTORE_PATH=/secure/path/squadfight-upload.keystore
-export ANDROID_KEYSTORE_PASS=...
-export ANDROID_KEYALIAS_NAME=upload
-export ANDROID_KEYALIAS_PASS=...
-```
-CI uses `ANDROID_KEYSTORE_BASE64` (base64 of the keystore) plus the same three secrets.
-Keep the keystore and passwords backed up: every APK of the game must be signed with the same key, or phones refuse to
+Use `tools/build-apk.sh setup` once (see below): it creates the upload key outside the repo and keeps the password in
+the macOS Keychain. To call `./build.sh android-apk` / `android-release` directly instead, export
+`ANDROID_KEYSTORE_PATH`, `ANDROID_KEYSTORE_PASS`, `ANDROID_KEYALIAS_NAME` (`upload`) and `ANDROID_KEYALIAS_PASS`.
+Keep the keystore and password backed up: every APK of the game must be signed with the same key, or phones refuse to
 install the update over the old version (players would have to uninstall and lose their save).
 
-## Releasing a new version (GitHub Actions)
-**Rule: pushing to `main` never builds an APK** — it only runs the tests. An Android build (a signed **APK** attached to
-a GitHub Release named after the tag) happens only when you push a version tag. Releases and pre-releases are for
-**GitHub only**: nothing is uploaded to Google Play, the App Store or any other store, and CI builds no AAB.
-
-| Tag | Build | GitHub Release |
-|---|---|---|
-| `v1.1.0` | release | normal release, marked **Latest** |
-| `v1.1.0-beta.1` (also `-alpha.N`, `-rc.N`; the dot is optional: `v0.0.1-alpha1`) | pre-release | marked **Pre-release**, never "Latest" |
-| anything else (`v1.1`, `v1.1.0-test`, …) | none (the job stops with an error) | — |
-
-Both channels are release-signed with the same upload key, so a tester can install a pre-release and later update to
-the release without uninstalling. The tag must equal `VERSION.txt` with a `v` in front, or the job stops.
-
-Pre-release (testers):
+## Releasing a new version (built on your Mac, uploaded by hand)
+**CI never builds Android or iOS and never publishes a release** — GitHub Actions only runs the tests.
+After every push to `main`, a signed release APK is built locally on the Mac:
 ```bash
-echo 1.1.0-beta.1 > VERSION.txt
-git commit -am "pre-release: 1.1.0-beta.1"
-git tag v1.1.0-beta.1
-git push origin main v1.1.0-beta.1
+tools/build-apk.sh          # → Builds/Android/SquadFight-<version>-<build>.apk
 ```
-Release:
-```bash
-echo 1.1.0 > VERSION.txt
-git commit -am "release: 1.1.0"
-git tag v1.1.0
-git push origin main v1.1.0
-```
-The Android version name shows the suffix (`1.1.0-beta.1`); iOS builds drop it (`1.1.0`) because iOS accepts only digits. Creating the release from the GitHub web UI with a new `v…` tag works
-too; the files are added to that release. Download the `.apk` from the release page and open it on the phone
-(allow "install unknown apps" once).
+You upload that APK to a GitHub Release yourself (Releases → Draft a new release → tag `v<VERSION.txt>`, attach the
+`.apk`, tick **Set as a pre-release** for `-alpha1` / `-beta.1` / `-rc.1` versions). Releases are for **GitHub only**:
+nothing goes to Google Play, the App Store or any other store. Download the `.apk` from the release page and open it on
+the phone (allow "install unknown apps" once).
 
-One-time repository setup (Settings → Secrets and variables → Actions):
-| Secret | Value |
-|---|---|
-| `UNITY_LICENSE` | contents of your `Unity_lic.ulf` (Personal: see game.ci "Activation") |
-| `UNITY_EMAIL`, `UNITY_PASSWORD` | your Unity account |
-| `ANDROID_KEYSTORE_BASE64` | `base64 -i squadfight-upload.keystore \| pbcopy` (macOS) |
-| `ANDROID_KEYSTORE_PASS`, `ANDROID_KEYALIAS_NAME`, `ANDROID_KEYALIAS_PASS` | the keystore password, alias (`upload`) and key password |
+One-time setup (asks you for a new keystore password in your terminal; nothing is written to the repo):
+```bash
+tools/build-apk.sh setup
+```
+It creates `~/.squadfight/squadfight-upload.keystore` (alias `upload`) and stores its password in the macOS Keychain
+(service `squadfight-android-keystore`), where `tools/build-apk.sh` reads it. Back up the keystore file and the
+password: every APK must be signed with the same key, or phones refuse to install the update over the old version.
+
+Version names: `VERSION.txt` (e.g. `0.0.1-alpha1`). The Android version name keeps the suffix; iOS builds drop it
+(`0.0.1`) because iOS accepts only digits.
 
 ## What every build does
 - Config validation runs before the build and blocks it on errors.

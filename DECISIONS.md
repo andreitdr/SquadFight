@@ -164,3 +164,8 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **Two channels by tag**: `vX.Y.Z` → release (GitHub "Latest"); `vX.Y.Z-(alpha|beta|rc)[.]N` → pre-release (dot optional; the first pre-release is `v0.0.1-alpha1`) (GitHub "Pre-release", never "Latest"). Other `v…` tags are rejected by the job. The tag must equal `VERSION.txt`.
 - **Pre-releases are release-signed, not development builds**: same upload key as releases, so testers can update from a beta to the release without uninstalling (a debug-signed dev build could not be updated in place).
 - **iOS version name drops the pre-release suffix** (`1.1.0-beta.1` → `1.1.0`) because CFBundleShortVersionString accepts digits and dots only.
+
+## APKs built locally, CI tests only (owner request, 2026-10-31; supersedes the tag-based release job above)
+- **CI no longer builds Android or iOS** and has no release job or tag trigger; it only runs tests on pushes to `main` and PRs. Its token is read-only for contents, so it cannot publish a release.
+- **A signed release APK is built on the owner's Mac after every push to `main`** (`tools/build-apk.sh`); the owner uploads it to GitHub Releases by hand (pre-release for `-alpha/-beta/-rc` versions). GitHub only, no stores.
+- **Keystore password only in the macOS Keychain**: `tools/build-apk.sh setup` lets the owner type it into `keytool` and `security` in their own terminal; builds read it from the Keychain, so it is never in the repo, CI secrets or chat. The keystore (`~/.squadfight/`) stays outside the repo.

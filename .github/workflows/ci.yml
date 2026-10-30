@@ -1,18 +1,14 @@
-# CI: pure tests + Unity EditMode/PlayMode tests on pushes to main and on PRs. Pushes to main NEVER build an APK.
-# Android builds (signed APK on a GitHub Release; GitHub only, nothing goes to any store) run only for version tags:
-#   v1.2.0            → release      (marked "Latest")
-#   v1.2.0-beta.1     → pre-release  (also -alpha.N / -rc.N, dot optional: v0.0.1-alpha1; not marked "Latest")
-# The tag must equal VERSION.txt with a "v" prefix. Secrets: UNITY_LICENSE, UNITY_EMAIL, UNITY_PASSWORD,
-# ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASS, ANDROID_KEYALIAS_NAME, ANDROID_KEYALIAS_PASS (see BUILD.md).
+# CI: pure tests + Unity EditMode/PlayMode tests on pushes to main and on PRs (Unity tests need the UNITY_LICENSE,
+# UNITY_EMAIL, UNITY_PASSWORD secrets). CI never builds Android or iOS and never publishes a release: APKs are built
+# on the owner's Mac (tools/build-apk.sh) and uploaded to GitHub Releases by hand. See BUILD.md.
 name: CI
 
 on:
   push:
     branches: [main]
-    tags: ["v[0-9]+.[0-9]+.[0-9]+", "v[0-9]+.[0-9]+.[0-9]+-*"]
   pull_request:
 
-# Read-only by default: only the tag-gated android-release job below may write (create a GitHub Release).
+# Read-only: CI cannot create releases (checks: write only lets the Unity test runner report results).
 permissions:
   contents: read
   checks: write
@@ -67,81 +63,3 @@ jobs:
         with:
           name: unity-test-results
           path: TestResults/unity
-
-  android-release:
-    name: Android ${{ contains(github.ref_name, '-') && 'pre-release' || 'release' }} (APK → GitHub Release)
-    runs-on: ubuntu-latest
-    needs: [pure-tests, unity-tests]
-    # Version tags only: a push to main never reaches this job.
-    if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/v')
-    permissions:
-      contents: write
-    steps:
-      - name: Never release from a branch push
-        if: github.ref_type != 'tag'
-        run: |
-          echo "::error::Releases come only from version tags (vX.Y.Z / vX.Y.Z-beta.N), never from a push to $GITHUB_REF_NAME."
-          exit 1
-      - uses: actions/checkout@v4
-        with:
-          lfs: false
-      - name: Tag must be vX.Y.Z or vX.Y.Z-(alpha|beta|rc)[.]N and match VERSION.txt
-        run: |
-          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-(alpha|beta|rc)\.?[0-9]+)?$ ]]; then
-            echo "::error::Tag $GITHUB_REF_NAME is not a release (v1.2.0) or pre-release (v1.2.0-beta.1) tag."
-            exit 1
-          fi
-          want="$(tr -d '[:space:]' < VERSION.txt)"
-          if [[ "${GITHUB_REF_NAME#v}" != "$want" ]]; then
-            echo "::error::Tag $GITHUB_REF_NAME does not match VERSION.txt ($want). Bump VERSION.txt, commit, then tag v$want."
-            exit 1
-          fi
-      # Cache LFS objects so each release does not re-download every asset (LFS bandwidth quota).
-      - name: List LFS objects
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      - uses: actions/cache@v4
-        with:
-          path: .git/lfs
-          key: lfs-${{ hashFiles('.lfs-assets-id') }}
-          restore-keys: lfs-
-      - run: git lfs pull
-      - uses: jlumbroso/free-disk-space@v1.3.1
-        with:
-          tool-cache: false
-      - uses: actions/cache@v4
-        with:
-          path: Library
-          key: Library-Android-${{ hashFiles('Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
-          restore-keys: Library-Android-
-      # Signed APK for sideloading from the GitHub Release (no AAB: nothing is uploaded to a store).
-      - uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: Android
-          buildMethod: Game.EditorTools.BuildScript.BuildAndroidReleaseApk
-          versioning: None
-          androidKeystoreName: squadfight-upload.keystore
-          androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          androidKeystorePass: ${{ secrets.ANDROID_KEYSTORE_PASS }}
-          androidKeyaliasName: ${{ secrets.ANDROID_KEYALIAS_NAME }}
-          androidKeyaliasPass: ${{ secrets.ANDROID_KEYALIAS_PASS }}
-      - uses: actions/upload-artifact@v4
-        with:
-          name: android-release
-          path: |
-            Builds/Android/*.apk
-            Builds/size-report.md
-      - name: Publish GitHub Release
-        if: github.ref_type == 'tag'
-        uses: softprops/action-gh-release@v2
-        with:
-          name: SquadFight ${{ github.ref_name }}
-          prerelease: ${{ contains(github.ref_name, '-') }}
-          make_latest: ${{ !contains(github.ref_name, '-') }}
-          generate_release_notes: true
-          fail_on_unmatched_files: true
-          files: |
-            Builds/Android/*.apk
