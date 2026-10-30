@@ -177,10 +177,10 @@ PlayerSettings:
   buildNumber:
     Standalone: 0
     VisionOS: 0
-    iPhone: 26102922
+    iPhone: 26103022
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 26102922
+  AndroidBundleVersionCode: 26103022
   AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 36
   AndroidPreferredInstallLocation: 1
@@ -732,8 +732,8 @@ PlayerSettings:
   il2cppLTOMode: {}
   il2cppStacktraceInformation: {}
   managedStrippingLevel:
-    Android: 1
-    iPhone: 1
+    Android: 2
+    iPhone: 2
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
