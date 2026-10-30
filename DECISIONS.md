@@ -159,6 +159,7 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 
 ## Release and pre-release builds (owner request, 2026-10-31)
 - **Pushes to `main` never build an APK**: they run tests only. Android builds run only for version tags.
+- **GitHub only, no stores**: releases and pre-releases are signed APKs on GitHub Releases; CI builds no AAB and uploads nothing to Google Play / App Store (supersedes the APK + AAB release job).
 - **Two channels by tag**: `vX.Y.Z` → release (GitHub "Latest"); `vX.Y.Z-(alpha|beta|rc).N` → pre-release (GitHub "Pre-release", never "Latest"). Other `v…` tags are rejected by the job. The tag must equal `VERSION.txt`.
 - **Pre-releases are release-signed, not development builds**: same upload key as releases, so testers can update from a beta to the release without uninstalling (a debug-signed dev build could not be updated in place).
 - **iOS version name drops the pre-release suffix** (`1.1.0-beta.1` → `1.1.0`) because CFBundleShortVersionString accepts digits and dots only.

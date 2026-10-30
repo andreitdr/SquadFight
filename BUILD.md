@@ -15,7 +15,7 @@ Unity 6000.6.7f1 with Android + iOS modules. Close the Editor before command-lin
 Windows: `build.ps1 <same target>`.
 
 ## Versioning
-- **Version name** = `VERSION.txt` (never name it `VERSION`: it breaks IL2CPP builds on macOS) (semantic, e.g. `1.0.0`). Bump it for each store release.
+- **Version name** = `VERSION.txt` (never name it `VERSION`: it breaks IL2CPP builds on macOS) (semantic, e.g. `1.0.0`). Bump it for each release / pre-release.
 - **Build number** (Android `versionCode`, iOS build) = `BUILD_NUMBER` env var if set (CI), else `yyMMddHH` UTC.
 
 ## Android signing (release only, never commit keys)
@@ -30,13 +30,14 @@ export ANDROID_KEYSTORE_PASS=...
 export ANDROID_KEYALIAS_NAME=upload
 export ANDROID_KEYALIAS_PASS=...
 ```
-CI uses `ANDROID_KEYSTORE_BASE64` (base64 of the keystore) plus the same three secrets. Enable Play App Signing in the Play Console.
+CI uses `ANDROID_KEYSTORE_BASE64` (base64 of the keystore) plus the same three secrets.
 Keep the keystore and passwords backed up: every APK of the game must be signed with the same key, or phones refuse to
 install the update over the old version (players would have to uninstall and lose their save).
 
 ## Releasing a new version (GitHub Actions)
-**Rule: pushing to `main` never builds an APK** — it only runs the tests. An Android build (signed **APK** + **AAB**,
-attached to a GitHub Release named after the tag) happens only when you push a version tag:
+**Rule: pushing to `main` never builds an APK** — it only runs the tests. An Android build (a signed **APK** attached to
+a GitHub Release named after the tag) happens only when you push a version tag. Releases and pre-releases are for
+**GitHub only**: nothing is uploaded to Google Play, the App Store or any other store, and CI builds no AAB.
 
 | Tag | Build | GitHub Release |
 |---|---|---|

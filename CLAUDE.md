@@ -9,6 +9,7 @@ Only ask the owner what AUTOPILOT.md says to ask. Specs live in `plan/`.
 
 ## Release rules (owner decision, 2026-10-31 — always follow)
 - **Never trigger an APK build by pushing to `main`.** Pushes to `main` only run tests. Do not change CI to build on push.
+- Releases and pre-releases are **GitHub only** (signed APK on a GitHub Release). Nothing goes to Google Play, the App Store or any other store; CI builds no AAB.
 - Android builds happen **only** for version tags (see `BUILD.md` → "Releasing a new version"):
   - `vX.Y.Z` → **release** (GitHub Release marked Latest)
   - `vX.Y.Z-beta.N` (or `-alpha.N`, `-rc.N`) → **pre-release** (GitHub Release marked Pre-release)
