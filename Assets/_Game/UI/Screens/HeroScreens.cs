@@ -45,9 +45,7 @@ namespace Game.UI
             card.Button.onClick.RemoveAllListeners();
             card.Button.onClick.AddListener(() => Ctx.Manager.Push<HeroDetailScreen>(e.Def.Id));
             var anchor = item.TryGetComponent<TutorialAnchor>(out var existing) ? existing : item.gameObject.AddComponent<TutorialAnchor>();
-            if (anchor.Id != null && TutorialAnchor.Active.TryGetValue(anchor.Id, out var prev) && prev == anchor) TutorialAnchor.Active.Remove(anchor.Id);
-            anchor.Id = "hero_" + e.Def.Id;
-            TutorialAnchor.Active[anchor.Id] = anchor;
+            anchor.SetId("hero_" + e.Def.Id);
         }
 
         public override void OnShow() => Refresh();

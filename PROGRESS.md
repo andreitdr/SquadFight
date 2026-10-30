@@ -143,6 +143,11 @@ Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 ### M3 milestone checks (2026-10-30)
 - Config validator 0/0; BalanceCli progression: all 9 runs complete (casual 72–92 fights); headless playthrough + 500-fight soak green; Android IL2CPP dev APK builds (47 MB) with no network permission.
 
+### iOS Simulator play-test (2026-10-31, iPhone 18 Pro sim, Debug IL2CPP build)
+- Boot, Home, Fight Preview, story, battle, result, Heroes, unlock, party, equip and the whole 13-step tutorial run end to end.
+- Fixed: tutorial lost the Sister Maren highlight on the Heroes list (recycled cards re-registered stale anchor ids); hole drawn at a pre-layout rect on slow first frames (overlay now waits 2 frames per new target); weapon-slot target off screen inside the scroll view with input blocked = player stuck (overlay now scrolls targets into view); circular ring replaced by a frame that fits wide buttons; Skip button moved into the safe area (it overlapped the top bar under the notch). `FullScript_HighlightsEveryTarget` PlayMode test walks all 13 steps and checks the hole sits on an on-screen target.
+- Open (not fixed): resuming mid-tutorial after a restart shows no hint until the player reaches the step's screen; hint bubble covers popup text (unlock popup quote) and the fight-preview "too weak" warning; tutorial fight 2 is flagged too weak (805 / 830) while the hint says "You're ready"; Pip dies in both tutorial fights; equipment picker rows run edge to edge; FMOD "failed to initialize output device" in the simulator dev console (simulator audio, check on device).
+
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)
 

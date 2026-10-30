@@ -33,7 +33,20 @@ namespace Game.UI
             return a;
         }
 
-        private void OnEnable() { if (!string.IsNullOrEmpty(Id)) Active[Id] = this; }
+        /// <summary>Re-targets a recycled anchor (list items): drops its old registration and takes the new id.</summary>
+        public void SetId(string id)
+        {
+            if (Id != id && Id != null && Active.TryGetValue(Id, out var prev) && prev == this) Active.Remove(Id);
+            Id = id;
+            if (isActiveAndEnabled) Active[id] = this;
+        }
+
+        // A recycled item re-enabled with a stale id must not steal the id from the item that holds it now.
+        private void OnEnable()
+        {
+            if (string.IsNullOrEmpty(Id)) return;
+            if (!Active.TryGetValue(Id, out var current) || current == null || !current.isActiveAndEnabled) Active[Id] = this;
+        }
         private void OnDisable() { if (!string.IsNullOrEmpty(Id) && Active.TryGetValue(Id, out var a) && a == this) Active.Remove(Id); }
         public RectTransform Rect => (RectTransform)transform;
     }
