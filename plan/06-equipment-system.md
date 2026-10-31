@@ -47,3 +47,4 @@ Events: `ItemAdded`, `ItemEquipped`, `ItemUnequipped`, `ItemSold`.
 - Inventory limit: none (D3 default; `inventoryLimit` 0 = unlimited; AddItem fails with InventoryFull when set)
 - Instance ids are GUIDs generated from the game RNG (deterministic under a seed)
 - Equip without slot index: first empty compatible slot, else replace the first compatible slot
+- Gear shop (owner request 2026-10-31, A15): `ShopService` sells the weapon/armour templates of the current gear tier at a chosen rarity; price = tier price × chosen rarity × template rarity multiplier; purchase is one transaction saved at once; validator keeps every price above the sell value.

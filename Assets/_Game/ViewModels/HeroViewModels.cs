@@ -110,6 +110,7 @@ namespace Game.ViewModels
             On<ShardsChanged>(s.Bus, e => { if (e.HeroId == heroId) Raise(); });
             On<HeroUnlocked>(s.Bus, e => { if (e.HeroId == heroId) Raise(); });
             On<HeroStarUpgraded>(s.Bus, e => { if (e.HeroId == heroId) Raise(); });
+            On<HeroSkillUpgraded>(s.Bus, e => { if (e.HeroId == heroId) Raise(); });
             On<CurrencyChanged>(s.Bus, _ => Raise());
             On<ItemEquipped>(s.Bus, _ => Raise());
             On<ItemUnequipped>(s.Bus, _ => Raise());
@@ -143,6 +144,10 @@ namespace Game.ViewModels
                 }).ToList();
             }
         }
+
+        /// <summary>Gold upgrade state of the active or passive (levels, cost, potency now and next).</summary>
+        public SkillUpgradeInfo SkillUpgrade(HeroSkillSlot slot) => _s.Roster.GetSkillUpgradeInfo(HeroId, slot);
+        public CommandResult UpgradeSkill(HeroSkillSlot slot) => CommandResult.From(_s.Roster.UpgradeSkill(HeroId, slot));
 
         public CommandResult Unlock() => CommandResult.From(_s.Roster.UnlockHero(HeroId));
         public CommandResult StarUp() => CommandResult.From(_s.Roster.UpgradeStar(HeroId));

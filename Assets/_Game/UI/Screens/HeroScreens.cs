@@ -143,9 +143,9 @@ namespace Game.UI
 
             // Skills
             Section("skills");
-            SkillRow(_vm.BasicSkill, Ctx.T("skill_basic"));
-            SkillRow(_vm.ActiveSkill, Ctx.T("skill_active"));
-            SkillRow(_vm.PassiveSkill, Ctx.T("skill_passive"));
+            SkillRow(_vm.BasicSkill, Ctx.T("skill_basic"), null);
+            SkillRow(_vm.ActiveSkill, Ctx.T("skill_active"), HeroSkillSlot.Active);
+            SkillRow(_vm.PassiveSkill, Ctx.T("skill_passive"), HeroSkillSlot.Passive);
 
             // Equipment
             if (_vm.Unlocked)
@@ -238,13 +238,35 @@ namespace Game.UI
 
         private void Section(string key) => UIKit.Text(_content, "Section", Ctx.T(key), Th.fontLarge, Th.primary, TextAlignmentOptions.Left, bold: true).Size(preferredHeight: 70);
 
-        private void SkillRow(SkillDef skill, string kind)
+        /// <summary>Skill name, kind, cooldown and description; the active and passive also show their level and a gold upgrade button.</summary>
+        private void SkillRow(SkillDef skill, string kind, HeroSkillSlot? slot)
         {
             if (skill == null) return;
             var panel = UIKit.Panel(_content, "Skill", Th.panel);
             UIKit.VStack(panel.gameObject, 6, 24);
-            UIKit.Text(panel.transform, "Name", $"{Ctx.T(skill.NameKey)}  <size=70%><color={UIKit.Hex(Th.textDim)}>{kind}{(skill.Cooldown > 0 ? " · " + Ctx.F("cooldown_turns", skill.Cooldown) : "")}</color></size>", Th.fontBody, Th.text, TextAlignmentOptions.Left, bold: true).Size(preferredHeight: 56);
+            var up = slot.HasValue ? _vm.SkillUpgrade(slot.Value) : (SkillUpgradeInfo?)null;
+            var level = up.HasValue && up.Value.MaxLevel > 1 ? " · " + Ctx.F("skill_level", up.Value.Level, up.Value.MaxLevel) : "";
+            UIKit.Text(panel.transform, "Name", $"{Ctx.T(skill.NameKey)}  <size=70%><color={UIKit.Hex(Th.textDim)}>{kind}{level}{(skill.Cooldown > 0 ? " · " + Ctx.F("cooldown_turns", skill.Cooldown) : "")}</color></size>", Th.fontBody, Th.text, TextAlignmentOptions.Left, bold: true).Size(preferredHeight: 56);
             UIKit.Text(panel.transform, "Desc", Ctx.T(skill.DescriptionKey), Th.fontSmall, Th.textDim).Size(preferredHeight: 90);
+            if (!up.HasValue || up.Value.MaxLevel <= 1) return;
+            var u = up.Value;
+            if (u.Level > 1) UIKit.Text(panel.transform, "Potency", Ctx.F("skill_potency", (u.Potency - 1) * 100), Th.fontSmall, Th.positive).Size(preferredHeight: 50);
+            if (!_vm.Unlocked) return;
+            if (u.IsMaxLevel)
+            {
+                UIKit.Text(panel.transform, "Max", Ctx.T("skill_max_level"), Th.fontSmall, Th.warning).Size(preferredHeight: 50);
+                return;
+            }
+            var s = slot.Value;
+            var b = UIKit.Button(panel.transform, "Upgrade", Ctx.F("skill_upgrade_cost", u.Cost.ToString("N0"), (u.NextPotency - 1) * 100), () =>
+            {
+                if (!ScreenKit.Report(Ctx, _vm.UpgradeSkill(s))) return;
+                Ctx.Haptics.Play(HapticKind.Success);
+                Ctx.PlaySfx("starup");
+                Ctx.Manager.Toast(Ctx.F("skill_level_reached", Ctx.T(skill.NameKey), u.Level + 1));
+            }, UIKit.ButtonStyle.Secondary, Th.fontSmall);
+            b.Size(preferredHeight: 100);
+            b.interactable = u.CanUpgrade;
         }
 
         public override void OnClosed() => _vm?.Dispose();

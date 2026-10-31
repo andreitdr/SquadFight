@@ -19,6 +19,7 @@ namespace Game.Services
         public InventoryService Inventory { get; }
         public ProgressService Progress { get; }
         public RewardService Rewards { get; }
+        public ShopService Shop { get; }
         public SettingsService Settings { get; }
         public TutorialService Tutorial { get; }
         public DailyBonusService Daily { get; }
@@ -42,6 +43,7 @@ namespace Game.Services
             Progress = new ProgressService(Context, Roster, Party);
             Rewards = new RewardService(Context, Currency, Roster, Inventory, Party);
             Progress.Rewards = Rewards;
+            Shop = new ShopService(Context, Currency, Inventory, Progress);
             Battles = new BattleFlowController(this);
             Settings = new SettingsService(Context);
             Tutorial = new TutorialService(Context);

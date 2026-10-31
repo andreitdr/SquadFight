@@ -65,6 +65,8 @@ namespace Game.Core
 
             ValidateRarities(db, r);
             ValidateStars(db, r);
+            ValidateSkillLevels(db, r);
+            ValidateShop(db, r);
             ValidateCombat(db, r);
             ValidateRules(db, r);
             foreach (var s in db.Skills.Where(s => s != null)) ValidateSkill(s, r);
@@ -121,6 +123,53 @@ namespace Game.Core
                 if (s.CurrencyCost < 0) r.Error(ctx, "currency cost must be >= 0");
                 if (i > 0 && s.StatMultiplier < db.StarLevels[i - 1].StatMultiplier) r.Error(ctx, "stat multiplier must not decrease");
             }
+        }
+
+        /// <summary>An empty table is allowed (skills cannot be levelled); otherwise level 1, 2, … with rising potency.</summary>
+        private static void ValidateSkillLevels(GameDatabase db, ValidationReport r)
+        {
+            for (var i = 0; i < db.SkillLevels.Count; i++)
+            {
+                var l = db.SkillLevels[i];
+                var ctx = "skilllevel:" + l.Level;
+                if (l.Level != i + 1) r.Error(ctx, $"skill level table has a gap or duplicate (expected level {i + 1})");
+                if (l.Potency <= 0) r.Error(ctx, "potency must be > 0");
+                if (i == 0 && Math.Abs(l.Potency - 1f) > 1e-4f) r.Error(ctx, "level 1 potency must be 1 (skills as authored)");
+                if (i == 0 && l.GoldCost != 0) r.Warn(ctx, "level 1 gold cost is ignored (skills start at level 1)");
+                if (i > 0 && l.GoldCost <= 0) r.Error(ctx, "goldCost must be > 0");
+                if (i > 0 && l.Potency < db.SkillLevels[i - 1].Potency) r.Error(ctx, "potency must not decrease");
+            }
+        }
+
+        private static void ValidateShop(GameDatabase db, ValidationReport r)
+        {
+            var g = db.Rules;
+            if (!g.ShopEnabled) return;
+            if (g.ShopSlots.Count == 0) r.Error("shop", "shop is enabled but sells no slots");
+            foreach (var s in g.ShopSlots)
+                if (!g.SlotLayout.Contains(s)) r.Error("shop", $"shop slot {s} is not in the slot layout");
+            if (g.ShopTierPrices.Count == 0) r.Error("shop", "shop is enabled but has no tier prices");
+            for (var i = 0; i < g.ShopTierPrices.Count; i++)
+            {
+                if (g.ShopTierPrices[i] <= 0) r.Error("shop", $"tier {i + 1} price must be > 0");
+                if (i > 0 && g.ShopTierPrices[i] < g.ShopTierPrices[i - 1]) r.Warn("shop", $"tier {i + 1} is cheaper than tier {i}");
+            }
+            if (g.ShopRarityPrices.Count == 0) r.Error("shop", "shop is enabled but sells no rarity");
+            foreach (var p in g.ShopRarityPrices)
+            {
+                if (p.Multiplier <= 0) r.Error("shop", $"{p.Rarity} price multiplier must be > 0");
+                if (!db.TryGetRarity(p.Rarity, out _)) r.Error("shop", $"{p.Rarity} is not in the rarity table");
+            }
+            if (g.ShopRarityPrices.Select(p => p.Rarity).Distinct().Count() != g.ShopRarityPrices.Count) r.Error("shop", "a rarity is priced twice");
+            // Buying must always cost more than selling gives back, or gold could be farmed in the shop.
+            if (!g.SellEnabled) return;
+            foreach (var t in db.Equipment.Where(t => t != null))
+                foreach (var rarity in ShopRules.Rarities(g))
+                {
+                    var price = ShopRules.Price(t, rarity, g);
+                    if (price != null && db.TryGetRarity(rarity, out var rd) && price.Value <= rd.ItemSellValue)
+                        r.Error("shop:" + t.Id, $"{rarity} price {price.Value} is not above its sell value {rd.ItemSellValue}");
+                }
         }
 
         private static void ValidateCombat(GameDatabase db, ValidationReport r)

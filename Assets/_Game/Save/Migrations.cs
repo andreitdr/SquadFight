@@ -34,6 +34,7 @@ namespace Game.Save
             new Migration_2_To_3(),
             new Migration_3_To_4(),
             new Migration_4_To_5(),
+            new Migration_5_To_6(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -120,6 +121,26 @@ namespace Game.Save
             if (!(payload["settings"] is JObject settings)) return;
             settings["musicVolume"] = 0f;
             settings["sfxVolume"] = 0f;
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v5 → v6: hero skill levels (gold upgrades) start at 1 for every hero.</summary>
+    public sealed class Migration_5_To_6 : ISaveMigration
+    {
+        public int From => 5;
+        public int To => 6;
+
+        public void Apply(JObject payload)
+        {
+            if (!(payload["heroes"] is JArray heroes)) return;
+            foreach (var h in heroes.OfType<JObject>())
+            {
+                if (h["activeSkillLevel"] == null) h["activeSkillLevel"] = 1;
+                if (h["passiveSkillLevel"] == null) h["passiveSkillLevel"] = 1;
+            }
         }
     }
 }

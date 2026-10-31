@@ -118,6 +118,19 @@ namespace Game.Tests.PlayMode
             Navigation.GoTab(ctx, "settings");
             yield return Shot("12_settings");
 
+            // Gold sinks: gear shop and skill levels.
+            m.PopToRoot();
+            m.Push<ShopScreen>();
+            yield return Shot("14_shop");
+            session.Currency.Add(session.Db.Rules.PrimaryCurrencyId, 5000);
+            var offer = session.Shop.GetOffers(Game.Core.Rarity.Common)[0];
+            Assert.IsTrue(session.Shop.Buy(offer.Template.Id, offer.Rarity).Ok);
+            Assert.IsTrue(session.Roster.UpgradeSkill(knight, Game.Core.HeroSkillSlot.Active).Ok);
+            m.Push<HeroDetailScreen>(knight);
+            yield return null;
+            m.Top.GetComponentInChildren<UnityEngine.UI.ScrollRect>().verticalNormalizedPosition = 0.35f; // skills section
+            yield return Shot("15_hero_skill_levels");
+
             LogAssert.NoUnexpectedReceived();
         }
 
