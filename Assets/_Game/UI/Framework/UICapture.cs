@@ -15,8 +15,12 @@ namespace Game.UI
 
     public static class UICapture
     {
+        /// <summary>False under <c>-nographics</c> (Null device): render textures cannot be created, so nothing is captured.</summary>
+        public static bool CanRender => SystemInfo.graphicsDeviceType != UnityEngine.Rendering.GraphicsDeviceType.Null;
+
         public static bool Capture(Transform uiRoot, int width, int height, string path, Camera worldCamera = null)
         {
+            if (!CanRender) return false;
             var canvases = uiRoot.GetComponentsInChildren<Canvas>(true);
             var camGo = new GameObject("[UICaptureCamera]");
             var cam = camGo.AddComponent<Camera>();
