@@ -8,7 +8,7 @@ Unity 6000.6.7f1 with Android + iOS modules. Close the Editor before command-lin
 | `./build.sh android-release` | `Builds/Android/SquadFight-<version>-<build>.aab` — release App Bundle for Google Play |
 | `./build.sh android-apk` | `Builds/Android/SquadFight-<version>-<build>.apk` — signed release APK to install directly on phones |
 | `./build.sh android-release-all` | both of the above with the same build number |
-| `tools/build-apk.sh` | signed release APK using the keystore + Keychain password from `tools/build-apk.sh setup` (run after every push to `main`) |
+| `tools/build-apk.sh` | signed release APK using the keystore + Keychain password from `tools/build-apk.sh setup` (run when the owner asks for a build) |
 | `./build.sh ios` | `Builds/iOS/` Xcode project (open on a Mac, sign, archive) |
 | `./build.sh ios-sim` | `Builds/iOS-Simulator/` dev Xcode project for the iOS Simulator (arm64); then `xcodebuild -project Builds/iOS-Simulator/Unity-iPhone.xcodeproj -scheme Unity-iPhone -sdk iphonesimulator -configuration Debug CODE_SIGNING_ALLOWED=NO build` |
 | `tools/test-all.sh` | every test suite (dotnet + BalanceCli + Unity EditMode/PlayMode); run before pushing |
@@ -32,7 +32,7 @@ install the update over the old version (players would have to uninstall and los
 ```bash
 tools/test-all.sh           # before every push to main: pure C# tests, content validation, Unity EditMode + PlayMode
 ```
-After every push to `main`, a signed release APK is built locally:
+When the owner asks for a build, a signed release APK is built locally:
 ```bash
 tools/build-apk.sh          # → Builds/Android/SquadFight-<version>-<build>.apk
 ```
