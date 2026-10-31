@@ -15,13 +15,13 @@ namespace Game.BattleView
     public sealed class BattleScreenArgs
     {
         public ActiveBattle Battle;
-        /// <summary>Called once when the player leaves: false = finished, true = retreat.</summary>
+        /// <summary>Called once when the player leaves: false = finished/skip, true = retreat.</summary>
         public Action<bool> Leave;
     }
 
     /// <summary>
-    /// Plays the simulator turn by turn as animations. Presentation never changes outcomes. There is no skip:
-    /// battles always play out (speed ×1/×2/×3 only). In dev builds every turn checks that bars match the simulator (desync assert).
+    /// Plays the simulator turn by turn as animations. Presentation never changes outcomes: skip (Editor and dev
+    /// builds only) just runs the remaining turns instantly. In dev builds every turn checks that bars match the simulator (desync assert).
     /// </summary>
     public sealed class BattleScreen : ScreenBase
     {
@@ -45,7 +45,7 @@ namespace Game.BattleView
         private SpeechBubble _bubble;
         private float _nextBubbleAt;
         private float _speed = 1f;
-        private bool _paused, _left;
+        private bool _paused, _skip, _left;
         public bool Finished { get; private set; }
         public int EventsPlayed { get; private set; }
         public int DesyncErrors { get; private set; }
@@ -162,6 +162,12 @@ namespace Game.BattleView
             TutorialAnchor.Mark(_autoButton, "battle_auto");
             _speedButton = UIKit.Button(row, "Speed", "", CycleSpeed, UIKit.ButtonStyle.Ghost, Th.fontBody);
             _speedButton.Size(130, 116);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            // Dev-only: release builds have no Skip, battles always play out.
+            var skip = UIKit.Button(row, "Skip", Ctx.T("skip"), () => _skip = true, UIKit.ButtonStyle.Ghost, Th.fontBody);
+            skip.Size(160, 116);
+            TutorialAnchor.Mark(skip, "battle_skip");
+#endif
             _turnOrder = UIKit.Rect("TurnOrder", top).TopBand(90, 160);
             UIKit.HStack(_turnOrder.gameObject, 8, 0, TextAnchor.MiddleCenter, expandWidth: false);
             _banner = UIKit.Text(Root, "Banner", "", 110, Th.primary, TextAlignmentOptions.Center, bold: true);
@@ -332,20 +338,20 @@ namespace Game.BattleView
         private IEnumerator Wait(float seconds)
         {
             var end = Time.unscaledTime + D(seconds);
-            while ((Time.unscaledTime < end || _paused) && !_left) yield return null;
+            while ((Time.unscaledTime < end || _paused) && !_skip && !_left) yield return null;
         }
 
         private IEnumerator PlayLoop()
         {
             yield return null;
             var cursor = 0;
-            while (!_sim.IsOver && !_left)
+            while (!_sim.IsOver && !_skip && !_left)
             {
                 while (_paused && !_left) yield return null;
-                if (_left) break;
+                if (_skip || _left) break;
                 _sim.Step();
                 RefreshTurnOrder();
-                for (; cursor < _sim.Events.Count && !_left; cursor++)
+                for (; cursor < _sim.Events.Count && !_skip && !_left; cursor++)
                 {
                     var e = _sim.Events[cursor];
                     EventsPlayed++;
@@ -355,6 +361,11 @@ namespace Game.BattleView
                 CheckSync();
             }
             if (_left) yield break;
+            if (_skip)
+            {
+                Leave(retreat: false); // BattleFlow.Finish runs the remaining turns instantly
+                yield break;
+            }
             yield return Wait(0.8f);
             Leave(retreat: false);
         }
@@ -494,7 +505,7 @@ namespace Game.BattleView
         /// <summary>Speech bubble over a unit with the given chance; rate-limited so lines never pile up.</summary>
         private void Bark(int index, string trigger, float chance, bool force = false)
         {
-            if (index < 0 || _bubble == null || _speed > 3.5f || !_units.TryGetValue(index, out var unit)) return;
+            if (index < 0 || _bubble == null || _skip || _speed > 3.5f || !_units.TryGetValue(index, out var unit)) return;
             if (!force && (Time.unscaledTime < _nextBubbleAt || UnityEngine.Random.value > chance)) return;
             var c = _sim.Get(index);
             var line = c != null ? HeroLines.Pick(Ctx, c.DefId, trigger) : null;

@@ -73,17 +73,20 @@ namespace Game.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Hud_HasNoSkipButton()
+        public IEnumerator Skip_GivesSameOutcomeAsFullSimulation()
         {
-            BattleScreen.SpeedOverride = 1f;
             var battle = _session.Battles.Start("fight_1_8", 777).Value;
-            _manager.Push<BattleScreen>(new BattleScreenArgs { Battle = battle, Leave = _ => { } });
+            var reference = new BattleSimulator(battle.Setup, new SeededRandom(777)).RunToEnd().Outcome;
+            bool? left = null;
+            _manager.Push<BattleScreen>(new BattleScreenArgs { Battle = battle, Leave = r => left = r });
             yield return null;
             yield return null;
-            var row = _manager.Top.transform.Find("Hud/Row");
-            Assert.IsNotNull(row);
-            Assert.IsNull(row.Find("Skip"), "battles cannot be skipped");
-            Assert.IsNotNull(row.Find("Speed"));
+            _manager.Top.transform.Find("Hud/Row/Skip").GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+            var end = Time.realtimeSinceStartup + 10;
+            while (left == null && Time.realtimeSinceStartup < end) yield return null;
+            Assert.AreEqual(false, left);
+            var completion = _session.Battles.Finish().Value;
+            Assert.AreEqual(reference, completion.Battle.Outcome);
         }
 
         [UnityTest]

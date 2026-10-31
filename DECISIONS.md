@@ -174,5 +174,5 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 - **`.github/workflows/ci.yml` removed**: nothing runs on GitHub. `tools/test-all.sh` runs every suite (dotnet tests, BalanceCli validate + progression, Unity EditMode + PlayMode) on the Mac before each push to `main`; the signed APK is still built locally after each push (`tools/build-apk.sh`).
 - **No Unity license / keystore secrets on GitHub** are needed any more.
 
-## No battle skip (owner request, 2026-10-31; supersedes "Skip" in plan/13 and MILESTONE-M2)
-- **The battle HUD has no Skip button**: battles always play out; speed ×1/×2/×3, Auto and Pause → Retreat remain. `BattleFlow.Finish` still runs any remaining turns instantly at the service level (used by tests and flows that never open the battle screen).
+## Battle skip is dev-only (owner request, 2026-10-31; supersedes "Skip" in plan/13 and MILESTONE-M2)
+- **The battle Skip button exists only in the Editor and development builds** (`#if UNITY_EDITOR || DEVELOPMENT_BUILD`, like the debug console). Release builds (`BuildOptions.None`) have no Skip: battles always play out; speed ×1/×2/×3, Auto and Pause → Retreat remain.

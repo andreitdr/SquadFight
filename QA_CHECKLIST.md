@@ -45,7 +45,7 @@ FPS/memory overlay (three-finger tap) before/after; Settings → Copy debug info
 2. Heroes → Sister Maren (red dot) → Unlock → celebration → Add to party.
 3. Hero detail → equipment slot → picker shows green/red deltas → Equip → stats update; equip an item worn by another hero → confirm move.
 4. Party → tap heroes to add/remove, tap two slots to swap, Auto-fill → power updates in the top bar.
-5. Battle: Auto off → tap a hero's ready skill (ring) → used on its next turn; speed ×1/×2/×3; no Skip button; Pause → Retreat → defeat, no rewards.
+5. Battle: Auto off → tap a hero's ready skill (ring) → used on its next turn; speed ×1/×2/×3; Skip only in dev builds (→ same result screen), none in release builds; Pause → Retreat → defeat, no rewards.
 6. Bag → filter by slot → item popup → Sell → gold increases; "Sell spare commons" keeps upgrades.
 7. Campaign → chapters ◀ ▶, locked fights toast, Story replay.
 
