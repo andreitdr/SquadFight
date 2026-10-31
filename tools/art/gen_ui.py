@@ -9,7 +9,7 @@ import os
 
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
-from paths import FONT, ICON_DIR, UI_DIR
+from paths import APP_ICON, CHAR_DIR, FONT, ICON_DIR, UI_DIR
 from svgkit import (Defs, capsule, circle, ellipse, g, ink, mix, path, poly, rasterize, rect, render, rounded_poly, save, shade,
                     star_points)
 
@@ -426,6 +426,47 @@ def logo():
     save(back, os.path.join(UI_DIR, 'logo.png'))
 
 
+# =========================================================================== app icon
+
+
+def app_icon():
+    """Home-screen icon, 1024 px, opaque and full-bleed (iOS and Android launchers apply their own corner mask).
+    The squad (knight up front, two allies behind) over crossed swords on a sunburst."""
+    S = 1024
+    d = Defs()
+    rays = ''.join(poly([(512, 560), (512 + 900 * math.cos(math.radians(a - 7)), 560 + 900 * math.sin(math.radians(a - 7))),
+                         (512 + 900 * math.cos(math.radians(a + 7)), 560 + 900 * math.sin(math.radians(a + 7)))], '#ffffff', opacity=0.09)
+                   for a in range(0, 360, 30))
+    # blades point down behind the squad so the gold hilts show in the top corners
+    swords = g([g([poly([(512, 40), (550, 130), (554, 700), (470, 700), (474, 130)], d.lin([(0, '#ffffff'), (0.5, '#d6dce6'), (1, '#7a8494')], 0, 0, 1, 0), '#1e2230', 12),
+                   path('M512 120 L512 660', stroke='#9aa4b4', sw=8),
+                   rect(392, 690, 240, 46, 16, '#f2c94c', '#5a3a08', 10), rect(490, 736, 44, 104, 12, '#7a4228', '#2a1408', 9),
+                   circle(512, 856, 34, '#f2c94c', '#5a3a08', 10)], 'rotate(%d 512 500)' % r) for r in (140, 220)])
+    body = (rect(0, 0, S, S, 0, d.rad([(0, '#ffcf5a'), (0.45, '#f07a1e'), (1, '#8a1f2c')], 0.5, 0.55, 0.75)) + rays +
+            circle(512, 520, 330, d.rad([(0, '#fff4c0'), (1, '#fff4c0')]), opacity=0.25) + swords)
+    img = rasterize('<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d">%s%s</svg>' % (S, S, d.svg(), body))
+
+    def hero(hid, size, cx, bottom, dim=0.0):
+        p = Image.open(os.path.join(CHAR_DIR, hid, 'portrait.png')).convert('RGBA').resize((size, size), Image.LANCZOS)
+        a = p.getchannel('A')
+        sh = Image.new('RGBA', p.size, (40, 8, 16, 0))
+        sh.putalpha(a.filter(ImageFilter.MaxFilter(15)).filter(ImageFilter.GaussianBlur(8)).point(lambda v: int(v * 0.55)))
+        img.alpha_composite(sh, (cx - size // 2, bottom - size + 12))
+        if dim:
+            p = Image.composite(Image.blend(p, Image.new('RGBA', p.size, (90, 30, 40, 255)), dim), p, a)
+        img.alpha_composite(p, (cx - size // 2, bottom - size))
+
+    hero('hero_cindermage', 520, 250, S + 30, dim=0.18)
+    hero('hero_archer', 520, 774, S + 30, dim=0.18)
+    hero('hero_knight', 720, 512, S + 40)
+    # soft vignette so the corners do not look flat under the launcher mask
+    vig = Image.new('L', (S, S), 0)
+    ImageDraw.Draw(vig).ellipse([-260, -260, S + 260, S + 260], fill=255)
+    vig = ImageChops.invert(vig.filter(ImageFilter.GaussianBlur(120))).point(lambda v: int(v * 0.5))
+    img.alpha_composite(Image.merge('RGBA', [Image.new('L', (S, S), 30), Image.new('L', (S, S), 4), Image.new('L', (S, S), 10), vig]))
+    save(img.convert('RGB'), APP_ICON)
+
+
 def main():
     os.makedirs(UI_DIR, exist_ok=True)
     os.makedirs(ICON_DIR, exist_ok=True)
@@ -437,6 +478,7 @@ def main():
     stars_and_misc()
     gen_icons()
     logo()
+    app_icon()
     with open(os.path.join(UI_DIR, 'slices.json'), 'w') as f:
         json.dump(SLICES, f, indent=1)
 

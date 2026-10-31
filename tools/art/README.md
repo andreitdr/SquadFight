@@ -35,6 +35,7 @@ equipment, chapters and the UI `Theme`.
 | `Items/<eq_id>.png` | equipment icons | `EquipmentTemplate.icon` |
 | `Backgrounds/` | `home`, `chapter_1..3` (1080x1920) + `_banner` crops | `Theme.appBackground`, `ChapterDefinition.background/banner` |
 | `Cards/` | baked hero cards and a collection sheet | showcase, store screenshots (not loaded at runtime) |
+| `../AppIcon/app_icon.png` | home-screen icon, 1024 px opaque (`gen_ui.py`), kept outside `Generated/` so it stays uncompressed | `ProjectSetup.ApplyAppIcon` (runs on every build) |
 
 ## Swapping art
 
