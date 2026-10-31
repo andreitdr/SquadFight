@@ -29,9 +29,9 @@ MonoBehaviour:
   activeSkill: {fileID: 11400000, guid: 8825a72612e0441d8bfefd1c4ecba4e8, type: 2}
   passiveSkill: {fileID: 11400000, guid: 41d75876d0cd046279c61fec475050cf, type: 2}
   origin: act_7
-  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  portrait: {fileID: 21300000, guid: 2131ab65bc8014529ae91185cffeac57, type: 3}
   tint: {r: 0.21960784, g: 0.7254902, b: 0.41568628, a: 1}
   shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
-  icon: {fileID: 0}
-  cardArt: {fileID: 0}
-  animations: {fileID: 0}
+  icon: {fileID: 21300000, guid: 85c3cb55913274b01b1d0021293136a2, type: 3}
+  cardArt: {fileID: 21300000, guid: 2f97598da4ee74193b1812720fec93f6, type: 3}
+  animations: {fileID: 11400000, guid: 515c4b0c1cf164b14afa0a4314949b2c, type: 2}

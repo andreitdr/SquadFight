@@ -1,26 +1,483 @@
 # waves: spawns joined by '+', waves separated by '/'; enemy@multiplier scales HP/ATK/DEF
-id,chapter,order,name,waves,recommendedPower,dropTable,firstClearTable,starTurnLimit,preBeats,postBeats,unlockConditions
-fight_1_1,chapter_1,1,Forest Edge,enemy_goblin@1.47+enemy_goblin@1.47,600,drops_ch1,first_ch1_intro,0,beat_ch1_intro;beat_ch1_f1_pre,,
-fight_1_2,chapter_1,2,Wolf Den,enemy_wolf@1.18+enemy_wolf@1.18+enemy_goblin@1.18,830,drops_ch1,first_ch1_a,0,beat_ch1_f2_pre;beat_ch1_f2_pre_b,,
-fight_1_3,chapter_1,3,Goblin Camp,enemy_goblin@2.07+enemy_goblin_shaman@2.07+enemy_goblin@2.07,870,drops_ch1,first_ch1_b,0,,beat_ch1_f3_post,
-fight_1_4,chapter_1,4,Ambush,enemy_wolf@1.75+enemy_goblin@1.75+enemy_wolf@1.75 / enemy_goblin_shaman@1.75+enemy_goblin@1.75,920,drops_ch1,first_ch1_a,0,beat_ch1_f4_pre,,
-fight_1_5,chapter_1,5,Old Bridge,enemy_goblin@2.24+enemy_goblin@2.24+enemy_goblin_shaman@2.24+enemy_wolf@2.24,1190,drops_ch1,first_ch1_b,0,beat_ch1_f5_pre,,
-fight_1_6,chapter_1,6,Howling Hills,enemy_wolf@2.21+enemy_wolf@2.21+enemy_wolf@2.21 / enemy_wolf@2.21+enemy_wolf@2.21+enemy_goblin_shaman@2.21,1270,drops_ch1,first_ch1_a,0,beat_ch1_f6_pre,,
-fight_1_7,chapter_1,7,Warband Gate,enemy_goblin@2.28+enemy_goblin@2.28+enemy_goblin_shaman@2.28+enemy_goblin@2.28+enemy_wolf@2.28,1340,drops_ch1,first_ch1_b,0,beat_ch1_f7_pre,,
-fight_1_8,chapter_1,8,The Goblin King,enemy_goblin@2.75+enemy_goblin@2.75 / enemy_goblin_king@1.98+enemy_goblin_shaman@2.75,1400,drops_ch1,first_ch1_boss,20,beat_ch1_boss_pre,beat_ch1_end;beat_ch1_end_b,
-fight_2_1,chapter_2,1,Broken Seal,enemy_skeleton@2.75+enemy_skeleton@2.75+enemy_cultist@2.75,1480,drops_ch2,first_ch2_a,0,beat_ch2_intro;beat_ch2_f1_pre,,
-fight_2_2,chapter_2,2,Ossuary,enemy_skeleton@3.06+enemy_bone_archer@3.06+enemy_bone_archer@3.06,1510,drops_ch2,first_ch2_a,0,beat_ch2_f2_pre,,
-fight_2_3,chapter_2,3,Hungry Dark,enemy_ghoul@2.71+enemy_ghoul@2.71+enemy_ghoul@2.71,1560,drops_ch2,first_ch2_b,0,beat_ch2_f3_pre,,
-fight_2_4,chapter_2,4,Candle Hall,enemy_cultist@2.96+enemy_cultist@2.96+enemy_skeleton@2.96 / enemy_ghoul@2.96+enemy_bone_archer@2.96,1630,drops_ch2,first_ch2_a,0,beat_ch2_f4_pre;beat_ch2_f4_pre_b;beat_ch2_f4_pre_c,,
-fight_2_5,chapter_2,5,The Ritual,enemy_cultist@2.80+enemy_skeleton@2.80+enemy_cultist@2.80+enemy_bone_archer@2.80,1670,drops_ch2,first_ch2_b,0,beat_ch2_f5_pre,,
-fight_2_6,chapter_2,6,Bone Gallery,enemy_skeleton@2.51+enemy_skeleton@2.51+enemy_bone_archer@2.51 / enemy_bone_archer@2.51+enemy_bone_archer@2.51+enemy_ghoul@2.51,1710,drops_ch2,first_ch2_a,0,beat_ch2_f6_pre,,
-fight_2_7,chapter_2,7,Crypt Heart,enemy_ghoul@2.10+enemy_cultist@2.10+enemy_skeleton@2.10+enemy_ghoul@2.10+enemy_cultist@2.10,1730,drops_ch2,first_ch2_b,0,beat_ch2_f7_pre;beat_ch2_f7_pre_b,,
-fight_2_8,chapter_2,8,The Lich,enemy_skeleton@2.20+enemy_cultist@2.20 / enemy_lich@1.76+enemy_bone_archer@2.20,1790,drops_ch2,first_ch2_boss,22,beat_ch2_boss_pre,beat_ch2_end,
-fight_3_1,chapter_3,1,Foothills,enemy_orc_brute@3.07+enemy_orc_shaman@3.07,1860,drops_ch3,first_ch3_a,0,beat_ch3_intro;beat_ch3_f1_pre,,
-fight_3_2,chapter_3,2,Wyvern Cliffs,enemy_wyvern@2.64+enemy_wyvern@2.64,1940,drops_ch3,first_ch3_a,0,beat_ch3_f2_pre,,
-fight_3_3,chapter_3,3,Orc Camp,enemy_orc_brute@2.31+enemy_orc_shaman@2.31+enemy_orc_brute@2.31,1980,drops_ch3,first_ch3_b,0,beat_ch3_f3_pre,,
-fight_3_4,chapter_3,4,Burning Pass,enemy_wyvern@1.86+enemy_dragon_priest@1.86 / enemy_orc_brute@1.86+enemy_orc_shaman@1.86+enemy_wyvern@1.86,2050,drops_ch3,first_ch3_a,0,beat_ch3_f4_pre,,
-fight_3_5,chapter_3,5,Fire Temple,enemy_dragon_priest@1.98+enemy_dragon_priest@1.98+enemy_orc_brute@1.98+enemy_orc_shaman@1.98,2080,drops_ch3,first_ch3_b,0,beat_ch3_f5_pre,,
-fight_3_6,chapter_3,6,Sky Bridge,enemy_wyvern@1.99+enemy_wyvern@1.99+enemy_wyvern@1.99 / enemy_dragon_priest@1.99+enemy_orc_brute@1.99,2100,drops_ch3,first_ch3_a,0,beat_ch3_f6_pre,,
-fight_3_7,chapter_3,7,Dragon's Gate,enemy_orc_brute@1.76+enemy_orc_shaman@1.76+enemy_wyvern@1.76+enemy_dragon_priest@1.76+enemy_orc_brute@1.76,2110,drops_ch3,first_ch3_b,0,beat_ch3_f7_pre,,
-fight_3_8,chapter_3,8,The Red Dragon,enemy_wyvern@1.75+enemy_dragon_priest@1.75 / enemy_red_dragon@1.39+enemy_orc_shaman@1.75,2160,drops_ch3,first_ch3_boss,25,beat_ch3_boss_pre,beat_ch3_end;beat_ch3_end_b,
+id,chapter,order,name,waves,recommendedPower,dropTable,firstClearTable,starTurnLimit,preBeats,postBeats,unlockConditions,kind
+fight_1_1,chapter_1,1,Forest Edge,enemy_goblin@1.56+enemy_goblin@1.56,600,drops_ch1,first_ch1_intro,0,beat_ch1_intro;beat_ch1_f1_pre,,,Main
+fight_1_2,chapter_1,2,Wolf Den,enemy_wolf@1.23+enemy_wolf@1.23+enemy_goblin@1.23,850,drops_ch1,first_ch1_a,0,beat_ch1_f2_pre;beat_ch1_f2_pre_b,,,Main
+fight_1_3,chapter_1,3,Goblin Camp,enemy_goblin@2.25+enemy_goblin_shaman@2.25+enemy_goblin@2.25,870,drops_ch1,first_ch1_b,0,,beat_ch1_f3_post,,Main
+fight_1_4,chapter_1,4,Ambush,enemy_wolf@2.07+enemy_goblin@2.07+enemy_wolf@2.07 / enemy_goblin_shaman@2.07+enemy_goblin@2.07,1050,drops_ch1,first_ch1_a,0,beat_ch1_f4_pre,,,Main
+fight_1_5,chapter_1,5,Old Bridge,enemy_goblin@2.43+enemy_goblin@2.43+enemy_goblin_shaman@2.43+enemy_wolf@2.43,1310,drops_ch1,first_ch1_b,0,beat_ch1_f5_pre,,,Main
+fight_1_6,chapter_1,6,Howling Hills,enemy_wolf@2.43+enemy_wolf@2.43+enemy_wolf@2.43 / enemy_wolf@2.43+enemy_wolf@2.43+enemy_goblin_shaman@2.43,1360,drops_ch1,first_ch1_a,0,beat_ch1_f6_pre,,,Main
+fight_1_7,chapter_1,7,Warband Gate,enemy_goblin@2.17+enemy_goblin@2.17+enemy_goblin_shaman@2.17+enemy_goblin@2.17+enemy_wolf@2.17,1530,drops_ch1,first_ch1_b,0,beat_ch1_f7_pre,,,Main
+fight_1_8,chapter_1,10,The Goblin King,enemy_goblin@3.04+enemy_goblin@3.04 / enemy_goblin_king@2.18+enemy_goblin_shaman@3.04,1790,drops_ch1,first_ch1_boss,20,beat_ch1_boss_pre,beat_ch1_end;beat_ch1_end_b,,Main
+fight_2_1,chapter_2,1,Broken Seal,enemy_skeleton@2.86+enemy_skeleton@2.86+enemy_cultist@2.86,1810,drops_ch2,first_ch2_a,0,beat_ch2_intro;beat_ch2_f1_pre,,,Main
+fight_2_2,chapter_2,2,Ossuary,enemy_skeleton@3.01+enemy_bone_archer@3.01+enemy_bone_archer@3.01,1840,drops_ch2,first_ch2_a,0,beat_ch2_f2_pre,,,Main
+fight_2_3,chapter_2,3,Hungry Dark,enemy_ghoul@2.68+enemy_ghoul@2.68+enemy_ghoul@2.68,1870,drops_ch2,first_ch2_b,0,beat_ch2_f3_pre,,,Main
+fight_2_4,chapter_2,4,Candle Hall,enemy_cultist@2.83+enemy_cultist@2.83+enemy_skeleton@2.83 / enemy_ghoul@2.83+enemy_bone_archer@2.83,1960,drops_ch2,first_ch2_a,0,beat_ch2_f4_pre;beat_ch2_f4_pre_b;beat_ch2_f4_pre_c,,,Main
+fight_2_5,chapter_2,5,The Ritual,enemy_cultist@3.06+enemy_skeleton@3.06+enemy_cultist@3.06+enemy_bone_archer@3.06,1980,drops_ch2,first_ch2_b,0,beat_ch2_f5_pre,,,Main
+fight_2_6,chapter_2,6,Bone Gallery,enemy_skeleton@2.79+enemy_skeleton@2.79+enemy_bone_archer@2.79 / enemy_bone_archer@2.79+enemy_bone_archer@2.79+enemy_ghoul@2.79,1990,drops_ch2,first_ch2_a,0,beat_ch2_f6_pre,,,Main
+fight_2_7,chapter_2,7,Crypt Heart,enemy_ghoul@2.36+enemy_cultist@2.36+enemy_skeleton@2.36+enemy_ghoul@2.36+enemy_cultist@2.36,2030,drops_ch2,first_ch2_b,0,beat_ch2_f7_pre;beat_ch2_f7_pre_b,,,Main
+fight_2_8,chapter_2,11,The Lich,enemy_skeleton@2.47+enemy_cultist@2.47 / enemy_lich@1.99+enemy_bone_archer@2.47,2120,drops_ch2,first_ch2_boss,22,beat_ch2_boss_pre,beat_ch2_end,,Main
+fight_3_1,chapter_3,1,Foothills,enemy_orc_brute@3.35+enemy_orc_shaman@3.35,2130,drops_ch3,first_ch3_a,0,beat_ch3_intro;beat_ch3_f1_pre,,,Main
+fight_3_2,chapter_3,2,Wyvern Cliffs,enemy_wyvern@2.84+enemy_wyvern@2.84,2180,drops_ch3,first_ch3_a,0,beat_ch3_f2_pre,,,Main
+fight_3_3,chapter_3,3,Orc Camp,enemy_orc_brute@2.45+enemy_orc_shaman@2.45+enemy_orc_brute@2.45,2190,drops_ch3,first_ch3_b,0,beat_ch3_f3_pre,,,Main
+fight_3_4,chapter_3,4,Burning Pass,enemy_wyvern@1.92+enemy_dragon_priest@1.92 / enemy_orc_brute@1.92+enemy_orc_shaman@1.92+enemy_wyvern@1.92,2340,drops_ch3,first_ch3_a,0,beat_ch3_f4_pre,,,Main
+fight_3_5,chapter_3,5,Fire Temple,enemy_dragon_priest@2.04+enemy_dragon_priest@2.04+enemy_orc_brute@2.04+enemy_orc_shaman@2.04,2380,drops_ch3,first_ch3_b,0,beat_ch3_f5_pre,,,Main
+fight_3_6,chapter_3,6,Sky Bridge,enemy_wyvern@1.97+enemy_wyvern@1.97+enemy_wyvern@1.97 / enemy_dragon_priest@1.97+enemy_orc_brute@1.97,2410,drops_ch3,first_ch3_a,0,beat_ch3_f6_pre,,,Main
+fight_3_7,chapter_3,7,Dragon's Gate,enemy_orc_brute@1.83+enemy_orc_shaman@1.83+enemy_wyvern@1.83+enemy_dragon_priest@1.83+enemy_orc_brute@1.83,2420,drops_ch3,first_ch3_b,0,beat_ch3_f7_pre,,,Main
+fight_3_8,chapter_3,11,The Red Dragon,enemy_wyvern@1.66+enemy_dragon_priest@1.66 / enemy_red_dragon@1.31+enemy_orc_shaman@1.66,2480,drops_ch3,first_ch3_boss,25,beat_ch3_boss_pre,beat_ch3_end;beat_ch3_end_b,,Main
+# ---- GENERATED by tools/content/gen_campaign.py: edit campaign_design*.py and re-run ----
+fight_1_9,chapter_1,8,Burnt Mill,enemy_goblin@3.05+enemy_wolf@3.05+enemy_goblin_shaman@3.05 / enemy_wolf@3.05+enemy_wolf@3.05,1590,drops_ch1,fc_a1,0,beat_c1_b1;beat_c1_b2,,,Main
+fight_1_10,chapter_1,9,Hanging Oak,enemy_goblin_shaman@2.71+enemy_goblin_shaman@2.71+enemy_goblin@2.71+enemy_goblin@2.71 / enemy_wolf@2.71+enemy_goblin@2.71+enemy_wolf@2.71,1730,drops_ch1,fc_a1,0,,,,Main
+side_1_1,chapter_1,11,The Charcoal Burners,enemy_goblin_shaman@2.10+enemy_goblin@2.10+enemy_wolf@2.10 / enemy_goblin@2.10+enemy_wolf@2.10,910,side_a1,fc_side_1_1,0,beat_side_1_1,beat_side_1_1_lore,ClearFight:fight_1_3,Side
+side_1_2,chapter_1,12,Witch of the Mill Pond,enemy_goblin@2.58+enemy_goblin@2.58+enemy_goblin@2.58+enemy_goblin_shaman@2.58 / enemy_wolf@2.58+enemy_wolf@2.58+enemy_goblin@2.58,1430,side_a1,fc_side_1_2,0,beat_side_1_2,beat_side_1_2_lore,ClearFight:fight_1_6,Side
+side_1_3,chapter_1,13,The Hanged Shrine,enemy_goblin_shaman@3.45+enemy_goblin@3.45+enemy_goblin@3.45+enemy_goblin_shaman@3.45 / enemy_goblin@3.45+enemy_goblin@3.45+enemy_wolf@3.45,1660,side_a1,fc_side_1_3,0,beat_side_1_3,beat_side_1_3_lore,ClearFight:fight_1_9,Side
+fight_2_9,chapter_2,8,Weeping Stair,enemy_skeleton@2.89+enemy_skeleton@2.89+enemy_skeleton@2.89 / enemy_bone_archer@2.89+enemy_ghoul@2.89,2040,drops_ch2,fc_a1,0,beat_c2_b1;beat_c2_b2,,,Main
+fight_2_10,chapter_2,9,Hall of Names,enemy_skeleton@3.25+enemy_ghoul@3.25+enemy_skeleton@3.25 / enemy_cultist@3.25+enemy_skeleton@3.25,2070,drops_ch2,fc_a1,0,,,,Main
+fight_2_11,chapter_2,10,Ash Font,enemy_skeleton@2.56+enemy_ghoul@2.56+enemy_ghoul@2.56+enemy_ghoul@2.56 / enemy_bone_archer@2.56+enemy_skeleton@2.56+enemy_ghoul@2.56,2110,items_a1,fc_a1,0,,,,Main
+side_2_1,chapter_2,12,The Nameless Tomb,enemy_skeleton@3.17+enemy_skeleton@3.17+enemy_bone_archer@3.17 / enemy_cultist@3.17+enemy_skeleton@3.17,1900,side_a1,fc_side_2_1,0,beat_side_2_1,beat_side_2_1_lore,ClearFight:fight_2_3,Side
+side_2_2,chapter_2,13,Ossuary Choir,enemy_skeleton@2.75+enemy_skeleton@2.75+enemy_skeleton@2.75+enemy_ghoul@2.75 / enemy_bone_archer@2.75+enemy_bone_archer@2.75+enemy_skeleton@2.75,2020,side_a1,fc_side_2_2,0,beat_side_2_2,beat_side_2_2_lore,ClearFight:fight_2_6,Side
+fight_3_9,chapter_3,8,Ember Shelf,enemy_orc_brute@2.20+enemy_orc_brute@2.20+enemy_orc_brute@2.20 / enemy_orc_brute@2.20+enemy_wyvern@2.20,2460,drops_ch3,fc_a1,0,beat_c3_b1;beat_c3_b2,,,Main
+fight_3_10,chapter_3,9,Bones of Riders,enemy_orc_shaman@2.37+enemy_wyvern@2.37+enemy_dragon_priest@2.37 / enemy_orc_shaman@2.37+enemy_wyvern@2.37,2460,items_a1,fc_a1,0,,,,Main
+fight_3_11,chapter_3,10,Heartstone Ledge,enemy_orc_brute@1.83+enemy_dragon_priest@1.83+enemy_wyvern@1.83+enemy_orc_brute@1.83 / enemy_orc_brute@1.83+enemy_orc_brute@1.83+enemy_wyvern@1.83,2470,drops_ch3,fc_a1,0,,,,Main
+side_3_1,chapter_3,12,The Riders' Graveyard,enemy_orc_shaman@2.30+enemy_orc_brute@2.30+enemy_orc_brute@2.30 / enemy_wyvern@2.30+enemy_wyvern@2.30,2260,side_a1,fc_side_3_1,0,beat_side_3_1,beat_side_3_1_lore,ClearFight:fight_3_3,Side
+fight_4_1,chapter_4,1,Grey Morning,enemy_ash_wraith@4.52+enemy_ember_ghoul@4.52,2530,drops_a1,fc_a1,0,beat_c4_intro_1;beat_c4_intro_2,,,Main
+fight_4_2,chapter_4,2,Choking Fields,enemy_ashen_goblin@4.78+enemy_ash_wraith@4.78,2550,drops_a1,fc_fight_4_2,0,beat_recruit_ashwarden,,,Main
+fight_4_3,chapter_4,3,Ash-Blind Road,enemy_cinder_hound@3.06+enemy_ember_ghoul@3.06+enemy_ashen_goblin@3.06,2550,drops_a1,fc_fight_4_3,0,beat_recruit_hollowseer,,,Main
+fight_4_4,chapter_4,4,Cinder Village,enemy_ash_wraith@3.47+enemy_cinder_hound@3.47+enemy_ash_wraith@3.47,2630,drops_a1,fc_a1,0,,,,Main
+fight_4_5,chapter_4,5,The Well of Embers,enemy_cinder_hound@2.83+enemy_cinder_hound@2.83+enemy_ash_wraith@2.83 / enemy_ember_ghoul@2.83+enemy_ash_wraith@2.83,2630,drops_a1,fc_a1,0,beat_c4_b1,,,Main
+fight_4_6,chapter_4,6,Smoke Chapel,enemy_ember_ghoul@2.90+enemy_cinder_hound@2.90+enemy_ash_wraith@2.90 / enemy_ember_ghoul@2.90+enemy_ashen_goblin@2.90,2670,drops_a1,fc_a1,0,,,,Main
+fight_4_7,chapter_4,7,Burning Orchard,enemy_cinder_hound@2.91+enemy_cinder_hound@2.91+enemy_ash_wraith@2.91 / enemy_cinder_hound@2.91+enemy_ash_wraith@2.91,2670,items_a1,fc_fight_4_7,0,beat_c4_b2,,,Main
+fight_4_8,chapter_4,8,Lantern Square,enemy_ash_wraith@2.33+enemy_ember_ghoul@2.33+enemy_cinder_hound@2.33+enemy_ashen_goblin@2.33 / enemy_ashen_goblin@2.33+enemy_ashen_goblin@2.33+enemy_cinder_hound@2.33,2690,items_a1,fc_fight_4_8,0,,,,Main
+fight_4_9,chapter_4,9,The Ashen Matron,enemy_ash_wraith@1.24+enemy_ash_wraith@1.24+enemy_cinder_hound@1.24 / enemy_ashen_matron@1.24+enemy_cinder_hound@1.24,2690,drops_a1,fc_fight_4_9,20,beat_c4_boss,beat_c4_outro,,Main
+side_4_1,chapter_4,10,Children of the Ash,enemy_ash_wraith@2.90+enemy_ashen_goblin@2.90+enemy_ashen_goblin@2.90 / enemy_cinder_hound@2.90+enemy_ember_ghoul@2.90,2580,side_a1,fc_side_4_1,0,beat_side_4_1,beat_side_4_1_lore,ClearFight:fight_4_3,Side
+side_4_2,chapter_4,11,The Last Baker,enemy_ash_wraith@2.42+enemy_ash_wraith@2.42+enemy_ash_wraith@2.42+enemy_cinder_hound@2.42 / enemy_ash_wraith@2.42+enemy_ember_ghoul@2.42+enemy_ashen_goblin@2.42,2630,side_a1,fc_side_4_2,0,beat_side_4_2,beat_side_4_2_lore,ClearFight:fight_4_5,Side
+side_4_3,chapter_4,12,Ashen Orchard,enemy_ember_ghoul@2.42+enemy_ashen_goblin@2.42+enemy_ember_ghoul@2.42+enemy_ashen_goblin@2.42 / enemy_ash_wraith@2.42+enemy_cinder_hound@2.42+enemy_ashen_goblin@2.42,2670,side_a1,fc_side_4_3,0,beat_side_4_3,beat_side_4_3_lore,ClearFight:fight_4_7,Side
+fight_5_1,chapter_5,1,Under the Peak,enemy_hollowling@6.25+enemy_hollow_cultist@6.25,2690,drops_a1,fc_a1,0,beat_c5_intro_1,,,Main
+fight_5_2,chapter_5,2,Candle Stair,enemy_hollow_cultist@5.46+enemy_ash_wraith@5.46,2690,drops_a1,fc_fight_5_2,0,beat_recruit_cindermage,,,Main
+fight_5_3,chapter_5,3,Gate Chapel,enemy_hollowling@3.47+enemy_gate_skeleton@3.47+enemy_hollow_cultist@3.47,2690,drops_a1,fc_a1,0,,,,Main
+fight_5_4,chapter_5,4,The Bone Choir,enemy_hollowling@3.48+enemy_gate_skeleton@3.48+enemy_ash_wraith@3.48,2720,drops_a1,fc_fight_5_4,0,,,,Main
+fight_5_5,chapter_5,5,Pale Antechamber,enemy_hollow_cultist@3.82+enemy_hollow_cultist@3.82+enemy_hollow_cultist@3.82 / enemy_hollowling@3.82+enemy_hollow_cultist@3.82,2720,drops_a1,fc_fight_5_5,0,beat_c5_b1,,,Main
+fight_5_6,chapter_5,6,Hollow Draft,enemy_gate_skeleton@2.79+enemy_hollow_cultist@2.79+enemy_gate_skeleton@2.79 / enemy_hollowling@2.79+enemy_hollowling@2.79,2720,items_a1,fc_a1,0,,,,Main
+fight_5_7,chapter_5,7,Threshold,enemy_hollow_cultist@3.61+enemy_hollowling@3.61+enemy_hollowling@3.61 / enemy_hollowling@3.61+enemy_gate_skeleton@3.61,2720,drops_a1,fc_fight_5_7,0,beat_c5_b2,,,Main
+fight_5_8,chapter_5,8,The Black Door,enemy_hollowling@3.25+enemy_hollow_cultist@3.25+enemy_hollow_cultist@3.25+enemy_hollowling@3.25 / enemy_hollow_cultist@3.25+enemy_hollowling@3.25+enemy_hollow_cultist@3.25,2720,items_a1,fc_a1,0,,,,Main
+fight_5_9,chapter_5,9,Vorn the Pale Hand,enemy_hollow_cultist@1.30+enemy_hollow_cultist@1.30+enemy_ash_wraith@1.30 / enemy_vorn@1.30+enemy_hollow_cultist@1.30,2720,drops_a1,fc_fight_5_9,20,beat_c5_boss,beat_c5_outro,,Main
+side_5_1,chapter_5,10,Corvin's Archive,enemy_gate_skeleton@2.21+enemy_gate_skeleton@2.21+enemy_gate_skeleton@2.21 / enemy_gate_skeleton@2.21+enemy_ash_wraith@2.21,2700,side_a1,fc_side_5_1,0,beat_side_5_1,beat_side_5_1_lore,ClearFight:fight_5_3,Side
+fight_6_1,chapter_6,1,Reed Road,enemy_eel_swarm@4.88+enemy_drowned_sailor@4.88,2740,drops_a2,fc_a2,0,beat_c6_intro_1;beat_c6_intro_2,,,Main
+fight_6_2,chapter_6,2,Drowned Ferry,enemy_eel_swarm@5.79+enemy_eel_swarm@5.79,2760,drops_a2,fc_fight_6_2,0,beat_recruit_coralguard,,,Main
+fight_6_3,chapter_6,3,Gibbet Dunes,enemy_eel_swarm@3.99+enemy_eel_swarm@3.99+enemy_drowned_sailor@3.99,2760,items_a2,fc_fight_6_3,0,beat_recruit_drownedknight,,,Main
+fight_6_4,chapter_6,4,Salt Pans,enemy_crab_brute@2.25+enemy_eel_swarm@2.25+enemy_crab_brute@2.25,2810,drops_a2,fc_fight_6_4,0,beat_recruit_tidebreaker,,,Main
+fight_6_5,chapter_6,5,The Lantern Path,enemy_crab_brute@2.20+enemy_crab_brute@2.20 / enemy_drowned_sailor@2.20+enemy_drowned_sailor@2.20,2820,items_a2,fc_a2,0,beat_c6_b1,,,Main
+fight_6_6,chapter_6,6,Mudwife's Hut,enemy_eel_swarm@3.73+enemy_eel_swarm@3.73+enemy_eel_swarm@3.73 / enemy_eel_swarm@3.73+enemy_drowned_sailor@3.73,2830,drops_a2,fc_a2,0,,,,Main
+fight_6_7,chapter_6,7,Sinking Chapel,enemy_drowned_sailor@2.17+enemy_crab_brute@2.17+enemy_drowned_sailor@2.17 / enemy_crab_brute@2.17+enemy_eel_swarm@2.17,2870,drops_a2,fc_a2,0,,,,Main
+fight_6_8,chapter_6,8,Marsh Lights,enemy_drowned_sailor@2.76+enemy_drowned_sailor@2.76+enemy_eel_swarm@2.76 / enemy_drowned_sailor@2.76+enemy_drowned_sailor@2.76,2870,drops_a2,fc_a2,0,beat_c6_b2,,,Main
+fight_6_9,chapter_6,9,Old Causeway,enemy_drowned_sailor@1.58+enemy_crab_brute@1.58+enemy_drowned_sailor@1.58+enemy_drowned_sailor@1.58 / enemy_crab_brute@1.58+enemy_crab_brute@1.58+enemy_drowned_sailor@1.58,2880,drops_a2,fc_a2,0,,,,Main
+fight_6_10,chapter_6,10,Bog-King Ulmar,enemy_eel_swarm@1.44+enemy_eel_swarm@1.44+enemy_eel_swarm@1.44 / enemy_bog_king@1.44+enemy_eel_swarm@1.44,2930,drops_a2,fc_fight_6_10,22,beat_c6_boss,beat_c6_outro,,Main
+side_6_1,chapter_6,11,The Mudwife,enemy_drowned_sailor@2.41+enemy_crab_brute@2.41+enemy_drowned_sailor@2.41 / enemy_drowned_sailor@2.41+enemy_eel_swarm@2.41,2780,side_a2,fc_side_6_1,0,beat_side_6_1,beat_side_6_1_lore,ClearFight:fight_6_3,Side
+side_6_2,chapter_6,12,Gibbet Dunes,enemy_crab_brute@1.58+enemy_crab_brute@1.58+enemy_drowned_sailor@1.58+enemy_crab_brute@1.58 / enemy_drowned_sailor@1.58+enemy_drowned_sailor@1.58+enemy_eel_swarm@1.58,2830,side_a2,fc_side_6_2,0,beat_side_6_2,beat_side_6_2_lore,ClearFight:fight_6_6,Side
+fight_7_1,chapter_7,1,Burning Jetty,enemy_corsair_gunner@4.05+enemy_tide_corsair@4.05,2930,drops_a2,fc_a2,0,beat_c7_intro_1,,,Main
+fight_7_2,chapter_7,2,Smugglers' Cove,enemy_tide_corsair@3.94+enemy_tide_corsair@3.94,2930,items_a2,fc_fight_7_2,0,beat_recruit_corsair,,,Main
+fight_7_3,chapter_7,3,Tarred Beach,enemy_tide_corsair@3.35+enemy_eel_swarm@3.35+enemy_tide_corsair@3.35,2930,drops_a2,fc_fight_7_3,0,beat_recruit_reefhunter,,,Main
+fight_7_4,chapter_7,4,The Press Gang,enemy_tide_corsair@3.10+enemy_corsair_gunner@3.10+enemy_tide_corsair@3.10,2970,drops_a2,fc_a2,0,,,,Main
+fight_7_5,chapter_7,5,Rope Yard,enemy_drowned_sailor@3.27+enemy_tide_corsair@3.27 / enemy_drowned_sailor@3.27+enemy_drowned_sailor@3.27,2990,items_a2,fc_a2,0,,,,Main
+fight_7_6,chapter_7,6,Gun Deck,enemy_corsair_gunner@2.82+enemy_drowned_sailor@2.82+enemy_tide_corsair@2.82 / enemy_corsair_gunner@2.82+enemy_tide_corsair@2.82,2990,drops_a2,fc_a2,0,beat_c7_b1,,,Main
+fight_7_7,chapter_7,7,Wrecker's Light,enemy_drowned_sailor@2.65+enemy_drowned_sailor@2.65+enemy_drowned_sailor@2.65 / enemy_tide_corsair@2.65+enemy_drowned_sailor@2.65,2990,items_a2,fc_a2,0,,,,Main
+fight_7_8,chapter_7,8,Sunken Galley,enemy_eel_swarm@3.03+enemy_tide_corsair@3.03+enemy_corsair_gunner@3.03 / enemy_corsair_gunner@3.03+enemy_corsair_gunner@3.03,3000,drops_a2,fc_a2,0,,,,Main
+fight_7_9,chapter_7,9,Mutineers' Rock,enemy_corsair_gunner@2.98+enemy_eel_swarm@2.98+enemy_tide_corsair@2.98 / enemy_corsair_gunner@2.98+enemy_tide_corsair@2.98,3000,drops_a2,fc_fight_7_9,0,beat_c7_b2,,,Main
+fight_7_10,chapter_7,10,Morrow's Prize,enemy_tide_corsair@2.24+enemy_drowned_sailor@2.24+enemy_drowned_sailor@2.24+enemy_tide_corsair@2.24 / enemy_drowned_sailor@2.24+enemy_corsair_gunner@2.24+enemy_drowned_sailor@2.24,3040,drops_a2,fc_fight_7_10,0,,,,Main
+fight_7_11,chapter_7,11,Captain Morrow,enemy_eel_swarm@1.38+enemy_tide_corsair@1.38+enemy_tide_corsair@1.38 / enemy_captain_morrow@1.38+enemy_drowned_sailor@1.38,3040,drops_a2,fc_fight_7_11,22,beat_c7_boss,beat_c7_outro,,Main
+side_7_1,chapter_7,12,The Pressed Men,enemy_tide_corsair@2.73+enemy_corsair_gunner@2.73+enemy_tide_corsair@2.73 / enemy_tide_corsair@2.73+enemy_corsair_gunner@2.73,2930,side_a2,fc_side_7_1,0,beat_side_7_1,beat_side_7_1_lore,ClearFight:fight_7_3,Side
+fight_8_1,chapter_8,1,Low Tide Gate,enemy_tide_acolyte@3.48+enemy_crab_brute@3.48,3060,drops_a2,fc_a2,0,beat_c8_intro_1,,,Main
+fight_8_2,chapter_8,2,Barnacle Street,enemy_siren@3.57+enemy_crab_brute@3.57,3060,items_a2,fc_fight_8_2,0,beat_recruit_brinescholar,,,Main
+fight_8_3,chapter_8,3,The Drowned Market,enemy_siren@3.87+enemy_drowned_sailor@3.87+enemy_siren@3.87,3060,drops_a2,fc_fight_8_3,0,beat_recruit_chaplain,,,Main
+fight_8_4,chapter_8,4,Bell Tower,enemy_drowned_sailor@2.95+enemy_crab_brute@2.95+enemy_tide_acolyte@2.95,3130,items_a2,fc_fight_8_4,0,beat_recruit_siren,,,Main
+fight_8_5,chapter_8,5,Library of Ink,enemy_siren@3.21+enemy_drowned_sailor@3.21 / enemy_crab_brute@3.21+enemy_siren@3.21,3130,drops_a2,fc_fight_8_5,0,,,,Main
+fight_8_6,chapter_8,6,Pearl Baths,enemy_drowned_sailor@2.72+enemy_tide_acolyte@2.72+enemy_crab_brute@2.72 / enemy_siren@2.72+enemy_tide_acolyte@2.72,3130,drops_a2,fc_a2,0,beat_c8_b1,,,Main
+fight_8_7,chapter_8,7,Flooded Palace,enemy_siren@3.38+enemy_siren@3.38+enemy_drowned_sailor@3.38 / enemy_drowned_sailor@3.38+enemy_siren@3.38,3130,drops_a2,fc_a2,0,,,,Main
+fight_8_8,chapter_8,8,Siren Stair,enemy_drowned_sailor@2.89+enemy_tide_acolyte@2.89+enemy_tide_acolyte@2.89 / enemy_crab_brute@2.89+enemy_siren@2.89,3140,drops_a2,fc_a2,0,,,,Main
+fight_8_9,chapter_8,9,The Choir Loft,enemy_siren@2.99+enemy_siren@2.99+enemy_siren@2.99 / enemy_crab_brute@2.99+enemy_tide_acolyte@2.99,3140,drops_a2,fc_a2,0,beat_c8_b2,,,Main
+fight_8_10,chapter_8,10,Tidewater Throne Room,enemy_crab_brute@1.79+enemy_tide_acolyte@1.79+enemy_crab_brute@1.79+enemy_crab_brute@1.79 / enemy_siren@1.79+enemy_tide_acolyte@1.79+enemy_drowned_sailor@1.79,3140,drops_a2,fc_a2,0,,,,Main
+fight_8_11,chapter_8,11,Mother Ilse of the Choir,enemy_siren@1.46+enemy_tide_acolyte@1.46+enemy_siren@1.46 / enemy_choir_mother@1.46+enemy_siren@1.46,3140,drops_a2,fc_fight_8_11,22,beat_c8_boss,beat_c8_outro,,Main
+side_8_1,chapter_8,12,The Ink That Reads,enemy_crab_brute@2.52+enemy_siren@2.52+enemy_drowned_sailor@2.52 / enemy_crab_brute@2.52+enemy_siren@2.52,3060,side_a2,fc_side_8_1,0,beat_side_8_1,beat_side_8_1_lore,ClearFight:fight_8_3,Side
+side_8_2,chapter_8,13,The Bell of Ys,enemy_siren@2.41+enemy_siren@2.41+enemy_drowned_sailor@2.41+enemy_crab_brute@2.41 / enemy_siren@2.41+enemy_tide_acolyte@2.41+enemy_siren@2.41,3130,side_a2,fc_side_8_2,0,beat_side_8_2,beat_side_8_2_lore,ClearFight:fight_8_6,Side
+side_8_3,chapter_8,14,Pearl Baths,enemy_crab_brute@2.11+enemy_crab_brute@2.11+enemy_siren@2.11+enemy_siren@2.11 / enemy_drowned_sailor@2.11+enemy_drowned_sailor@2.11+enemy_tide_acolyte@2.11,3140,side_a2,fc_side_8_3,0,beat_side_8_3,beat_side_8_3_lore,ClearFight:fight_8_9,Side
+fight_9_1,chapter_9,1,Breakwater Steps,enemy_coral_crab@3.07+enemy_coral_crab@3.07,3220,drops_a2,fc_fight_9_1,0,beat_c9_intro_1,,,Main
+fight_9_2,chapter_9,2,Nave of Shells,enemy_coral_crab@4.13+enemy_tide_acolyte@4.13,3220,drops_a2,fc_fight_9_2,0,beat_recruit_lighthouse,,,Main
+fight_9_3,chapter_9,3,Font of Brine,enemy_drowned_captain@2.63+enemy_drowned_captain@2.63+enemy_siren@2.63,3250,drops_a2,fc_fight_9_3,0,beat_recruit_tidecaller,,,Main
+fight_9_4,chapter_9,4,Reliquary,enemy_tide_acolyte@4.19+enemy_tide_acolyte@4.19+enemy_siren@4.19,3320,drops_a2,fc_fight_9_4,0,,,,Main
+fight_9_5,chapter_9,5,Choir of the Deep,enemy_drowned_captain@3.57+enemy_siren@3.57 / enemy_siren@3.57+enemy_siren@3.57,3320,drops_a2,fc_a2,0,,,,Main
+fight_9_6,chapter_9,6,The Kneeling Gallery,enemy_tide_acolyte@3.14+enemy_drowned_captain@3.14+enemy_tide_acolyte@3.14 / enemy_tide_acolyte@3.14+enemy_siren@3.14,3320,drops_a2,fc_a2,0,beat_c9_b1,,,Main
+fight_9_7,chapter_9,7,Flooded Crypt,enemy_siren@2.61+enemy_coral_crab@2.61+enemy_tide_acolyte@2.61 / enemy_coral_crab@2.61+enemy_coral_crab@2.61,3320,drops_a2,fc_fight_9_7,0,,,,Main
+fight_9_8,chapter_9,8,Altar Approach,enemy_tide_acolyte@2.68+enemy_drowned_captain@2.68+enemy_coral_crab@2.68 / enemy_tide_acolyte@2.68+enemy_tide_acolyte@2.68,3320,items_a2,fc_fight_9_8,0,,,,Main
+fight_9_9,chapter_9,9,Tide Bell Spire,enemy_coral_crab@2.66+enemy_tide_acolyte@2.66+enemy_tide_acolyte@2.66 / enemy_drowned_captain@2.66+enemy_coral_crab@2.66,3320,items_a2,fc_fight_9_9,0,beat_c9_b2,,,Main
+fight_9_10,chapter_9,10,Sanctum Gate,enemy_tide_acolyte@1.95+enemy_coral_crab@1.95+enemy_drowned_captain@1.95+enemy_drowned_captain@1.95 / enemy_siren@1.95+enemy_siren@1.95+enemy_drowned_captain@1.95,3330,items_a2,fc_fight_9_10,0,,,,Main
+fight_9_11,chapter_9,11,High Tidepriest Sallow,enemy_tide_acolyte@1.36+enemy_drowned_captain@1.36+enemy_drowned_captain@1.36 / enemy_tidepriest@1.36+enemy_tide_acolyte@1.36,3330,drops_a2,fc_fight_9_11,22,beat_c9_boss,beat_c9_outro,,Main
+side_9_1,chapter_9,12,The Reliquary,enemy_coral_crab@3.32+enemy_tide_acolyte@3.32+enemy_tide_acolyte@3.32 / enemy_tide_acolyte@3.32+enemy_siren@3.32,3270,side_a2,fc_side_9_1,0,beat_side_9_1,beat_side_9_1_lore,ClearFight:fight_9_3,Side
+side_9_2,chapter_9,13,The Kneeling Gallery,enemy_tide_acolyte@2.87+enemy_siren@2.87+enemy_tide_acolyte@2.87+enemy_coral_crab@2.87 / enemy_tide_acolyte@2.87+enemy_tide_acolyte@2.87+enemy_siren@2.87,3320,side_a2,fc_side_9_2,0,beat_side_9_2,beat_side_9_2_lore,ClearFight:fight_9_6,Side
+fight_10_1,chapter_10,1,Ebbing Sea Floor,enemy_drowned_captain@2.93+enemy_drowned_captain@2.93,3330,drops_a2,fc_fight_10_1,0,beat_c10_intro_1,,,Main
+fight_10_2,chapter_10,2,Shipbone Reef,enemy_drowned_captain@3.95+enemy_siren@3.95,3330,drops_a2,fc_fight_10_2,0,beat_recruit_gullscout,,,Main
+fight_10_3,chapter_10,3,Hollow Current,enemy_tide_corsair@2.66+enemy_drowned_captain@2.66+enemy_drowned_captain@2.66,3330,items_a2,fc_fight_10_3,0,beat_recruit_harpooner,,,Main
+fight_10_4,chapter_10,4,The Black Bloom,enemy_drowned_captain@3.73+enemy_eel_swarm@3.73+enemy_tide_corsair@3.73,3430,drops_a2,fc_fight_10_4,0,,,,Main
+fight_10_5,chapter_10,5,Leviathan's Shadow,enemy_coral_crab@2.34+enemy_drowned_captain@2.34+enemy_tide_corsair@2.34 / enemy_coral_crab@2.34+enemy_coral_crab@2.34,3440,drops_a2,fc_fight_10_5,0,beat_c10_b1,,,Main
+fight_10_6,chapter_10,6,Heart Trench,enemy_eel_swarm@3.61+enemy_drowned_captain@3.61+enemy_eel_swarm@3.61 / enemy_coral_crab@3.61+enemy_eel_swarm@3.61,3470,items_a2,fc_a2,0,,,,Main
+fight_10_7,chapter_10,7,The Last Air,enemy_eel_swarm@3.84+enemy_tide_corsair@3.84+enemy_coral_crab@3.84 / enemy_siren@3.84+enemy_eel_swarm@3.84,3470,drops_a2,fc_fight_10_7,0,beat_c10_b2,,,Main
+fight_10_8,chapter_10,8,Abyssal Shelf,enemy_eel_swarm@2.50+enemy_eel_swarm@2.50+enemy_drowned_captain@2.50+enemy_coral_crab@2.50 / enemy_tide_corsair@2.50+enemy_eel_swarm@2.50+enemy_drowned_captain@2.50,3470,drops_a2,fc_a2,0,,,,Main
+fight_10_9,chapter_10,9,The Tide Mother,enemy_eel_swarm@1.08+enemy_drowned_captain@1.08+enemy_coral_crab@1.08 / enemy_tide_mother@1.08+enemy_drowned_captain@1.08,3490,drops_a2,fc_fight_10_9,22,beat_c10_boss,beat_c10_outro,,Main
+side_10_1,chapter_10,10,Shipbone Reef,enemy_siren@2.95+enemy_eel_swarm@2.95+enemy_tide_corsair@2.95 / enemy_drowned_captain@2.95+enemy_coral_crab@2.95,3340,side_a2,fc_side_10_1,0,beat_side_10_1,beat_side_10_1_lore,ClearFight:fight_10_3,Side
+side_10_2,chapter_10,11,The Last Air,enemy_eel_swarm@2.95+enemy_siren@2.95+enemy_coral_crab@2.95+enemy_eel_swarm@2.95 / enemy_siren@2.95+enemy_drowned_captain@2.95+enemy_siren@2.95,3440,side_a2,fc_side_10_2,0,beat_side_10_2,beat_side_10_2_lore,ClearFight:fight_10_5,Side
+side_10_3,chapter_10,12,The Black Bloom,enemy_coral_crab@2.71+enemy_eel_swarm@2.71+enemy_coral_crab@2.71+enemy_tide_corsair@2.71 / enemy_tide_corsair@2.71+enemy_eel_swarm@2.71+enemy_tide_corsair@2.71,3470,side_a2,fc_side_10_3,0,beat_side_10_3,beat_side_10_3_lore,ClearFight:fight_10_7,Side
+fight_11_1,chapter_11,1,Grey Treeline,enemy_blightbeast@2.43+enemy_blightbeast@2.43,3490,drops_a3,fc_a3,0,beat_c11_intro_1;beat_c11_intro_2,,,Main
+fight_11_2,chapter_11,2,Rotting Glade,enemy_blightbeast@2.46+enemy_blightbeast@2.46,3520,drops_a3,fc_fight_11_2,0,beat_recruit_mosswhisper,,,Main
+fight_11_3,chapter_11,3,Wardens' Stile,enemy_blightbeast@1.88+enemy_blightbeast@1.88+enemy_blightbeast@1.88,3520,drops_a3,fc_fight_11_3,0,beat_recruit_briar,,,Main
+fight_11_4,chapter_11,4,Fungus Hollow,enemy_blightbeast@2.29+enemy_spore_crawler@2.29+enemy_blightbeast@2.29,3670,drops_a3,fc_fight_11_4,0,beat_recruit_sporecaller,,,Main
+fight_11_5,chapter_11,5,Blight Wallow,enemy_spore_crawler@2.59+enemy_spore_crawler@2.59+enemy_thornling@2.59 / enemy_spore_crawler@2.59+enemy_blightbeast@2.59,3680,drops_a3,fc_a3,0,beat_c11_b1,,,Main
+fight_11_6,chapter_11,6,Weeping Birches,enemy_blightbeast@2.11+enemy_thornling@2.11+enemy_blightbeast@2.11 / enemy_blightbeast@2.11+enemy_thornling@2.11,3700,drops_a3,fc_a3,0,,,,Main
+fight_11_7,chapter_11,7,Old Snare Line,enemy_blightbeast@1.96+enemy_blightbeast@1.96+enemy_blightbeast@1.96 / enemy_thornling@1.96+enemy_thornling@1.96,3700,drops_a3,fc_a3,0,beat_c11_b2,,,Main
+fight_11_8,chapter_11,8,Hunters' Lodge,enemy_thornling@1.67+enemy_blightbeast@1.67+enemy_spore_crawler@1.67+enemy_thornling@1.67 / enemy_blightbeast@1.67+enemy_blightbeast@1.67+enemy_blightbeast@1.67,3710,drops_a3,fc_a3,0,,,,Main
+fight_11_9,chapter_11,9,The Blight Boar,enemy_thornling@1.17+enemy_blightbeast@1.17+enemy_spore_crawler@1.17 / enemy_blight_boar@1.17+enemy_blightbeast@1.17,3730,drops_a3,fc_fight_11_9,24,beat_c11_boss,beat_c11_outro,,Main
+side_11_1,chapter_11,10,The Hunters' Lodge,enemy_thornling@2.87+enemy_blightbeast@2.87+enemy_thornling@2.87 / enemy_spore_crawler@2.87+enemy_thornling@2.87,3520,side_a3,fc_side_11_1,0,beat_side_11_1,beat_side_11_1_lore,ClearFight:fight_11_3,Side
+side_11_2,chapter_11,11,Weeping Birches,enemy_blightbeast@1.94+enemy_blightbeast@1.94+enemy_thornling@1.94+enemy_thornling@1.94 / enemy_blightbeast@1.94+enemy_thornling@1.94+enemy_thornling@1.94,3680,side_a3,fc_side_11_2,0,beat_side_11_2,beat_side_11_2_lore,ClearFight:fight_11_5,Side
+fight_12_1,chapter_12,1,Mushroom Ring,enemy_briar_archer@5.14+enemy_thornling@5.14,3750,drops_a3,fc_a3,0,beat_c12_intro_1,,,Main
+fight_12_2,chapter_12,2,Moonlit Lawn,enemy_fey_knight@5.14+enemy_thornling@5.14,3760,drops_a3,fc_fight_12_2,0,beat_recruit_feyarcher,,,Main
+fight_12_3,chapter_12,3,Hedge Maze,enemy_fey_knight@3.65+enemy_winter_knight@3.65+enemy_thornling@3.65,3760,drops_a3,fc_fight_12_3,0,beat_recruit_thornblade,,,Main
+fight_12_4,chapter_12,4,The Duel Ground,enemy_winter_knight@3.25+enemy_fey_knight@3.25+enemy_fey_knight@3.25,3890,drops_a3,fc_a3,0,,,,Main
+fight_12_5,chapter_12,5,Summer Pavilion,enemy_thornling@3.85+enemy_fey_knight@3.85 / enemy_fey_knight@3.85+enemy_winter_knight@3.85,3890,drops_a3,fc_a3,0,beat_c12_b1,,,Main
+fight_12_6,chapter_12,6,Winter Pavilion,enemy_fey_knight@2.99+enemy_winter_knight@2.99+enemy_fey_knight@2.99 / enemy_fey_knight@2.99+enemy_fey_knight@2.99,3890,drops_a3,fc_a3,0,,,,Main
+fight_12_7,chapter_12,7,Glass Bridge,enemy_fey_knight@3.03+enemy_briar_archer@3.03+enemy_fey_knight@3.03 / enemy_briar_archer@3.03+enemy_fey_knight@3.03,3930,drops_a3,fc_a3,0,,,,Main
+fight_12_8,chapter_12,8,Hall of Masks,enemy_thornling@3.25+enemy_winter_knight@3.25+enemy_fey_knight@3.25 / enemy_winter_knight@3.25+enemy_winter_knight@3.25,3930,drops_a3,fc_a3,0,beat_c12_b2,,,Main
+fight_12_9,chapter_12,9,Throne of Briars,enemy_thornling@2.56+enemy_fey_knight@2.56+enemy_fey_knight@2.56+enemy_winter_knight@2.56 / enemy_winter_knight@2.56+enemy_fey_knight@2.56+enemy_thornling@2.56,3930,drops_a3,fc_fight_12_9,0,,,,Main
+fight_12_10,chapter_12,10,Prince Aubrel of Summer,enemy_fey_knight@1.59+enemy_fey_knight@1.59+enemy_fey_knight@1.59 / enemy_prince_aubrel@1.59+enemy_thornling@1.59,3930,drops_a3,fc_fight_12_10,24,beat_c12_boss,beat_c12_outro,,Main
+side_12_1,chapter_12,11,The Hall of Masks,enemy_winter_knight@3.23+enemy_winter_knight@3.23+enemy_thornling@3.23 / enemy_fey_knight@3.23+enemy_fey_knight@3.23,3760,side_a3,fc_side_12_1,0,beat_side_12_1,beat_side_12_1_lore,ClearFight:fight_12_3,Side
+side_12_2,chapter_12,12,The Winter Pavilion,enemy_fey_knight@2.64+enemy_thornling@2.64+enemy_fey_knight@2.64+enemy_fey_knight@2.64 / enemy_fey_knight@2.64+enemy_thornling@2.64+enemy_fey_knight@2.64,3920,side_a3,fc_side_12_2,0,beat_side_12_2,beat_side_12_2_lore,ClearFight:fight_12_6,Side
+fight_13_1,chapter_13,1,Sunken Path,enemy_blightbeast@3.63+enemy_rot_dryad@3.63,3940,drops_a3,fc_fight_13_1,0,beat_c13_intro_1,,,Main
+fight_13_2,chapter_13,2,Leech Pools,enemy_rot_dryad@5.64+enemy_spore_crawler@5.64,3940,items_a3,fc_fight_13_2,0,beat_recruit_nettlecrown,,,Main
+fight_13_3,chapter_13,3,Hag's Garden,enemy_spore_crawler@3.41+enemy_blight_alpha@3.41+enemy_spore_crawler@3.41,3940,items_a3,fc_fight_13_3,0,beat_recruit_fawnsong,,,Main
+fight_13_4,chapter_13,4,Drowned Grove,enemy_blightbeast@2.50+enemy_spore_crawler@2.50+enemy_blightbeast@2.50,3970,items_a3,fc_a3,0,,,,Main
+fight_13_5,chapter_13,5,Bone Reeds,enemy_rot_dryad@2.84+enemy_blightbeast@2.84 / enemy_rot_dryad@2.84+enemy_blightbeast@2.84,3990,drops_a3,fc_fight_13_5,0,beat_c13_b1,,,Main
+fight_13_6,chapter_13,6,Gas Hollow,enemy_rot_dryad@3.24+enemy_spore_crawler@3.24+enemy_spore_crawler@3.24 / enemy_blight_alpha@3.24+enemy_spore_crawler@3.24,3990,drops_a3,fc_fight_13_6,0,,,,Main
+fight_13_7,chapter_13,7,Black Willows,enemy_spore_crawler@2.30+enemy_spore_crawler@2.30+enemy_spore_crawler@2.30 / enemy_blightbeast@2.30+enemy_blightbeast@2.30,3990,items_a3,fc_a3,0,,,,Main
+fight_13_8,chapter_13,8,The Cauldron,enemy_spore_crawler@3.12+enemy_spore_crawler@3.12+enemy_spore_crawler@3.12 / enemy_blight_alpha@3.12+enemy_rot_dryad@3.12,3990,items_a3,fc_a3,0,beat_c13_b2,,,Main
+fight_13_9,chapter_13,9,Witch Light,enemy_blightbeast@2.37+enemy_spore_crawler@2.37+enemy_rot_dryad@2.37+enemy_rot_dryad@2.37 / enemy_blightbeast@2.37+enemy_spore_crawler@2.37+enemy_spore_crawler@2.37,3990,drops_a3,fc_a3,0,,,,Main
+fight_13_10,chapter_13,10,The Mire Hag,enemy_blightbeast@1.45+enemy_rot_dryad@1.45+enemy_rot_dryad@1.45 / enemy_mire_hag@1.45+enemy_spore_crawler@1.45,3990,drops_a3,fc_fight_13_10,24,beat_c13_boss,beat_c13_outro,,Main
+side_13_1,chapter_13,11,The Cauldron,enemy_spore_crawler@3.21+enemy_spore_crawler@3.21+enemy_blight_alpha@3.21 / enemy_spore_crawler@3.21+enemy_spore_crawler@3.21,3940,side_a3,fc_side_13_1,0,beat_side_13_1,beat_side_13_1_lore,ClearFight:fight_13_3,Side
+fight_14_1,chapter_14,1,Antler Gate,enemy_briar_archer@4.66+enemy_briar_archer@4.66,3990,drops_a3,fc_a3,0,beat_c14_intro_1,,,Main
+fight_14_2,chapter_14,2,Trampled Glen,enemy_thornling@3.94+enemy_elder_thornling@3.94,4010,drops_a3,fc_fight_14_2,0,beat_recruit_hawkmother,,,Main
+fight_14_3,chapter_14,3,White Stag's Spring,enemy_blight_alpha@2.75+enemy_elder_thornling@2.75+enemy_briar_archer@2.75,4010,drops_a3,fc_fight_14_3,0,beat_recruit_lowbough,,,Main
+fight_14_4,chapter_14,4,Hunter's Blind,enemy_thornling@3.67+enemy_elder_thornling@3.67+enemy_thornling@3.67,4030,drops_a3,fc_fight_14_4,0,beat_recruit_stagrider,,,Main
+fight_14_5,chapter_14,5,Rotten Ford,enemy_blight_alpha@2.91+enemy_briar_archer@2.91 / enemy_blight_alpha@2.91+enemy_blight_alpha@2.91,4080,drops_a3,fc_fight_14_5,0,,,,Main
+fight_14_6,chapter_14,6,Gallows Oak,enemy_briar_archer@2.92+enemy_briar_archer@2.92+enemy_briar_archer@2.92 / enemy_briar_archer@2.92+enemy_elder_thornling@2.92,4080,items_a3,fc_fight_14_6,0,beat_c14_b1,,,Main
+fight_14_7,chapter_14,7,The Long Chase,enemy_blight_alpha@2.28+enemy_blight_alpha@2.28+enemy_elder_thornling@2.28 / enemy_blight_alpha@2.28+enemy_briar_archer@2.28,4100,drops_a3,fc_a3,0,,,,Main
+fight_14_8,chapter_14,8,Moonbarrow,enemy_blight_alpha@3.22+enemy_thornling@3.22+enemy_briar_archer@3.22 / enemy_blight_alpha@3.22+enemy_thornling@3.22,4100,items_a3,fc_fight_14_8,0,,,,Main
+fight_14_9,chapter_14,9,Rutting Grounds,enemy_blight_alpha@2.94+enemy_thornling@2.94+enemy_blight_alpha@2.94 / enemy_thornling@2.94+enemy_briar_archer@2.94,4100,items_a3,fc_fight_14_9,0,beat_c14_b2,,,Main
+fight_14_10,chapter_14,10,Stag's Bed,enemy_thornling@2.20+enemy_briar_archer@2.20+enemy_briar_archer@2.20+enemy_thornling@2.20 / enemy_blight_alpha@2.20+enemy_blight_alpha@2.20+enemy_blight_alpha@2.20,4100,items_a3,fc_fight_14_10,0,,,,Main
+fight_14_11,chapter_14,11,The Rot Stag,enemy_thornling@1.11+enemy_briar_archer@1.11+enemy_blight_alpha@1.11 / enemy_rot_stag@1.11+enemy_blight_alpha@1.11,4110,drops_a3,fc_fight_14_11,24,beat_c14_boss,beat_c14_outro,,Main
+side_14_1,chapter_14,12,White Stag's Spring,enemy_elder_thornling@2.64+enemy_blight_alpha@2.64+enemy_briar_archer@2.64 / enemy_briar_archer@2.64+enemy_thornling@2.64,4030,side_a3,fc_side_14_1,0,beat_side_14_1,beat_side_14_1_lore,ClearFight:fight_14_4,Side
+side_14_2,chapter_14,13,Gallows Oak,enemy_briar_archer@2.10+enemy_blight_alpha@2.10+enemy_blight_alpha@2.10+enemy_blight_alpha@2.10 / enemy_blight_alpha@2.10+enemy_blight_alpha@2.10+enemy_briar_archer@2.10,4080,side_a3,fc_side_14_2,0,beat_side_14_2,beat_side_14_2_lore,ClearFight:fight_14_6,Side
+side_14_3,chapter_14,14,Moonbarrow,enemy_blight_alpha@2.54+enemy_thornling@2.54+enemy_briar_archer@2.54+enemy_thornling@2.54 / enemy_blight_alpha@2.54+enemy_blight_alpha@2.54+enemy_briar_archer@2.54,4100,side_a3,fc_side_14_3,0,beat_side_14_3,beat_side_14_3_lore,ClearFight:fight_14_9,Side
+fight_15_1,chapter_15,1,Root Gate,enemy_elder_thornling@3.87+enemy_winter_knight@3.87,4110,drops_a3,fc_fight_15_1,0,beat_c15_intro_1;beat_c15_intro_2,,,Main
+fight_15_2,chapter_15,2,Heartwood Path,enemy_winter_knight@5.27+enemy_spore_crawler@5.27,4110,drops_a3,fc_fight_15_2,0,beat_recruit_barkskin,,,Main
+fight_15_3,chapter_15,3,The Burrowing Dark,enemy_winter_knight@3.89+enemy_winter_knight@3.89+enemy_rot_dryad@3.89,4110,drops_a3,fc_fight_15_3,0,beat_recruit_saelith,,,Main
+fight_15_4,chapter_15,4,Ysra's Last Camp,enemy_elder_thornling@3.63+enemy_spore_crawler@3.63+enemy_rot_dryad@3.63,4220,drops_a3,fc_fight_15_4,0,,,,Main
+fight_15_5,chapter_15,5,Sapwell,enemy_rot_dryad@3.78+enemy_rot_dryad@3.78 / enemy_winter_knight@3.78+enemy_elder_thornling@3.78,4220,drops_a3,fc_fight_15_5,0,beat_c15_b1,,,Main
+fight_15_6,chapter_15,6,Rotting Roots,enemy_winter_knight@3.54+enemy_winter_knight@3.54+enemy_spore_crawler@3.54 / enemy_winter_knight@3.54+enemy_rot_dryad@3.54,4220,drops_a3,fc_fight_15_6,0,,,,Main
+fight_15_7,chapter_15,7,Hall of Rings,enemy_elder_thornling@2.35+enemy_elder_thornling@2.35+enemy_winter_knight@2.35 / enemy_elder_thornling@2.35+enemy_rot_dryad@2.35,4220,drops_a3,fc_fight_15_7,0,,,,Main
+fight_15_8,chapter_15,8,Graft Chamber,enemy_blightbeast@2.44+enemy_rot_dryad@2.44+enemy_blightbeast@2.44 / enemy_rot_dryad@2.44+enemy_elder_thornling@2.44,4220,drops_a3,fc_fight_15_8,0,beat_c15_b2,,,Main
+fight_15_9,chapter_15,9,Seed Vault,enemy_rot_dryad@2.05+enemy_elder_thornling@2.05+enemy_winter_knight@2.05+enemy_blightbeast@2.05 / enemy_rot_dryad@2.05+enemy_blightbeast@2.05+enemy_spore_crawler@2.05,4220,drops_a3,fc_a3,0,,,,Main
+fight_15_10,chapter_15,10,The Blight Heart,enemy_rot_dryad@1.00+enemy_blightbeast@1.00+enemy_rot_dryad@1.00 / enemy_blight_heart@1.00+enemy_blightbeast@1.00,4250,drops_a3,fc_fight_15_10,24,beat_c15_boss,beat_c15_outro,,Main
+side_15_1,chapter_15,11,Ysra's Last Camp,enemy_winter_knight@2.38+enemy_blightbeast@2.38+enemy_blightbeast@2.38 / enemy_spore_crawler@2.38+enemy_elder_thornling@2.38,4110,side_a3,fc_side_15_1,0,beat_side_15_1,beat_side_15_1_lore,ClearFight:fight_15_3,Side
+fight_16_1,chapter_16,1,Glass Dunes,enemy_glass_scorpion@4.11+enemy_glass_scorpion@4.11,4250,drops_a4,fc_a4,0,beat_c16_intro_1;beat_c16_intro_2,,,Main
+fight_16_2,chapter_16,2,Caravan Graveyard,enemy_glass_scorpion@4.51+enemy_sand_wraith@4.51,4290,drops_a4,fc_fight_16_2,0,beat_recruit_duneshield,,,Main
+fight_16_3,chapter_16,3,Mirage Wells,enemy_sand_wraith@3.47+enemy_glass_scorpion@3.47+enemy_djinn_spark@3.47,4300,items_a4,fc_fight_16_3,0,beat_recruit_hamid,,,Main
+fight_16_4,chapter_16,4,Shattered Mile,enemy_sand_wraith@3.54+enemy_glass_scorpion@3.54+enemy_glass_scorpion@3.54,4670,drops_a4,fc_fight_16_4,0,beat_recruit_yara,,,Main
+fight_16_5,chapter_16,5,Scorpion Flats,enemy_djinn_spark@3.21+enemy_glass_scorpion@3.21+enemy_sand_wraith@3.21 / enemy_glass_scorpion@3.21+enemy_glass_scorpion@3.21,4680,items_a4,fc_a4,0,beat_c16_b1,,,Main
+fight_16_6,chapter_16,6,Sunstroke Ridge,enemy_sand_wraith@3.39+enemy_sand_wraith@3.39+enemy_glass_scorpion@3.39 / enemy_djinn_spark@3.39+enemy_sand_wraith@3.39,4810,items_a4,fc_a4,0,,,,Main
+fight_16_7,chapter_16,7,Wind Temple,enemy_sand_wraith@3.23+enemy_glass_scorpion@3.23+enemy_sand_wraith@3.23 / enemy_sand_wraith@3.23+enemy_glass_scorpion@3.23,4830,items_a4,fc_a4,0,beat_c16_b2,,,Main
+fight_16_8,chapter_16,8,Dune Sea,enemy_glass_scorpion@2.29+enemy_glass_scorpion@2.29+enemy_glass_scorpion@2.29+enemy_glass_scorpion@2.29 / enemy_glass_scorpion@2.29+enemy_glass_scorpion@2.29+enemy_glass_scorpion@2.29,4840,drops_a4,fc_a4,0,,,,Main
+fight_16_9,chapter_16,9,Queen of Scorpions,enemy_glass_scorpion@1.13+enemy_glass_scorpion@1.13+enemy_sand_wraith@1.13 / enemy_scorpion_queen@1.13+enemy_djinn_spark@1.13,4860,drops_a4,fc_fight_16_9,26,beat_c16_boss,beat_c16_outro,,Main
+side_16_1,chapter_16,10,The Caravan Graveyard,enemy_glass_scorpion@3.11+enemy_sand_wraith@3.11+enemy_djinn_spark@3.11 / enemy_glass_scorpion@3.11+enemy_sand_wraith@3.11,4300,side_a4,fc_side_16_1,0,beat_side_16_1,beat_side_16_1_lore,ClearFight:fight_16_3,Side
+side_16_2,chapter_16,11,The Wind Temple,enemy_glass_scorpion@2.66+enemy_sand_wraith@2.66+enemy_sand_wraith@2.66+enemy_sand_wraith@2.66 / enemy_sand_wraith@2.66+enemy_glass_scorpion@2.66+enemy_glass_scorpion@2.66,4760,side_a4,fc_side_16_2,0,beat_side_16_2,beat_side_16_2_lore,ClearFight:fight_16_5,Side
+fight_17_1,chapter_17,1,City of Awnings,enemy_master_assassin@4.34+enemy_glass_scorpion@4.34,4880,drops_a4,fc_a4,0,beat_c17_intro_1,,,Main
+fight_17_2,chapter_17,2,Spice Market,enemy_glass_scorpion@4.59+enemy_court_assassin@4.59,4880,drops_a4,fc_fight_17_2,0,beat_recruit_glasssting,,,Main
+fight_17_3,chapter_17,3,The Whispering Bazaar,enemy_sand_mage@3.77+enemy_sand_mage@3.77+enemy_court_assassin@3.77,4880,drops_a4,fc_fight_17_3,0,beat_recruit_flamestep,,,Main
+fight_17_4,chapter_17,4,Assassins' Steps,enemy_master_assassin@3.66+enemy_glass_scorpion@3.66+enemy_sand_mage@3.66,5090,items_a4,fc_a4,0,,,,Main
+fight_17_5,chapter_17,5,Hall of Petitions,enemy_sand_mage@4.00+enemy_court_assassin@4.00 / enemy_glass_scorpion@4.00+enemy_court_assassin@4.00,5170,drops_a4,fc_a4,0,,,,Main
+fight_17_6,chapter_17,6,Garden of Glass,enemy_glass_scorpion@3.29+enemy_sand_mage@3.29+enemy_court_assassin@3.29 / enemy_court_assassin@3.29+enemy_glass_scorpion@3.29,5170,drops_a4,fc_a4,0,beat_c17_b1,,,Main
+fight_17_7,chapter_17,7,Poisoners' Kitchen,enemy_sand_mage@3.58+enemy_glass_scorpion@3.58+enemy_glass_scorpion@3.58 / enemy_sand_mage@3.58+enemy_sand_mage@3.58,5200,drops_a4,fc_a4,0,,,,Main
+fight_17_8,chapter_17,8,Harem Roofs,enemy_glass_scorpion@3.33+enemy_glass_scorpion@3.33+enemy_court_assassin@3.33 / enemy_court_assassin@3.33+enemy_court_assassin@3.33,5200,drops_a4,fc_a4,0,,,,Main
+fight_17_9,chapter_17,9,Throne of Mirrors,enemy_glass_scorpion@3.17+enemy_court_assassin@3.17+enemy_master_assassin@3.17 / enemy_glass_scorpion@3.17+enemy_court_assassin@3.17,5200,items_a4,fc_fight_17_9,0,beat_c17_b2,,,Main
+fight_17_10,chapter_17,10,Vizier's Gallery,enemy_master_assassin@2.56+enemy_master_assassin@2.56+enemy_court_assassin@2.56+enemy_court_assassin@2.56 / enemy_master_assassin@2.56+enemy_sand_mage@2.56+enemy_sand_mage@2.56,5200,drops_a4,fc_fight_17_10,0,,,,Main
+fight_17_11,chapter_17,11,Vizier Hashem,enemy_court_assassin@1.80+enemy_glass_scorpion@1.80+enemy_sand_mage@1.80 / enemy_vizier_hashem@1.80+enemy_master_assassin@1.80,5200,drops_a4,fc_fight_17_11,26,beat_c17_boss,beat_c17_outro,,Main
+side_17_1,chapter_17,12,The Poisoners' Kitchen,enemy_court_assassin@3.04+enemy_court_assassin@3.04+enemy_master_assassin@3.04 / enemy_sand_mage@3.04+enemy_court_assassin@3.04,4890,side_a4,fc_side_17_1,0,beat_side_17_1,beat_side_17_1_lore,ClearFight:fight_17_3,Side
+side_17_2,chapter_17,13,The Whispering Bazaar,enemy_sand_mage@2.91+enemy_sand_mage@2.91+enemy_court_assassin@2.91+enemy_sand_mage@2.91 / enemy_court_assassin@2.91+enemy_sand_mage@2.91+enemy_court_assassin@2.91,5170,side_a4,fc_side_17_2,0,beat_side_17_2,beat_side_17_2_lore,ClearFight:fight_17_6,Side
+fight_18_1,chapter_18,1,Arcanum Gates,enemy_brass_construct@4.15+enemy_sand_mage@4.15,5200,drops_a4,fc_a4,0,beat_c18_intro_1,,,Main
+fight_18_2,chapter_18,2,Hall of Constructs,enemy_djinn_spark@5.84+enemy_djinn_spark@5.84,5200,items_a4,fc_fight_18_2,0,beat_recruit_starcounter,,,Main
+fight_18_3,chapter_18,3,The Clockwork Garden,enemy_brass_construct@2.85+enemy_sand_mage@2.85+enemy_brass_sentinel@2.85,5210,drops_a4,fc_fight_18_3,0,beat_recruit_teodor,,,Main
+fight_18_4,chapter_18,4,Burned Library,enemy_brass_sentinel@3.60+enemy_sand_mage@3.60+enemy_sand_mage@3.60,5280,drops_a4,fc_fight_18_4,0,beat_recruit_vitrum,,,Main
+fight_18_5,chapter_18,5,Observatory,enemy_djinn_spark@3.43+enemy_brass_construct@3.43 / enemy_sand_mage@3.43+enemy_brass_sentinel@3.43,5280,items_a4,fc_fight_18_5,0,,,,Main
+fight_18_6,chapter_18,6,Golem Foundry,enemy_brass_construct@2.83+enemy_brass_construct@2.83+enemy_sand_mage@2.83 / enemy_sand_mage@2.83+enemy_djinn_spark@2.83,5300,drops_a4,fc_a4,0,beat_c18_b1,,,Main
+fight_18_7,chapter_18,7,Lecture Hall of Ash,enemy_brass_sentinel@2.42+enemy_brass_construct@2.42+enemy_djinn_spark@2.42 / enemy_brass_sentinel@2.42+enemy_brass_construct@2.42,5320,items_a4,fc_a4,0,,,,Main
+fight_18_8,chapter_18,8,Mirror Archives,enemy_brass_construct@2.68+enemy_brass_sentinel@2.68+enemy_sand_mage@2.68 / enemy_sand_mage@2.68+enemy_brass_construct@2.68,5330,drops_a4,fc_a4,0,,,,Main
+fight_18_9,chapter_18,9,The Brass Heart,enemy_djinn_spark@3.40+enemy_djinn_spark@3.40+enemy_brass_sentinel@3.40 / enemy_sand_mage@3.40+enemy_djinn_spark@3.40,5330,items_a4,fc_a4,0,beat_c18_b2,,,Main
+fight_18_10,chapter_18,10,Collapsed Atrium,enemy_brass_sentinel@2.19+enemy_brass_construct@2.19+enemy_sand_mage@2.19+enemy_sand_mage@2.19 / enemy_djinn_spark@2.19+enemy_brass_sentinel@2.19+enemy_brass_construct@2.19,5400,drops_a4,fc_a4,0,,,,Main
+fight_18_11,chapter_18,11,The Brass Colossus,enemy_sand_mage@1.18+enemy_djinn_spark@1.18+enemy_brass_construct@1.18 / enemy_brass_colossus@1.18+enemy_djinn_spark@1.18,5400,drops_a4,fc_fight_18_11,26,beat_c18_boss,beat_c18_outro,,Main
+side_18_1,chapter_18,12,The Burned Library,enemy_sand_mage@3.53+enemy_brass_construct@3.53+enemy_djinn_spark@3.53 / enemy_djinn_spark@3.53+enemy_sand_mage@3.53,5240,side_a4,fc_side_18_1,0,beat_side_18_1,beat_side_18_1_lore,ClearFight:fight_18_3,Side
+side_18_2,chapter_18,13,The Observatory,enemy_sand_mage@2.68+enemy_djinn_spark@2.68+enemy_sand_mage@2.68+enemy_djinn_spark@2.68 / enemy_djinn_spark@2.68+enemy_brass_construct@2.68+enemy_brass_construct@2.68,5300,side_a4,fc_side_18_2,0,beat_side_18_2,beat_side_18_2_lore,ClearFight:fight_18_6,Side
+side_18_3,chapter_18,14,Golem Foundry,enemy_brass_sentinel@2.26+enemy_brass_sentinel@2.26+enemy_brass_construct@2.26+enemy_sand_mage@2.26 / enemy_sand_mage@2.26+enemy_djinn_spark@2.26+enemy_sand_mage@2.26,5340,side_a4,fc_side_18_3,0,beat_side_18_3,beat_side_18_3_lore,ClearFight:fight_18_9,Side
+fight_19_1,chapter_19,1,Tower Base,enemy_sand_mage@6.52+enemy_djinn_spark@6.52,5410,drops_a4,fc_fight_19_1,0,beat_c19_intro_1,,,Main
+fight_19_2,chapter_19,2,Spiral of Mirrors,enemy_master_assassin@4.58+enemy_master_assassin@4.58,5430,items_a4,fc_fight_19_2,0,beat_recruit_nadira,,,Main
+fight_19_3,chapter_19,3,Hollow Laboratory,enemy_brass_sentinel@3.56+enemy_sand_mage@3.56+enemy_sand_mage@3.56,5430,drops_a4,fc_fight_19_3,0,beat_recruit_glasswright,,,Main
+fight_19_4,chapter_19,4,Cage Floor,enemy_master_assassin@3.44+enemy_djinn_spark@3.44+enemy_brass_sentinel@3.44,5560,drops_a4,fc_a4,0,,,,Main
+fight_19_5,chapter_19,5,Apprentices' Quarters,enemy_sand_mage@3.94+enemy_djinn_spark@3.94+enemy_master_assassin@3.94 / enemy_sand_mage@3.94+enemy_sand_mage@3.94,5570,drops_a4,fc_fight_19_5,0,beat_c19_b1,,,Main
+fight_19_6,chapter_19,6,Upside-Down Garden,enemy_master_assassin@3.74+enemy_sand_mage@3.74+enemy_djinn_spark@3.74 / enemy_master_assassin@3.74+enemy_sand_mage@3.74,5570,items_a4,fc_fight_19_6,0,,,,Main
+fight_19_7,chapter_19,7,Scrying Room,enemy_djinn_spark@3.57+enemy_master_assassin@3.57+enemy_djinn_spark@3.57 / enemy_master_assassin@3.57+enemy_master_assassin@3.57,5580,drops_a4,fc_fight_19_7,0,beat_c19_b2,,,Main
+fight_19_8,chapter_19,8,Hollow Window,enemy_djinn_spark@3.27+enemy_sand_mage@3.27+enemy_sand_mage@3.27+enemy_master_assassin@3.27 / enemy_sand_mage@3.27+enemy_sand_mage@3.27+enemy_djinn_spark@3.27,5580,drops_a4,fc_fight_19_8,0,,,,Main
+fight_19_9,chapter_19,9,Archmage Ilvane,enemy_sand_mage@1.48+enemy_master_assassin@1.48+enemy_master_assassin@1.48 / enemy_ilvane@1.48+enemy_sand_mage@1.48,5580,drops_a4,fc_fight_19_9,26,beat_c19_boss,beat_c19_outro,,Main
+side_19_1,chapter_19,10,Apprentices' Quarters,enemy_sand_mage@4.23+enemy_djinn_spark@4.23+enemy_djinn_spark@4.23 / enemy_djinn_spark@4.23+enemy_master_assassin@4.23,5430,side_a4,fc_side_19_1,0,beat_side_19_1,beat_side_19_1_lore,ClearFight:fight_19_3,Side
+fight_20_1,chapter_20,1,Vault Door,enemy_djinn_spark@6.45+enemy_djinn_spark@6.45,5600,drops_a4,fc_fight_20_1,0,beat_c20_intro_1,,,Main
+fight_20_2,chapter_20,2,Lightning Corridor,enemy_obsidian_scorpion@3.06+enemy_obsidian_scorpion@3.06,5600,drops_a4,fc_fight_20_2,0,beat_recruit_rashid,,,Main
+fight_20_3,chapter_20,3,The Bottled Sky,enemy_obsidian_scorpion@2.86+enemy_obsidian_scorpion@2.86+enemy_sand_wraith@2.86,5600,drops_a4,fc_fight_20_3,0,beat_recruit_longsight,,,Main
+fight_20_4,chapter_20,4,Djinn Cells,enemy_obsidian_scorpion@3.73+enemy_sand_wraith@3.73+enemy_djinn_spark@3.73,5680,drops_a4,fc_fight_20_4,0,,,,Main
+fight_20_5,chapter_20,5,Hall of Thunder,enemy_obsidian_scorpion@2.64+enemy_sand_wraith@2.64+enemy_djinn_spark@2.64 / enemy_obsidian_scorpion@2.64+enemy_obsidian_scorpion@2.64,5680,drops_a4,fc_fight_20_5,0,beat_c20_b1,,,Main
+fight_20_6,chapter_20,6,The Calm,enemy_obsidian_scorpion@2.22+enemy_obsidian_scorpion@2.22+enemy_obsidian_scorpion@2.22 / enemy_obsidian_scorpion@2.22+enemy_djinn_spark@2.22,5680,drops_a4,fc_a4,0,,,,Main
+fight_20_7,chapter_20,7,Glass Heart,enemy_brass_sentinel@2.35+enemy_obsidian_scorpion@2.35+enemy_djinn_spark@2.35 / enemy_obsidian_scorpion@2.35+enemy_obsidian_scorpion@2.35,5680,items_a4,fc_fight_20_7,0,beat_c20_b2,,,Main
+fight_20_8,chapter_20,8,Storm Wall,enemy_obsidian_scorpion@2.19+enemy_obsidian_scorpion@2.19+enemy_sand_wraith@2.19+enemy_sand_wraith@2.19 / enemy_obsidian_scorpion@2.19+enemy_obsidian_scorpion@2.19+enemy_sand_wraith@2.19,5680,drops_a4,fc_a4,0,,,,Main
+fight_20_9,chapter_20,9,"Azhar, the Storm Djinn",enemy_obsidian_scorpion@1.26+enemy_djinn_spark@1.26+enemy_djinn_spark@1.26 / enemy_storm_djinn@1.26+enemy_brass_sentinel@1.26,5680,drops_a4,fc_fight_20_9,26,beat_c20_boss,beat_c20_outro,,Main
+side_20_1,chapter_20,10,Djinn Cells,enemy_obsidian_scorpion@2.60+enemy_sand_wraith@2.60+enemy_djinn_spark@2.60 / enemy_obsidian_scorpion@2.60+enemy_brass_sentinel@2.60,5600,side_a4,fc_side_20_1,0,beat_side_20_1,beat_side_20_1_lore,ClearFight:fight_20_3,Side
+fight_21_1,chapter_21,1,Snowline,enemy_frost_wolf@6.25+enemy_ice_wraith@6.25,5680,drops_a5,fc_a5,0,beat_c21_intro_1;beat_c21_intro_2,,,Main
+fight_21_2,chapter_21,2,Frozen Waterfall,enemy_frost_wolf@5.29+enemy_wendigo_spawn@5.29,5720,drops_a5,fc_fight_21_2,0,beat_recruit_snowstalker;beat_recruit_ylva,,,Main
+fight_21_3,chapter_21,3,Wendigo Tracks,enemy_frost_wolf@3.77+enemy_wendigo_spawn@3.77+enemy_wendigo_spawn@3.77,5760,drops_a5,fc_fight_21_3,0,beat_recruit_trapwright,,,Main
+fight_21_4,chapter_21,4,Abandoned Shrine,enemy_frost_wolf@4.41+enemy_frost_wolf@4.41+enemy_wendigo_spawn@4.41,5770,items_a5,fc_fight_21_4,0,beat_recruit_vala,,,Main
+fight_21_5,chapter_21,5,Avalanche Slope,enemy_wendigo_spawn@3.65+enemy_wendigo_spawn@3.65 / enemy_wendigo_spawn@3.65+enemy_wendigo_spawn@3.65,6260,drops_a5,fc_fight_21_5,0,beat_recruit_wolfsister,,,Main
+fight_21_6,chapter_21,6,Hunter's Cairn,enemy_wendigo_spawn@3.65+enemy_frost_wolf@3.65+enemy_wendigo_spawn@3.65 / enemy_wendigo_spawn@3.65+enemy_ice_wraith@3.65,6300,drops_a5,fc_a5,0,beat_c21_b1,,,Main
+fight_21_7,chapter_21,7,Bone Cave,enemy_wendigo_spawn@3.61+enemy_ice_wraith@3.61+enemy_wendigo_spawn@3.61 / enemy_wendigo_spawn@3.61+enemy_frost_wolf@3.61,6580,drops_a5,fc_a5,0,,,,Main
+fight_21_8,chapter_21,8,Starving Camp,enemy_wendigo_spawn@3.47+enemy_wendigo_spawn@3.47+enemy_wendigo_spawn@3.47 / enemy_frost_wolf@3.47+enemy_wendigo_spawn@3.47,6580,drops_a5,fc_a5,0,,,,Main
+fight_21_9,chapter_21,9,Frostbite Ridge,enemy_frost_wolf@3.96+enemy_ice_wraith@3.96+enemy_wendigo_spawn@3.96 / enemy_wendigo_spawn@3.96+enemy_ice_wraith@3.96,6580,drops_a5,fc_a5,0,beat_c21_b2,,,Main
+fight_21_10,chapter_21,10,Wind Gap,enemy_wendigo_spawn@3.67+enemy_frost_wolf@3.67+enemy_frost_wolf@3.67+enemy_frost_wolf@3.67 / enemy_frost_wolf@3.67+enemy_wendigo_spawn@3.67+enemy_frost_wolf@3.67,6700,items_a5,fc_a5,0,,,,Main
+fight_21_11,chapter_21,11,The Wendigo,enemy_frost_wolf@1.76+enemy_frost_wolf@1.76+enemy_wendigo_spawn@1.76 / enemy_wendigo@1.76+enemy_frost_wolf@1.76,6720,drops_a5,fc_fight_21_11,28,beat_c21_boss,beat_c21_outro,,Main
+side_21_1,chapter_21,12,The Abandoned Shrine,enemy_ice_wraith@3.40+enemy_wendigo_spawn@3.40+enemy_wendigo_spawn@3.40 / enemy_frost_wolf@3.40+enemy_wendigo_spawn@3.40,5840,side_a5,fc_side_21_1,0,beat_side_21_1,beat_side_21_1_lore,ClearFight:fight_21_4,Side
+side_21_2,chapter_21,13,Starving Camp,enemy_frost_wolf@3.11+enemy_wendigo_spawn@3.11+enemy_ice_wraith@3.11+enemy_wendigo_spawn@3.11 / enemy_ice_wraith@3.11+enemy_ice_wraith@3.11+enemy_wendigo_spawn@3.11,6320,side_a5,fc_side_21_2,0,beat_side_21_2,beat_side_21_2_lore,ClearFight:fight_21_6,Side
+side_21_3,chapter_21,14,Hunter's Cairn,enemy_wendigo_spawn@3.45+enemy_wendigo_spawn@3.45+enemy_frost_wolf@3.45+enemy_frost_wolf@3.45 / enemy_frost_wolf@3.45+enemy_frost_wolf@3.45+enemy_wendigo_spawn@3.45,6620,side_a5,fc_side_21_3,0,beat_side_21_3,beat_side_21_3_lore,ClearFight:fight_21_9,Side
+fight_22_1,chapter_22,1,Feud Line,enemy_frost_wolf@6.81+enemy_clan_raider@6.81,6790,drops_a5,fc_a5,0,beat_c22_intro_1,,,Main
+fight_22_2,chapter_22,2,Burned Longhouse,enemy_frost_wolf@6.85+enemy_rime_shaman@6.85,6790,drops_a5,fc_fight_22_2,0,beat_recruit_haldor,,,Main
+fight_22_3,chapter_22,3,Mead Hall,enemy_rime_shaman@3.86+enemy_raider_berserker@3.86+enemy_rime_shaman@3.86,6830,drops_a5,fc_fight_22_3,0,beat_recruit_ironskald,,,Main
+fight_22_4,chapter_22,4,Raider Camp,enemy_raider_berserker@3.82+enemy_raider_berserker@3.82+enemy_clan_raider@3.82,6830,drops_a5,fc_fight_22_4,0,beat_recruit_ulfgar,,,Main
+fight_22_5,chapter_22,5,The Blood Stone,enemy_rime_shaman@3.78+enemy_clan_raider@3.78+enemy_raider_berserker@3.78 / enemy_raider_berserker@3.78+enemy_clan_raider@3.78,7030,drops_a5,fc_a5,0,beat_c22_b1,,,Main
+fight_22_6,chapter_22,6,Shield-Wall Gate,enemy_raider_berserker@3.57+enemy_raider_berserker@3.57+enemy_raider_berserker@3.57 / enemy_clan_raider@3.57+enemy_rime_shaman@3.57,7100,drops_a5,fc_a5,0,,,,Main
+fight_22_7,chapter_22,7,Skald's Hill,enemy_rime_shaman@4.14+enemy_clan_raider@4.14+enemy_rime_shaman@4.14 / enemy_clan_raider@4.14+enemy_clan_raider@4.14,7100,drops_a5,fc_a5,0,beat_c22_b2,,,Main
+fight_22_8,chapter_22,8,Thane's Hall,enemy_clan_raider@3.11+enemy_clan_raider@3.11+enemy_rime_shaman@3.11+enemy_raider_berserker@3.11 / enemy_raider_berserker@3.11+enemy_clan_raider@3.11+enemy_clan_raider@3.11,7100,items_a5,fc_fight_22_8,0,,,,Main
+fight_22_9,chapter_22,9,Thane Grimhild,enemy_rime_shaman@1.54+enemy_clan_raider@1.54+enemy_clan_raider@1.54 / enemy_thane_grimhild@1.54+enemy_clan_raider@1.54,7140,drops_a5,fc_fight_22_9,28,beat_c22_boss,beat_c22_outro,,Main
+side_22_1,chapter_22,10,The Burned Longhouse,enemy_rime_shaman@4.30+enemy_rime_shaman@4.30+enemy_frost_wolf@4.30 / enemy_raider_berserker@4.30+enemy_raider_berserker@4.30,6830,side_a5,fc_side_22_1,0,beat_side_22_1,beat_side_22_1_lore,ClearFight:fight_22_4,Side
+fight_23_1,chapter_23,1,White Field,enemy_elder_wraith@6.80+enemy_ice_wraith@6.80,7140,drops_a5,fc_fight_23_1,0,beat_c23_intro_1,,,Main
+fight_23_2,chapter_23,2,Frozen Battle,enemy_wendigo_spawn@6.11+enemy_ice_wraith@6.11,7140,drops_a5,fc_fight_23_2,0,beat_recruit_icewall,,,Main
+fight_23_3,chapter_23,3,Spear Forest,enemy_elder_wraith@4.44+enemy_wendigo_spawn@4.44+enemy_wendigo_spawn@4.44,7200,drops_a5,fc_fight_23_3,0,beat_recruit_rimeblade,,,Main
+fight_23_4,chapter_23,4,Weeping Ice,enemy_elder_wraith@3.95+enemy_frost_giant@3.95+enemy_wendigo_spawn@3.95,7400,drops_a5,fc_fight_23_4,0,beat_recruit_runecarver,,,Main
+fight_23_5,chapter_23,5,Ghost Lanterns,enemy_wendigo_spawn@4.48+enemy_frost_giant@4.48 / enemy_ice_wraith@4.48+enemy_ice_wraith@4.48,7400,items_a5,fc_a5,0,,,,Main
+fight_23_6,chapter_23,6,Hollow Ford,enemy_ice_wraith@4.35+enemy_ice_wraith@4.35+enemy_wendigo_spawn@4.35 / enemy_wendigo_spawn@4.35+enemy_ice_wraith@4.35,7440,drops_a5,fc_fight_23_6,0,beat_c23_b1,,,Main
+fight_23_7,chapter_23,7,Pale Barrow,enemy_ice_wraith@3.78+enemy_ice_wraith@3.78+enemy_wendigo_spawn@3.78 / enemy_ice_wraith@3.78+enemy_frost_giant@3.78,7450,items_a5,fc_fight_23_7,0,,,,Main
+fight_23_8,chapter_23,8,Rider's Track,enemy_elder_wraith@4.71+enemy_elder_wraith@4.71+enemy_elder_wraith@4.71 / enemy_elder_wraith@4.71+enemy_wendigo_spawn@4.71,7480,drops_a5,fc_fight_23_8,0,,,,Main
+fight_23_9,chapter_23,9,Field of Spears,enemy_ice_wraith@3.70+enemy_wendigo_spawn@3.70+enemy_wendigo_spawn@3.70 / enemy_frost_giant@3.70+enemy_wendigo_spawn@3.70,7480,drops_a5,fc_a5,0,beat_c23_b2,,,Main
+fight_23_10,chapter_23,10,Frost Altar,enemy_wendigo_spawn@3.10+enemy_ice_wraith@3.10+enemy_wendigo_spawn@3.10+enemy_ice_wraith@3.10 / enemy_elder_wraith@3.10+enemy_wendigo_spawn@3.10+enemy_frost_giant@3.10,7570,drops_a5,fc_a5,0,,,,Main
+fight_23_11,chapter_23,11,The Pale Rider,enemy_elder_wraith@1.93+enemy_ice_wraith@1.93+enemy_wendigo_spawn@1.93 / enemy_pale_rider@1.93+enemy_ice_wraith@1.93,7570,drops_a5,fc_fight_23_11,28,beat_c23_boss,beat_c23_outro,,Main
+side_23_1,chapter_23,12,The Frozen Battle,enemy_wendigo_spawn@4.24+enemy_elder_wraith@4.24+enemy_wendigo_spawn@4.24 / enemy_ice_wraith@4.24+enemy_ice_wraith@4.24,7200,side_a5,fc_side_23_1,0,beat_side_23_1,beat_side_23_1_lore,ClearFight:fight_23_3,Side
+side_23_2,chapter_23,13,Ghost Lanterns,enemy_elder_wraith@3.26+enemy_elder_wraith@3.26+enemy_wendigo_spawn@3.26+enemy_ice_wraith@3.26 / enemy_elder_wraith@3.26+enemy_frost_giant@3.26+enemy_wendigo_spawn@3.26,7440,side_a5,fc_side_23_2,0,beat_side_23_2,beat_side_23_2_lore,ClearFight:fight_23_6,Side
+side_23_3,chapter_23,14,The Pale Barrow,enemy_ice_wraith@3.41+enemy_ice_wraith@3.41+enemy_frost_giant@3.41+enemy_elder_wraith@3.41 / enemy_ice_wraith@3.41+enemy_ice_wraith@3.41+enemy_ice_wraith@3.41,7480,side_a5,fc_side_23_3,0,beat_side_23_3,beat_side_23_3_lore,ClearFight:fight_23_9,Side
+fight_24_1,chapter_24,1,Glittering Stair,enemy_giant_jarl@5.18+enemy_rime_shaman@5.18,7600,drops_a5,fc_a5,0,beat_c24_intro_1,,,Main
+fight_24_2,chapter_24,2,Hall of Icicles,enemy_rime_shaman@5.22+enemy_giant_jarl@5.22,7600,drops_a5,fc_fight_24_2,0,beat_recruit_hrolf,,,Main
+fight_24_3,chapter_24,3,Frozen Court,enemy_giant_jarl@3.71+enemy_elder_wraith@3.71+enemy_giant_jarl@3.71,7600,drops_a5,fc_fight_24_3,0,,,,Main
+fight_24_4,chapter_24,4,Mirror Gallery,enemy_elder_wraith@4.51+enemy_rime_shaman@4.51+enemy_giant_jarl@4.51,7790,drops_a5,fc_a5,0,,,,Main
+fight_24_5,chapter_24,5,Snow Garden,enemy_elder_wraith@4.80+enemy_giant_jarl@4.80 / enemy_elder_wraith@4.80+enemy_elder_wraith@4.80,7790,drops_a5,fc_fight_24_5,0,,,,Main
+fight_24_6,chapter_24,6,Queen's Menagerie,enemy_rime_shaman@4.30+enemy_elder_wraith@4.30+enemy_elder_wraith@4.30 / enemy_elder_wraith@4.30+enemy_giant_jarl@4.30,7790,drops_a5,fc_fight_24_6,0,beat_c24_b1,,,Main
+fight_24_7,chapter_24,7,Crystal Bridge,enemy_elder_wraith@3.94+enemy_ice_wraith@3.94+enemy_giant_jarl@3.94 / enemy_giant_jarl@3.94+enemy_elder_wraith@3.94,7930,items_a5,fc_a5,0,,,,Main
+fight_24_8,chapter_24,8,The Cold Chapel,enemy_elder_wraith@3.47+enemy_ice_wraith@3.47+enemy_giant_jarl@3.47 / enemy_giant_jarl@3.47+enemy_giant_jarl@3.47,8020,drops_a5,fc_fight_24_8,0,,,,Main
+fight_24_9,chapter_24,9,Throne Approach,enemy_giant_jarl@3.94+enemy_ice_wraith@3.94+enemy_elder_wraith@3.94 / enemy_giant_jarl@3.94+enemy_ice_wraith@3.94,8020,items_a5,fc_fight_24_9,0,beat_c24_b2,,,Main
+fight_24_10,chapter_24,10,Winter Throne,enemy_ice_wraith@3.54+enemy_rime_shaman@3.54+enemy_giant_jarl@3.54+enemy_rime_shaman@3.54 / enemy_ice_wraith@3.54+enemy_elder_wraith@3.54+enemy_elder_wraith@3.54,8050,items_a5,fc_a5,0,,,,Main
+fight_24_11,chapter_24,11,Queen Hoarfrost,enemy_elder_wraith@1.75+enemy_elder_wraith@1.75+enemy_giant_jarl@1.75 / enemy_queen_hoarfrost@1.75+enemy_elder_wraith@1.75,8050,drops_a5,fc_fight_24_11,28,beat_c24_boss,beat_c24_outro,,Main
+side_24_1,chapter_24,12,The Menagerie,enemy_giant_jarl@4.21+enemy_ice_wraith@4.21+enemy_rime_shaman@4.21 / enemy_elder_wraith@4.21+enemy_elder_wraith@4.21,7600,side_a5,fc_side_24_1,0,beat_side_24_1,beat_side_24_1_lore,ClearFight:fight_24_3,Side
+side_24_2,chapter_24,13,Mirror Gallery,enemy_ice_wraith@4.00+enemy_elder_wraith@4.00+enemy_elder_wraith@4.00+enemy_elder_wraith@4.00 / enemy_elder_wraith@4.00+enemy_elder_wraith@4.00+enemy_elder_wraith@4.00,7790,side_a5,fc_side_24_2,0,beat_side_24_2,beat_side_24_2_lore,ClearFight:fight_24_6,Side
+side_24_3,chapter_24,14,The Cold Chapel,enemy_ice_wraith@2.77+enemy_giant_jarl@2.77+enemy_elder_wraith@2.77+enemy_elder_wraith@2.77 / enemy_giant_jarl@2.77+enemy_giant_jarl@2.77+enemy_giant_jarl@2.77,8020,side_a5,fc_side_24_3,0,beat_side_24_3,beat_side_24_3_lore,ClearFight:fight_24_9,Side
+fight_25_1,chapter_25,1,Titan's Foot,enemy_frost_giant@3.94+enemy_giant_jarl@3.94,8050,drops_a5,fc_fight_25_1,0,beat_c25_intro_1,,,Main
+fight_25_2,chapter_25,2,Glacier Climb,enemy_elder_wraith@6.61+enemy_wendigo_spawn@6.61,8050,drops_a5,fc_a5,0,,,,Main
+fight_25_3,chapter_25,3,The Sleeping Face,enemy_frost_giant@3.48+enemy_giant_jarl@3.48+enemy_raider_berserker@3.48,8050,drops_a5,fc_a5,0,,,,Main
+fight_25_4,chapter_25,4,Heartbeat Cavern,enemy_frost_giant@3.48+enemy_wendigo_spawn@3.48+enemy_frost_giant@3.48,8110,drops_a5,fc_fight_25_4,0,,,,Main
+fight_25_5,chapter_25,5,Icefall,enemy_raider_berserker@4.50+enemy_raider_berserker@4.50 / enemy_giant_jarl@4.50+enemy_elder_wraith@4.50,8110,drops_a5,fc_a5,0,beat_c25_b1,,,Main
+fight_25_6,chapter_25,6,Dreaming Halls,enemy_giant_jarl@3.85+enemy_elder_wraith@3.85+enemy_wendigo_spawn@3.85 / enemy_frost_giant@3.85+enemy_elder_wraith@3.85,8210,drops_a5,fc_a5,0,,,,Main
+fight_25_7,chapter_25,7,Eye of the Mountain,enemy_elder_wraith@3.41+enemy_frost_giant@3.41+enemy_giant_jarl@3.41 / enemy_elder_wraith@3.41+enemy_raider_berserker@3.41,8210,drops_a5,fc_a5,0,,,,Main
+fight_25_8,chapter_25,8,Titan's Throat,enemy_giant_jarl@2.64+enemy_frost_giant@2.64+enemy_frost_giant@2.64 / enemy_giant_jarl@2.64+enemy_frost_giant@2.64,8210,drops_a5,fc_a5,0,beat_c25_b2,,,Main
+fight_25_9,chapter_25,9,Waking Storm,enemy_elder_wraith@2.85+enemy_wendigo_spawn@2.85+enemy_frost_giant@2.85+enemy_frost_giant@2.85 / enemy_frost_giant@2.85+enemy_wendigo_spawn@2.85+enemy_elder_wraith@2.85,8210,drops_a5,fc_a5,0,,,,Main
+fight_25_10,chapter_25,10,The Titan's Fury,enemy_frost_giant@1.42+enemy_raider_berserker@1.42+enemy_raider_berserker@1.42 / enemy_titan_fury@1.42+enemy_frost_giant@1.42,8210,drops_a5,fc_fight_25_10,28,beat_c25_boss,beat_c25_outro,,Main
+side_25_1,chapter_25,11,Heartbeat Cavern,enemy_raider_berserker@3.34+enemy_giant_jarl@3.34+enemy_raider_berserker@3.34 / enemy_giant_jarl@3.34+enemy_giant_jarl@3.34,8050,side_a5,fc_side_25_1,0,beat_side_25_1,beat_side_25_1_lore,ClearFight:fight_25_3,Side
+fight_26_1,chapter_26,1,Ash Road to Ironhold,enemy_forge_construct@2.76+enemy_forge_construct@2.76,8210,drops_a6,fc_a6,0,beat_c26_intro_1;beat_c26_intro_2,,,Main
+fight_26_2,chapter_26,2,Slag Heaps,enemy_rune_turret@3.86+enemy_forge_construct@3.86,8240,items_a6,fc_fight_26_2,0,beat_recruit_anvilborn,,,Main
+fight_26_3,chapter_26,3,Conveyor Hall,enemy_cinder_imp@3.46+enemy_rune_turret@3.46+enemy_forge_construct@3.46,8240,items_a6,fc_fight_26_3,0,beat_recruit_cogsworth,,,Main
+fight_26_4,chapter_26,4,Smelting Pools,enemy_forge_construct@2.80+enemy_cinder_imp@2.80+enemy_forge_construct@2.80,8330,drops_a6,fc_fight_26_4,0,beat_recruit_halvard,,,Main
+fight_26_5,chapter_26,5,Abandoned Picket,enemy_forge_construct@2.28+enemy_forge_construct@2.28+enemy_forge_construct@2.28 / enemy_forge_construct@2.28+enemy_cinder_imp@2.28,8770,drops_a6,fc_a6,0,beat_c26_b1,,,Main
+fight_26_6,chapter_26,6,Bellows Gallery,enemy_forge_construct@2.74+enemy_forge_construct@2.74+enemy_cinder_imp@2.74 / enemy_cinder_imp@2.74+enemy_forge_construct@2.74,8800,items_a6,fc_a6,0,,,,Main
+fight_26_7,chapter_26,7,Workers' Rest,enemy_cinder_imp@2.76+enemy_cinder_imp@2.76+enemy_forge_construct@2.76 / enemy_forge_construct@2.76+enemy_forge_construct@2.76,8810,drops_a6,fc_a6,0,beat_c26_b2,,,Main
+fight_26_8,chapter_26,8,Foreman's Tower,enemy_cinder_imp@2.50+enemy_forge_construct@2.50+enemy_cinder_imp@2.50+enemy_cinder_imp@2.50 / enemy_rune_turret@2.50+enemy_forge_construct@2.50+enemy_forge_construct@2.50,8810,drops_a6,fc_a6,0,,,,Main
+fight_26_9,chapter_26,9,Foreman Unit Seven,enemy_forge_construct@1.91+enemy_cinder_imp@1.91+enemy_cinder_imp@1.91 / enemy_unit_seven@1.91+enemy_rune_turret@1.91,8820,drops_a6,fc_fight_26_9,30,beat_c26_boss,beat_c26_outro,,Main
+side_26_1,chapter_26,10,Workers' Rest,enemy_cinder_imp@2.55+enemy_forge_construct@2.55+enemy_forge_construct@2.55 / enemy_rune_turret@2.55+enemy_forge_construct@2.55,8350,side_a6,fc_side_26_1,0,beat_side_26_1,beat_side_26_1_lore,ClearFight:fight_26_4,Side
+fight_27_1,chapter_27,1,Mine Head,enemy_forge_construct@4.16+enemy_tunnel_crawler@4.16,8870,drops_a6,fc_a6,0,beat_c27_intro_1,,,Main
+fight_27_2,chapter_27,2,Collapsed Shaft,enemy_forge_construct@4.17+enemy_tunnel_crawler@4.17,8870,drops_a6,fc_fight_27_2,0,beat_recruit_boltwright,,,Main
+fight_27_3,chapter_27,3,Glowworm Cave,enemy_magma_elemental@3.51+enemy_tunnel_crawler@3.51+enemy_forge_construct@3.51,8890,drops_a6,fc_fight_27_3,0,beat_recruit_ilgrin,,,Main
+fight_27_4,chapter_27,4,Rail Junction,enemy_tunnel_crawler@3.52+enemy_forge_construct@3.52+enemy_magma_elemental@3.52,8900,drops_a6,fc_fight_27_4,0,beat_recruit_skiv,,,Main
+fight_27_5,chapter_27,5,Flooded Gallery,enemy_tunnel_crawler@3.24+enemy_tunnel_crawler@3.24+enemy_magma_elemental@3.24 / enemy_magma_elemental@3.24+enemy_forge_construct@3.24,9090,drops_a6,fc_a6,0,beat_c27_b1,,,Main
+fight_27_6,chapter_27,6,Echoing Deep,enemy_magma_elemental@3.21+enemy_forge_construct@3.21+enemy_magma_elemental@3.21 / enemy_tunnel_crawler@3.21+enemy_tunnel_crawler@3.21,9260,drops_a6,fc_a6,0,,,,Main
+fight_27_7,chapter_27,7,Crawler Nest,enemy_forge_construct@3.22+enemy_magma_elemental@3.22+enemy_magma_elemental@3.22 / enemy_tunnel_crawler@3.22+enemy_magma_elemental@3.22,9260,drops_a6,fc_a6,0,beat_c27_b2,,,Main
+fight_27_8,chapter_27,8,Old Seam,enemy_tunnel_crawler@2.55+enemy_magma_elemental@2.55+enemy_tunnel_crawler@2.55+enemy_forge_construct@2.55 / enemy_magma_elemental@2.55+enemy_forge_construct@2.55+enemy_magma_elemental@2.55,9260,items_a6,fc_fight_27_8,0,,,,Main
+fight_27_9,chapter_27,9,The Tunnel Maw,enemy_tunnel_crawler@1.66+enemy_magma_elemental@1.66+enemy_tunnel_crawler@1.66 / enemy_tunnel_maw@1.66+enemy_tunnel_crawler@1.66,9260,drops_a6,fc_fight_27_9,30,beat_c27_boss,beat_c27_outro,,Main
+side_27_1,chapter_27,10,Glowworm Cave,enemy_magma_elemental@3.57+enemy_magma_elemental@3.57+enemy_tunnel_crawler@3.57 / enemy_tunnel_crawler@3.57+enemy_tunnel_crawler@3.57,8920,side_a6,fc_side_27_1,0,beat_side_27_1,beat_side_27_1_lore,ClearFight:fight_27_4,Side
+side_27_2,chapter_27,11,The Old Seam,enemy_forge_construct@2.61+enemy_magma_elemental@2.61+enemy_magma_elemental@2.61+enemy_tunnel_crawler@2.61 / enemy_tunnel_crawler@2.61+enemy_forge_construct@2.61+enemy_magma_elemental@2.61,9090,side_a6,fc_side_27_2,0,beat_side_27_2,beat_side_27_2_lore,ClearFight:fight_27_5,Side
+fight_28_1,chapter_28,1,Gate of Oaths,enemy_fallen_bulwark@3.74+enemy_bulwark_captain@3.74,9260,drops_a6,fc_fight_28_1,0,beat_c28_intro_1,,,Main
+fight_28_2,chapter_28,2,Hall of Shields,enemy_fallen_bulwark@5.05+enemy_rune_turret@5.05,9260,items_a6,fc_fight_28_2,0,beat_recruit_aldous,,,Main
+fight_28_3,chapter_28,3,Barracks,enemy_fallen_bulwark@2.92+enemy_bulwark_captain@2.92+enemy_fallen_bulwark@2.92,9400,drops_a6,fc_fight_28_3,0,beat_recruit_brega,,,Main
+fight_28_4,chapter_28,4,Training Yard,enemy_bulwark_captain@3.53+enemy_bulwark_captain@3.53+enemy_rune_turret@3.53,9860,items_a6,fc_fight_28_4,0,beat_recruit_ironbraid,,,Main
+fight_28_5,chapter_28,5,Armory,enemy_fallen_bulwark@3.69+enemy_fallen_bulwark@3.69 / enemy_fallen_bulwark@3.69+enemy_tunnel_crawler@3.69,9880,items_a6,fc_a6,0,,,,Main
+fight_28_6,chapter_28,6,Chapel of the Line,enemy_bulwark_captain@2.77+enemy_fallen_bulwark@2.77+enemy_fallen_bulwark@2.77 / enemy_rune_turret@2.77+enemy_fallen_bulwark@2.77,9890,drops_a6,fc_fight_28_6,0,beat_c28_b1,,,Main
+fight_28_7,chapter_28,7,Honor Roll,enemy_fallen_bulwark@3.22+enemy_tunnel_crawler@3.22+enemy_bulwark_captain@3.22 / enemy_tunnel_crawler@3.22+enemy_bulwark_captain@3.22,9980,drops_a6,fc_fight_28_7,0,,,,Main
+fight_28_8,chapter_28,8,Marshal's Stair,enemy_tunnel_crawler@3.26+enemy_fallen_bulwark@3.26+enemy_bulwark_captain@3.26 / enemy_fallen_bulwark@3.26+enemy_rune_turret@3.26,9980,items_a6,fc_a6,0,,,,Main
+fight_28_9,chapter_28,9,Black Banner Hall,enemy_fallen_bulwark@3.02+enemy_tunnel_crawler@3.02+enemy_fallen_bulwark@3.02 / enemy_bulwark_captain@3.02+enemy_fallen_bulwark@3.02,9980,items_a6,fc_a6,0,beat_c28_b2,,,Main
+fight_28_10,chapter_28,10,Oath Stone,enemy_fallen_bulwark@2.60+enemy_bulwark_captain@2.60+enemy_rune_turret@2.60+enemy_bulwark_captain@2.60 / enemy_rune_turret@2.60+enemy_fallen_bulwark@2.60+enemy_fallen_bulwark@2.60,9990,items_a6,fc_a6,0,,,,Main
+fight_28_11,chapter_28,11,Fallen Marshal Odo,enemy_fallen_bulwark@1.91+enemy_fallen_bulwark@1.91+enemy_tunnel_crawler@1.91 / enemy_marshal_odo@1.91+enemy_fallen_bulwark@1.91,10080,drops_a6,fc_fight_28_11,30,beat_c28_boss,beat_c28_outro,,Main
+side_28_1,chapter_28,12,The Armory,enemy_rune_turret@3.74+enemy_fallen_bulwark@3.74+enemy_rune_turret@3.74 / enemy_rune_turret@3.74+enemy_tunnel_crawler@3.74,9400,side_a6,fc_side_28_1,0,beat_side_28_1,beat_side_28_1_lore,ClearFight:fight_28_3,Side
+side_28_2,chapter_28,13,Honor Roll,enemy_bulwark_captain@2.42+enemy_bulwark_captain@2.42+enemy_bulwark_captain@2.42+enemy_rune_turret@2.42 / enemy_fallen_bulwark@2.42+enemy_fallen_bulwark@2.42+enemy_bulwark_captain@2.42,9890,side_a6,fc_side_28_2,0,beat_side_28_2,beat_side_28_2_lore,ClearFight:fight_28_6,Side
+side_28_3,chapter_28,14,Chapel of the Line,enemy_tunnel_crawler@2.91+enemy_fallen_bulwark@2.91+enemy_rune_turret@2.91+enemy_fallen_bulwark@2.91 / enemy_rune_turret@2.91+enemy_tunnel_crawler@2.91+enemy_bulwark_captain@2.91,9980,side_a6,fc_side_28_3,0,beat_side_28_3,beat_side_28_3_lore,ClearFight:fight_28_9,Side
+fight_29_1,chapter_29,1,Bridge of Chains,enemy_magma_elemental@5.61+enemy_magma_elemental@5.61,10080,drops_a6,fc_fight_29_1,0,beat_c29_intro_1,,,Main
+fight_29_2,chapter_29,2,Lava Locks,enemy_greater_magma@5.44+enemy_magma_elemental@5.44,10120,drops_a6,fc_fight_29_2,0,beat_recruit_ferrum,,,Main
+fight_29_3,chapter_29,3,The Anvil Hall,enemy_iron_juggernaut@5.06+enemy_cinder_imp@5.06+enemy_cinder_imp@5.06,10120,drops_a6,fc_fight_29_3,0,beat_recruit_hammerfall,,,Main
+fight_29_4,chapter_29,4,Furnace Stair,enemy_greater_magma@4.62+enemy_cinder_imp@4.62+enemy_greater_magma@4.62,10120,items_a6,fc_fight_29_4,0,beat_recruit_kettle,,,Main
+fight_29_5,chapter_29,5,Cooling Pools,enemy_iron_juggernaut@4.82+enemy_cinder_imp@4.82 / enemy_magma_elemental@4.82+enemy_iron_juggernaut@4.82,10670,drops_a6,fc_fight_29_5,0,beat_c29_b1,,,Main
+fight_29_6,chapter_29,6,Magma Falls,enemy_greater_magma@3.63+enemy_iron_juggernaut@3.63+enemy_iron_juggernaut@3.63 / enemy_magma_elemental@3.63+enemy_cinder_imp@3.63,10670,items_a6,fc_a6,0,,,,Main
+fight_29_7,chapter_29,7,Crucible,enemy_iron_juggernaut@4.03+enemy_greater_magma@4.03+enemy_magma_elemental@4.03 / enemy_magma_elemental@4.03+enemy_magma_elemental@4.03,10760,items_a6,fc_fight_29_7,0,,,,Main
+fight_29_8,chapter_29,8,Tyrant's Gate,enemy_iron_juggernaut@4.03+enemy_greater_magma@4.03+enemy_magma_elemental@4.03 / enemy_magma_elemental@4.03+enemy_magma_elemental@4.03,10760,items_a6,fc_fight_29_8,0,beat_c29_b2,,,Main
+fight_29_9,chapter_29,9,Bellows Heart,enemy_greater_magma@2.89+enemy_iron_juggernaut@2.89+enemy_iron_juggernaut@2.89+enemy_iron_juggernaut@2.89 / enemy_greater_magma@2.89+enemy_iron_juggernaut@2.89+enemy_cinder_imp@2.89,10760,drops_a6,fc_fight_29_9,0,,,,Main
+fight_29_10,chapter_29,10,The Forge Tyrant,enemy_cinder_imp@1.09+enemy_cinder_imp@1.09+enemy_magma_elemental@1.09 / enemy_forge_tyrant@1.09+enemy_magma_elemental@1.09,10760,drops_a6,fc_fight_29_10,30,beat_c29_boss,beat_c29_outro,,Main
+side_29_1,chapter_29,11,The Crucible,enemy_iron_juggernaut@3.66+enemy_magma_elemental@3.66+enemy_greater_magma@3.66 / enemy_magma_elemental@3.66+enemy_greater_magma@3.66,10120,side_a6,fc_side_29_1,0,beat_side_29_1,beat_side_29_1_lore,ClearFight:fight_29_4,Side
+side_29_2,chapter_29,12,Cooling Pools,enemy_greater_magma@3.43+enemy_magma_elemental@3.43+enemy_iron_juggernaut@3.43+enemy_cinder_imp@3.43 / enemy_magma_elemental@3.43+enemy_greater_magma@3.43+enemy_magma_elemental@3.43,10670,side_a6,fc_side_29_2,0,beat_side_29_2,beat_side_29_2_lore,ClearFight:fight_29_6,Side
+fight_30_1,chapter_30,1,Ember Vigil,enemy_greater_magma@5.30+enemy_fallen_bulwark@5.30,10760,drops_a6,fc_fight_30_1,0,beat_c30_intro_1,,,Main
+fight_30_2,chapter_30,2,Ashen Siege,enemy_greater_magma@5.45+enemy_iron_juggernaut@5.45,10760,drops_a6,fc_fight_30_2,0,beat_recruit_blackpowder,,,Main
+fight_30_3,chapter_30,3,The Breach,enemy_bulwark_captain@3.93+enemy_greater_magma@3.93+enemy_bulwark_captain@3.93,10760,drops_a6,fc_a6,0,,,,Main
+fight_30_4,chapter_30,4,Burning Walls,enemy_fallen_bulwark@4.10+enemy_greater_magma@4.10+enemy_greater_magma@4.10,10850,drops_a6,fc_fight_30_4,0,,,,Main
+fight_30_5,chapter_30,5,Last Anvil,enemy_iron_juggernaut@2.98+enemy_fallen_bulwark@2.98+enemy_bulwark_captain@2.98 / enemy_fallen_bulwark@2.98+enemy_iron_juggernaut@2.98,10850,drops_a6,fc_fight_30_5,0,beat_c30_b1,,,Main
+fight_30_6,chapter_30,6,Blood on the Steps,enemy_bulwark_captain@3.18+enemy_iron_juggernaut@3.18+enemy_iron_juggernaut@3.18 / enemy_greater_magma@3.18+enemy_fallen_bulwark@3.18,10850,items_a6,fc_a6,0,,,,Main
+fight_30_7,chapter_30,7,Knight of Cinders,enemy_greater_magma@3.42+enemy_iron_juggernaut@3.42+enemy_greater_magma@3.42 / enemy_bulwark_captain@3.42+enemy_bulwark_captain@3.42,10850,drops_a6,fc_fight_30_7,0,beat_c30_b2,,,Main
+fight_30_8,chapter_30,8,Forge Defense,enemy_rune_turret@3.42+enemy_fallen_bulwark@3.42+enemy_rune_turret@3.42+enemy_bulwark_captain@3.42 / enemy_greater_magma@3.42+enemy_greater_magma@3.42+enemy_rune_turret@3.42,10850,drops_a6,fc_a6,0,,,,Main
+fight_30_9,chapter_30,9,"Sir Morcant, the Ashen Knight",enemy_greater_magma@1.74+enemy_fallen_bulwark@1.74+enemy_iron_juggernaut@1.74 / enemy_ashen_knight@1.74+enemy_fallen_bulwark@1.74,10850,drops_a6,fc_fight_30_9,30,beat_c30_boss,beat_c30_outro,,Main
+side_30_1,chapter_30,10,Last Anvil,enemy_fallen_bulwark@3.35+enemy_iron_juggernaut@3.35+enemy_greater_magma@3.35 / enemy_bulwark_captain@3.35+enemy_fallen_bulwark@3.35,10760,side_a6,fc_side_30_1,0,beat_side_30_1,beat_side_30_1_lore,ClearFight:fight_30_3,Side
+fight_31_1,chapter_31,1,Red Fog,enemy_blood_thrall@4.82+enemy_blood_thrall@4.82,10850,drops_a7,fc_a7,0,beat_c31_intro_1;beat_c31_intro_2,,,Main
+fight_31_2,chapter_31,2,Gibbet Crossing,enemy_vampire_bat@6.07+enemy_blood_thrall@6.07,11050,drops_a7,fc_fight_31_2,0,beat_recruit_agathe,,,Main
+fight_31_3,chapter_31,3,Empty Inn,enemy_zealot@4.53+enemy_zealot@4.53+enemy_blood_thrall@4.53,11070,items_a7,fc_fight_31_3,0,beat_recruit_nightwatch,,,Main
+fight_31_4,chapter_31,4,Thrall Pens,enemy_blood_thrall@4.78+enemy_zealot@4.78+enemy_zealot@4.78,11910,items_a7,fc_fight_31_4,0,beat_recruit_stake,,,Main
+fight_31_5,chapter_31,5,Moonlit Ford,enemy_vampire_bat@4.98+enemy_vampire_bat@4.98 / enemy_blood_thrall@4.98+enemy_blood_thrall@4.98,11970,items_a7,fc_a7,0,beat_c31_b1,,,Main
+fight_31_6,chapter_31,6,Pilgrims' Rest,enemy_vampire_bat@5.44+enemy_blood_thrall@5.44+enemy_vampire_bat@5.44 / enemy_vampire_bat@5.44+enemy_zealot@5.44,12320,items_a7,fc_a7,0,,,,Main
+fight_31_7,chapter_31,7,Bat Belfry,enemy_zealot@4.27+enemy_zealot@4.27+enemy_blood_thrall@4.27 / enemy_zealot@4.27+enemy_blood_thrall@4.27,12360,items_a7,fc_a7,0,,,,Main
+fight_31_8,chapter_31,8,The Red Wood,enemy_blood_thrall@4.46+enemy_zealot@4.46+enemy_blood_thrall@4.46 / enemy_vampire_bat@4.46+enemy_zealot@4.46,12360,drops_a7,fc_a7,0,beat_c31_b2,,,Main
+fight_31_9,chapter_31,9,Abbey Road,enemy_zealot@3.57+enemy_zealot@3.57+enemy_blood_thrall@3.57+enemy_zealot@3.57 / enemy_blood_thrall@3.57+enemy_blood_thrall@3.57+enemy_vampire_bat@3.57,12370,drops_a7,fc_a7,0,,,,Main
+fight_31_10,chapter_31,10,Lord Casimir Vey,enemy_blood_thrall@2.24+enemy_vampire_bat@2.24+enemy_zealot@2.24 / enemy_casimir_vey@2.24+enemy_zealot@2.24,12370,drops_a7,fc_fight_31_10,32,beat_c31_boss,beat_c31_outro,,Main
+side_31_1,chapter_31,11,Pilgrims' Rest,enemy_blood_thrall@3.81+enemy_blood_thrall@3.81+enemy_zealot@3.81 / enemy_blood_thrall@3.81+enemy_blood_thrall@3.81,11100,side_a7,fc_side_31_1,0,beat_side_31_1,beat_side_31_1_lore,ClearFight:fight_31_3,Side
+fight_32_1,chapter_32,1,Burning Gate,enemy_zealot@6.40+enemy_plague_doctor@6.40,12480,drops_a7,fc_a7,0,beat_c32_intro_1,,,Main
+fight_32_2,chapter_32,2,Cloister,enemy_blood_thrall@5.97+enemy_zealot@5.97,12520,drops_a7,fc_fight_32_2,0,beat_recruit_lisbet,,,Main
+fight_32_3,chapter_32,3,Scriptorium,enemy_zealot_inquisitor@5.19+enemy_zealot@5.19+enemy_zealot_inquisitor@5.19,12520,items_a7,fc_fight_32_3,0,beat_recruit_maud,,,Main
+fight_32_4,chapter_32,4,Bell Tower,enemy_plague_doctor@5.24+enemy_zealot@5.24+enemy_zealot@5.24,13030,drops_a7,fc_a7,0,,,,Main
+fight_32_5,chapter_32,5,Refectory,enemy_zealot@5.68+enemy_zealot_inquisitor@5.68 / enemy_zealot_inquisitor@5.68+enemy_zealot@5.68,13290,drops_a7,fc_a7,0,beat_c32_b1,,,Main
+fight_32_6,chapter_32,6,Novices' Dormitory,enemy_plague_doctor@4.84+enemy_zealot_inquisitor@4.84+enemy_zealot@4.84 / enemy_plague_doctor@4.84+enemy_zealot@4.84,13360,drops_a7,fc_a7,0,,,,Main
+fight_32_7,chapter_32,7,The Infirmary,enemy_plague_doctor@4.71+enemy_zealot@4.71+enemy_zealot@4.71 / enemy_zealot_inquisitor@4.71+enemy_zealot@4.71,13490,drops_a7,fc_a7,0,,,,Main
+fight_32_8,chapter_32,8,Crypt Stair,enemy_blood_thrall@4.69+enemy_blood_thrall@4.69+enemy_zealot_inquisitor@4.69 / enemy_blood_thrall@4.69+enemy_zealot_inquisitor@4.69,13570,items_a7,fc_fight_32_8,0,beat_c32_b2,,,Main
+fight_32_9,chapter_32,9,Abbess's Chapel,enemy_zealot@3.81+enemy_zealot@3.81+enemy_plague_doctor@3.81+enemy_zealot@3.81 / enemy_zealot_inquisitor@3.81+enemy_zealot_inquisitor@3.81+enemy_plague_doctor@3.81,13660,drops_a7,fc_fight_32_9,0,,,,Main
+fight_32_10,chapter_32,10,Abbess Corvina the Fallen,enemy_zealot@2.18+enemy_zealot_inquisitor@2.18+enemy_zealot_inquisitor@2.18 / enemy_abbess_corvina@2.18+enemy_zealot_inquisitor@2.18,13660,drops_a7,fc_fight_32_10,32,beat_c32_boss,beat_c32_outro,,Main
+side_32_1,chapter_32,11,The Scriptorium,enemy_zealot@4.33+enemy_blood_thrall@4.33+enemy_blood_thrall@4.33 / enemy_zealot@4.33+enemy_blood_thrall@4.33,12540,side_a7,fc_side_32_1,0,beat_side_32_1,beat_side_32_1_lore,ClearFight:fight_32_3,Side
+side_32_2,chapter_32,12,Novices' Dormitory,enemy_zealot_inquisitor@3.89+enemy_zealot@3.89+enemy_blood_thrall@3.89+enemy_zealot@3.89 / enemy_blood_thrall@3.89+enemy_zealot@3.89+enemy_zealot@3.89,13360,side_a7,fc_side_32_2,0,beat_side_32_2,beat_side_32_2_lore,ClearFight:fight_32_6,Side
+fight_33_1,chapter_33,1,Manor Gates,enemy_bat_lord@7.01+enemy_bat_lord@7.01,13660,drops_a7,fc_fight_33_1,0,beat_c33_intro_1,,,Main
+fight_33_2,chapter_33,2,Hedge of Hands,enemy_blood_knight@4.47+enemy_blood_knight@4.47,13660,drops_a7,fc_fight_33_2,0,beat_recruit_severin,,,Main
+fight_33_3,chapter_33,3,Portrait Hall,enemy_bat_lord@3.89+enemy_elder_thrall@3.89+enemy_blood_knight@3.89,13660,drops_a7,fc_fight_33_3,0,beat_recruit_ysmay,,,Main
+fight_33_4,chapter_33,4,Ballroom,enemy_blood_knight@5.96+enemy_vampire_bat@5.96+enemy_vampire_bat@5.96,13800,drops_a7,fc_a7,0,,,,Main
+fight_33_5,chapter_33,5,Wine Cellar,enemy_bat_lord@3.66+enemy_elder_thrall@3.66+enemy_elder_thrall@3.66 / enemy_vampire_bat@3.66+enemy_blood_knight@3.66,13800,items_a7,fc_fight_33_5,0,beat_c33_b1,,,Main
+fight_33_6,chapter_33,6,Library of Skins,enemy_bat_lord@4.17+enemy_bat_lord@4.17+enemy_blood_knight@4.17 / enemy_blood_knight@4.17+enemy_bat_lord@4.17,13800,drops_a7,fc_fight_33_6,0,,,,Main
+fight_33_7,chapter_33,7,Nursery,enemy_vampire_bat@3.47+enemy_blood_knight@3.47+enemy_blood_knight@3.47 / enemy_blood_knight@3.47+enemy_blood_knight@3.47,13830,drops_a7,fc_a7,0,beat_c33_b2,,,Main
+fight_33_8,chapter_33,8,Crimson Gallery,enemy_bat_lord@3.06+enemy_elder_thrall@3.06+enemy_bat_lord@3.06+enemy_vampire_bat@3.06 / enemy_blood_knight@3.06+enemy_blood_knight@3.06+enemy_blood_knight@3.06,13840,items_a7,fc_a7,0,,,,Main
+fight_33_9,chapter_33,9,The Countess's Bath,enemy_elder_thrall@1.93+enemy_bat_lord@1.93+enemy_elder_thrall@1.93 / enemy_countess_vey@1.93+enemy_bat_lord@1.93,13980,drops_a7,fc_fight_33_9,32,beat_c33_boss,beat_c33_outro,,Main
+side_33_1,chapter_33,10,The Nursery,enemy_blood_knight@3.00+enemy_blood_knight@3.00+enemy_blood_knight@3.00 / enemy_blood_knight@3.00+enemy_elder_thrall@3.00,13660,side_a7,fc_side_33_1,0,beat_side_33_1,beat_side_33_1_lore,ClearFight:fight_33_3,Side
+side_33_2,chapter_33,11,Portrait Hall,enemy_vampire_bat@2.90+enemy_blood_knight@2.90+enemy_elder_thrall@2.90+enemy_blood_knight@2.90 / enemy_elder_thrall@2.90+enemy_bat_lord@2.90+enemy_blood_knight@2.90,13800,side_a7,fc_side_33_2,0,beat_side_33_2,beat_side_33_2_lore,ClearFight:fight_33_5,Side
+fight_34_1,chapter_34,1,Drowned Nave,enemy_plague_doctor@7.52+enemy_zealot_inquisitor@7.52,13980,drops_a7,fc_a7,0,beat_c34_intro_1,,,Main
+fight_34_2,chapter_34,2,Bone Pews,enemy_blood_knight@5.87+enemy_fallen_saint@5.87,13980,drops_a7,fc_fight_34_2,0,beat_recruit_amsel,,,Main
+fight_34_3,chapter_34,3,Saints' Walk,enemy_plague_doctor@5.57+enemy_fallen_saint@5.57+enemy_plague_doctor@5.57,13980,drops_a7,fc_fight_34_3,0,beat_recruit_benedikt,,,Main
+fight_34_4,chapter_34,4,The Thorned Choir,enemy_fallen_saint@5.31+enemy_fallen_saint@5.31+enemy_fallen_saint@5.31,13980,items_a7,fc_fight_34_4,0,beat_recruit_sunniva,,,Main
+fight_34_5,chapter_34,5,Relic Vault,enemy_zealot_inquisitor@5.87+enemy_fallen_saint@5.87 / enemy_plague_doctor@5.87+enemy_zealot_inquisitor@5.87,14390,drops_a7,fc_fight_34_5,0,beat_recruit_tess,,,Main
+fight_34_6,chapter_34,6,Bleeding Windows,enemy_plague_doctor@4.76+enemy_fallen_saint@4.76+enemy_blood_knight@4.76 / enemy_zealot_inquisitor@4.76+enemy_plague_doctor@4.76,14390,drops_a7,fc_fight_34_6,0,beat_c34_b1,,,Main
+fight_34_7,chapter_34,7,Martyrs' Stair,enemy_blood_knight@4.86+enemy_plague_doctor@4.86+enemy_plague_doctor@4.86 / enemy_plague_doctor@4.86+enemy_fallen_saint@4.86,14390,drops_a7,fc_fight_34_7,0,,,,Main
+fight_34_8,chapter_34,8,Reliquary of Hands,enemy_plague_doctor@5.35+enemy_fallen_saint@5.35+enemy_plague_doctor@5.35 / enemy_zealot_inquisitor@5.35+enemy_plague_doctor@5.35,14390,drops_a7,fc_a7,0,,,,Main
+fight_34_9,chapter_34,9,Thorn Altar,enemy_blood_knight@4.80+enemy_fallen_saint@4.80+enemy_plague_doctor@4.80 / enemy_zealot_inquisitor@4.80+enemy_fallen_saint@4.80,14390,drops_a7,fc_fight_34_9,0,beat_c34_b2,,,Main
+fight_34_10,chapter_34,10,Saint's Approach,enemy_fallen_saint@4.43+enemy_plague_doctor@4.43+enemy_plague_doctor@4.43+enemy_plague_doctor@4.43 / enemy_zealot_inquisitor@4.43+enemy_fallen_saint@4.43+enemy_zealot_inquisitor@4.43,14430,drops_a7,fc_fight_34_10,0,,,,Main
+fight_34_11,chapter_34,11,The Saint of Thorns,enemy_blood_knight@0.98+enemy_zealot_inquisitor@0.98+enemy_fallen_saint@0.98 / enemy_saint_of_thorns@0.98+enemy_blood_knight@0.98,14430,drops_a7,fc_fight_34_11,32,beat_c34_boss,beat_c34_outro,,Main
+side_34_1,chapter_34,12,Relic Vault,enemy_fallen_saint@4.49+enemy_plague_doctor@4.49+enemy_blood_knight@4.49 / enemy_fallen_saint@4.49+enemy_blood_knight@4.49,14050,side_a7,fc_side_34_1,0,beat_side_34_1,beat_side_34_1_lore,ClearFight:fight_34_4,Side
+side_34_2,chapter_34,13,Bleeding Windows,enemy_fallen_saint@3.86+enemy_fallen_saint@3.86+enemy_blood_knight@3.86+enemy_plague_doctor@3.86 / enemy_plague_doctor@3.86+enemy_zealot_inquisitor@3.86+enemy_blood_knight@3.86,14390,side_a7,fc_side_34_2,0,beat_side_34_2,beat_side_34_2_lore,ClearFight:fight_34_6,Side
+fight_35_1,chapter_35,1,Stair of Tears,enemy_zealot_inquisitor@7.69+enemy_zealot_inquisitor@7.69,14430,drops_a7,fc_fight_35_1,0,beat_c35_intro_1,,,Main
+fight_35_2,chapter_35,2,The Last Prayer,enemy_fallen_saint@5.56+enemy_elder_thrall@5.56,14440,drops_a7,fc_fight_35_2,0,beat_recruit_agna,,,Main
+fight_35_3,chapter_35,3,Hall of Candles,enemy_fallen_saint@5.63+enemy_zealot_inquisitor@5.63+enemy_fallen_saint@5.63,14470,items_a7,fc_fight_35_3,0,beat_recruit_silvershot,,,Main
+fight_35_4,chapter_35,4,Saint's Garden,enemy_zealot_inquisitor@5.63+enemy_fallen_saint@5.63+enemy_fallen_saint@5.63,14670,drops_a7,fc_a7,0,,,,Main
+fight_35_5,chapter_35,5,Vigil Room,enemy_elder_thrall@4.20+enemy_elder_thrall@4.20 / enemy_bat_lord@4.20+enemy_fallen_saint@4.20,14770,drops_a7,fc_fight_35_5,0,,,,Main
+fight_35_6,chapter_35,6,Choir of the Faithful,enemy_bat_lord@5.19+enemy_bat_lord@5.19+enemy_zealot_inquisitor@5.19 / enemy_fallen_saint@5.19+enemy_bat_lord@5.19,14770,drops_a7,fc_fight_35_6,0,beat_c35_b1,,,Main
+fight_35_7,chapter_35,7,The Weeping Gate,enemy_elder_thrall@3.74+enemy_elder_thrall@3.74+enemy_zealot_inquisitor@3.74 / enemy_elder_thrall@3.74+enemy_bat_lord@3.74,14770,items_a7,fc_a7,0,,,,Main
+fight_35_8,chapter_35,8,Her Chamber,enemy_zealot_inquisitor@4.71+enemy_plague_doctor@4.71+enemy_bat_lord@4.71 / enemy_fallen_saint@4.71+enemy_elder_thrall@4.71,14790,drops_a7,fc_fight_35_8,0,,,,Main
+fight_35_9,chapter_35,9,Heart of Sorrow,enemy_bat_lord@5.47+enemy_plague_doctor@5.47+enemy_zealot_inquisitor@5.47 / enemy_bat_lord@5.47+enemy_fallen_saint@5.47,14790,drops_a7,fc_a7,0,beat_c35_b2,,,Main
+fight_35_10,chapter_35,10,Saint's Bed,enemy_bat_lord@4.09+enemy_plague_doctor@4.09+enemy_fallen_saint@4.09+enemy_fallen_saint@4.09 / enemy_bat_lord@4.09+enemy_zealot_inquisitor@4.09+enemy_fallen_saint@4.09,14790,drops_a7,fc_a7,0,,,,Main
+fight_35_11,chapter_35,11,The Weeping Saint,enemy_bat_lord@1.75+enemy_bat_lord@1.75+enemy_fallen_saint@1.75 / enemy_weeping_saint@1.75+enemy_fallen_saint@1.75,14790,drops_a7,fc_fight_35_11,32,beat_c35_boss,beat_c35_outro,,Main
+side_35_1,chapter_35,12,Saint's Garden,enemy_plague_doctor@4.36+enemy_elder_thrall@4.36+enemy_fallen_saint@4.36 / enemy_plague_doctor@4.36+enemy_elder_thrall@4.36,14590,side_a7,fc_side_35_1,0,beat_side_35_1,beat_side_35_1_lore,ClearFight:fight_35_3,Side
+fight_36_1,chapter_36,1,Edge of the World,enemy_rift_beast@3.57+enemy_rift_beast@3.57,14820,drops_a8,fc_a8,0,beat_c36_intro_1;beat_c36_intro_2,,,Main
+fight_36_2,chapter_36,2,Grey Plain,enemy_hollowspawn@6.36+enemy_void_stalker@6.36,14970,items_a8,fc_fight_36_2,0,beat_recruit_aurelian,,,Main
+fight_36_3,chapter_36,3,Falling Sky,enemy_hollowspawn@3.84+enemy_hollowspawn@3.84+enemy_rift_beast@3.84,15100,items_a8,fc_fight_36_3,0,beat_recruit_riftguard,,,Main
+fight_36_4,chapter_36,4,Broken Road,enemy_hollowspawn@4.77+enemy_hollowspawn@4.77+enemy_hollowspawn@4.77,15740,drops_a8,fc_fight_36_4,0,beat_recruit_vespera,,,Main
+fight_36_5,chapter_36,5,The Quiet,enemy_hollowspawn@4.19+enemy_hollowspawn@4.19 / enemy_rift_beast@4.19+enemy_void_stalker@4.19,15810,items_a8,fc_a8,0,,,,Main
+fight_36_6,chapter_36,6,Rift Crossing,enemy_hollowspawn@4.25+enemy_hollowspawn@4.25+enemy_void_stalker@4.25 / enemy_void_stalker@4.25+enemy_hollowspawn@4.25,15950,drops_a8,fc_a8,0,beat_c36_b1,,,Main
+fight_36_7,chapter_36,7,Spawn Nests,enemy_rift_beast@3.31+enemy_hollowspawn@3.31+enemy_void_stalker@3.31 / enemy_void_stalker@3.31+enemy_rift_beast@3.31,16110,drops_a8,fc_a8,0,,,,Main
+fight_36_8,chapter_36,8,Ruined Watchtower,enemy_rift_beast@3.60+enemy_hollowspawn@3.60+enemy_hollowspawn@3.60 / enemy_void_stalker@3.60+enemy_hollowspawn@3.60,16340,drops_a8,fc_a8,0,,,,Main
+fight_36_9,chapter_36,9,Wardens' Last Camp,enemy_hollowspawn@4.20+enemy_void_stalker@4.20+enemy_void_stalker@4.20 / enemy_void_stalker@4.20+enemy_void_stalker@4.20,16340,items_a8,fc_a8,0,beat_c36_b2,,,Main
+fight_36_10,chapter_36,10,Mouth of the Rift,enemy_hollowspawn@3.12+enemy_void_stalker@3.12+enemy_void_stalker@3.12+enemy_rift_beast@3.12 / enemy_void_stalker@3.12+enemy_void_stalker@3.12+enemy_hollowspawn@3.12,16340,drops_a8,fc_a8,0,,,,Main
+fight_36_11,chapter_36,11,The Rift Maw,enemy_void_stalker@1.88+enemy_void_stalker@1.88+enemy_hollowspawn@1.88 / enemy_rift_maw@1.88+enemy_void_stalker@1.88,16340,drops_a8,fc_fight_36_11,34,beat_c36_boss,beat_c36_outro,,Main
+side_36_1,chapter_36,12,Ruined Watchtower,enemy_rift_beast@3.59+enemy_hollowspawn@3.59+enemy_hollowspawn@3.59 / enemy_void_stalker@3.59+enemy_hollowspawn@3.59,15440,side_a8,fc_side_36_1,0,beat_side_36_1,beat_side_36_1_lore,ClearFight:fight_36_3,Side
+side_36_2,chapter_36,13,Wardens' Last Camp,enemy_rift_beast@2.72+enemy_hollowspawn@2.72+enemy_rift_beast@2.72+enemy_hollowspawn@2.72 / enemy_hollowspawn@2.72+enemy_hollowspawn@2.72+enemy_hollowspawn@2.72,15950,side_a8,fc_side_36_2,0,beat_side_36_2,beat_side_36_2_lore,ClearFight:fight_36_6,Side
+fight_37_1,chapter_37,1,Field of Broken Locks,enemy_hollowspawn@6.15+enemy_echo_wraith@6.15,16770,drops_a8,fc_a8,0,beat_c37_intro_1,,,Main
+fight_37_2,chapter_37,2,Echo of the Sea,enemy_hollowspawn@6.45+enemy_hollowspawn@6.45,16770,drops_a8,fc_fight_37_2,0,beat_recruit_brannagh,,,Main
+fight_37_3,chapter_37,3,Drowned Memory,enemy_null_priest@5.23+enemy_echo_wraith@5.23+enemy_null_priest@5.23,16770,drops_a8,fc_fight_37_3,0,beat_recruit_quell,,,Main
+fight_37_4,chapter_37,4,Ash Memory,enemy_echo_wraith@5.10+enemy_hollowspawn@5.10+enemy_null_priest@5.10,16840,drops_a8,fc_a8,0,,,,Main
+fight_37_5,chapter_37,5,The Burning Sky,enemy_hollowspawn@3.88+enemy_greater_spawn@3.88+enemy_null_priest@3.88 / enemy_hollowspawn@3.88+enemy_hollowspawn@3.88,16980,drops_a8,fc_a8,0,beat_c37_b1,,,Main
+fight_37_6,chapter_37,6,Hall of Hearts,enemy_null_priest@3.92+enemy_null_priest@3.92+enemy_greater_spawn@3.92 / enemy_echo_wraith@3.92+enemy_echo_wraith@3.92,17010,items_a8,fc_a8,0,,,,Main
+fight_37_7,chapter_37,7,Weeping Echo,enemy_hollowspawn@5.45+enemy_null_priest@5.45+enemy_hollowspawn@5.45 / enemy_null_priest@5.45+enemy_null_priest@5.45,17010,drops_a8,fc_fight_37_7,0,beat_c37_b2,,,Main
+fight_37_8,chapter_37,8,Heart's Ruin,enemy_null_priest@4.33+enemy_null_priest@4.33+enemy_echo_wraith@4.33+enemy_null_priest@4.33 / enemy_echo_wraith@4.33+enemy_echo_wraith@4.33+enemy_null_priest@4.33,17010,drops_a8,fc_fight_37_8,0,,,,Main
+fight_37_9,chapter_37,9,Echo of the Dragon,enemy_greater_spawn@1.20+enemy_hollowspawn@1.20+enemy_echo_wraith@1.20 / enemy_dragon_echo@1.20+enemy_hollowspawn@1.20,17010,drops_a8,fc_fight_37_9,34,beat_c37_boss,beat_c37_outro,,Main
+side_37_1,chapter_37,10,Echo of the Sea,enemy_echo_wraith@3.62+enemy_greater_spawn@3.62+enemy_hollowspawn@3.62 / enemy_greater_spawn@3.62+enemy_echo_wraith@3.62,16770,side_a8,fc_side_37_1,0,beat_side_37_1,beat_side_37_1_lore,ClearFight:fight_37_3,Side
+side_37_2,chapter_37,11,Hall of Hearts,enemy_null_priest@3.92+enemy_hollowspawn@3.92+enemy_null_priest@3.92+enemy_null_priest@3.92 / enemy_echo_wraith@3.92+enemy_echo_wraith@3.92+enemy_hollowspawn@3.92,16980,side_a8,fc_side_37_2,0,beat_side_37_2,beat_side_37_2_lore,ClearFight:fight_37_5,Side
+side_37_3,chapter_37,12,Drowned Memory,enemy_hollowspawn@3.94+enemy_hollowspawn@3.94+enemy_hollowspawn@3.94+enemy_hollowspawn@3.94 / enemy_null_priest@3.94+enemy_hollowspawn@3.94+enemy_hollowspawn@3.94,17010,side_a8,fc_side_37_3,0,beat_side_37_3,beat_side_37_3_lore,ClearFight:fight_37_7,Side
+fight_38_1,chapter_38,1,Pale Gate,enemy_warden_husk@3.69+enemy_malrec_guard@3.69,17150,drops_a8,fc_a8,0,beat_c38_intro_1,,,Main
+fight_38_2,chapter_38,2,Hall of Oaths Broken,enemy_void_reaver@7.29+enemy_null_priest@7.29,17210,items_a8,fc_fight_38_2,0,beat_recruit_teague,,,Main
+fight_38_3,chapter_38,3,Black Anchor Docks,enemy_malrec_guard@3.73+enemy_null_priest@3.73+enemy_malrec_guard@3.73,17650,drops_a8,fc_fight_38_3,0,beat_recruit_rhys,,,Main
+fight_38_4,chapter_38,4,The Eighth Library,enemy_warden_husk@2.99+enemy_warden_husk@2.99+enemy_warden_husk@2.99,18320,drops_a8,fc_a8,0,,,,Main
+fight_38_5,chapter_38,5,Garden of Statues,enemy_null_priest@4.22+enemy_malrec_guard@4.22 / enemy_warden_husk@4.22+enemy_null_priest@4.22,18320,drops_a8,fc_fight_38_5,0,beat_c38_b1,,,Main
+fight_38_6,chapter_38,6,Throne of Ash,enemy_warden_husk@3.03+enemy_warden_husk@3.03+enemy_malrec_guard@3.03 / enemy_null_priest@3.03+enemy_void_reaver@3.03,18320,items_a8,fc_fight_38_6,0,,,,Main
+fight_38_7,chapter_38,7,Malrec's Study,enemy_malrec_guard@4.08+enemy_void_reaver@4.08+enemy_null_priest@4.08 / enemy_void_reaver@4.08+enemy_null_priest@4.08,18330,items_a8,fc_a8,0,,,,Main
+fight_38_8,chapter_38,8,Mirror of Wardens,enemy_malrec_guard@3.61+enemy_warden_husk@3.61+enemy_void_reaver@3.61 / enemy_void_reaver@3.61+enemy_null_priest@3.61,18770,drops_a8,fc_a8,0,beat_c38_b2,,,Main
+fight_38_9,chapter_38,9,Stair to Nothing,enemy_null_priest@3.15+enemy_warden_husk@3.15+enemy_null_priest@3.15+enemy_void_reaver@3.15 / enemy_malrec_guard@3.15+enemy_malrec_guard@3.15+enemy_void_reaver@3.15,18790,items_a8,fc_a8,0,,,,Main
+fight_38_10,chapter_38,10,Malrec the Pale,enemy_malrec_guard@1.73+enemy_malrec_guard@1.73+enemy_null_priest@1.73 / enemy_malrec@1.73+enemy_malrec_guard@1.73,18790,drops_a8,fc_fight_38_10,34,beat_c38_boss,beat_c38_outro,,Main
+side_38_1,chapter_38,11,Malrec's Study,enemy_malrec_guard@3.26+enemy_malrec_guard@3.26+enemy_void_reaver@3.26 / enemy_void_reaver@3.26+enemy_malrec_guard@3.26,17650,side_a8,fc_side_38_1,0,beat_side_38_1,beat_side_38_1_lore,ClearFight:fight_38_3,Side
+side_38_2,chapter_38,12,Garden of Statues,enemy_malrec_guard@2.50+enemy_warden_husk@2.50+enemy_malrec_guard@2.50+enemy_malrec_guard@2.50 / enemy_void_reaver@2.50+enemy_void_reaver@2.50+enemy_null_priest@2.50,18330,side_a8,fc_side_38_2,0,beat_side_38_2,beat_side_38_2_lore,ClearFight:fight_38_6,Side
+fight_39_1,chapter_39,1,Below the Citadel,enemy_rift_beast@4.20+enemy_greater_spawn@4.20,18830,drops_a8,fc_a8,0,beat_c39_intro_1,,,Main
+fight_39_2,chapter_39,2,The Long Fall,enemy_greater_spawn@5.36+enemy_void_reaver@5.36,18830,items_a8,fc_fight_39_2,0,beat_recruit_aerin;beat_recruit_wen,,,Main
+fight_39_3,chapter_39,3,Starless Sea,enemy_echo_wraith@3.80+enemy_rift_beast@3.80+enemy_rift_beast@3.80,18830,drops_a8,fc_fight_39_3,0,beat_recruit_corra,,,Main
+fight_39_4,chapter_39,4,Bridge of Bones,enemy_void_reaver@4.93+enemy_echo_wraith@4.93+enemy_greater_spawn@4.93,19040,drops_a8,fc_fight_39_4,0,beat_recruit_nyx,,,Main
+fight_39_5,chapter_39,5,The Starving Dark,enemy_echo_wraith@4.30+enemy_void_reaver@4.30+enemy_greater_spawn@4.30 / enemy_greater_spawn@4.30+enemy_void_reaver@4.30,19040,items_a8,fc_a8,0,beat_c39_b1,,,Main
+fight_39_6,chapter_39,6,Mouth of Silence,enemy_rift_beast@4.29+enemy_void_reaver@4.29+enemy_void_reaver@4.29 / enemy_greater_spawn@4.29+enemy_echo_wraith@4.29,19220,items_a8,fc_a8,0,,,,Main
+fight_39_7,chapter_39,7,Hall of Absence,enemy_greater_spawn@3.80+enemy_void_reaver@3.80+enemy_rift_beast@3.80 / enemy_echo_wraith@3.80+enemy_greater_spawn@3.80,19360,items_a8,fc_fight_39_7,0,beat_c39_b2,,,Main
+fight_39_8,chapter_39,8,Floor of the World,enemy_rift_beast@2.83+enemy_greater_spawn@2.83+enemy_greater_spawn@2.83+enemy_echo_wraith@2.83 / enemy_greater_spawn@2.83+enemy_echo_wraith@2.83+enemy_rift_beast@2.83,19360,drops_a8,fc_fight_39_8,0,,,,Main
+fight_39_9,chapter_39,9,The Hunger,enemy_void_reaver@1.50+enemy_rift_beast@1.50+enemy_rift_beast@1.50 / enemy_the_hunger@1.50+enemy_greater_spawn@1.50,19360,drops_a8,fc_fight_39_9,34,beat_c39_boss,beat_c39_outro,,Main
+side_39_1,chapter_39,10,Starless Sea,enemy_greater_spawn@3.34+enemy_echo_wraith@3.34+enemy_rift_beast@3.34 / enemy_rift_beast@3.34+enemy_greater_spawn@3.34,18830,side_a8,fc_side_39_1,0,beat_side_39_1,beat_side_39_1_lore,ClearFight:fight_39_3,Side
+side_39_2,chapter_39,11,Bridge of Bones,enemy_void_reaver@3.82+enemy_void_reaver@3.82+enemy_void_reaver@3.82+enemy_void_reaver@3.82 / enemy_rift_beast@3.82+enemy_echo_wraith@3.82+enemy_void_reaver@3.82,19040,side_a8,fc_side_39_2,0,beat_side_39_2,beat_side_39_2_lore,ClearFight:fight_39_5,Side
+side_39_3,chapter_39,12,Hall of Absence,enemy_rift_beast@2.50+enemy_rift_beast@2.50+enemy_greater_spawn@2.50+enemy_rift_beast@2.50 / enemy_echo_wraith@2.50+enemy_void_reaver@2.50+enemy_rift_beast@2.50,19360,side_a8,fc_side_39_3,0,beat_side_39_3,beat_side_39_3_lore,ClearFight:fight_39_7,Side
+fight_40_1,chapter_40,1,Steps of Nothing,enemy_malrec_guard@4.29+enemy_warden_husk@4.29,19360,drops_a8,fc_fight_40_1,0,beat_c40_intro_1;beat_c40_intro_2,,,Main
+fight_40_2,chapter_40,2,The Last Door,enemy_malrec_guard@4.77+enemy_malrec_guard@4.77,19360,drops_a8,fc_fight_40_2,0,beat_recruit_ostra,,,Main
+fight_40_3,chapter_40,3,Court of the First Warden,enemy_warden_husk@3.49+enemy_greater_spawn@3.49+enemy_greater_spawn@3.49,19360,drops_a8,fc_fight_40_3,0,beat_recruit_sentinel,,,Main
+fight_40_4,chapter_40,4,Hall of Seven Hearts,enemy_void_reaver@4.16+enemy_warden_husk@4.16+enemy_greater_spawn@4.16,20050,drops_a8,fc_a8,0,,,,Main
+fight_40_5,chapter_40,5,The Hundred Stand,enemy_null_priest@4.32+enemy_null_priest@4.32 / enemy_malrec_guard@4.32+enemy_warden_husk@4.32,20050,drops_a8,fc_fight_40_5,0,beat_c40_b1,,,Main
+fight_40_6,chapter_40,6,The Oath,enemy_null_priest@4.68+enemy_warden_husk@4.68+enemy_null_priest@4.68 / enemy_malrec_guard@4.68+enemy_null_priest@4.68,20050,items_a8,fc_fight_40_6,0,,,,Main
+fight_40_7,chapter_40,7,King's Shadow,enemy_greater_spawn@4.15+enemy_greater_spawn@4.15+enemy_void_reaver@4.15 / enemy_void_reaver@4.15+enemy_void_reaver@4.15,20070,drops_a8,fc_fight_40_7,0,,,,Main
+fight_40_8,chapter_40,8,Before the Throne,enemy_warden_husk@3.19+enemy_warden_husk@3.19+enemy_greater_spawn@3.19 / enemy_greater_spawn@3.19+enemy_greater_spawn@3.19,20070,drops_a8,fc_fight_40_8,0,beat_c40_b2,,,Main
+fight_40_9,chapter_40,9,The Seventh Heart,enemy_malrec_guard@3.19+enemy_warden_husk@3.19+enemy_null_priest@3.19+enemy_malrec_guard@3.19 / enemy_null_priest@3.19+enemy_null_priest@3.19+enemy_void_reaver@3.19,20070,drops_a8,fc_a8,0,,,,Main
+fight_40_10,chapter_40,10,"Aurem, the Hollow King",enemy_greater_spawn@1.46+enemy_malrec_guard@1.46+enemy_null_priest@1.46 / enemy_hollow_king@1.46+enemy_malrec_guard@1.46,20070,drops_a8,fc_fight_40_10,34,beat_c40_boss,beat_c40_outro,,Main
+side_40_1,chapter_40,11,The Hundred Stand,enemy_warden_husk@3.82+enemy_null_priest@3.82+enemy_malrec_guard@3.82 / enemy_void_reaver@3.82+enemy_malrec_guard@3.82,19360,side_a8,fc_side_40_1,0,beat_side_40_1,beat_side_40_1_lore,ClearFight:fight_40_3,Side
+side_40_2,chapter_40,12,Court of the First Warden,enemy_malrec_guard@2.84+enemy_greater_spawn@2.84+enemy_greater_spawn@2.84+enemy_greater_spawn@2.84 / enemy_void_reaver@2.84+enemy_void_reaver@2.84+enemy_malrec_guard@2.84,20050,side_a8,fc_side_40_2,0,beat_side_40_2,beat_side_40_2_lore,ClearFight:fight_40_6,Side

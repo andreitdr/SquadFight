@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_dragon_echo
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_dragon_echo
+  nameKey: enemy_dragon_echo_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 59280
+    - 1482
+    - 237
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 69b8476ac182043f091686cab5a0a9fd, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 6395ed0f53945464ca21829659ee4923, type: 2}
+  sprite: {fileID: 21300000, guid: 6ae1dd15d38f6461d9eb0b04ecddd65a, type: 3}
+  tint: {r: 0.8392157, g: 0.15686275, b: 0.15686275, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 6ae1dd15d38f6461d9eb0b04ecddd65a, type: 3}
+  icon: {fileID: 21300000, guid: 8a8d69c9b1ae849a2babc10f69911ff5, type: 3}
+  animations: {fileID: 11400000, guid: 6e3079990185d44cfb38be2aa6bed90b, type: 2}

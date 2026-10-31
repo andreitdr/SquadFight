@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02aa3e90e5af64cdf813126e58aed690, type: 3}
+  m_Name: fight_27_6
+  m_EditorClassIdentifier: Game.Data::Game.Data.FightDefinition
+  id: fight_27_6
+  nameKey: fight_27_6_name
+  waves:
+  - spawns:
+    - enemy: {fileID: 11400000, guid: 283f58350752c4115b4d62eb04c41af7, type: 2}
+      statMultiplier: 3.21
+    - enemy: {fileID: 11400000, guid: 78e438797db304ecc8b9c6632aab5ffb, type: 2}
+      statMultiplier: 3.21
+    - enemy: {fileID: 11400000, guid: 283f58350752c4115b4d62eb04c41af7, type: 2}
+      statMultiplier: 3.21
+  - spawns:
+    - enemy: {fileID: 11400000, guid: 99613ba2c378240e4999edfa7d827924, type: 2}
+      statMultiplier: 3.21
+    - enemy: {fileID: 11400000, guid: 99613ba2c378240e4999edfa7d827924, type: 2}
+      statMultiplier: 3.21
+  recommendedPower: 9260
+  dropTable: {fileID: 11400000, guid: fd8eb3e42084847c2b713409ea8da12f, type: 2}
+  firstClearTable: {fileID: 11400000, guid: b4b0e871eb8e141a098010c68bc3858a, type: 2}
+  starTurnLimit: 0
+  background: {fileID: 21300000, guid: 2cec9873de8db4db2a46de370e9b18ea, type: 3}
+  preBeats: []
+  postBeats: []
+  unlockConditions: []
+  isSideQuest: 0

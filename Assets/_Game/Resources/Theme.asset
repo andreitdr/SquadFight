@@ -109,6 +109,15 @@ MonoBehaviour:
   statusStun: {fileID: 21300000, guid: 6bb3ef1e884fb4ce295f7bf15dc43713, type: 3}
   statusShield: {fileID: 21300000, guid: b9f59d2c631bb4c9a93e9b6065378aa8, type: 3}
   statusHeal: {fileID: 21300000, guid: 45885f7878d39462db67417e621899e6, type: 3}
+  statusBurn: {fileID: 21300000, guid: d8fe71431af0a4e3da42a161b4c5e2b5, type: 3}
+  statusPoison: {fileID: 21300000, guid: aa2afc5bb422d46f4a1ef2c7cbba68cc, type: 3}
+  statusBleed: {fileID: 21300000, guid: 71ad21945fb194cce954efe4eea9cfce, type: 3}
+  statusRegen: {fileID: 21300000, guid: 4e5a674a61c6444fcb9eda177aad95ca, type: 3}
+  statusTaunt: {fileID: 21300000, guid: b7d8e417c9a684905b1de4eb46437a66, type: 3}
+  statusSilence: {fileID: 21300000, guid: 492a09028e726451b870a2367fa33baf, type: 3}
+  statusThorns: {fileID: 21300000, guid: 6d57dd59e1df84b6886472d37de42479, type: 3}
+  statusDodge: {fileID: 21300000, guid: ffff0f7e908a045d8989a60c7322a4a8, type: 3}
+  statusMark: {fileID: 21300000, guid: e2a45be4c539c4be9914618c5ec7fb19, type: 3}
   statusAttackUp: {fileID: 21300000, guid: 50616f8ac04a84034aa5c9f2fec3a612, type: 3}
   statusAttackDown: {fileID: 21300000, guid: 7d430387f06274b3986960a0a45f52a4, type: 3}
   statusDefenseUp: {fileID: 21300000, guid: fb71ccf0839ab433db6f2ca1cf747366, type: 3}

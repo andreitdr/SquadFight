@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_countess_vey
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_countess_vey
+  nameKey: enemy_countess_vey_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 45030
+    - 1126
+    - 201
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 5a348da56e01e4161930c974b5a93e86, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 3eb5c3ba902a346918946e68594ac6da, type: 2}
+  sprite: {fileID: 21300000, guid: 0793aef0e5e6c43b8ab0583222318387, type: 3}
+  tint: {r: 0.34901962, g: 0.050980393, b: 0.13333334, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 0793aef0e5e6c43b8ab0583222318387, type: 3}
+  icon: {fileID: 21300000, guid: 36d9f944b373a44cdb7e766063778ca6, type: 3}
+  animations: {fileID: 11400000, guid: b020c4b735c234d43a54c3442f9ac158, type: 2}

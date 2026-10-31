@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_the_hunger
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_the_hunger
+  nameKey: enemy_the_hunger_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 74880
+    - 1872
+    - 273
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 441325a8d2c724ed49e493506772aa14, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 594a933a9a2a144a98981ec83dc8ec5e, type: 2}
+  sprite: {fileID: 21300000, guid: 19615357c725e456bbe27a703d583e3b, type: 3}
+  tint: {r: 0.011764706, g: 0.02745098, b: 0.11764706, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 19615357c725e456bbe27a703d583e3b, type: 3}
+  icon: {fileID: 21300000, guid: 16231922cdf32445a825d2c322da73f2, type: 3}
+  animations: {fileID: 11400000, guid: 128efa4409a8f42b7a4fa1456e97b867, type: 2}

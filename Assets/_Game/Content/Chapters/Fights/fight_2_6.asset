@@ -17,19 +17,19 @@ MonoBehaviour:
   waves:
   - spawns:
     - enemy: {fileID: 11400000, guid: f7d8f81068350427c819dd5093b341a6, type: 2}
-      statMultiplier: 2.51
+      statMultiplier: 2.79
     - enemy: {fileID: 11400000, guid: f7d8f81068350427c819dd5093b341a6, type: 2}
-      statMultiplier: 2.51
+      statMultiplier: 2.79
     - enemy: {fileID: 11400000, guid: b2d1e673086574a369f0943b393ea713, type: 2}
-      statMultiplier: 2.51
+      statMultiplier: 2.79
   - spawns:
     - enemy: {fileID: 11400000, guid: b2d1e673086574a369f0943b393ea713, type: 2}
-      statMultiplier: 2.51
+      statMultiplier: 2.79
     - enemy: {fileID: 11400000, guid: b2d1e673086574a369f0943b393ea713, type: 2}
-      statMultiplier: 2.51
+      statMultiplier: 2.79
     - enemy: {fileID: 11400000, guid: d0a4b87d9c0da4c52af6baf77954d58e, type: 2}
-      statMultiplier: 2.51
-  recommendedPower: 1710
+      statMultiplier: 2.79
+  recommendedPower: 1990
   dropTable: {fileID: 11400000, guid: 89dfc2d4f29da41f497cea64d8d7be58, type: 2}
   firstClearTable: {fileID: 11400000, guid: 8f00003116bde4535be858e21494e5e1, type: 2}
   starTurnLimit: 0
@@ -38,3 +38,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f16a7dec93f3d40d4b9825f6d2625e1f, type: 2}
   postBeats: []
   unlockConditions: []
+  isSideQuest: 0

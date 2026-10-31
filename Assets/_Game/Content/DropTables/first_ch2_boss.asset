@@ -33,7 +33,7 @@ MonoBehaviour:
     amountMin: 30
     amountMax: 30
   - type: 4
-    refId: 
+    refId: 1
     rarity: 0
     anySlot: 1
     slot: 0

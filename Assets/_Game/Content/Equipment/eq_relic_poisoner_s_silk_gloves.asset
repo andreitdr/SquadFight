@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef048a2f19374261bc319f4702ec0db, type: 3}
+  m_Name: eq_relic_poisoner_s_silk_gloves
+  m_EditorClassIdentifier: Game.Data::Game.Data.EquipmentTemplate
+  id: eq_relic_poisoner_s_silk_gloves
+  nameKey: eq_relic_poisoner_s_silk_gloves_name
+  slot: 3
+  rarity: 4
+  stats:
+  - stat: 1
+    value: 44
+    kind: 0
+  - stat: 4
+    value: 0.04
+    kind: 0
+  - stat: 3
+    value: 3
+    kind: 0
+  tier: 0
+  icon: {fileID: 21300000, guid: 80a596963c6b443c0b749c1ec12bf1c4, type: 3}
+  setId: 

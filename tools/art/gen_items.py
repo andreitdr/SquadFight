@@ -154,9 +154,47 @@ ITEMS = {
 }
 
 
+TIER_COLOR = {2: '#3a8a8a', 3: '#5f8a3a', 4: '#d8a050', 5: '#9ad0e0', 6: '#8a92a8', 7: '#a01a2a', 8: '#d8dce8'}
+TIER_GEM = {2: '#5ad0e0', 3: '#9ae05a', 4: '#ffcf4a', 5: '#e0f8ff', 6: '#ff8a2a', 7: '#ff3a5a', 8: '#b08aff'}
+
+
+def generated_items():
+    """Icons for the tiered gear and side-quest relics written by tools/content/gen_campaign.py."""
+    import csv
+    import random
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'content'))
+    import csvsections
+    _, sections = csvsections.read('equipment.csv')
+    out = {}
+    for r in csv.reader(sections.get('gen_campaign', '').splitlines()):
+        if not r or r[0].startswith('#'):
+            continue
+        iid, name, slot, tier = r[0], r[1], r[2], int(r[4])
+        rnd = random.Random(iid)
+        t = tier or rnd.randint(2, 8)
+        c, gem = TIER_COLOR[t], TIER_GEM[t]
+        glow = gem if tier == 0 or t >= 6 else None
+        if slot == 'Weapon':
+            out[iid] = (lambda c=c, gem=gem, glow=glow, big='axe' in iid or rnd.random() < 0.3: lambda d: sword(d, c, gem, '#2a1a14', 1.15 if big else 1.0, 1.5 if big else 1.0, glow))()
+        elif slot == 'Helmet':
+            out[iid] = (lambda c=c, k=['helm', 'knight', 'crown'][min(2, t // 3)]: lambda d: helmet(d, c, k))()
+        elif slot == 'Chest':
+            out[iid] = (lambda c=c, k=['chain', 'plate', 'dragon'][min(2, t // 3)]: lambda d: chest(d, c, k))()
+        elif slot == 'Gloves':
+            out[iid] = (lambda c=c, k=['leather', 'hunter', 'shadow'][min(2, t // 3)]: lambda d: gloves(d, c, k))()
+        elif slot == 'Boots':
+            out[iid] = (lambda c=c, k=['travel', 'swift', 'wind'][min(2, t // 3)]: lambda d: boots(d, c, k))()
+        else:
+            out[iid] = (lambda c=c, gem=gem, glow=glow: lambda d: ring(d, c, gem, glow))()
+    return out
+
+
 def main():
     os.makedirs(ITEM_DIR, exist_ok=True)
-    for iid, fn in ITEMS.items():
+    # --generated: only the tiered gear and relics (the 24 original icons stay untouched)
+    items = generated_items() if '--generated' in os.sys.argv else {**ITEMS, **generated_items()}
+    for iid, fn in items.items():
         d = Defs()
         body = g(fn(d), None, filter=d.shadow(0, 5, 4, '#000000', 0.45))
         render(body, os.path.join(ITEM_DIR, iid + '.png'), 256, 256, defs=d)

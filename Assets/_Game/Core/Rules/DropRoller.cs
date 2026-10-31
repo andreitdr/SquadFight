@@ -85,7 +85,7 @@ namespace Game.Core
                 }
                 case DropType.RandomEquipment:
                 {
-                    var templates = db.Equipment.Where(t => e.SlotFilter == null || t.Slot == e.SlotFilter.Value).ToList();
+                    var templates = RandomEquipmentCandidates(e, db);
                     if (templates.Count == 0) break;
                     var n = Amount(e, rng);
                     for (var i = 0; i < n; i++)
@@ -114,6 +114,16 @@ namespace Game.Core
                     result[e] = e.Weight > 0 && total > 0 ? avgRolls * e.Weight / total : 0;
             }
             return result;
+        }
+
+        /// <summary>
+        /// Templates a <see cref="DropType.RandomEquipment"/> entry can roll: optional slot filter, and the tiers in <c>RefId</c>
+        /// when set ("3" or "2+3"). Tier 0 templates (unique items) are never rolled at random.
+        /// </summary>
+        public static List<EquipmentTemplateDef> RandomEquipmentCandidates(DropEntryDef e, GameDatabase db)
+        {
+            var tiers = string.IsNullOrEmpty(e.RefId) ? null : new HashSet<int>(e.RefId.Split('+').Select(x => int.TryParse(x.Trim(), out var t) ? t : -1));
+            return db.Equipment.Where(t => t != null && t.Tier > 0 && (e.SlotFilter == null || t.Slot == e.SlotFilter.Value) && (tiers == null || tiers.Contains(t.Tier))).ToList();
         }
 
         /// <summary>

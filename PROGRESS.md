@@ -1,6 +1,6 @@
 # Progress
-Last updated: 2026-10-30
-Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
+Last updated: 2026-10-31
+Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31; owner actions remain, see MILESTONE-M3.md)
 
 | Step | Title | Status (TODO/DOING/DONE/REWORK) | Tests | Notes / pending |
 |------|-------|-------------------------------|-------|-----------------|
@@ -147,6 +147,18 @@ Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 - Boot, Home, Fight Preview, story, battle, result, Heroes, unlock, party, equip and the whole 13-step tutorial run end to end.
 - Fixed: tutorial lost the Sister Maren highlight on the Heroes list (recycled cards re-registered stale anchor ids); hole drawn at a pre-layout rect on slow first frames (overlay now waits 2 frames per new target); weapon-slot target off screen inside the scroll view with input blocked = player stuck (overlay now scrolls targets into view); circular ring replaced by a frame that fits wide buttons; Skip button moved into the safe area (it overlapped the top bar under the notch). `FullScript_HighlightsEveryTarget` PlayMode test walks all 13 steps and checks the hole sits on an on-screen target.
 - Follow-up fixes (same day): tutorial resumes correctly after a restart (resume points + already-done checks, EditMode tests); hint kept off popup panels (PlayMode check); tutorial fights 1-1/1-2 eased so the scripted party wins with no deaths ≥ 95% (`BalanceCli tune tutorial`; progression still completes in all 9 runs, casual 72–92 fights); fight preview warns only below 90% of recommended power (90–100% = caution colour); equipment picker rows fit narrow screens. Still open: FMOD output-device error in the simulator (check on device).
+
+### "The Hundred": story, 100 heroes, 40 chapters, side quests (owner request, 2026-10-31; steps 02/08/09/10/12/13/15 reworked)
+- [x] 100 heroes, 20 per class, rarity random per hero and strictly rarer at each tier (37/26/19/12/6); every hero has a unique active and passive (`uniqueHeroAbilities` validator; `RealContent_HundredHeroes_FortyChapters`).
+- [x] 14 new effect types, 4 targeting rules, passives on 9 triggers; tests for every effect/trigger + 50-seed determinism (`EffectTests`, `RosterRulesTests`).
+- [x] 40 chapters (8 acts), 401 main fights (9–11 per chapter, seeded), 79 side quests; 107 new enemies incl. 37 new bosses; 449 new story beats; 96 new items (tiers 2–8 + 40 relics).
+- [x] Side quests never count toward completion, stars, unlock chain or "next fight" (`SideQuestTests`); campaign screen section + per-chapter Journal.
+- [x] Shards spread: 3 targeted grants per new hero across its act, random shards limited to the current acts' pool, 89 item-only fights.
+- [x] Old saves: a save with the original 24 fights cleared opens chapter 4 and the new fights of chapters 1–3 (`SaveFromTheOldThreeChapters_ContinuesIntoTheNewCampaign`); new heroes are added by the reconciler.
+- [x] Balance (BalanceCli progression, seeds 1–3): casual 3/3 complete in 1,440 fights, 0 losses, 0 walls, 59–64 heroes; hardcore 3/3 in 2,880 fights, 0 walls, 69–74 heroes; greedy (never replays on purpose) clears chapters 1–3 and stalls around chapter 10 (Tide Mother) — the 400-fight campaign assumes some replaying.
+- [x] Tests: dotnet 298/298, config validator 0/0, Unity EditMode 333/333, PlayMode 15/15 (`tools/test-all.sh`).
+- [~] Art for the new heroes/enemies/items/backgrounds is generated placeholder art; APK size with 172 new characters to be measured by the release build.
+- Known gap: gold piles up (≈540k earned vs ≈9k spent per casual run) — nothing new to spend it on; same issue noted at step 15, now larger.
 
 ### Android release pipeline (owner request, 2026-10-31)
 - [x] `BuildAndroidReleaseApk` / `BuildAndroidReleaseAll` (`./build.sh android-apk|android-release-all`): signed APK + AAB with one versionCode. Verified locally with a throwaway keystore passed as base64 (CI path): apksigner verifies, no network permissions, arm64-v8a.

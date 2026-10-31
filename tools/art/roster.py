@@ -145,6 +145,16 @@ ENEMIES = [
 
 BOSSES = {'enemy_goblin_king', 'enemy_lich', 'enemy_red_dragon'}
 
+# The 90 generated heroes and the new enemies of "The Hundred" (palette/part variations of the specs above).
+import roster_generated as _gen  # noqa: E402
+
+_templates = {s['id']: s for s in HEROES + ENEMIES}
+ORIGINAL_IDS = set(_templates)
+_new_enemies, _new_bosses = _gen.enemy_specs(_templates)
+HEROES = HEROES + _gen.hero_specs(_templates)
+ENEMIES = ENEMIES + _new_enemies
+BOSSES = BOSSES | _new_bosses
+
 
 def by_id(cid):
     for s in HEROES + ENEMIES:

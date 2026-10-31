@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02aa3e90e5af64cdf813126e58aed690, type: 3}
+  m_Name: fight_14_8
+  m_EditorClassIdentifier: Game.Data::Game.Data.FightDefinition
+  id: fight_14_8
+  nameKey: fight_14_8_name
+  waves:
+  - spawns:
+    - enemy: {fileID: 11400000, guid: ccccad85b932448ea85645309959d47a, type: 2}
+      statMultiplier: 3.22
+    - enemy: {fileID: 11400000, guid: 2d7cd513c39904922b3f275f50d2d64a, type: 2}
+      statMultiplier: 3.22
+    - enemy: {fileID: 11400000, guid: 7ba75296cc48944b6a1b4e50a44fcb86, type: 2}
+      statMultiplier: 3.22
+  - spawns:
+    - enemy: {fileID: 11400000, guid: ccccad85b932448ea85645309959d47a, type: 2}
+      statMultiplier: 3.22
+    - enemy: {fileID: 11400000, guid: 2d7cd513c39904922b3f275f50d2d64a, type: 2}
+      statMultiplier: 3.22
+  recommendedPower: 4100
+  dropTable: {fileID: 11400000, guid: fbcc03e0340544d55b895eedaaf5c7ea, type: 2}
+  firstClearTable: {fileID: 11400000, guid: 0f392fe3e17044655b86b177ff3d3e83, type: 2}
+  starTurnLimit: 0
+  background: {fileID: 21300000, guid: 2cec9873de8db4db2a46de370e9b18ea, type: 3}
+  preBeats: []
+  postBeats: []
+  unlockConditions: []
+  isSideQuest: 0

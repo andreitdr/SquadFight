@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d431c006401f744a5b25c4944b56ec3d, type: 3}
+  m_Name: drops_a3
+  m_EditorClassIdentifier: Game.Data::Game.Data.DropTable
+  id: drops_a3
+  guaranteed:
+  - type: 0
+    refId: gold
+    rarity: 0
+    anySlot: 1
+    slot: 0
+    rarityWeights: []
+    weight: 1
+    amountMin: 66
+    amountMax: 99
+  groups:
+  - minRolls: 1
+    maxRolls: 1
+    withoutReplacement: 0
+    entries:
+    - type: 2
+      refId: act_1+act_2+act_3
+      rarity: 0
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 40
+      amountMin: 2
+      amountMax: 3
+    - type: 2
+      refId: act_1+act_2+act_3
+      rarity: 1
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 30
+      amountMin: 2
+      amountMax: 3
+    - type: 2
+      refId: act_1+act_2+act_3
+      rarity: 2
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 17
+      amountMin: 1
+      amountMax: 3
+    - type: 2
+      refId: act_1+act_2+act_3
+      rarity: 3
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 9
+      amountMin: 1
+      amountMax: 2
+    - type: 2
+      refId: act_1+act_2+act_3
+      rarity: 4
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 4
+      amountMin: 1
+      amountMax: 2
+  - minRolls: 1
+    maxRolls: 1
+    withoutReplacement: 0
+    entries:
+    - type: 4
+      refId: 3
+      rarity: 0
+      anySlot: 1
+      slot: 0
+      rarityWeights:
+      - rarity: 0
+        weight: 30
+      - rarity: 1
+        weight: 45
+      - rarity: 2
+        weight: 20
+      - rarity: 3
+        weight: 5
+      weight: 60
+      amountMin: 1
+      amountMax: 1
+    - type: 0
+      refId: gold
+      rarity: 0
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 40
+      amountMin: 33
+      amountMax: 66

@@ -26,7 +26,7 @@ Core loop:
 
 | # | Topic | Assumption | Impact if changed |
 |---|-------|-----------|-------------------|
-| A1 | Combat style | **Turn-based auto-battle**, speed-ordered turns; each hero has 1 basic attack + 1 active skill (player can tap to trigger skill, or Auto). | Steps 08, 13 |
+| A1 | Combat style | **Turn-based auto-battle**, speed-ordered turns; each hero has 1 basic attack + 1 active skill (player can tap to trigger skill, or Auto) **+ 1 passive trait (owner request 2026-10-31: unique active + passive per hero; 14 new effect types, passive triggers)**. | Steps 08, 13 |
 | A2 | Enemy count | 1–5 enemies per fight, optional boss. | 08, 09 |
 | A3 | Equipment slots | Weapon, Helmet, Chest, Gloves, Boots, Ring ×2 (7 slots, enum-driven so slot list is configurable). | 06, 07 |
 | A4 | Rarities | Common, Uncommon, Rare, Epic, Legendary (one shared enum for heroes and items). | 02, 05, 06 |
@@ -38,6 +38,8 @@ Core loop:
 | A10 | Art | Placeholder art first; final art is swappable via config references. | 13, 15 |
 | A11 | Orientation | Portrait. | 11 |
 | A12 | Languages | English first, localization-ready from day 1. **Owner decision (M2): lightweight CSV localizer (`TableLocalizer`) instead of the Unity Localization package.** | 14 |
+| A13 | Campaign & roster (owner request 2026-10-31) | **Dark-epic story "The Hundred": 8 acts × 5 chapters = 40 chapters, 9–11 main fights each (seeded random), 1–3 side quests per chapter. 100 heroes, 20 per class, rarity random per hero but strictly fewer at each higher rarity.** Shards spread over many fights and limited to the current acts' heroes; ~25% of main fights drop items only. | 02, 09, 10, 15 |
+| A14 | Side quests | Optional zones inside a chapter for lore and better items (unique relics); they open through an unlock condition and never count toward chapter completion, stars or the unlock chain. | 09, 10, 12 |
 
 ## 4. Architecture
 

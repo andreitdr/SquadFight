@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_fallen_saint
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_fallen_saint
+  nameKey: enemy_fallen_saint_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 3000
+    - 434
+    - 50
+    - 100
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 574c9811100394934b45f0f7d94264ab, type: 2}
+  passiveSkill: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 70e0372a281cf4f9282eace0c36248bc, type: 3}
+  tint: {r: 1, g: 0.8392157, b: 0.64705884, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 70e0372a281cf4f9282eace0c36248bc, type: 3}
+  icon: {fileID: 21300000, guid: 76664d7dc248b41d08173ae8b59b8e06, type: 3}
+  animations: {fileID: 11400000, guid: 5cddb5ce9d43d401a81a1c1f65e14a62, type: 2}

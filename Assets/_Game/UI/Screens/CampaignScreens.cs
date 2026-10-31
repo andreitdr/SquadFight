@@ -174,7 +174,7 @@ namespace Game.UI
                     var cell = UIKit.Panel(row, "Enemy", Th.panel);
                     cell.Size(180, 190);
                     var art = ScreenKit.EnemyIcon(asset);
-                    var icon = UIKit.Image(cell.transform, "Icon", art != null ? Color.white : asset != null ? asset.tint : Color.gray, art != null ? art : asset != null && asset.sprite != null ? asset.sprite : Th.diamond);
+                    var icon = UIKit.Image(cell.transform, "Icon", art != null ? asset.ArtColor : asset != null ? asset.tint : Color.gray, art != null ? art : asset != null && asset.sprite != null ? asset.sprite : Th.diamond);
                     icon.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(e.Def.IsBoss ? 120 : 100, e.Def.IsBoss ? 120 : 100), new Vector2(0, -12), new Vector2(0.5f, 1));
                     var n = UIKit.Text(cell.transform, "Name", ScreenKit.EnemyName(Ctx, e.Def.Id), 26, e.Def.IsBoss ? Th.negative : Th.text, TextAlignmentOptions.Center, bold: e.Def.IsBoss);
                     n.rectTransform.Stretch(4, 128, 4, 30);

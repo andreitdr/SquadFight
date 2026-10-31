@@ -1,38 +1,488 @@
 # speaker: a hero/enemy id (uses its name) or any other id with speakerName
 id,speaker,speakerName,text
-beat_ch1_intro,narrator,Narrator,"Goblins have been raiding the Greenwood road. Three young heroes set out to stop them."
-beat_ch1_f1_pre,hero_knight,,"Stay behind me. Whatever comes out of those trees, we face it together."
-beat_ch1_f4_pre,hero_archer,,"Wolves and goblins working together? Someone is training them."
-beat_ch1_boss_pre,enemy_goblin_king,,"Who dares enter MY forest? Crush them!"
-beat_ch1_end,narrator,Narrator,"The Goblin King falls, but he was only taking orders. A trail of black candles leads north, to the old crypt."
-beat_ch2_intro,narrator,Narrator,"Beneath the hills lies the Crypt of Ash, sealed for a hundred years. The seal is broken."
-beat_ch2_f1_pre,hero_apprentice,,"I read about this place. Mostly the part that said 'never go in'."
-beat_ch2_f5_pre,hero_knight,,"These cultists are not raising the dead for fun. They are building an army."
-beat_ch2_boss_pre,enemy_lich,,"The living always come to me in the end. You are merely early."
-beat_ch2_end,narrator,Narrator,"With its last breath the Lich laughs: the army was never his. It belongs to the dragon of the Peak."
-beat_ch3_intro,narrator,Narrator,"Dragon's Peak burns on the horizon. Orc warbands march under a crimson banner."
-beat_ch3_f1_pre,hero_archer,,"Orcs, wyverns, and a dragon at the top. Nobody said this would be easy."
-beat_ch3_f5_pre,hero_knight,,"The priests are feeding the dragon's fire. Stop them and the beast weakens."
-beat_ch3_boss_pre,enemy_red_dragon,,"Little heroes. I have burned kingdoms. I will not even remember your names."
-beat_ch3_end,narrator,Narrator,"The Red Dragon falls and the sky clears. The road home is long, but it is finally safe."
+beat_ch1_intro,narrator,Narrator,"Goblins have been raiding the Greenwood road, and the villages have started burying their dead in the fields. Three young heroes set out to stop them."
+beat_ch1_f1_pre,hero_knight,,"Stay behind me. Whatever comes out of those trees, it does not get past me."
+beat_ch1_f4_pre,hero_archer,,Wolves and goblins hunting together. Something taught them. Something that hates us.
+beat_ch1_boss_pre,enemy_goblin_king,,Who dares enter MY forest? The pale man promised me this road. Crush them!
+beat_ch1_end,narrator,Narrator,"The Goblin King falls, still clutching a black candle. He was only taking orders. A trail of black candles leads north, to the old crypt."
+beat_ch2_intro,narrator,Narrator,"Beneath the hills lies the Crypt of Ash, where the Wardens buried their own. It was sealed for three hundred years. The seal was broken from the inside."
+beat_ch2_f1_pre,hero_apprentice,,I read about this place. Mostly the part that said 'never go in'. It was underlined three times.
+beat_ch2_f5_pre,hero_knight,,"These cultists are not raising the dead for fun. They are building an army, and they are not even hiding it."
+beat_ch2_boss_pre,enemy_lich,,The living always come to me in the end. You are merely early.
+beat_ch2_end,narrator,Narrator,"With its last breath the Lich laughs. The army was never his. 'Go to the Peak,' it whispers. 'Kill the dragon. He would so like you to.'"
+beat_ch3_intro,narrator,Narrator,"Dragon's Peak burns on the horizon. Orc warbands march under a crimson banner, and every village between here and the mountain is ash."
+beat_ch3_f1_pre,hero_archer,,"Orcs, wyverns, and a dragon at the top. Whoever planned this wanted us exhausted when we get there."
+beat_ch3_f5_pre,hero_knight,,The priests are feeding the dragon's fire with something black. Listen. She is screaming in there.
+beat_ch3_boss_pre,enemy_red_dragon,,Little heroes. Please. I am not what you were told. I am holding the door. Stop. STOP.
+beat_ch3_end,narrator,Narrator,"The Red Dragon falls, and the mountain goes quiet. Then, far below, something that had been locked for three hundred years begins, very slowly, to breathe."
 beat_ch1_f2_pre,hero_archer,,"Wolf tracks. Fresh ones, and a lot of them. Stay sharp."
-beat_ch1_f2_pre_b,hero_apprentice,,"Do wolves like fire? Asking for a friend. The friend is me."
+beat_ch1_f2_pre_b,hero_apprentice,,Do wolves like fire? Asking for a friend. The friend is me.
 beat_ch1_f3_post,narrator,Narrator,"Among the goblin loot: a healer's satchel and a letter from the mountain abbey, begging for help on the road."
 beat_ch1_f5_pre,hero_cleric,,"You must be the ones clearing the road. I am Maren. Judging by those bruises, you need me."
-beat_ch1_f6_pre,hero_rogue,,"Vex. I hear the goblin king wears a gold crown. Help me get it and I will split it with you. Mostly."
+beat_ch1_f6_pre,hero_rogue,,Vex. I hear the goblin king wears a gold crown. Help me get it and I will split it with you. Mostly.
 beat_ch1_f7_pre,hero_knight,,"Their warband gathers at the gate. Whatever we find inside, we hold the line."
 beat_ch1_end_b,hero_paladin,,"I followed the black candles too. Seraphine, paladin of the dawn. If the dark is moving north, so am I."
-beat_ch2_f2_pre,hero_cleric,,"These bones were laid to rest. Someone woke them. That is a cruelty I will not forgive."
-beat_ch2_f3_pre,hero_hunter,,"Kael. I tracked the cultists here. Smells wrong down below. Even the rats left."
-beat_ch2_f4_pre,hero_rogue,,"Candle Hall. Lots of candles. Lots of candlesticks. Silver ones."
-beat_ch2_f4_pre_b,hero_paladin,,"Vex."
-beat_ch2_f4_pre_c,hero_rogue,,"Kidding! ...Mostly."
+beat_ch2_f2_pre,hero_cleric,,These bones were laid to rest. Someone woke them. That is a cruelty I will not forgive.
+beat_ch2_f3_pre,hero_hunter,,Kael. I tracked the cultists here. Smells wrong down below. Even the rats left.
+beat_ch2_f4_pre,hero_rogue,,Candle Hall. Lots of candles. Lots of candlesticks. Silver ones.
+beat_ch2_f4_pre_b,hero_paladin,,Vex.
+beat_ch2_f4_pre_c,hero_rogue,,Kidding! ...Mostly.
 beat_ch2_f6_pre,hero_stormcaller,,"You there, heroes. The Lich stole my storm-glass. Help me take it back and I will lend you the sky."
 beat_ch2_f7_pre,hero_apprentice,,"Is it just me, or is it getting colder?"
 beat_ch2_f7_pre_b,hero_cleric,,"It is not just you. Stay close to the light, Pip."
-beat_ch3_f2_pre,hero_hunter,,"Wyverns nest on these cliffs. Keep your heads low and your shields high."
+beat_ch3_f2_pre,hero_hunter,,Wyverns nest on these cliffs. Keep your heads low and your shields high.
 beat_ch3_f3_pre,hero_bard,,"Orcs! Splendid. My ballad desperately needed a villainous chorus. Fennick, at your service!"
-beat_ch3_f4_pre,hero_stormcaller,,"Fire against storm. Let us see who the sky truly favors."
+beat_ch3_f4_pre,hero_stormcaller,,Fire against storm. Let us see who the sky truly favors.
 beat_ch3_f6_pre,hero_dragonknight,,"I know this bridge. I crossed it on dragonback, long ago. She was not cruel then."
 beat_ch3_f7_pre,hero_knight,,"Whatever waits at the top, we face it together. Just like the first day on the road."
 beat_ch3_end_b,hero_dragonknight,,"Rest now, old friend. The sky is yours again."
+# ---- GENERATED by tools/content/gen_campaign.py: edit campaign_design*.py and re-run ----
+beat_c1_b1,hero_archer,,The goblins hang their dead from the trees here. Even they are afraid of something.
+beat_c1_b2,hero_knight,,A goblin king does not train wolves. Someone gave them orders. Someone patient.
+beat_side_1_1,villager,Villager,My brothers went to the charcoal pits and did not come back. Please.
+beat_side_1_1_lore,journal,Chronicle,"Three charcoal burners, dead in a ring of black candles. Their eyes were open and full of ash, though nothing had burned."
+beat_side_1_2,hero_apprentice,,The miller says a witch lives in the pond. I say we check. Carefully.
+beat_side_1_2_lore,journal,Chronicle,The witch was only an old woman who saw the candles first. She drew a gate on the mud and wept until it filled with water.
+beat_side_1_3,hero_knight,,"An old Warden shrine, torn down. Who tears down a shrine on a forest road?"
+beat_side_1_3_lore,journal,Chronicle,"Beneath the shrine: a stone tablet. SEVEN HEARTS HOLD THE HOLLOW. Someone had scratched out the word ""hold""."
+beat_c2_b1,hero_cleric,,Every name on these walls is a Warden. They were buried here to guard something.
+beat_c2_b2,hero_apprentice,,The candles burn upside down. That is not a figure of speech.
+beat_side_2_1,hero_cleric,,One tomb has no name. Every other one does. I want to know why.
+beat_side_2_1_lore,journal,Chronicle,"The nameless tomb is empty. On the lid, in old script: HE WANTED TO BE THE HOLLOW. Malrec was a Warden once."
+beat_side_2_2,hero_rogue,,Hear that? Singing. Down there. I hate it already.
+beat_side_2_2_lore,journal,Chronicle,"Skulls arranged as a choir, singing the same four notes. Corvin later named the tune: the lullaby the Wardens sang to the Seals."
+beat_c3_b1,hero_dragonknight,,She was the gentlest of the red dragons. Something has been whispering to her for years.
+beat_c3_b2,hero_paladin,,"Whatever she was, she is burning villages now. We end it."
+beat_side_3_1,hero_dragonknight,,The old riders are buried on the ledge below. I have not visited them in thirty years.
+beat_side_3_1_lore,journal,Chronicle,Every dragon rider's grave faces the peak. Their epitaphs say the same thing: WE KEPT HER HEART SAFE. Nobody understood it then.
+beat_c4_intro_1,narrator,Narrator,"The dragon died, and the sky died with her. For nine days ash fell on the Greenwood like black snow."
+beat_c4_intro_2,corvin,Corvin,"You did not kill a monster. You killed a lock. I am Corvin, last scribe of the Wardens, and we have very little time."
+beat_recruit_ashwarden,hero_ashwarden,,The village is gone. I kept the door. It has stopped worse than you.
+beat_recruit_hollowseer,hero_hollowseer,,"Every night I see the Gate, and every night it is a little more open."
+beat_c4_b1,corvin,Corvin,"Seven living hearts held the Hollow shut: a dragon, a leviathan, a tree, a storm, a titan, a saint, and a king. You broke the first."
+beat_c4_b2,hero_knight,,We were told she was the enemy. We believed it. Never again.
+beat_c4_boss,enemy_ashen_matron,,"The village is ash, and I am its mother now. Lie down, children. Rest in the grey."
+beat_c4_outro,narrator,Narrator,"The Matron crumbles to cinders. In her hand: a black candle, still burning. It points south, to the crypt beneath the Peak."
+beat_side_4_1,hero_cleric,,There are children hiding in the chapel cellar. Alive. We are getting them out.
+beat_side_4_1_lore,journal,Chronicle,Fourteen children out of the cellar. The youngest asked whether the sky would come back. Nobody answered.
+beat_side_4_2,villager,Villager,My oven is the only fire left that does not burn people. Bring me flour from the mill.
+beat_side_4_2_lore,journal,Chronicle,"The baker fed the whole column of refugees that night. Bread, in the Ashfall. Corvin wrote it down as a victory."
+beat_side_4_3,hero_archer,,"Something walks the orchard at night, eating the ash-covered apples. Big tracks."
+beat_side_4_3_lore,journal,Chronicle,"A cinder hound the size of a horse, gnawing at a tree that would not burn. The tree had been planted by a Warden."
+beat_c5_intro_1,narrator,Narrator,Beneath Dragon's Peak lay a door no one had built. It had been closed for three hundred years. It was ajar.
+beat_recruit_cindermage,hero_cindermage,,The dragon screamed when it died. I heard what it said. You should not have killed it.
+beat_c5_b1,corvin,Corvin,Malrec was the eighth Warden. The others cast him out for wanting what the Hollow offered. He has waited a long time.
+beat_c5_b2,hero_stormcaller,,The air here tastes like a storm that never ends. I do not like it.
+beat_c5_boss,enemy_vorn,,My master thanks you for the dragon. He could not have done it without you.
+beat_c5_outro,narrator,Narrator,"Vorn falls. Behind him the Gate swings wide, and a pale figure steps through and smiles at you. ""Seven hearts,"" says Malrec. ""Six now. I will see you at the sea."""
+beat_side_5_1,corvin,Corvin,"My archive is in the old Warden rooms off the stair. If it survived, it can tell you everything."
+beat_side_5_1_lore,journal,Chronicle,"Corvin's archive survived. Most of it is a list: every Warden, every Seal, every heart. Six lines are not yet crossed out."
+beat_c6_intro_1,narrator,Narrator,"South of the Peak the land drops into salt and fog. The drowned walk the marsh roads, all facing the sea."
+beat_c6_intro_2,corvin,Corvin,"The second heart is the Tide Mother, a leviathan older than the coast. Malrec is already there."
+beat_recruit_coralguard,hero_coralguard,,I slept under the sea for a year. The reef kept me. Now I keep you.
+beat_recruit_drownedknight,hero_drownedknight,,I drowned defending this shore. The sea returned me. Perhaps for this.
+beat_recruit_tidebreaker,hero_tidebreaker,,I held the wall for six hours. The sea only had to win once.
+beat_c6_b1,hero_rogue,,The dead are wearing their best clothes. Like they are going to a wedding.
+beat_c6_b2,hero_hunter,,Every set of tracks leads out to sea. Not one comes back.
+beat_c6_boss,enemy_bog_king,,The marsh takes everything. Even kings. Especially kings.
+beat_c6_outro,narrator,Narrator,"Ulmar sinks back into the bog, still crowned. Beyond the marsh the coast is burning: the Black Tide has come ashore."
+beat_side_6_1,villager,Villager,The Mudwife knows the safe paths. She asks a price. Pay it.
+beat_side_6_1_lore,journal,Chronicle,"Her price was a memory. Pip gave up the taste of honey. ""Worth it,"" he said, and did not explain."
+beat_side_6_2,hero_knight,,Someone hanged twelve fishermen on the dunes. Recently.
+beat_side_6_2_lore,journal,Chronicle,A note pinned to the last gibbet: THEY WOULD NOT ROW FOR THE BLACK TIDE. Signed with a black anchor.
+beat_c7_intro_1,narrator,Narrator,"The Black Tide was a pirate fleet. Now it is Malrec's navy, paid in promises and black water."
+beat_recruit_corsair,hero_corsair,,"I came for the gold of Ys-Marrow. I am leaving with my life, if you help me."
+beat_recruit_reefhunter,hero_reefhunter,,Down there everything glows when it is hungry. Everything was glowing.
+beat_c7_b1,hero_rogue,,Pirates working for a dead wizard. I used to respect pirates.
+beat_c7_b2,hero_corsair,,Morrow was my captain. He used to be a decent thief. Something is wearing him now.
+beat_c7_boss,enemy_captain_morrow,,Malrec promised us the drowned city's gold. I have already spent it.
+beat_c7_outro,narrator,Narrator,"Morrow's blade shatters. Dying, he points a shaking hand at the horizon, where the spires of Ys-Marrow rise from the water at low tide."
+beat_side_7_1,hero_paladin,,They forced fishermen to crew the fleet. Their families are in the hold of that galley.
+beat_side_7_1_lore,journal,Chronicle,"Forty pressed sailors freed. Most of them went home. Six stayed to row the party to Ys-Marrow, for free."
+beat_c8_intro_1,narrator,Narrator,"Ys-Marrow sank in a single night three hundred years ago. At the lowest tides you can walk its streets, if you are quick."
+beat_recruit_brinescholar,hero_brinescholar,,The books in Ys-Marrow are still legible. That is the worrying part.
+beat_recruit_chaplain,hero_chaplain,,Every night I ring the bell for the drowned. Tonight I ring it for the living.
+beat_recruit_siren,hero_siren,,(She signs slowly.) My sisters still sing. I will help you silence them.
+beat_c8_b1,hero_brinescholar,,"The library is still dry inside. The books are still being written. By whom, I would like to know."
+beat_c8_b2,hero_siren,,(She signs.) My sisters are singing in the palace. Cover your ears. Do not listen to the words.
+beat_c8_boss,enemy_choir_mother,,"Sing with us, little heroes. Everyone in Ys-Marrow sings, in the end."
+beat_c8_outro,narrator,Narrator,The Choir falls silent for the first time in three centuries. In the silence you can hear something enormous breathing beneath the city.
+beat_side_8_1,hero_brinescholar,,One book writes itself in the library. I want to know what it is writing.
+beat_side_8_1_lore,journal,Chronicle,"The book was writing the names of the drowned, one by one. Near the end it wrote your names too, then crossed them out, uncertain."
+beat_side_8_2,hero_chaplain,,The bell still rings at midnight. I rang it every night for thirty years. I want to see it.
+beat_side_8_2_lore,journal,Chronicle,"Father Osk rang the drowned bell once more. Every drowned soul in the city turned toward the sound and, for a moment, remembered being alive."
+beat_side_8_3,hero_rogue,,Pearl baths. Pearls. In baths. I am going in.
+beat_side_8_3_lore,journal,Chronicle,Vex came out with nine pearls and a curse that made every coin taste of salt. Vex considers this a fair trade.
+beat_c9_intro_1,narrator,Narrator,The priests of the Tide once prayed for calm seas. Their prayers have changed.
+beat_recruit_lighthouse,hero_lighthouse,,My lamp guided ships home for forty years. Now it guides the drowned. I will guide you instead.
+beat_recruit_tidecaller,hero_tidecaller,,"I owe the Tide Mother a debt. If she dies, the debt dies with her. I would rather pay it."
+beat_c9_b1,hero_tidecaller,,Sallow has been feeding the Tide Mother Hollow-water. She is drowning from the inside.
+beat_c9_b2,hero_cleric,,They have turned a church into a cage. I have never wanted to burn a church before.
+beat_c9_boss,enemy_tidepriest,,"She will drown the world, and I will baptize what is left."
+beat_c9_outro,narrator,Narrator,"Sallow's altar cracks. Below the cathedral, the Tide Mother wakes. Her eyes are black from edge to edge."
+beat_side_9_1,hero_paladin,,"They kept a Warden relic here. If Sallow has it, we take it back."
+beat_side_9_1_lore,journal,Chronicle,"The relic was a scale from the Tide Mother herself, given willingly three centuries ago. It was still warm."
+beat_side_9_2,hero_lighthouse,,Statues of every captain lost at sea. My father is among them.
+beat_side_9_2_lore,journal,Chronicle,Ebba found her father's statue. Someone had scratched black anchors into its eyes. She cleaned them with her sleeve.
+beat_c10_intro_1,narrator,Narrator,She was the second heart. She held the Hollow shut for three hundred years under the weight of the whole sea.
+beat_recruit_gullscout,hero_gullscout,,The gulls stopped flying out to sea a week ago. That is how I knew.
+beat_recruit_harpooner,hero_harpooner,,"The Tide Mother is too big to kill, they say. They said that about whales, once."
+beat_c10_b1,hero_tidecaller,,"There is nothing left of her mind. Only the Hollow, wearing her like a shell."
+beat_c10_b2,corvin,Corvin,"If she dies, the second Seal breaks. If she lives like this, she will drown every coast in the world."
+beat_c10_boss,enemy_tide_mother,,(A sound like the whole ocean grieving.)
+beat_c10_outro,narrator,Narrator,"The Tide Mother sinks into the trench, and for one moment her eyes clear. She looks at you without anger. Then the second Seal breaks, and the sea goes still."
+beat_side_10_1,hero_harpooner,,"The reef is made of ships she sank. She sank them gently. Look, the crews are buried."
+beat_side_10_1_lore,journal,Chronicle,Every ship on the reef was a warship coming to hunt her. She buried each crew with care. She was never the monster.
+beat_side_10_2,hero_gullscout,,There is an air pocket in the trench. Someone is alive in there.
+beat_side_10_2_lore,journal,Chronicle,"A girl, seven years old, sealed in an air pocket by the Tide Mother herself on the night Ys-Marrow drowned. Three hundred years old. Still seven."
+beat_side_10_3,hero_chaplain,,Hollow-water blooms like ink in the current. Can we cut it out of her?
+beat_side_10_3_lore,journal,Chronicle,"They cut out a bloom of black water the size of a house. It was too late to save her, but she drowned a little less."
+beat_c11_intro_1,narrator,Narrator,"The Thornwild is the oldest forest in the world. At its heart stands the Elder Tree: the third heart, and the third Seal."
+beat_c11_intro_2,hero_hunter,,This is where I was born. I do not recognize it. The forest is sick.
+beat_recruit_mosswhisper,hero_mosswhisper,,"The moss says you are tired, hungry and very brave. It is rarely wrong."
+beat_recruit_briar,hero_briar,,The blight took my bears. Point me at it.
+beat_recruit_sporecaller,hero_sporecaller,,"Breathe in. No, not you. You, breathe in."
+beat_c11_b1,hero_hunter,,"Warden Ysra raised me after the wolves took my family. If anyone is still fighting in here, it is her."
+beat_c11_b2,corvin,Corvin,The blight is the Hollow wearing the shape of rot. It is not sickness. It is hunger.
+beat_c11_boss,enemy_blight_boar,,"(It squeals, and the squeal is full of other voices: everything it has eaten.)"
+beat_c11_outro,narrator,Narrator,"The Boar falls into the mud. Behind its corpse, blighted roots crawl slowly toward the heart of the forest."
+beat_side_11_1,hero_hunter,,The lodge where I learned to track. Someone lit the fire. Recently.
+beat_side_11_1_lore,journal,Chronicle,The fire was Ysra's. She left a message carved in the mantel: COME TO THE TREE. BRING EVERYONE.
+beat_side_11_2,hero_mosswhisper,,The birches are bleeding sap. The moss says they are crying. Help me ease them.
+beat_side_11_2_lore,journal,Chronicle,"Fenna cut the blight from three birches. They stopped weeping. One of them, she swears, said thank you."
+beat_c12_intro_1,narrator,Narrator,"The fey courts of Summer and Winter have been at war for a hundred years. The blight has made the war worse, and the fey prettier."
+beat_recruit_feyarcher,hero_feyarcher,,I have already shot your enemy. Wait for it.
+beat_recruit_thornblade,hero_thornblade,,The Summer Court wanted me to lose gracefully. I have never done anything gracefully.
+beat_c12_b1,hero_thornblade,,Prince Aubrel exiled me for winning. Let us see if he enjoys losing.
+beat_c12_b2,hero_bard,,"Fey courts! Wonderful! Nobody touch the food, sing the songs, or answer any questions honestly."
+beat_c12_boss,enemy_prince_aubrel,,"Mortals in my court. How amusing. Kneel, or be decorated."
+beat_c12_outro,narrator,Narrator,"Aubrel yields with a courtly bow. ""Very well. Summer will fight the blight. Winter will, too, if only to spite us."""
+beat_side_12_1,hero_feyarcher,,Every mask in the hall is a fey who betrayed the court. My mother's mask is here.
+beat_side_12_1_lore,journal,Chronicle,"Quill took her mother's mask off the wall. Behind it, written in tiny script: SHE REFUSED TO FEED THE STAG."
+beat_side_12_2,hero_paladin,,"Winter sent an envoy, alone and unarmed, to ask for help. Summer wants her dead."
+beat_side_12_2_lore,journal,Chronicle,"The Winter envoy lived. She promised Winter's spears to the Elder Tree. Fey keep promises, always, to the letter."
+beat_c13_intro_1,narrator,Narrator,"Where the blight is oldest, the forest has become a swamp. Something there tends the rot like a garden."
+beat_recruit_nettlecrown,hero_nettlecrown,,"My sisters fed the Stag. I fed my sisters to the wolves. We are even, they and I."
+beat_recruit_fawnsong,hero_fawnsong,,"The blighted ones still listen to music. Somewhere inside, they remember."
+beat_c13_b1,hero_nettlecrown,,The Mire Hag was my coven-mother. She taught me to read and to poison. In that order.
+beat_c13_b2,hero_cleric,,"She is growing children in the cauldron. I am going to be sick, and then I am going to kill her."
+beat_c13_boss,enemy_mire_hag,,"Morra, my sweet. You brought me supper."
+beat_c13_outro,narrator,Narrator,"The Hag dissolves into black water. Morra stands over the cauldron for a long time, then tips it over without a word."
+beat_side_13_1,hero_nettlecrown,,There is something still alive in the cauldron. I need to know what.
+beat_side_13_1_lore,journal,Chronicle,"A seedling of the Elder Tree, stolen and fed on rot. Morra carried it out in her hands, and the rot on her own fingers faded a little."
+beat_c14_intro_1,narrator,Narrator,"Once there were two white stags in the Thornwild. One was taken by the blight. Now it runs the forest, and the forest dies where it passes."
+beat_recruit_hawkmother,hero_hawkmother,,My hawks have been circling your camp for days. They like you. That is rare.
+beat_recruit_lowbough,hero_lowbough,,Blighted wood makes cruel arrows. Good. These things deserve cruelty.
+beat_recruit_stagrider,hero_stagrider,,"My stag mourns its brother. Together we will end him gently, or not at all."
+beat_c14_b1,hero_stagrider,,My stag can smell its brother. He is close. Forgive us both for what comes next.
+beat_c14_b2,hero_hawkmother,,"My hawks have it. North-east, past the oak. It is waiting for us."
+beat_c14_boss,enemy_rot_stag,,(A bellow like a tree splitting.)
+beat_c14_outro,narrator,Narrator,"The Rot Stag falls, and the white stag lies down beside its brother until the rot on him turns to moss. The path to the Elder Tree is open."
+beat_side_14_1,hero_stagrider,,"The stags were born at a spring north of here. If it is clean, it can heal."
+beat_side_14_1_lore,journal,Chronicle,"The spring was clean. Toma filled every flask. The water tasted of snow and starlight and, faintly, of grief."
+beat_side_14_2,hero_lowbough,,Blight-cultists hang offerings on the Gallows Oak. Let us take them down.
+beat_side_14_2_lore,journal,Chronicle,"The offerings were Wildwardens, bound in bark, alive. Ashe cut down eleven. Two were too far gone. Ashe used the arrows for them."
+beat_side_14_3,hero_feyarcher,,An old Warden is buried in the Moonbarrow. Her bow is said to shoot moonlight.
+beat_side_14_3_lore,journal,Chronicle,"The bow was there. So was its owner, sitting up, very dead, very polite. She lent it to Quill ""until the last Seal is safe""."
+beat_c15_intro_1,narrator,Narrator,The Elder Tree was planted by the Wardens when the world was young. Its roots hold the third Seal. Something is eating the roots.
+beat_c15_intro_2,ysra,Warden Ysra,Kael. You came. Good. I need someone to hold the Tree while I cut the rot out.
+beat_recruit_barkskin,hero_barkskin,,"The Tree is in my blood now. If it rots, so do I."
+beat_recruit_saelith,hero_saelith,,I planted the Elder Tree with the first Wardens. I will not watch it die.
+beat_c15_b1,ysra,Warden Ysra,"The rot has a heart, deep in the roots. When it dies, the Tree needs a graft to close the wound. A living one."
+beat_c15_b2,hero_hunter,,"Ysra, no. There has to be another way."
+beat_c15_boss,enemy_blight_heart,,(The roots themselves scream.)
+beat_c15_outro,narrator,Narrator,"The Blight Heart dies. Warden Ysra presses her hands into the wound in the Tree and does not take them out again. The Elder Tree closes around her. The third Seal holds. The forest is quiet, and Kael does not speak for three days."
+beat_side_15_1,hero_hunter,,Her camp. Her things. I want to take something of hers with me.
+beat_side_15_1_lore,journal,Chronicle,"Kael took her old skinning knife and her map of the forest, marked with every grave she had ever dug. His family's were on it."
+beat_c16_intro_1,narrator,Narrator,"Three hundred years ago a storm was trapped in glass to make the fourth Seal. The desert around it melted, and never cooled."
+beat_c16_intro_2,hero_stormcaller,,The fourth Seal is a storm. My storm-glass is a shard of it. I did not know until the Lich stole it.
+beat_recruit_duneshield,hero_duneshield,,"Stay in my shadow. The desert does not forgive, but I am stubborn."
+beat_recruit_hamid,hero_hamid,,"I see you clearly, children. I see what follows you, too."
+beat_recruit_yara,hero_yara,,Drink. Rest. Then go and make the desert pay.
+beat_c16_b1,hero_duneshield,,The road kills one caravan in three. Today it will kill none. Stay in my shadow.
+beat_c16_b2,corvin,Corvin,"The Arcanum built the fourth Seal. Its Archmage, Ilvane, has stopped answering my letters."
+beat_c16_boss,enemy_scorpion_queen,,(A clicking that becomes words.) SOFT. SWEET. MINE.
+beat_c16_outro,narrator,Narrator,"The Queen shatters like a dropped vase. On the horizon, the towers of the Sand Courts glitter in the heat."
+beat_side_16_1,hero_duneshield,,Every caravan I lost is buried here. I come every year. Come with me.
+beat_side_16_1_lore,journal,Chronicle,Kaveh named every grave aloud. It took an hour. Nobody hurried him.
+beat_side_16_2,hero_hamid,,The wind temple keeps the oldest maps of the desert. Mine burned with my eyes.
+beat_side_16_2_lore,journal,Chronicle,"The maps showed the storm-glass vault beneath the Arcanum, and a second, smaller vault, marked with a single word: ILVANE."
+beat_c17_intro_1,narrator,Narrator,"The Sand Courts are ruled by whoever poisoned the last ruler. Lately, that is Vizier Hashem, and Hashem has a patron in the Arcanum."
+beat_recruit_glasssting,hero_glasssting,,Ilvane paid me to kill you. Ilvane's coin was counterfeit. So.
+beat_recruit_flamestep,hero_flamestep,,The desert taught me to dance. Ilvane taught me to burn. One of them was a good teacher.
+beat_c17_b1,hero_glasssting,,I know the roofs. I know the kitchens. I know which wine not to drink. Follow me.
+beat_c17_b2,hero_rogue,,"This is my kind of city. Everyone is lying, and the jewelry is excellent."
+beat_c17_boss,enemy_vizier_hashem,,The Archmage pays better than gratitude. Guards.
+beat_c17_outro,narrator,Narrator,"Hashem dies with a letter in his sleeve, sealed with Ilvane's sigil: KEEP THEM FROM THE VAULT UNTIL THE STORM IS MINE."
+beat_side_17_1,hero_glasssting,,The kitchen where I learned my trade. I want to burn it down. With the recipes.
+beat_side_17_1_lore,journal,Chronicle,"Asha burned the kitchen and kept one recipe: an antidote. ""In case,"" she said, and would not say in case of what."
+beat_side_17_2,hero_rogue,,They sell secrets in the bazaar. I want to buy one. About us.
+beat_side_17_2_lore,journal,Chronicle,"Vex bought a secret about the party. Vex read it, laughed, and ate the paper. Nobody has managed to get it out of Vex since."
+beat_c18_intro_1,narrator,Narrator,The Arcanum was the greatest school of magic in the world. Ilvane burned half of it the night she chose the Hollow.
+beat_recruit_starcounter,hero_starcounter,,Three hundred and twelve last night. There used to be four hundred.
+beat_recruit_teodor,hero_teodor,,"Ilvane burned half my library. The other half is in my head, and it is angry."
+beat_recruit_vitrum,hero_vitrum,,DOOR. GUARDED. MAKER. ABSENT. NEW. ORDERS. ACCEPTED.
+beat_c18_b1,hero_teodor,,This was my library. Every shelf. Every book. She burned the ones that would have stopped her.
+beat_c18_b2,hero_vitrum,,MAKER'S WORKSHOP. AHEAD. CAUTION. MAKER'S OTHER CREATIONS. HOSTILE.
+beat_c18_boss,enemy_brass_colossus,,INTRUDERS. ARCHMAGE'S ORDERS. INCINERATE.
+beat_c18_outro,narrator,Narrator,"The Colossus falls with a sound like a bell dropped from a tower. In its chest, a brass plaque: PROPERTY OF ARCHMAGE ILVANE. DO NOT DISTURB THE TOWER."
+beat_side_18_1,hero_teodor,,Some books are fireproof. Help me find what survived.
+beat_side_18_1_lore,journal,Chronicle,"Seventeen books survived. One was a history of the Wardens written by Malrec himself, before his fall. It was kind. That was the worst part."
+beat_side_18_2,hero_starcounter,,"The Arcanum telescope! If it works, I can count properly."
+beat_side_18_2_lore,journal,Chronicle,"Pim counted 296 stars. Then, through the telescope, saw one more go out. It was not falling. Something ate it."
+beat_side_18_3,hero_vitrum,,MAKER'S FOUNDRY. VITRUM. WISHES. TO SEE.
+beat_side_18_3_lore,journal,Chronicle,"Vitrum found its maker's workbench and a half-finished glass golem, smaller than itself. It carried the little golem out, very gently."
+beat_c19_intro_1,narrator,Narrator,"Ilvane's tower stands on the edge of the Arcanum, half in the world and half somewhere else."
+beat_recruit_nadira,hero_nadira,,My master sold us to the Hollow. I kept the receipt.
+beat_recruit_glasswright,hero_glasswright,,Storm-glass remembers every storm it has held. This one remembers the Seal.
+beat_c19_b1,hero_nadira,,She took my hand to open a window into the Hollow. She said it would be worth it. She lied about that too.
+beat_c19_b2,hero_stormcaller,,"She wants the storm-glass. If she gets the Seal, she does not need to break it. She can open it."
+beat_c19_boss,enemy_ilvane,,Malrec offered me what the Wardens never would: the end of ignorance. I took it.
+beat_c19_outro,narrator,Narrator,"Ilvane falls through her own Hollow window, screaming, and the window closes behind her. In the silence, Zara's staff begins to hum. The storm in its heart is the fourth Seal. It always was."
+beat_side_19_1,hero_nadira,,My old room. I left something there. I want it back.
+beat_side_19_1_lore,journal,Chronicle,"Nadira's old room held a letter to her mother she never sent. She sent it now, by pigeon, from the top of the tower."
+beat_c20_intro_1,narrator,Narrator,"Beneath the Arcanum the storm that made the fourth Seal still rages, guarded by the djinn who were bound to watch it."
+beat_recruit_rashid,hero_rashid,,For a thousand years I served whoever held the sword. Now I choose. I choose you.
+beat_recruit_longsight,hero_longsight,,"Hold still. No, not you. You are fine. The thing behind you, however."
+beat_c20_b1,hero_rashid,,Azhar was bound here with me. He has had three hundred years alone with the storm. He will not be kind.
+beat_c20_b2,hero_stormcaller,,"If Azhar breaks the glass, the Seal goes with it. We have to calm him, not kill him."
+beat_c20_boss,enemy_storm_djinn,,Three hundred years I have held the sky in a bottle. Let me rest. LET ME REST.
+beat_c20_outro,narrator,Narrator,"Azhar falls to his knees and, for the first time in three centuries, the storm goes quiet. Zara takes his hand. ""I will carry it now,"" she says. The fourth Seal holds, inside her staff."
+beat_side_20_1,hero_rashid,,"There are other djinn bound down here. Free them, and they will owe us."
+beat_side_20_1_lore,journal,Chronicle,"Four djinn were freed. Three fled into the sky. One stayed and asked to learn what ""friend"" meant. Rashid is teaching it."
+beat_c21_intro_1,narrator,Narrator,"North of the desert the world turns white. The clans of Frostmarch guard the fifth heart: a Titan, frozen asleep beneath the mountains."
+beat_c21_intro_2,corvin,Corvin,Malrec cannot break the Titan. He does not need to. He only needs to wake it.
+beat_recruit_snowstalker,hero_snowstalker,,You walked past me twice. Do not feel bad. Wendigo do too.
+beat_recruit_ylva,hero_ylva,,Eat first. Then you can go and die heroically. Not before.
+beat_recruit_trapwright,hero_trapwright,,"I caught a jarl once. By accident. He was very understanding, eventually."
+beat_recruit_vala,hero_vala,,The Titan is waking. It has been asking for you by name.
+beat_recruit_wolfsister,hero_wolfsister,,The pack smelled you a day ago. They decided not to eat you. Be grateful.
+beat_c21_b1,hero_wolfsister,,The wendigo has eaten three villages this winter. The clans blame each other.
+beat_c21_b2,hero_snowstalker,,It knows we are here. It has been following us for a mile. Do not run.
+beat_c21_boss,enemy_wendigo,,So. Hungry. You. Will. Do.
+beat_c21_outro,narrator,Narrator,"The Wendigo falls. In its lair: the bones of clan warriors from both sides of the feud, arranged in neat, patient rows."
+beat_side_21_1,hero_vala,,The shrine of the Titan is abandoned. Its priests would never leave it. Unless.
+beat_side_21_1_lore,journal,Chronicle,"The priests were frozen in place, kneeling, eyes open. They had prayed until the cold took them, to keep the Titan dreaming."
+beat_side_21_2,hero_ylva,,There is a camp of refugees up the slope. Starving. I have soup. Escort me.
+beat_side_21_2_lore,journal,Chronicle,"Granny Ylva fed forty refugees and scolded all of them. Two clans, sharing a fire, for the first time in sixty years."
+beat_side_21_3,hero_trapwright,,My father's traps are still set by the cairn. Something big is caught in one.
+beat_side_21_3_lore,journal,Chronicle,"A frost giant child, caught by the ankle. Gunnar freed it. The next day its mother left a whole elk outside the camp."
+beat_c22_intro_1,narrator,Narrator,The clans of Frostmarch have killed each other for three generations over a stolen ring. Malrec has been paying both sides.
+beat_recruit_haldor,hero_haldor,,I asked my people for blood. I gave mine first. Now I ask you.
+beat_recruit_ironskald,hero_ironskald,,Every saga needs an ending. I write them with this.
+beat_recruit_ulfgar,hero_ulfgar,,My clan says my oath belongs to them. I say my axe belongs in that wendigo.
+beat_c22_b1,hero_haldor,,"Grimhild and I were betrothed, once. Then the feud. Now she thinks I stole her father's ring."
+beat_c22_b2,hero_ironskald,,Every saga of the feud ends the same way. Let us write a different ending.
+beat_c22_boss,enemy_thane_grimhild,,Haldor brings strangers to finish what his father started? So be it.
+beat_c22_outro,narrator,Narrator,"Grimhild yields. Haldor kneels in the snow before her and opens his hand: the ring, found on a Black Tide corsair. Neither clan stole it. The feud ends in silence."
+beat_side_22_1,hero_ulfgar,,My clan's longhouse. Burned in the feud. My mother's axe is under the ashes.
+beat_side_22_1_lore,journal,Chronicle,"Ulfgar found the axe. He did not use it in the next fight. He carried it, wrapped in cloth, like a sleeping child."
+beat_c23_intro_1,narrator,Narrator,"Every warrior who died in the feud still stands on the Wraith Fields, frozen where they fell. Something rides among them."
+beat_recruit_icewall,hero_icewall,,The north wall has never fallen. I have never let it.
+beat_recruit_rimeblade,hero_rimeblade,,Cold is patient. So am I. Until I am not.
+beat_recruit_runecarver,hero_runecarver,,"This rune says ""protect"". This one says ""or else"". Both work."
+beat_c23_b1,hero_rimeblade,,The Pale Rider gathers the frozen dead. It is building a warband to march on the Titan.
+beat_c23_b2,hero_icewall,,"My brother is out there, frozen, holding his spear. I will bring him home."
+beat_c23_boss,enemy_pale_rider,,(It says nothing. The frozen dead turn to look at you.)
+beat_c23_outro,narrator,Narrator,"The Pale Rider shatters, and the frozen dead lower their spears. Sigrun carries her brother home across her shoulders."
+beat_side_23_1,hero_ironskald,,"The first battle of the feud, frozen in place. I want to know how it started."
+beat_side_23_1_lore,journal,Chronicle,Bjorn read the battle like a saga. The first blow was struck by a man in a black-anchor cloak who belonged to neither clan.
+beat_side_23_2,hero_runecarver,,The lanterns guide the dead home. Somebody put most of them out.
+beat_side_23_2_lore,journal,Chronicle,"Thyra relit the lanterns. The wraiths drifted toward the light, a few at a time, and did not come back."
+beat_side_23_3,hero_icewall,,My brother. He is in the barrow. Please.
+beat_side_23_3_lore,journal,Chronicle,"Sigrun's brother had not frozen. He was waiting in the barrow, very cold, very calm, still holding the line he had been told to hold."
+beat_c24_intro_1,narrator,Narrator,Queen Hoarfrost has ruled winter for a thousand years. She has decided she would like to rule everything else as well.
+beat_recruit_hrolf,hero_hrolf,,"Mother says I am too small to fight giants. Mother is very, very large."
+beat_c24_b1,hero_vala,,"She has promised Malrec the Titan, in exchange for an endless winter. She will get it."
+beat_c24_b2,hero_hrolf,,My mother serves the Queen. She will be at the throne. Let me talk to her first.
+beat_c24_boss,enemy_queen_hoarfrost,,"Kneel, little summer things. It is warmer on your knees."
+beat_c24_outro,narrator,Narrator,Hoarfrost cracks from crown to heel. Hrolf's mother catches her as she falls and holds the dying Queen like a daughter.
+beat_side_24_1,hero_wolfsister,,"She keeps animals frozen in her menagerie. Wolves, too. My wolves."
+beat_side_24_1_lore,journal,Chronicle,"Kari thawed six wolves, a bear and an owl. The wolves remembered her. The bear did not, and had to be argued with."
+beat_side_24_2,hero_glasswright,,Ice mirrors that show the future. Very dangerous. I want to look.
+beat_side_24_2_lore,journal,Chronicle,"Seren saw a throne made of absence, and a man in a scribe's coat sitting on it, smiling, very tired."
+beat_side_24_3,hero_cleric,,"There is a chapel here. To which god, I wonder, in a palace of ice?"
+beat_side_24_3_lore,journal,Chronicle,"The chapel was dedicated to the Seven Hearts. Hoarfrost had been praying to the Seals for a thousand years, and they had never answered."
+beat_c25_intro_1,narrator,Narrator,"The Titan sleeps inside the mountain, and the mountain is the Titan. Its heart is the fifth Seal. It is waking up."
+beat_c25_b1,hero_vala,,"Its rage is a separate thing now, awake while the Titan dreams. Defeat the rage and it will sleep again."
+beat_c25_b2,hero_dragonknight,,The dragon was a heart like this. Willing. Kind. They chose the kindest creatures to hold the Hollow. That is why it hurts so much.
+beat_c25_boss,enemy_titan_fury,,"(The mountain roars, and every stone on it answers.)"
+beat_c25_outro,narrator,Narrator,"The Fury breaks and drifts back into the mountain like snow. Somewhere deep below, the Titan sighs and turns over in its sleep. The fifth Seal holds."
+beat_side_25_1,hero_vala,,I can hear the Titan's heart. Let me sing to it. Guard me.
+beat_side_25_1_lore,journal,Chronicle,Vala sang for six hours. The heartbeat slowed to one beat a minute. Then one an hour. Then it dreamed.
+beat_c26_intro_1,narrator,Narrator,"Ironhold is a dwarven city carved into a volcano. Its forges never stop. Lately, nobody is working them."
+beat_c26_intro_2,corvin,Corvin,"The Wardens' weapon, the Last Ember, was forged here. If anyone can reforge it, it is the smiths of Ironhold."
+beat_recruit_anvilborn,hero_anvilborn,,It is a shield. It was an anvil. Now it is a shield. Stop asking.
+beat_recruit_cogsworth,hero_cogsworth,,(A hiss of steam.) STILL. ON. DUTY.
+beat_recruit_halvard,hero_halvard,,"Bite this. No, this. Good. Now, about your arm."
+beat_c26_b1,hero_anvilborn,,The constructs are running the forges by themselves. That is not how constructs work.
+beat_c26_b2,hero_cogsworth,,(Steam.) ORDERS. COUNTERMANDED. BY. WHOM.
+beat_c26_boss,enemy_unit_seven,,PRODUCTION. MUST. CONTINUE. BIOLOGICAL. INTERFERENCE. DETECTED.
+beat_c26_outro,narrator,Narrator,"Unit Seven grinds to a stop. Its orders, stamped on a brass plate inside, are signed with a black anchor."
+beat_side_26_1,hero_halvard,,Wounded dwarves are hiding in the workers' rest. I am going in. You are coming.
+beat_side_26_1_lore,journal,Chronicle,"Doctor Halvard set eleven bones, stitched nine wounds and took off one leg, which its owner said he never liked much anyway."
+beat_c27_intro_1,narrator,Narrator,Beneath Ironhold the mines go down further than any map. Something has been digging upward.
+beat_recruit_boltwright,hero_boltwright,,Version nine. Version eight exploded. Stand back a little. More. Good.
+beat_recruit_ilgrin,hero_ilgrin,,The Last Ember needs a heart of dragon-ash. You brought one. Of course you did.
+beat_recruit_skiv,hero_skiv,,"You want the back way into the forge? Everything has a price. Today, the price is: you."
+beat_c27_b1,hero_skiv,,I know these tunnels. Something new is in them. Big. It eats rails.
+beat_c27_b2,hero_boltwright,,"If it eats rails, we feed it a rail that explodes. I brought one."
+beat_c27_boss,enemy_tunnel_maw,,(The tunnel walls breathe.)
+beat_c27_outro,narrator,Narrator,"The Maw collapses into its own tunnel. Behind it, the tunnel leads straight up into the Halls of the Bulwark."
+beat_side_27_1,hero_skiv,,The glowworm cave. My hiding place as a kid. Something is wrong with the light.
+beat_side_27_1_lore,journal,Chronicle,"The glowworms were dying, one by one, eaten by a darkness that had no source. Skiv saved a jar of them. They glow brighter now."
+beat_side_27_2,hero_ilgrin,,"The old seam of star-iron. If there is any left, the Ember needs it."
+beat_side_27_2_lore,journal,Chronicle,"One ingot of star-iron left in the seam, as if someone had saved it for them. Ilgrin wept, then complained about the quality."
+beat_c28_intro_1,narrator,Narrator,For three hundred years the Order of the Bulwark held the line against the dark. Half of them now hold it for the dark instead.
+beat_recruit_aldous,hero_aldous,,"(He bows, says nothing, and cracks his knuckles.)"
+beat_recruit_brega,hero_brega,,The Order of the Bulwark held the line for three hundred years. We are not done.
+beat_recruit_ironbraid,hero_ironbraid,,My sisters fell at the forge gate. I braided their wire into mine. They still fight.
+beat_c28_b1,hero_brega,,Marshal Odo was my teacher. He swore the oath before I was born. He broke it last winter.
+beat_c28_b2,hero_ironbraid,,My shield-sisters are among them. Turned. Do not hold back for my sake.
+beat_c28_boss,enemy_marshal_odo,,"The line cannot hold, Brega. I chose the winning side. Choose it too."
+beat_c28_outro,narrator,Narrator,"Odo falls with his oath still carved on his shield. Brega takes it, scrapes away the black paint, and hangs it back on the wall."
+beat_side_28_1,hero_brega,,"The Order's armory. If the fallen took the old shields, I want them back."
+beat_side_28_1_lore,journal,Chronicle,Every shield was still there. The fallen knights had not been able to lift them. The shields remembered who they belonged to.
+beat_side_28_2,hero_aldous,,"(He points to the honor roll of the Order, then to a name, then to himself.)"
+beat_side_28_2_lore,journal,Chronicle,"Brother Aldous was a Bulwark knight before his vow of silence. He crossed out his own name as fallen, and wrote it back in."
+beat_side_28_3,hero_ironbraid,,My sisters prayed in the chapel before each watch. I want to pray there once.
+beat_side_28_3_lore,journal,Chronicle,"Grisela prayed. Three of her turned sisters stood in the chapel door, listening, and did not attack. Then they left."
+beat_c29_intro_1,narrator,Narrator,"At the heart of Ironhold burns the Great Forge, fed by the volcano itself. Its fire has woken, and it has a name."
+beat_recruit_ferrum,hero_ferrum,,The heart inside me says hello. It also says hurry.
+beat_recruit_hammerfall,hero_hammerfall,,They had metal left over from the Last Ember. Now it is mine. Now it is this.
+beat_recruit_kettle,hero_kettle,,Hold out your sword. This will not hurt. It will hurt the sword.
+beat_c29_b1,hero_hammerfall,,"The Forge Tyrant was the forge spirit. The Hollow made it hungry. Fire is always hungry, but not like this."
+beat_c29_b2,hero_ferrum,,The heart inside me was a forge-keeper. It remembers when the forge was kind.
+beat_c29_boss,enemy_forge_tyrant,,I MADE YOUR SWORDS. I MADE YOUR SHIELDS. I WILL UNMAKE YOU.
+beat_c29_outro,narrator,Narrator,"The Tyrant gutters to embers. Ilgrin steps up to the anvil and lays out the dragon's heart-ash. ""Now,"" he says. ""We forge."""
+beat_side_29_1,hero_kettle,,"The crucible where the Last Ember was first poured. Let me bless it, the proper way."
+beat_side_29_1_lore,journal,Chronicle,Sister Kettle blessed the crucible by hitting it three times with a hammer. It rang like a cathedral. The forge-fire turned gold.
+beat_side_29_2,hero_cogsworth,,(Steam.) COOLING. REQUIRED. PERSONAL. MATTER.
+beat_side_29_2_lore,journal,Chronicle,"Sir Cogsworth sat in the cooling pool for an hour. When he climbed out, the suit was quieter, and a voice inside said, ""Thank you."""
+beat_c30_intro_1,narrator,Narrator,"While Ilgrin hammers the Last Ember, Malrec sends his champion to stop it: the last rider of the black dragons."
+beat_recruit_blackpowder,hero_blackpowder,,It is called a gun. It goes bang. Sometimes at the right end.
+beat_c30_b1,hero_dragonknight,,Morcant. We trained together. He rode the black dragon when I rode the red. He fell first.
+beat_c30_b2,hero_ilgrin,,Keep him off me for one more hour! The Ember cannot be rushed!
+beat_c30_boss,enemy_ashen_knight,,Drakon. You killed our dragons' last sister. Do you know what you did? I do. I helped.
+beat_c30_outro,narrator,Narrator,"Morcant dies on the forge steps. Behind him, Ilgrin lifts the Last Ember from the anvil: a blade of white fire with a dragon's heart in its hilt. Corvin takes it, and his hands shake."
+beat_side_30_1,hero_anvilborn,,There is one anvil left that never touched the Hollow. My anvil. Help me take it to Ilgrin.
+beat_side_30_1_lore,journal,Chronicle,"Dorn carried his anvil-shield to the forge, and Ilgrin used it to finish the Ember. Dorn has stopped insisting it is a shield."
+beat_c31_intro_1,narrator,Narrator,Under a red moon the roads to Maren's abbey fill with pilgrims. They do not arrive.
+beat_c31_intro_2,hero_cleric,,The abbey holds the sixth heart: the Weeping Saint. I grew up singing to her. I never knew what she was.
+beat_recruit_agathe,hero_agathe,,"Hold still, child. I have sewn up worse than you, and they all lived. Most of them."
+beat_recruit_nightwatch,hero_nightwatch,,I slept one night in twenty years. I will not sleep again until this is over.
+beat_recruit_stake,hero_stake,,"Vampires, cultists, saints that cry blood. I have a stake for each."
+beat_c31_b1,hero_stake,,"House Vey is collecting pilgrims. For the larder, or for the army. Either way, we stop it."
+beat_c31_b2,hero_nightwatch,,The abbey bells have not rung for three days. I should be there.
+beat_c31_boss,enemy_casimir_vey,,Mother sends her regards. And her appetite.
+beat_c31_outro,narrator,Narrator,"Casimir dissolves into red mist. On the hill above, the abbey burns."
+beat_side_31_1,hero_agathe,,Pilgrims hiding at the rest-house. Wounded. Hold the door while I work.
+beat_side_31_1_lore,journal,Chronicle,Sister Agathe stitched twenty pilgrims and prayed over each one. One did not wake. She prayed longer over that one.
+beat_c32_intro_1,narrator,Narrator,"Maren's abbey has fallen. Not to vampires. To its own abbess, who opened the gates."
+beat_recruit_lisbet,hero_lisbet,,Ninety-nine oaths in the book. Yours makes a hundred. Sign here.
+beat_recruit_maud,hero_maud,,I burned the wrong people for thirty years. I intend to burn the right ones now.
+beat_c32_b1,hero_cleric,,Mother Corvina raised me. She taught me every prayer I know. Why?
+beat_c32_b2,hero_maud,,"Faith is easy to turn, child. I should know. I turned once myself."
+beat_c32_boss,enemy_abbess_corvina,,Maren. The Saint is in pain. I only wanted to set her free. Help me.
+beat_c32_outro,narrator,Narrator,"Corvina dies asking for forgiveness. Maren gives it. Then she goes down into the crypt alone, to the Saint, and the others have to follow quickly to keep up."
+beat_side_32_1,hero_lisbet,,"The abbey copied the Warden chronicles. Corvin's copies. If they burn, we lose everything."
+beat_side_32_1_lore,journal,Chronicle,"Lisbet saved the chronicles. In the margins of the last one, Corvin's handwriting: IF THE LAST LOCK FAILS, I WILL GO. Lisbet did not show it to him."
+beat_side_32_2,hero_cleric,,The novices. They were children. Some of them were my students.
+beat_side_32_2_lore,journal,Chronicle,Nine novices hid in the dormitory cellar and survived. Maren made them each a promise. She has kept six so far.
+beat_c33_intro_1,narrator,Narrator,House Vey has fed on this valley for four hundred years. The Countess has made a bargain with Malrec for four hundred more.
+beat_recruit_severin,hero_severin,,Mother taught me blood magic. Mother is about to regret that.
+beat_recruit_ysmay,hero_ysmay,,House Vey offered me eternity. I gave them a sword instead. They are still angry.
+beat_c33_b1,hero_severin,,Mother is in the bath. She is always in the bath. Do not look at what is in the water.
+beat_c33_b2,hero_ysmay,,"They took my family into this house. I am taking them out, whatever is left."
+beat_c33_boss,enemy_countess_vey,,"Severin, darling. You brought friends. You always did make a mess of dinner."
+beat_c33_outro,narrator,Narrator,"The Countess dies in her bath. Severin does not look away. Dame Ysmay finds her family in the cellar: two portraits, and one living niece, who will not let go of her hand."
+beat_side_33_1,hero_severin,,My old nursery. There is something I hid there as a child. A key.
+beat_side_33_1_lore,journal,Chronicle,"The key opened the Countess's strongbox: four hundred years of letters to her children, none sent. Severin burned them unread."
+beat_side_33_2,hero_ysmay,,My family's portraits hang here. As trophies. I am taking them down.
+beat_side_33_2_lore,journal,Chronicle,"Ysmay carried down eleven portraits. The twelfth was her own, painted last year, labeled UNFINISHED."
+beat_c34_intro_1,narrator,Narrator,"Beneath the abbey lies an older cathedral, sunk into the earth, where the saints who failed the Weeping Saint are buried."
+beat_recruit_amsel,hero_amsel,,"The choir needs more voices. Living ones, ideally."
+beat_recruit_benedikt,hero_benedikt,,The graves have been restless. I tell them to wait their turn.
+beat_recruit_sunniva,hero_sunniva,,"The abbey fell, but the lantern did not go out. Follow it."
+beat_recruit_tess,hero_tess,,The Saint is still crying. She asks for you. She asks you to be kind.
+beat_c34_b1,hero_tess,,These were her guardians. They could not bear her weeping. One by one they asked to stop hearing it.
+beat_c34_b2,hero_benedikt,,I buried most of them. The graves are empty now.
+beat_c34_boss,enemy_saint_of_thorns,,We tried to ease her pain. We failed. Now we will ease yours.
+beat_c34_outro,narrator,Narrator,"The Saint of Thorns crumbles into roses and blood. Below, in the deepest crypt, someone is weeping. The sound is unbearable, and very gentle."
+beat_side_34_1,hero_sunniva,,"The abbey's last lantern is in the relic vault. If it still burns, we will need it below."
+beat_side_34_1_lore,journal,Chronicle,"The lantern still burned. Sunniva took it. It was warm, and it has not gone out since, not even underwater."
+beat_side_34_2,hero_amsel,,The windows sing when the light hits them. My ghosts want to sing with them.
+beat_side_34_2_lore,journal,Chronicle,"Cantor Amsel's ghost choir sang with the windows. For one hour, the bleeding stopped."
+beat_c35_intro_1,narrator,Narrator,The Weeping Saint has held the sixth Seal for three hundred years. She has never stopped crying. She would like to stop.
+beat_recruit_agna,hero_agna,,One candle for each of them. I have lit nine hundred. I am not finished.
+beat_recruit_silvershot,hero_silvershot,,"Before you ask: yes, the candlesticks were blessed. No, Vex cannot have any."
+beat_c35_b1,hero_tess,,"She asks us to let her go. If we do, the sixth Seal breaks."
+beat_c35_b2,hero_cleric,,I sang to her every night of my childhood. I will not leave her alone in the dark. And I will not let her go.
+beat_c35_boss,enemy_weeping_saint,,Please. Three hundred years. Please let me rest. Please.
+beat_c35_outro,narrator,Narrator,"The Saint's strength fails before her will does. Maren kneels and holds her, and sings the old abbey lullaby, and the Saint, weeping, holds the Seal for one more night, and then another. ""I will stay,"" she whispers. ""If you come back."" The sixth Seal holds. It is the cruelest thing the party has ever done."
+beat_side_35_1,hero_tess,,"She kept a garden once, before the Seal. Help me plant it again. For her."
+beat_side_35_1_lore,journal,Chronicle,"Tess planted white roses in the crypt. Nothing grows in the crypt. The roses grew anyway, and the weeping eased, a little."
+beat_c36_intro_1,narrator,Narrator,"Two Seals broken, four held. Malrec has taken the seventh heart, the Hollow King, into the Rift. The world has begun to fray at the edges."
+beat_c36_intro_2,corvin,Corvin,"The seventh heart was the first: Aurem, the first Warden, who sealed himself inside to hold the door. Malrec means to wake him."
+beat_recruit_aurelian,hero_aurelian,,My grandfather was a Warden. He swore an oath he could not keep. I will keep it for him.
+beat_recruit_riftguard,hero_riftguard,,Every night something crawls out. Every night I push it back. I am tired.
+beat_recruit_vespera,hero_vespera,,Pim counts the stars. I spend them. One of us will have to stop.
+beat_c36_b1,hero_riftguard,,Every night something crawls out of the Rift. Every night I push it back. Tonight I am going in after it.
+beat_c36_b2,hero_vespera,,The stars over the Rift are going out. Not falling. Going out.
+beat_c36_boss,enemy_rift_maw,,"(Silence, in the shape of a mouth.)"
+beat_c36_outro,narrator,Narrator,"The Maw closes, and the Rift lies open before you like a wound in the sky. Corvin opens his ledger. Ninety-something names. Not yet a hundred."
+beat_side_36_1,hero_riftguard,,The old Warden watchtower. My post. I left my log there.
+beat_side_36_1_lore,journal,Chronicle,"Kestrel's log ran for twelve years, one line a night: PUSHED IT BACK. The last line, in someone else's hand: WELL DONE. REST. -C."
+beat_side_36_2,hero_aurelian,,My grandfather's camp. The last Wardens made their stand here.
+beat_side_36_2_lore,journal,Chronicle,"Aurelian found his grandfather's shield buried point-down in the grey earth, the way Wardens mark a grave. He left it there."
+beat_c37_intro_1,narrator,Narrator,"Inside the Rift the broken Seals still echo. The dragon and the Tide Mother are here, in a way. They remember you."
+beat_recruit_brannagh,hero_brannagh,,I swore to die at the Hollow Throne. I never said when.
+beat_recruit_quell,hero_quell,,They made me Archmage because everyone else was dead. Not a ringing endorsement.
+beat_c37_b1,hero_dragonknight,,She is here. Not her. Her memory. It is angry. It has every right to be.
+beat_c37_b2,hero_tidecaller,,The Tide Mother's echo is not angry. She is waiting for us to finish what we started.
+beat_c37_boss,enemy_dragon_echo,,"(The dragon's voice, but hollow.) You killed me for a lie. Did they tell you? Did they ever tell you?"
+beat_c37_outro,narrator,Narrator,"The echo burns out. Drakon stays behind for a moment, alone, and speaks to the empty air. Nobody hears what he says."
+beat_side_37_1,hero_tidecaller,,Her echo is calling me. My debt. I have to pay it now.
+beat_side_37_1_lore,journal,Chronicle,"Nerys paid her debt: a single memory of her mother's face. The Tide Mother's echo took it gently, and gave her a pearl in exchange."
+beat_side_37_2,corvin,Corvin,The Hall of Hearts. The Wardens' record of every anchor. Let me read it. Guard me.
+beat_side_37_2_lore,journal,Chronicle,"Corvin read the Hall for an hour. Seven hearts were willing. The eighth Seal, the one the Wardens never needed, was meant to be a Warden. He closed the book very quietly."
+beat_side_37_3,hero_chaplain,,"The drowned of Ys-Marrow are here, inside the memory. Let me ring for them one last time."
+beat_side_37_3_lore,journal,Chronicle,"Father Osk rang for the drowned. They walked out of the memory and into the grey, toward wherever the dead go when no one holds the door."
+beat_c38_intro_1,narrator,Narrator,"Malrec built his citadel inside the Rift out of everything he had taken: ships, statues, oaths, years."
+beat_recruit_teague,hero_teague,,I guarded Malrec for forty years. I know where he is weak. I made sure of it.
+beat_recruit_rhys,hero_rhys,,Nobody pays the bounty any more. I keep hunting anyway. Habit.
+beat_c38_b1,hero_teague,,He keeps a study at the top. He writes letters to the other Wardens. All dead. He still writes.
+beat_c38_b2,corvin,Corvin,"Malrec and I were students together. He was kinder than me, once. He only wanted the Hollow to stop hurting people."
+beat_c38_boss,enemy_malrec,,Corvin. Old friend. The Hollow does not want to destroy the world. It wants to be fed. Let me feed it. I can make it stop hungering.
+beat_c38_outro,narrator,Narrator,"Malrec falls, and with his last breath he laughs, the way the Lich laughed. ""You think I wanted the Throne? The King is awake, Corvin. He has been awake for a hundred years. I only wanted to be the one who chose what he ate."""
+beat_side_38_1,hero_teague,,His study. His letters. I want to know what he wrote to them.
+beat_side_38_1_lore,journal,Chronicle,"Hundreds of letters to the dead Wardens. The last one, to Corvin: I AM SORRY. I WAS NOT STRONG ENOUGH TO BE THE LOCK. ARE YOU?"
+beat_side_38_2,hero_lisbet,,"Statues of everyone he took. If there are names, I will write them down."
+beat_side_38_2_lore,journal,Chronicle,"Lisbet wrote down six hundred and twelve names. Then she added them to the ledger of the Hundred, as witnesses."
+beat_c39_intro_1,narrator,Narrator,Beneath the citadel the Hollow is not a place any more. It is an appetite with a floor.
+beat_recruit_aerin,hero_aerin,,Lyra? Is that you? You have grown. You have my aim.
+beat_recruit_wen,hero_wen,,Give me your pain. I have room. The Hollow left a lot of room.
+beat_recruit_corra,hero_corra,,My sister opened a door she could not close. I have come to close it.
+beat_recruit_nyx,hero_nyx,,I cut a hole in the Hollow once. It remembers me. Let it.
+beat_c39_b1,hero_wen,,"I can feel it inside me, where it left room. It is not evil. It is only empty. That is worse."
+beat_c39_b2,hero_nyx,,I cut a hole in this once. It is still bleeding. Good.
+beat_c39_boss,enemy_the_hunger,,(Nothing speaks. Everything listens.)
+beat_c39_outro,narrator,Narrator,"The Hunger collapses into itself. Beyond it, at the bottom of everything, a throne of absence, and a king who has been waiting a very long time."
+beat_side_39_1,hero_starcounter,,I can see the stars that went out. They are here. Floating. Let me count them.
+beat_side_39_1_lore,journal,Chronicle,"Pim counted every lost star. Two hundred and forty-one. He named them all, quietly, so that someone would remember."
+beat_side_39_2,hero_aerin,,"I crossed this bridge ten years ago, and I could not find my way back. Lyra, walk with me."
+beat_side_39_2_lore,journal,Chronicle,"Aerin and Lyra crossed the bridge together. Halfway over, Aerin stopped and told her daughter everything. It took the rest of the bridge."
+beat_side_39_3,hero_corra,,My sister passed through here. I can feel her. Let me look.
+beat_side_39_3_lore,journal,Chronicle,"Corra found Ilvane at the back of the hall, alive, hollow, very small. Corra took her sister's hand and led her out. Ilvane has not spoken since."
+beat_c40_intro_1,narrator,Narrator,"Three hundred years ago Aurem, the first Warden, sat down on this throne so that the Hollow would have something to hold instead of the world. It held him too tightly."
+beat_c40_intro_2,corvin,Corvin,"The Hundred. Every oath you gathered, every hero who swore. It is enough to bind him. It is enough to bind anything, if someone holds the ends."
+beat_recruit_ostra,hero_ostra,,Time is the only thing the Hollow cannot eat. I keep a little extra.
+beat_recruit_sentinel,hero_sentinel,,"(The empty helm turns towards you. Somewhere inside, an oath is spoken.)"
+beat_c40_b1,hero_lisbet,,"The ledger is full. One hundred oaths. Corvin, it needs a keeper. A lock."
+beat_c40_b2,hero_knight,,"We started on a forest road, chasing goblins. Whatever happens on that throne, we face it together."
+beat_c40_boss,enemy_hollow_king,,Corvin. Little scribe. Have you come to take my place? It is very cold here. It is very lonely. Sit with me.
+beat_c40_outro,narrator,Narrator,"Aurem falls, and for a moment the first Warden smiles and is himself again, and then he is gone. The throne is empty, and the Hollow begins to stir. Corvin closes the ledger of the Hundred, steps past you, and sits down. ""Go home,"" he says. ""Tell them the road is safe."" The Hollow closes like a hand around him, gently. The Hundred walk out of the dark into a grey morning, and then a gold one."
+beat_side_40_1,corvin,Corvin,"Before the end, I want to see them. All of them. Every one of the Hundred."
+beat_side_40_1_lore,journal,Chronicle,"One hundred heroes stood in the Hall of Seven Hearts, and Corvin walked down the line and thanked each of them by name. He did not miss one."
+beat_side_40_2,hero_aurelian,,The court where the Wardens swore their oaths. Grandfather swore here.
+beat_side_40_2_lore,journal,Chronicle,"Aurelian swore his grandfather's oath where it was first sworn. The stone remembered both voices, and for a moment you could hear them speak together."

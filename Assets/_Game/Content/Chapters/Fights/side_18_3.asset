@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02aa3e90e5af64cdf813126e58aed690, type: 3}
+  m_Name: side_18_3
+  m_EditorClassIdentifier: Game.Data::Game.Data.FightDefinition
+  id: side_18_3
+  nameKey: side_18_3_name
+  waves:
+  - spawns:
+    - enemy: {fileID: 11400000, guid: aff27e8e7b636487e95faf6217f2e472, type: 2}
+      statMultiplier: 2.26
+    - enemy: {fileID: 11400000, guid: aff27e8e7b636487e95faf6217f2e472, type: 2}
+      statMultiplier: 2.26
+    - enemy: {fileID: 11400000, guid: 64ad455beb6d14de59d0fafbe32bf530, type: 2}
+      statMultiplier: 2.26
+    - enemy: {fileID: 11400000, guid: abaf9eef8eb0545729376c8530e2e290, type: 2}
+      statMultiplier: 2.26
+  - spawns:
+    - enemy: {fileID: 11400000, guid: abaf9eef8eb0545729376c8530e2e290, type: 2}
+      statMultiplier: 2.26
+    - enemy: {fileID: 11400000, guid: a3ba257a7e24d4be598eb4b042e863f6, type: 2}
+      statMultiplier: 2.26
+    - enemy: {fileID: 11400000, guid: abaf9eef8eb0545729376c8530e2e290, type: 2}
+      statMultiplier: 2.26
+  recommendedPower: 5340
+  dropTable: {fileID: 11400000, guid: e3d190b30bba64acfb758aa53658f6e2, type: 2}
+  firstClearTable: {fileID: 11400000, guid: 78459ff33f84a4042926fb0ee9e2ae2d, type: 2}
+  starTurnLimit: 0
+  background: {fileID: 21300000, guid: 2cec9873de8db4db2a46de370e9b18ea, type: 3}
+  preBeats:
+  - {fileID: 11400000, guid: f51451580bd12448a95771edb437ba70, type: 2}
+  postBeats:
+  - {fileID: 11400000, guid: 279c13aeae962492b8cabfa4a558fba1, type: 2}
+  unlockConditions:
+  - type: 0
+    refId: fight_18_9
+    value: 0
+  isSideQuest: 1

@@ -123,6 +123,7 @@ stat_breakdown,"Base × {0} (stars) + equipment","Bază × {0} (stele) + echipam
 skills,Skills,Abilități
 skill_basic,basic,de bază
 skill_active,active,activă
+skill_passive,passive,pasivă
 cooldown_turns,{0}-turn cooldown,reîncărcare {0} ture
 equipment,Equipment,Echipament
 auto_equip,Equip best items,Echipează cele mai bune
@@ -226,3 +227,18 @@ daily_title,Daily reward,Recompensa zilnică
 daily_body,Day {0} in a row!,Ziua {0} la rând!
 claim,Claim,Revendică
 daily_claimed,Received: {0},Ai primit: {0}
+status_burn,Burn,Arsură
+status_poison,Poison,Otravă
+status_bleed,Bleed,Sângerare
+status_regen,Regen,Regenerare
+status_taunt,Taunt,Provocare
+status_silence,Silence,Tăcere
+status_thorns,Thorns,Spini
+status_dodge,Dodge,Eschivă
+status_mark,Marked,Marcat
+dodged,Dodged!,Eschivat!
+revived,Revived!,Readus la viață!
+cleansed,Cleansed,Purificat
+dispelled,Dispelled,Risipit
+silenced,Silenced,Redus la tăcere
+passive,Passive,Pasivă

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_spore_crawler
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_spore_crawler
+  nameKey: enemy_spore_crawler_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 1000
+    - 145
+    - 26
+    - 100
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 1002a7eaa7b9f49fbae8c97bbec92f7b, type: 2}
+  passiveSkill: {fileID: 0}
+  sprite: {fileID: 21300000, guid: ef1e915b68d00494da012e031fe5ef92, type: 3}
+  tint: {r: 0.70980394, g: 0.6509804, b: 0.25882354, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: ef1e915b68d00494da012e031fe5ef92, type: 3}
+  icon: {fileID: 21300000, guid: c59fa13151987481c82f9465e2e5cc3a, type: 3}
+  animations: {fileID: 11400000, guid: cd684594e584d4d3991527ee7891f4c0, type: 2}

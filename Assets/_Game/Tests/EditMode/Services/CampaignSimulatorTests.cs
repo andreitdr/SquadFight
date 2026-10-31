@@ -1,3 +1,4 @@
+using System.Linq;
 using Game.Services;
 using NUnit.Framework;
 
@@ -28,7 +29,8 @@ namespace Game.Tests.EditMode
         {
             var casual = CampaignSimulator.Run(TestContent.Create(), new CasualPolicy(), 3);
             var hardcore = CampaignSimulator.Run(TestContent.Create(), new HardcorePolicy(), 3);
-            Assert.Greater(hardcore.TotalFights, casual.TotalFights);
+            // Hardcore replays every new fight more often (casual may play more in total by losing more).
+            Assert.Greater(hardcore.Fights.Sum(f => f.Wins), casual.Fights.Sum(f => f.Wins));
         }
     }
 }

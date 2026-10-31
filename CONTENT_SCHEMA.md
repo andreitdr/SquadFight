@@ -11,26 +11,33 @@ Numbers use `.` as decimal separator. Enums are case-insensitive.
 
 | File | Columns |
 |------|---------|
-| `config.csv` | `key,value` — `partySize`, `currencies` (`id:Name;…`), `primaryCurrency`, `startingHeroes`, `startingCurrencies` (`id:amount;…`), `consumeShardsOnUnlock`, `shardOverflowCurrency`, `slotLayout` (`Weapon;…;Ring;Ring`), `inventoryLimit` (0 = unlimited), `equipmentRollVariation`, `rollVariationPercent`, `sellEnabled`, `starsEnabled`, `defaultStarTurnLimit`, `defeatConsolation` (table id), `currencyDropMultiplier`, `shardDropMultiplier`, `pityEnabled`, `pityFightsWithoutShard`, `showDropOdds`, `combat.minDamage`, `combat.defenseK`, `combat.maxRounds`, `combat.critChanceCap`, `combat.aiTargeting` (LowestHp/Random/First), `combat.powerWeights` (`Stat=w;…`) |
+| `config.csv` | `key,value` — `uniqueHeroAbilities` (validator: every hero has a passive, no two heroes share an active or passive behaviour), `partySize`, `currencies` (`id:Name;…`), `primaryCurrency`, `startingHeroes`, `startingCurrencies` (`id:amount;…`), `consumeShardsOnUnlock`, `shardOverflowCurrency`, `slotLayout` (`Weapon;…;Ring;Ring`), `inventoryLimit` (0 = unlimited), `equipmentRollVariation`, `rollVariationPercent`, `sellEnabled`, `starsEnabled`, `defaultStarTurnLimit`, `defeatConsolation` (table id), `currencyDropMultiplier`, `shardDropMultiplier`, `pityEnabled`, `pityFightsWithoutShard`, `showDropOdds`, `combat.minDamage`, `combat.defenseK`, `combat.maxRounds`, `combat.critChanceCap`, `combat.aiTargeting` (LowestHp/Random/First), `combat.powerWeights` (`Stat=w;…`) |
 | `rarities.csv` | `rarity,color,equipmentStatMultiplier,shardsToUnlock,starCostMultiplier,dropWeightModifier,itemSellValue,overflowCurrencyPerShard` (one row per rarity) |
 | `stars.csv` | `star,shardsRequired,currencyCost,statMultiplier` — star 1 is the unlocked state (costs ignored); costs are to reach that star from the previous one; shard cost × rarity `starCostMultiplier` |
 | `skills.csv` | `id,name,description,targeting,targetCount,cooldown,initialCooldown,effects` |
-| `heroes.csv` | `id,name,rarity,class,maxHp,attack,defense,speed,critChance,critDamage,basicSkill,activeSkill,tint,lore` |
-| `enemies.csv` | `id,name,isBoss,maxHp,attack,defense,speed,critChance,critDamage,basicSkill,activeSkill,tint` |
-| `equipment.csv` | `id,name,slot,rarity,stats,setId` — `stats` = `Attack=12;MaxHp=5%` (`%` = percent modifier) |
+| `passives.csv` | `id,name,description,trigger,threshold,chance,cooldown,oncePerBattle,targeting,targetCount,effects` — passive skills (see below) |
+| `heroes.csv` | `id,name,rarity,class,origin,maxHp,attack,defense,speed,critChance,critDamage,basicSkill,activeSkill,passive,tint,lore` — `origin` = story act (`act_1`..`act_8`), used by shard pools |
+| `enemies.csv` | `id,name,isBoss,maxHp,attack,defense,speed,critChance,critDamage,basicSkill,activeSkill,passive,tint,art` — `art` = another enemy id whose generated art this one reuses, tinted |
+| `equipment.csv` | `id,name,slot,rarity,tier,stats,setId` — `stats` = `Attack=12;MaxHp=5%` (`%` = percent modifier); `tier` = gear tier (one per act; `0` = unique item, only dropped by name) |
 | `story.csv` | `id,speaker,speakerName,text` — `speaker` = hero/enemy id (uses its name) or any id + `speakerName` |
 | `droptables.csv` | `table,group,minRolls,maxRolls,withoutReplacement,type,refId,rarity,slot,rarityWeights,weight,amountMin,amountMax` |
 | `chapters.csv` | `id,order,name,clearReward,unlockConditions` |
-| `fights.csv` | `id,chapter,order,name,waves,recommendedPower,dropTable,firstClearTable,starTurnLimit,preBeats,postBeats,unlockConditions` |
+| `fights.csv` | `id,chapter,order,name,waves,recommendedPower,dropTable,firstClearTable,starTurnLimit,preBeats,postBeats,unlockConditions,kind` — `kind` = `Main` (default) or `Side` (side quest: optional, opens only through `unlockConditions`, never counts toward chapter completion, stars or the unlock chain) |
 
 ## Mini-syntaxes
-- **targeting**: `SingleEnemy, AllEnemies, SingleAlly, AllAllies, Self, LowestHpAlly, RandomEnemies` (relative to the caster's team; `targetCount` for RandomEnemies).
+- **targeting**: `SingleEnemy, AllEnemies, SingleAlly, AllAllies, Self, LowestHpAlly, RandomEnemies, LowestHpEnemy` (lowest HP ratio), `HighestAttackEnemy, RandomAllies` (distinct), `AllOtherAllies` (relative to the caster's team; `targetCount` for RandomEnemies/RandomAllies). A taunting enemy overrides single-enemy picks.
 - **effects** (joined by `|`, prefix `self>` to apply to the caster):
   `Damage:power` · `Heal:power` · `Shield:power:turns` · `Stun:turns[:chance]` · `Status:Stat:value:turns[:Refresh|Stack|Ignore[:maxStacks[:chance]]]`
   (power multiplies caster attack; status value is a percent: `0.25` = +25%, `-0.3` = −30%).
+  Also: `Dot:burn|poison|bleed:power:turns[:stacking[:maxStacks[:chance]]]` (default Stack ×3; ticks at the start of the holder's turn, ignores shields) ·
+  `Hot:power:turns` · `Drain:power:ratio` (heals the caster ratio × damage) · `Execute:power:threshold:multiplier` · `PctHp:ratio[:cap]` (ratio × target max HP, at most cap × attack, default 4) ·
+  `Taunt:turns` · `Silence:turns[:chance]` (no active skill) · `Cleanse[:count]` (harmful effects + stun) · `Dispel[:count]` (buffs + shield; 0/none = all) ·
+  `Revive:hpRatio` (one fallen ally of the caster's side, once per unit) · `Thorns:ratio:turns` · `Dodge:chance:turns` · `Cooldown:delta` (active cooldown) · `Mark:value:turns` (+damage taken).
+- **passives** (`passives.csv`): `trigger` = `BattleStart` (heroes on the first wave, enemies when their wave spawns) | `TurnStart` | `AfterBasic` | `AfterActive` | `OnHitTaken` | `OnCrit` | `OnKill` | `OnAllyDeath` | `OnLowHp` (once, at or below `threshold`);
+  `chance` (empty = always), `cooldown` (holder turns between triggers), `oncePerBattle`. Passives never trigger other passives.
 - **waves**: spawns joined by `+`, waves separated by `/`, optional stat multiplier `enemy_id@1.2` — e.g. `enemy_goblin+enemy_goblin / enemy_goblin_king@1.5`.
 - **drop groups**: `group` = `G` (guaranteed, always given) or any name; each named group rolls `minRolls..maxRolls` times and picks entries by `weight`; `withoutReplacement` prevents the same entry twice per clear. Group settings are read from the group's first row.
-- **drop types**: `Currency` (refId = currency), `HeroShard` (refId = hero), `RandomHeroShardByRarity` (rarity), `Equipment` (refId = template, rarity = item rarity), `RandomEquipment` (optional `slot`, `rarityWeights` = `Common=70;Uncommon=30`).
+- **drop types**: `Currency` (refId = currency), `HeroShard` (refId = hero), `RandomHeroShardByRarity` (rarity; optional refId = origin pool `act_1+act_2`), `Equipment` (refId = template, rarity = item rarity), `RandomEquipment` (optional `slot`, optional refId = tiers `3` or `2+3`, `rarityWeights` = `Common=70;Uncommon=30`; tier-0 items are never random).
 - **unlockConditions** (`;`-joined): `ClearFight:fight_id`, `MinPartyPower:500`, `HeroOwned:hero_id`. Empty = default (previous fight / chapter cleared).
 
 ## Adding content without the CSVs
@@ -46,3 +53,10 @@ Every type also has a `Create > Game > …` asset menu. A new hero = one `HeroDe
   - `recommend` — writes `recommendedPower` (median casual party power at first attempt)
   - `validate` — config validation on the CSVs
 - **In the Editor** (`Tools/Game/Balance/…`): Fight Balance Simulator, Run Progression Simulator, Drop Simulator, Economy Report, Star & Stat Curves, Save Config Snapshot / Diff Last Two Snapshots. Reports go to `BalanceReports/` (git-ignored).
+
+## Generated content ("The Hundred")
+Most rows are written by scripts; each owns one `# ---- GENERATED by … ----` section (rows above the sections are hand-written):
+- `python3 tools/content/gen_roster.py` — the 90 designed heroes in `tools/content/roster_design.py` (rarity rolled per hero, seed 100).
+- `python3 tools/content/gen_campaign.py` — chapters 4–40, the extra fights of chapters 1–3, side quests, enemies, gear tiers, relics, drop tables and story beats from `tools/content/campaign_design*.py`. Re-running keeps tuned multipliers and recommended power for unchanged fights.
+- Then `dotnet run -c Release --project DotnetTests/BalanceCli -- tune` (chapter by chapter; `tune from <n>` resumes) and `-- recommend`, and import the CSVs in Unity.
+- Art: `tools/art/roster_generated.py` derives specs for new characters; `gen_characters.py`, `gen_items.py --generated`, `gen_ui.py`, `gen_backgrounds.py --chapters-only`.

@@ -29,7 +29,7 @@ MonoBehaviour:
     withoutReplacement: 0
     entries:
     - type: 2
-      refId: 
+      refId: act_1
       rarity: 1
       anySlot: 1
       slot: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
       amountMin: 2
       amountMax: 3
     - type: 2
-      refId: 
+      refId: act_1
       rarity: 2
       anySlot: 1
       slot: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
       amountMin: 1
       amountMax: 2
     - type: 2
-      refId: 
+      refId: act_1
       rarity: 3
       anySlot: 1
       slot: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     withoutReplacement: 0
     entries:
     - type: 4
-      refId: 
+      refId: 1
       rarity: 0
       anySlot: 1
       slot: 0

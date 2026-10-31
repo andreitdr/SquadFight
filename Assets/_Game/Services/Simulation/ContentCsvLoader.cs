@@ -94,7 +94,7 @@ namespace Game.Services
             }).ToList();
             db.Equipment = Read(folder, "equipment").Rows.Select(r => new EquipmentTemplateDef
             {
-                Id = S(r, "id"), NameKey = S(r, "id") + "_name", Slot = E<EquipmentSlot>(S(r, "slot")), Rarity = E<Rarity>(S(r, "rarity")), Stats = Modifiers(S(r, "stats")), SetId = S(r, "setId"),
+                Id = S(r, "id"), NameKey = S(r, "id") + "_name", Slot = E<EquipmentSlot>(S(r, "slot")), Rarity = E<Rarity>(S(r, "rarity")), Stats = Modifiers(S(r, "stats")), SetId = S(r, "setId"), Tier = I(r, "tier", 1),
             }).ToList();
             db.StoryBeats = Read(folder, "story").Rows.Select(r =>
             {
@@ -155,7 +155,8 @@ namespace Game.Services
                 FightIds = fights.Where(f => S(f, "chapter") == S(r, "id") && !IsSide(f)).OrderBy(f => I(f, "order")).Select(f => S(f, "id")).ToList(),
                 SideQuestIds = fights.Where(f => S(f, "chapter") == S(r, "id") && IsSide(f)).OrderBy(f => I(f, "order")).Select(f => S(f, "id")).ToList(),
             }).ToList();
-            var fightOrder = db.Chapters.SelectMany(c => c.FightIds).Concat(db.Chapters.SelectMany(c => c.SideQuestIds)).ToList();
+            // Same order as the asset pipeline (ConfigDatabase): per chapter, main fights then side quests.
+            var fightOrder = db.Chapters.SelectMany(c => c.FightIds.Concat(c.SideQuestIds)).ToList();
             db.Fights = db.Fights.OrderBy(f => fightOrder.IndexOf(f.Id)).ToList();
 
             db.Rules = new GameRules

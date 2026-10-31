@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_rot_dryad
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_rot_dryad
+  nameKey: enemy_rot_dryad_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 1080
+    - 112
+    - 33
+    - 98
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: fa8d09b68f18f4942b4edbf242a78450, type: 2}
+  passiveSkill: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 057143a5fd80749ab99192c2fb0f40ab, type: 3}
+  tint: {r: 0.5529412, g: 0.41568628, b: 0.62352943, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 057143a5fd80749ab99192c2fb0f40ab, type: 3}
+  icon: {fileID: 21300000, guid: 84bfa5f651cb049c797cc12e7a50d221, type: 3}
+  animations: {fileID: 11400000, guid: 300838341b57e49528687146243c5bf4, type: 2}

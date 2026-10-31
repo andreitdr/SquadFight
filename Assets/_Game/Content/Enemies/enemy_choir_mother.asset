@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_choir_mother
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_choir_mother
+  nameKey: enemy_choir_mother_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 10200
+    - 255
+    - 82
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: d2e2b2241d9874c098f9d33de47a9313, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 8a4da3c9e139d4cc2bd9c8192a80df63, type: 2}
+  sprite: {fileID: 21300000, guid: d455d9646717549b9b1565bfc20e05a8, type: 3}
+  tint: {r: 0.5568628, g: 0.7921569, b: 0.9019608, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: d455d9646717549b9b1565bfc20e05a8, type: 3}
+  icon: {fileID: 21300000, guid: f666f0f91ace64eb49b36e57677e7148, type: 3}
+  animations: {fileID: 11400000, guid: b67c97ab0d3704475b3fa255b3bbd410, type: 2}

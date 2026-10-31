@@ -99,10 +99,10 @@ namespace Game.Services
         }
 
         /// <summary>The party of a simulated player right before attempting each fight for the first time (from the progression simulator).</summary>
-        public static Dictionary<string, SaveData> SnapshotsAtFirstAttempt(GameDatabase db, IPlayerPolicy policy, ulong seed)
+        public static Dictionary<string, SaveData> SnapshotsAtFirstAttempt(GameDatabase db, IPlayerPolicy policy, ulong seed, Func<string, bool> stopBefore = null)
         {
             var map = new Dictionary<string, SaveData>();
-            CampaignSimulator.Run(db, policy, seed, onBeforeFirstAttempt: (fightId, session) => map[fightId] = SaveSerializer.Clone(session.State.Data));
+            CampaignSimulator.Run(db, policy, seed, onBeforeFirstAttempt: (fightId, session) => map[fightId] = SaveSerializer.Clone(session.State.Data), stopBefore: stopBefore);
             return map;
         }
 

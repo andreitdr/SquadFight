@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_mire_hag
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_mire_hag
+  nameKey: enemy_mire_hag_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 13460
+    - 337
+    - 97
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 35fe233e721b74542828657f1f03a288, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 60567198080b24a4481a6f8c092f3717, type: 2}
+  sprite: {fileID: 21300000, guid: 25f1e331d2bdc4e66afff6380d1d1b9f, type: 3}
+  tint: {r: 0.3764706, g: 0.42352942, b: 0.21960784, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 25f1e331d2bdc4e66afff6380d1d1b9f, type: 3}
+  icon: {fileID: 21300000, guid: 0c0e08b243df5439ea1966ce3d15b28f, type: 3}
+  animations: {fileID: 11400000, guid: 7c4699220a4a44e34b6675511cb48668, type: 2}
