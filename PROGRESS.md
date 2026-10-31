@@ -160,9 +160,17 @@ Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31
 - [x] Release APK 101 MB (was 185 MB before ASTC + lighter frames for the new characters; 57 MB before "The Hundred"). Art is generated placeholder art.
 - Known gap: gold piles up (≈540k earned vs ≈9k spent per casual run) — nothing new to spend it on; same issue noted at step 15, now larger.
 
+### Enemy ranks, boss specials, player level (owner request, 2026-10-31; steps 02/08/09/10/12/13/15 reworked)
+- [x] Ranks Minion < Soldier < Elite < Champion < Boss (`ranks.csv`): rank HP multiplier in battle, skill count per rank, XP per rank; validator checks climbing ranks, skill counts, specials only on bosses, and higher rank = more HP in every wave (`EnemyRankTests`).
+- [x] Extra active skills (own cooldowns) and boss special attacks charged at 60%/30% HP (ignore silence, delayed by stun); battle shows rank tags, "Charging …!" and a special banner.
+- [x] 64 new enemies with new generated art (8 per act); every boss has an extra skill + 2 specials; all 185 enemies appear in fights (`RealContent_EnemyRanks`).
+- [x] Player level: XP from defeated enemies, 60 levels with rewards, save v7, Home/result/preview UI (`PlayerLevelTests`).
+- [x] Balance: tune + ease 10 + recommend; casual 3/3 done (1,440 fights, 0 losses, level 51), hardcore 3/3 (level 60), greedy stalls at chapters 6–13; config validator 0/0.
+- [ ] Look at the new enemies, rank tags and special banners on a device.
+
 ### Android release pipeline (owner request, 2026-10-31)
 - [x] `BuildAndroidReleaseApk` / `BuildAndroidReleaseAll` (`./build.sh android-apk|android-release-all`): signed APK + AAB with one versionCode. Verified locally with a throwaway keystore passed as base64 (CI path): apksigner verifies, no network permissions, arm64-v8a.
-- [x] Releases: signed APK built locally (`tools/build-apk.sh`) after each push to main; the owner uploads it to GitHub Releases. No CI.
+- [x] Releases: signed APK built locally (`tools/build-apk.sh`) when the owner asks for one; the owner uploads it to GitHub Releases. No CI.
 - [x] Project-local emulator (`tools/android-emulator.sh`, `AndroidEmulator/` gitignored): release APK installs, boots to Home, tutorial + touch input reach the Fight Preview.
 
 ### iPad / tablet layout (owner request, 2026-10-31)

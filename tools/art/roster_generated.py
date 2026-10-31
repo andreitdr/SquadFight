@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'content'))
 from roster_design import HEROES as HERO_DESIGN  # noqa: E402
 from campaign_design import ACTS  # noqa: E402
 from campaign_design_late import ACTS_LATE  # noqa: E402
+from bestiary_design import NEW_ENEMIES  # noqa: E402
 
 HEX = re.compile(r'^#[0-9a-fA-F]{6}$')
 KEEP = {'skin', 'eye', 'bone', 'gem'}
@@ -56,6 +57,20 @@ ENEMY_KEYWORDS = [
     (('cultist', 'zealot', 'assassin', 'wraith', 'siren', 'echo', 'stalker', 'reaver', 'null'), 'enemy_cultist'),
     (('goblin', 'imp', 'thornling', 'spawn', 'hollowling'), 'enemy_goblin'),
     (('archer', 'gunner'), 'enemy_bone_archer'),
+]
+# The 64 ranked enemies of bestiary_design.py: their own keyword list (so the older enemies keep their looks), and several
+# candidate templates per keyword (hero bodies included) picked per id for more variety.
+NEW_ENEMY_KEYWORDS = [
+    (('rat', 'lurker', 'kraken', 'leech', 'hound'), ['enemy_wolf']),
+    (('wyrm',), ['enemy_wyvern']),
+    (('beetle', 'scarab', 'mite', 'sprite', 'imp', 'drone', 'crab'), ['enemy_goblin']),
+    (('troll', 'treant', 'mossback', 'golem', 'gargoyle', 'colossus', 'titan', 'brute', 'sentinel'), ['enemy_orc_brute', 'enemy_skeleton']),
+    (('witch', 'seer', 'caller', 'herald', 'priest', 'acolyte', 'vizier', 'mother', 'inquisitor'), ['enemy_lich', 'enemy_cultist', 'hero_stormcaller']),
+    (('knight', 'warlord', 'duelist', 'revenant', 'warden', 'captain', 'breaker'), ['hero_knight', 'hero_dragonknight', 'hero_paladin']),
+    (('hunter', 'dancer', 'bandit', 'looter', 'penitent'), ['hero_rogue', 'hero_hunter', 'enemy_ghoul']),
+    (('harpooner', 'slinger', 'archer', 'gunner'), ['enemy_bone_archer', 'hero_archer']),
+    (('smith', 'skald'), ['enemy_orc_shaman', 'hero_bard']),
+    (('husk', 'shell', 'rotling', 'ghoul', 'thrall', 'deckhand'), ['enemy_ghoul', 'enemy_skeleton']),
 ]
 ROLE_TEMPLATE = {'grunt': 'enemy_ghoul', 'brute': 'enemy_orc_brute', 'striker': 'enemy_ghoul', 'archer': 'enemy_bone_archer',
                  'caster': 'enemy_cultist', 'healer': 'enemy_orc_shaman', 'swarm': 'enemy_goblin', 'boss': 'enemy_lich'}
@@ -143,12 +158,17 @@ def hero_specs(templates):
 def enemy_specs(templates):
     out, bosses = [], set()
     for act in ACTS + ACTS_LATE:
-        for e in act['enemies']:
+        ranked = [dict(e, ranked=True) for e in NEW_ENEMIES.get(act['num'], [])]
+        for e in act['enemies'] + ranked:
             if e['art']:
                 continue
             eid = 'enemy_' + e['key']
             rng = random.Random(eid)
-            base = next((t for words, t in ENEMY_KEYWORDS if any(w in e['key'] for w in words)), ROLE_TEMPLATE[e['role']])
+            if e.get('ranked'):
+                choices = next((t for words, t in NEW_ENEMY_KEYWORDS if any(w in e['key'] for w in words)), [ROLE_TEMPLATE[e['role']]])
+                base = choices[rng.randrange(len(choices))]
+            else:
+                base = next((t for words, t in ENEMY_KEYWORDS if any(w in e['key'] for w in words)), ROLE_TEMPLATE[e['role']])
             t = copy.deepcopy(templates[base])
             ref = t.get('skin') or (t.get('torso') or {}).get('color') or '#888888'
             S = recolor(t, toward(ref if HEX.match(ref) else '#888888', e['tint']), rng.uniform(0.8, 1.2))
@@ -157,11 +177,17 @@ def enemy_specs(templates):
                 S['skin'] = _hex(h, min(0.7, s), max(0.45, v))
             S['id'] = eid
             S['aura'] = e['tint']
+            if base.startswith('hero_'):
+                S.pop('wings', None)  # wings stay unique to Drakon
             if e['role'] == 'boss':
                 S['scale'] = S.get('scale', 1.0) * 1.15
                 bosses.add(eid)
             elif e['role'] == 'swarm':
                 S['scale'] = S.get('scale', 1.0) * 0.85
+            if e.get('rank') == 'Champion':
+                S['scale'] = S.get('scale', 1.0) * 1.08
+            elif e.get('rank') == 'Minion':
+                S['scale'] = S.get('scale', 1.0) * 0.92
             out.append(S)
     return out, bosses
 

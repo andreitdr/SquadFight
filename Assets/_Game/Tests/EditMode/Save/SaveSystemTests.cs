@@ -106,6 +106,7 @@ namespace Game.Tests.EditMode
             Assert.AreEqual(345, r.Data.Currencies["gold"]);
             Assert.AreEqual(7, r.Counter);
             Assert.AreEqual(0f, r.Data.Settings.MusicVolume, "v5 mutes audio");
+            Assert.AreEqual(1, r.Data.Player.Level, "v6 starts everyone at player level 1");
         }
 
         [Test]

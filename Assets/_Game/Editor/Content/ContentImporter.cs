@@ -39,7 +39,7 @@ namespace Game.EditorTools.Content
             }
         }
 
-        public static readonly string[] SourceFiles = { "config", "rarities", "stars", "skilllevels", "skills", "passives", "heroes", "enemies", "equipment", "story", "droptables", "chapters", "fights" };
+        public static readonly string[] SourceFiles = { "config", "rarities", "stars", "skilllevels", "ranks", "levels", "skills", "passives", "heroes", "enemies", "equipment", "story", "droptables", "chapters", "fights" };
 
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
@@ -149,6 +149,15 @@ namespace Game.EditorTools.Content
                     }).ToList();
                 });
 
+                var ranks = GetOrCreateSingleton<EnemyRankConfig>(ContentPaths.Config + "/EnemyRankConfig.asset");
+                Track(ranks, "EnemyRankConfig", () =>
+                {
+                    ranks.entries = src["ranks"].Rows.Select(r => new EnemyRankConfig.Entry
+                    {
+                        rank = r.Enum<EnemyRank>("rank"), hpMultiplier = r.Float("hpMultiplier", 1), xp = r.Int("xp"), minSkills = r.Int("minSkills"),
+                    }).ToList();
+                });
+
                 var combat = GetOrCreateSingleton<CombatConfig>(ContentPaths.Config + "/CombatConfig.asset");
                 Track(combat, "CombatConfig", () =>
                 {
@@ -178,7 +187,7 @@ namespace Game.EditorTools.Content
                         s.effects = ParseEffects(row.Req("effects"), row.Context);
                         s.icon = PlaceholderArt.Get("star");
                         s.trigger = PassiveTrigger.None;
-                        s.threshold = 0;
+                        s.threshold = row.Float("threshold"); // boss specials only
                         s.chance = 0;
                         s.oncePerBattle = false;
                     });
@@ -216,6 +225,9 @@ namespace Game.EditorTools.Content
                     return s;
                 }
 
+                List<SkillDefinition> SkillList(CsvRow row, string col) => ParseList(row.Str(col))
+                    .Select(v => skills.TryGetValue(v, out var s) ? s : throw new FormatException($"{row.Context}: unknown skill '{v}' in '{col}'")).ToList();
+
                 // Heroes
                 var heroes = new Dictionary<string, HeroDefinition>();
                 var heroOrder = new List<HeroDefinition>();
@@ -252,11 +264,13 @@ namespace Game.EditorTools.Content
                     Track(e, "enemy " + id, () =>
                     {
                         e.nameKey = Text(id + "_name", row.Req("name"));
-                        e.isBoss = row.Bool("isBoss");
+                        e.rank = row.Str("rank").Length > 0 ? row.Enum<EnemyRank>("rank") : row.Bool("isBoss") ? EnemyRank.Boss : EnemyRank.Soldier;
                         e.baseStats.Set(ReadStats(row));
                         e.basicSkill = SkillRef(row, "basicSkill", true);
                         e.activeSkill = SkillRef(row, "activeSkill", false);
                         e.passiveSkill = SkillRef(row, "passive", false);
+                        e.extraSkills = SkillList(row, "extraSkills");
+                        e.specials = SkillList(row, "specials");
                         e.artFrom = row.Str("art");
                         e.tint = ParseColor(row.Req("tint"), row.Context);
                         if (e.sprite == null) e.sprite = PlaceholderArt.Get(e.isBoss ? "star" : "diamond"); // keep real art
@@ -392,6 +406,20 @@ namespace Game.EditorTools.Content
                     if (chapters.All(c => c.chapter.id != ch)) throw new FormatException($"fights.csv references unknown chapter '{ch}'");
 
                 // Root config
+                var levels = GetOrCreateSingleton<PlayerLevelConfig>(ContentPaths.Config + "/PlayerLevelConfig.asset");
+                Track(levels, "PlayerLevelConfig", () =>
+                {
+                    levels.levels = src["levels"].Rows.Select(r =>
+                    {
+                        var reward = r.Str("reward");
+                        return new PlayerLevelConfig.Level
+                        {
+                            level = r.Int("level"), xpToNext = r.Int("xpToNext"),
+                            reward = string.IsNullOrEmpty(reward) ? null : tables.TryGetValue(reward, out var t) ? t : throw new FormatException($"{r.Context}: unknown reward table '{reward}'"),
+                        };
+                    }).ToList();
+                });
+
                 var gc = GetOrCreateSingleton<GameConfig>(ContentPaths.GameConfigAsset);
                 Track(gc, "GameConfig", () =>
                 {
@@ -401,6 +429,8 @@ namespace Game.EditorTools.Content
                     gc.rarityConfig = rarity;
                     gc.starConfig = stars;
                     gc.combatConfig = combat;
+                    gc.rankConfig = ranks;
+                    gc.levelConfig = levels;
                     gc.extraEnemies = enemies.Values.ToList();
                     gc.extraSkills = skills.Values.ToList();
                     gc.extraDropTables = tables.Values.ToList();

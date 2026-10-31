@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_thorn_knight
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_thorn_knight
+  nameKey: enemy_thorn_knight_name
+  rank: 3
+  baseStats:
+    values:
+    - 1120
+    - 165
+    - 30
+    - 122
+    - 0.12
+    - 1.6
+  basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
+  activeSkill: {fileID: 11400000, guid: 55527eb518e3840009f65fc64cc966f7, type: 2}
+  passiveSkill: {fileID: 11400000, guid: fe41bc25c12144a6e8b54b1f4f95f1eb, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: b984dbe8931554b6c856f8951af6286d, type: 2}
+  specials: []
+  sprite: {fileID: 21300000, guid: 33c3ed482747745e58d1edea7173fbc2, type: 3}
+  tint: {r: 0.24313726, g: 0.36862746, b: 0.16470589, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 33c3ed482747745e58d1edea7173fbc2, type: 3}
+  icon: {fileID: 21300000, guid: 3a46220dde88942bcbcf11b935e40aad, type: 3}
+  animations: {fileID: 11400000, guid: 78e1f6721b26146c288ac93c04f0dcc0, type: 2}

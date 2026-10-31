@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_mirage_dancer
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_mirage_dancer
+  nameKey: enemy_mirage_dancer_name
+  rank: 2
+  baseStats:
+    values:
+    - 1480
+    - 218
+    - 35
+    - 122
+    - 0.12
+    - 1.6
+  basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
+  activeSkill: {fileID: 11400000, guid: 8d5c622dd9bb54c6197b8f4e76a3c633, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 32ae0518bc0f84cae953d54e29a1feb5, type: 2}
+  extraSkills: []
+  specials: []
+  sprite: {fileID: 21300000, guid: 2819708b28f064112ac2371e8d343008, type: 3}
+  tint: {r: 0.8509804, g: 0.69803923, b: 0.43529412, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 2819708b28f064112ac2371e8d343008, type: 3}
+  icon: {fileID: 21300000, guid: 4e1f8f1b6891c4ccca0f366cbb952ab9, type: 3}
+  animations: {fileID: 11400000, guid: 90891d2b88da54db58f2f63177d97386, type: 2}

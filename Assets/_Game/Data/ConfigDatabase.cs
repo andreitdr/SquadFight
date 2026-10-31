@@ -83,8 +83,13 @@ namespace Game.Data
             foreach (var t in c.extraDropTables) AddUnique(DropTableAssets, t);
             AddUnique(DropTableAssets, c.defeatConsolation);
             AddUnique(DropTableAssets, c.dailyBonusTable);
+            if (c.levelConfig) foreach (var l in c.levelConfig.levels) if (l != null) AddUnique(DropTableAssets, l.reward);
             foreach (var h in HeroAssets) { AddUnique(SkillAssets, h.basicSkill); AddUnique(SkillAssets, h.activeSkill); AddUnique(SkillAssets, h.passiveSkill); }
-            foreach (var e in EnemyAssets) { AddUnique(SkillAssets, e.basicSkill); AddUnique(SkillAssets, e.activeSkill); AddUnique(SkillAssets, e.passiveSkill); }
+            foreach (var e in EnemyAssets)
+            {
+                AddUnique(SkillAssets, e.basicSkill); AddUnique(SkillAssets, e.activeSkill); AddUnique(SkillAssets, e.passiveSkill);
+                foreach (var s in e.extraSkills.Concat(e.specials)) AddUnique(SkillAssets, s);
+            }
             foreach (var s in c.extraSkills) AddUnique(SkillAssets, s);
         }
 
@@ -105,6 +110,8 @@ namespace Game.Data
                 Chapters = ChapterAssets.Select(ch => ch.ToCore()).ToList(),
                 Fights = FightAssets.Select(f => f.ToCore()).ToList(),
                 StoryBeats = StoryBeatAssets.Select(b => b.ToCore()).ToList(),
+                Ranks = Source.rankConfig ? Source.rankConfig.ToCore().ToList() : new List<RankDef>(),
+                PlayerLevels = Source.levelConfig ? Source.levelConfig.ToCore().ToList() : new List<PlayerLevelDef>(),
             };
             db.Index();
 

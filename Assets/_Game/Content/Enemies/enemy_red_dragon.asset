@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_red_dragon
   nameKey: enemy_red_dragon_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 6500
@@ -25,8 +25,15 @@ MonoBehaviour:
     - 1.6
   basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
   activeSkill: {fileID: 11400000, guid: 6ad52403855014c80ba12e654a92b006, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 67968ece922c24b079c86994a57173b4, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 2823173e5ea14458da1787198d9db9ac, type: 2}
+  specials:
+  - {fileID: 11400000, guid: a8b48c9ed5968499cadeb26c7b391bd0, type: 2}
+  - {fileID: 11400000, guid: c8a5d9706829c4139890299465105d4e, type: 2}
   sprite: {fileID: 21300000, guid: 60517bb3890d54c7fb2edd0d67af9f7c, type: 3}
   tint: {r: 0.8156863, g: 0, b: 0, a: 1}
+  artFrom: 
   portrait: {fileID: 21300000, guid: 60517bb3890d54c7fb2edd0d67af9f7c, type: 3}
   icon: {fileID: 21300000, guid: 5fa6e105732ac405097a142ff1cfae4e, type: 3}
   animations: {fileID: 11400000, guid: bdaad5ddbe4fc44879be75585ed23f98, type: 2}

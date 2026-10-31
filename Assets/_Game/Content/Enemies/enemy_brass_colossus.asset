@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_brass_colossus
   nameKey: enemy_brass_colossus_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 19840
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 80a49cf5fffde46ed9cdc35316c2a30f, type: 2}
   passiveSkill: {fileID: 11400000, guid: 9f192616ff3e14547b72c206b73b4ca7, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 1c6344d12f3e64811806c511c6ed38e0, type: 2}
+  specials:
+  - {fileID: 11400000, guid: d3bf28f01abc94d71830194d5b558546, type: 2}
+  - {fileID: 11400000, guid: e3127f5e75df44a7788ea3fd4d648505, type: 2}
   sprite: {fileID: 21300000, guid: 8ff5f77f6167e42b6b7d6c56321b5551, type: 3}
   tint: {r: 0.7372549, g: 0.42352942, b: 0.14509805, a: 1}
   artFrom: 

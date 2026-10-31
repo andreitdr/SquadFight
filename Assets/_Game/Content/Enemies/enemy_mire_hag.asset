@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_mire_hag
   nameKey: enemy_mire_hag_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 13460
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 35fe233e721b74542828657f1f03a288, type: 2}
   passiveSkill: {fileID: 11400000, guid: 60567198080b24a4481a6f8c092f3717, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: eca76c34368934097a7739a3914b0fb6, type: 2}
+  specials:
+  - {fileID: 11400000, guid: fa4b01cefece7466a91617b2a35207f3, type: 2}
+  - {fileID: 11400000, guid: 6743d186a61ad4d15ba16ef9a4919698, type: 2}
   sprite: {fileID: 21300000, guid: 25f1e331d2bdc4e66afff6380d1d1b9f, type: 3}
   tint: {r: 0.3764706, g: 0.42352942, b: 0.21960784, a: 1}
   artFrom: 

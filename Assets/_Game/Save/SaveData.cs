@@ -23,6 +23,7 @@ namespace Game.Save
         public PitySave Pity = new PitySave();
         public TutorialSave Tutorial = new TutorialSave();
         public DailyBonusSave Daily = new DailyBonusSave();
+        public PlayerLevelSave Player = new PlayerLevelSave();
         /// <summary>Optional RNG state for reproducible drop sequences.</summary>
         public ulong[] RngState;
     }
@@ -94,6 +95,16 @@ namespace Game.Save
         public int Streak;
     }
 
+    /// <summary>Player level (account XP from defeated enemies; bosses give the most).</summary>
+    public sealed class PlayerLevelSave
+    {
+        public int Level = 1;
+        /// <summary>XP into the current level.</summary>
+        public int Xp;
+        /// <summary>All XP ever earned (statistics; also kept past the level cap).</summary>
+        public long TotalXp;
+    }
+
     public sealed class SettingsSave
     {
         /// <summary>New games start muted; the player turns audio up in Settings.</summary>
@@ -110,7 +121,7 @@ namespace Game.Save
 
     public static class SaveVersions
     {
-        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily". v5: audio muted. v6: hero skill levels.</summary>
-        public const int Current = 6;
+        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily". v5: audio muted. v6: hero skill levels. v7: "player" level.</summary>
+        public const int Current = 7;
     }
 }

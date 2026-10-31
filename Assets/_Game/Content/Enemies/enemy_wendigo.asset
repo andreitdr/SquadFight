@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_wendigo
   nameKey: enemy_wendigo_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 22080
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: ebaa36aac284e4405badab06bd144c4c, type: 2}
   passiveSkill: {fileID: 11400000, guid: bcfe67ef006d7452ca582dfb24972e1b, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: cd213f419d81f46edb47d2dfb401bde7, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 3c24a30bc44314708a7141beaba6cf50, type: 2}
+  - {fileID: 11400000, guid: e47ac8888b08a4d43996291bd7910e82, type: 2}
   sprite: {fileID: 21300000, guid: 8bc5a02011d6a47d7a45c8456dc06125, type: 3}
   tint: {r: 0.8980392, g: 0.8980392, b: 0.8980392, a: 1}
   artFrom: 

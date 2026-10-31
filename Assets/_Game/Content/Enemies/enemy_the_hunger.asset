@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_the_hunger
   nameKey: enemy_the_hunger_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 74880
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 441325a8d2c724ed49e493506772aa14, type: 2}
   passiveSkill: {fileID: 11400000, guid: 594a933a9a2a144a98981ec83dc8ec5e, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 92434ad872c7a46a29138207b8bcd522, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 8fce9161ac96c48a4837577e7e1c3973, type: 2}
+  - {fileID: 11400000, guid: 020eb4a04b72f48489d808aa8b707270, type: 2}
   sprite: {fileID: 21300000, guid: 19615357c725e456bbe27a703d583e3b, type: 3}
   tint: {r: 0.011764706, g: 0.02745098, b: 0.11764706, a: 1}
   artFrom: 

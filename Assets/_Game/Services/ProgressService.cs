@@ -25,6 +25,8 @@ namespace Game.Services
         public string ChapterCompletedId;
         public readonly List<string> NewlyUnlockedFights = new List<string>();
         public RewardResult Rewards;
+        /// <summary>XP from the defeated enemies and any level-ups (with their rewards).</summary>
+        public PlayerLevelResult Level;
         public BattleResult Battle;
     }
 
@@ -42,6 +44,7 @@ namespace Game.Services
         private readonly PartyService _party;
 
         public IFightRewardGranter Rewards { get; set; }
+        public PlayerLevelService Levels { get; set; }
 
         public ProgressService(ServiceContext ctx, RosterService roster, PartyService party)
         {
@@ -127,6 +130,7 @@ namespace Game.Services
                     }
 
                     completion.Rewards = Rewards?.GrantFightRewards(fight, battle.Victory, completion.FirstClear, completion.ChapterCompletedId) ?? new RewardResult();
+                    completion.Level = Levels?.AddXp(PlayerLevelRules.XpForBattle(battle, _ctx.Db));
                     _ctx.Commit();
                     _ctx.Emit(new FightCompleted(fightId, battle.Victory, completion.Stars, completion.FirstClear));
                     if (completion.ChapterCompletedId != null) _ctx.Emit(new ChapterCompleted(completion.ChapterCompletedId));

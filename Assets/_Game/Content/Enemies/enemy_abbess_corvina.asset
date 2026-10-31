@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_abbess_corvina
   nameKey: enemy_abbess_corvina_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 40290
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 9de2e64c7e26b435c97f436581edafa9, type: 2}
   passiveSkill: {fileID: 11400000, guid: 793275009eaf44939ad29492790b4bc5, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 1781ae4f531c14625999bc151f476706, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 39ca2856760b7466e85af3f8f989c38b, type: 2}
+  - {fileID: 11400000, guid: f8fc274598e2e4a43b48a31935e02f76, type: 2}
   sprite: {fileID: 21300000, guid: 687c1c5ed6d8640b380fef5e364957e5, type: 3}
   tint: {r: 0.9137255, g: 0.84705883, b: 0.6509804, a: 1}
   artFrom: 

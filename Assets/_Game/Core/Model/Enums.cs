@@ -42,4 +42,10 @@ namespace Game.Core
 
     /// <summary>Hero skills that can be levelled up with gold (the basic attack cannot).</summary>
     public enum HeroSkillSlot { Active, Passive }
+
+    /// <summary>
+    /// Enemy rank, weakest first. A higher rank has more HP (rank multiplier) and more skills, and gives more player XP.
+    /// <see cref="Boss"/> is the top rank: it also has special attacks. Append only: assets store the numeric value.
+    /// </summary>
+    public enum EnemyRank { Minion, Soldier, Elite, Champion, Boss }
 }

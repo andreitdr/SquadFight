@@ -26,6 +26,7 @@ namespace Game.Core
         public Team Team;
         public int Slot;
         public bool IsBoss;
+        public EnemyRank Rank;
         /// <summary>base × star + flat (before percent bonuses).</summary>
         public StatBlock PreStats = new StatBlock();
         /// <summary>Percent bonuses from equipment.</summary>
@@ -33,6 +34,10 @@ namespace Game.Core
         public SkillDef Basic;
         public SkillDef Active;
         public SkillDef Passive;
+        /// <summary>Enemies only: more active skills after <see cref="Active"/>, each with its own cooldown.</summary>
+        public List<SkillDef> Extras = new List<SkillDef>();
+        /// <summary>Bosses only: special attacks charged at HP thresholds (<see cref="SkillDef.Threshold"/>).</summary>
+        public List<SkillDef> Specials = new List<SkillDef>();
     }
 
     /// <summary>Live battle state of one unit.</summary>
@@ -44,6 +49,7 @@ namespace Game.Core
         public int Slot;
         public int Wave;
         public bool IsBoss;
+        public EnemyRank Rank;
         public int MaxHp;
         public int Hp;
         public int Shield;
@@ -54,6 +60,14 @@ namespace Game.Core
         public SkillDef Basic;
         public SkillDef Active;
         public SkillDef Passive;
+        public readonly List<SkillDef> Extras;
+        /// <summary>Cooldown of each <see cref="Extras"/> skill (same index).</summary>
+        public readonly int[] ExtraCooldowns;
+        public readonly List<SkillDef> Specials;
+        /// <summary>Specials whose HP threshold was crossed (each charges once per battle).</summary>
+        public readonly bool[] SpecialCharged;
+        /// <summary>Charged specials waiting for this unit's next turn, in charge order.</summary>
+        public readonly Queue<SkillDef> PendingSpecials = new Queue<SkillDef>();
         public int PassiveCooldown;
         public bool PassiveSpent;
         public bool LowHpTriggered;
@@ -72,9 +86,15 @@ namespace Game.Core
             Slot = s.Slot;
             Wave = wave;
             IsBoss = s.IsBoss;
+            Rank = s.Rank;
             Basic = s.Basic;
             Active = s.Active;
             Passive = s.Passive;
+            Extras = new List<SkillDef>(s.Extras ?? new List<SkillDef>());
+            ExtraCooldowns = new int[Extras.Count];
+            for (var i = 0; i < Extras.Count; i++) ExtraCooldowns[i] = Extras[i].InitialCooldown;
+            Specials = new List<SkillDef>(s.Specials ?? new List<SkillDef>());
+            SpecialCharged = new bool[Specials.Count];
             PreStats = s.PreStats.Clone();
             PercentStats = s.PercentStats.Clone();
             _rules = rules;
@@ -87,6 +107,14 @@ namespace Game.Core
         public bool Alive => Hp > 0;
         public float HpRatio => MaxHp <= 0 ? 0 : (float)Hp / MaxHp;
         public bool ActiveReady => Active != null && ActiveCooldown <= 0;
+        public bool HasActives => Active != null || Extras.Count > 0;
+
+        /// <summary>Index of the first extra skill that is off cooldown, or -1.</summary>
+        public int ReadyExtra()
+        {
+            for (var i = 0; i < Extras.Count; i++) if (ExtraCooldowns[i] <= 0) return i;
+            return -1;
+        }
         public bool Has(StatusKind kind) => Statuses.Exists(s => s.Kind == kind);
 
         /// <summary>Sum of the values of every status of this kind (e.g. total Mark bonus).</summary>

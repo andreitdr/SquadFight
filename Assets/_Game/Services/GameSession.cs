@@ -19,6 +19,7 @@ namespace Game.Services
         public InventoryService Inventory { get; }
         public ProgressService Progress { get; }
         public RewardService Rewards { get; }
+        public PlayerLevelService Levels { get; }
         public ShopService Shop { get; }
         public SettingsService Settings { get; }
         public TutorialService Tutorial { get; }
@@ -43,6 +44,8 @@ namespace Game.Services
             Progress = new ProgressService(Context, Roster, Party);
             Rewards = new RewardService(Context, Currency, Roster, Inventory, Party);
             Progress.Rewards = Rewards;
+            Levels = new PlayerLevelService(Context, Rewards);
+            Progress.Levels = Levels;
             Shop = new ShopService(Context, Currency, Inventory, Progress);
             Battles = new BattleFlowController(this);
             Settings = new SettingsService(Context);

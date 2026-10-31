@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_rift_maw
   nameKey: enemy_rift_maw_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 53040
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 6f7ebfa1d89434ad58992df37dcac37c, type: 2}
   passiveSkill: {fileID: 11400000, guid: 385310cd752e141829dcea6b7271dae8, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 0d0247f099af94f19a08c1cfbfbe261b, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 62876b435697f42f7b39cc8a9f18b2a7, type: 2}
+  - {fileID: 11400000, guid: cbcc3f1badec44000a5fc43eaef49c4d, type: 2}
   sprite: {fileID: 21300000, guid: bf7db368b7fba4cf78f3dea894596a31, type: 3}
   tint: {r: 0.11372549, g: 0.20784314, b: 0.34117648, a: 1}
   artFrom: 

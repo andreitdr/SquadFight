@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_ashen_matron
   nameKey: enemy_ashen_matron_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 7680
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: af058e932957f4e1590d1cd492c097f2, type: 2}
   passiveSkill: {fileID: 11400000, guid: 6326dbf6bfe5d4a989d5bac388bf69ba, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 703427fc8071f4f5181e613929aa840a, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 259e28ee6c60f4eff8279e739085b7bc, type: 2}
+  - {fileID: 11400000, guid: 5ffc8616b063841a4861e98603bfd18a, type: 2}
   sprite: {fileID: 21300000, guid: 62d2632821d4f41c49d7a3bb2df70aa6, type: 3}
   tint: {r: 0.6117647, g: 0.56078434, b: 0.5176471, a: 1}
   artFrom: 

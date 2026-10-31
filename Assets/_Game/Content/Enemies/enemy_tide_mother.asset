@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_tide_mother
   nameKey: enemy_tide_mother_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 13800
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: ca287907fe2fa45248230c962a496bdc, type: 2}
   passiveSkill: {fileID: 11400000, guid: 882ecd2267f674231b2613bb58245256, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 90569a8ca4f11484baddce44b214ae6d, type: 2}
+  specials:
+  - {fileID: 11400000, guid: a87027447aacc44178e6b6a31ea1fb2a, type: 2}
+  - {fileID: 11400000, guid: 4af69ad3011a248e9bb8a3e97690b2a6, type: 2}
   sprite: {fileID: 21300000, guid: 8eab91dffec194778bc11c3b252b38ac, type: 3}
   tint: {r: 0.043137256, g: 0.22352941, b: 0.32941177, a: 1}
   artFrom: 

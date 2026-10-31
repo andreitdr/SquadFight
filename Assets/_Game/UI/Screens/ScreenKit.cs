@@ -91,6 +91,10 @@ namespace Game.UI
         public static string StatName(UIContext ctx, StatType s) => ctx.T("stat_" + s.ToString().ToLowerInvariant());
         public static string ClassName(UIContext ctx, HeroClass c) => ctx.T("class_" + c.ToString().ToLowerInvariant());
         public static Color RarityColor(UIContext ctx, Rarity r) => ctx.Config.GetRarityColor(r);
+        public static string RankName(UIContext ctx, EnemyRank r) => ctx.T("rank_" + r.ToString().ToLowerInvariant());
+        /// <summary>Rank colours climb from dim (Minion) to red (Boss).</summary>
+        public static Color RankColor(Theme th, EnemyRank r) =>
+            r == EnemyRank.Boss ? th.negative : r == EnemyRank.Champion ? th.primary : r == EnemyRank.Elite ? th.warning : r == EnemyRank.Soldier ? th.text : th.textDim;
 
         public static string ItemName(UIContext ctx, ItemInfo item) => ctx.T(item.Template.NameKey);
 

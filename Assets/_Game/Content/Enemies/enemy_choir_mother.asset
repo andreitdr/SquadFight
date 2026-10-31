@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_choir_mother
   nameKey: enemy_choir_mother_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 10200
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: d2e2b2241d9874c098f9d33de47a9313, type: 2}
   passiveSkill: {fileID: 11400000, guid: 8a4da3c9e139d4cc2bd9c8192a80df63, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 78cb863fbe2df4bb5849acbfc688ba41, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 43c8796dc3fe6424986e8408bf8fb612, type: 2}
+  - {fileID: 11400000, guid: 03d5a70768ee045a093ac08c1c799492, type: 2}
   sprite: {fileID: 21300000, guid: d455d9646717549b9b1565bfc20e05a8, type: 3}
   tint: {r: 0.5568628, g: 0.7921569, b: 0.9019608, a: 1}
   artFrom: 

@@ -1,0 +1,9 @@
+# Enemy ranks, weakest first. hpMultiplier scales an enemy's max HP in battle (after the fight's stat multiplier);
+# xp = player XP for each defeated enemy; minSkills = skills besides the basic attack (actives, passive, specials):
+# an enemy has at least its rank's minSkills and fewer than the next rank's. Only bosses have special attacks.
+rank,hpMultiplier,xp,minSkills
+Minion,0.6,2,0
+Soldier,1,3,1
+Elite,1.3,5,2
+Champion,1.6,9,3
+Boss,2,30,4

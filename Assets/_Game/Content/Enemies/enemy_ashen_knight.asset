@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_ashen_knight
   nameKey: enemy_ashen_knight_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 43200
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: a99ced10fe8b740bea85e982fc02ab77, type: 2}
   passiveSkill: {fileID: 11400000, guid: 1d936de6535aa4ea085aeb054b1dba47, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 57f65a4681e134af9ae7365b1c0669aa, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 733cfef39c57448f88dfa419280b29c3, type: 2}
+  - {fileID: 11400000, guid: 11cb31ec3c6e94789832863aad1543e9, type: 2}
   sprite: {fileID: 21300000, guid: a447662a6808049e782be635b8581600, type: 3}
   tint: {r: 0.36078432, g: 0.33333334, b: 0.32156864, a: 1}
   artFrom: 

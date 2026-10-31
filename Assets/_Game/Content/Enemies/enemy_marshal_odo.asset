@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_marshal_odo
   nameKey: enemy_marshal_odo_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 32400
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: e7f8aafa84add4d5ba9d67f81d558c6f, type: 2}
   passiveSkill: {fileID: 11400000, guid: 9b2c5d59dbf20475b979c9b4c74d82cc, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 66bd95c8d5dac430ebc1f5acab98055c, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 9a4a4625716264b759211bbf7b2efee1, type: 2}
+  - {fileID: 11400000, guid: 3abbc7371f03c48eb9f08b122465f8c8, type: 2}
   sprite: {fileID: 21300000, guid: 0310f14c0f3e6452d96d994248f7e528, type: 3}
   tint: {r: 0.105882354, g: 0.105882354, b: 0.11764706, a: 1}
   artFrom: 

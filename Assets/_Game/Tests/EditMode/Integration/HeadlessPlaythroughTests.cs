@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Game.Core;
 using Game.Save;
@@ -53,6 +54,22 @@ namespace Game.Tests.EditMode
             Assert.IsTrue(db.Chapters.All(c => db.GetFight(c.FightIds.Last()).Waves.Any(w => w.Spawns.Any(sp => db.GetEnemy(sp.EnemyId).IsBoss))), "every chapter ends with a boss");
             var itemOnly = db.Fights.Count(f => !f.IsSideQuest && db.GetDropTable(f.DropTableId).Groups.SelectMany(g => g.Entries).All(e => e.Type != DropType.RandomHeroShardByRarity && e.Type != DropType.HeroShard));
             Assert.Greater(itemOnly, 40, "some fights give items only");
+        }
+
+        [Test]
+        public void RealContent_EnemyRanks()
+        {
+            var db = Db();
+            var used = new HashSet<string>(db.Fights.SelectMany(f => f.Waves.SelectMany(w => w.Spawns.Select(s => s.EnemyId))));
+            Assert.GreaterOrEqual(db.Enemies.Count, 185, "121 enemies before the ranks + 64 new ones");
+            foreach (EnemyRank rank in System.Enum.GetValues(typeof(EnemyRank)))
+                Assert.GreaterOrEqual(db.Enemies.Count(e => e.Rank == rank && used.Contains(e.Id)), 16, $"{rank}s appear in fights");
+            Assert.IsTrue(db.Enemies.Where(e => e.IsBoss).All(e => e.SpecialSkillIds.Count >= 2 && e.ExtraSkillIds.Count >= 1), "every boss has an extra skill and special attacks");
+            Assert.IsTrue(db.Enemies.All(e => used.Contains(e.Id)), "every enemy is fought somewhere");
+            var hp = db.Ranks.Select(r => r.HpMultiplier).ToList();
+            var xp = db.Ranks.Select(r => r.Xp).ToList();
+            for (var i = 1; i < hp.Count; i++) { Assert.Greater(hp[i], hp[i - 1]); Assert.Greater(xp[i], xp[i - 1]); }
+            Assert.GreaterOrEqual(db.PlayerLevels.Count, 50);
         }
 
         [Test]

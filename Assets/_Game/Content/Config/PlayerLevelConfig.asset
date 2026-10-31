@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1631cbf0a6a14f8dbc24410c91c372d, type: 3}
+  m_Name: PlayerLevelConfig
+  m_EditorClassIdentifier: Game.Data::Game.Data.PlayerLevelConfig
+  levels:
+  - level: 1
+    xpToNext: 165
+    reward: {fileID: 0}
+  - level: 2
+    xpToNext: 240
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 3
+    xpToNext: 280
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 4
+    xpToNext: 310
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 5
+    xpToNext: 335
+    reward: {fileID: 11400000, guid: c17ec5da80f904e18b1a33e4f76f6666, type: 2}
+  - level: 6
+    xpToNext: 355
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 7
+    xpToNext: 375
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 8
+    xpToNext: 390
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 9
+    xpToNext: 405
+    reward: {fileID: 11400000, guid: d10dd07bbff774bfebec238884a57e45, type: 2}
+  - level: 10
+    xpToNext: 420
+    reward: {fileID: 11400000, guid: c17ec5da80f904e18b1a33e4f76f6666, type: 2}
+  - level: 11
+    xpToNext: 430
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 12
+    xpToNext: 445
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 13
+    xpToNext: 455
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 14
+    xpToNext: 465
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 15
+    xpToNext: 475
+    reward: {fileID: 11400000, guid: 25057f41d7dec44beb60da8fe7f62f41, type: 2}
+  - level: 16
+    xpToNext: 485
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 17
+    xpToNext: 495
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 18
+    xpToNext: 505
+    reward: {fileID: 11400000, guid: 272496aa5cc89442eb1e79faa08f68cc, type: 2}
+  - level: 19
+    xpToNext: 510
+    reward: {fileID: 11400000, guid: 80c551cb9406e440289772bb5f144e24, type: 2}
+  - level: 20
+    xpToNext: 520
+    reward: {fileID: 11400000, guid: 7833c42c6917f4aa88cb99ab57550cb0, type: 2}
+  - level: 21
+    xpToNext: 530
+    reward: {fileID: 11400000, guid: 80c551cb9406e440289772bb5f144e24, type: 2}
+  - level: 22
+    xpToNext: 535
+    reward: {fileID: 11400000, guid: 80c551cb9406e440289772bb5f144e24, type: 2}
+  - level: 23
+    xpToNext: 545
+    reward: {fileID: 11400000, guid: 80c551cb9406e440289772bb5f144e24, type: 2}
+  - level: 24
+    xpToNext: 550
+    reward: {fileID: 11400000, guid: 80c551cb9406e440289772bb5f144e24, type: 2}
+  - level: 25
+    xpToNext: 555
+    reward: {fileID: 11400000, guid: 093e0812ea67243979b3677c580f7824, type: 2}
+  - level: 26
+    xpToNext: 565
+    reward: {fileID: 11400000, guid: 2ad69e2ca5d50412d9f74e327fbc8801, type: 2}
+  - level: 27
+    xpToNext: 570
+    reward: {fileID: 11400000, guid: 2ad69e2ca5d50412d9f74e327fbc8801, type: 2}
+  - level: 28
+    xpToNext: 575
+    reward: {fileID: 11400000, guid: 2ad69e2ca5d50412d9f74e327fbc8801, type: 2}
+  - level: 29
+    xpToNext: 580
+    reward: {fileID: 11400000, guid: 2ad69e2ca5d50412d9f74e327fbc8801, type: 2}
+  - level: 30
+    xpToNext: 590
+    reward: {fileID: 11400000, guid: 093e0812ea67243979b3677c580f7824, type: 2}
+  - level: 31
+    xpToNext: 595
+    reward: {fileID: 11400000, guid: e43208b0a109c40c2bec5dab0563ec84, type: 2}
+  - level: 32
+    xpToNext: 600
+    reward: {fileID: 11400000, guid: e43208b0a109c40c2bec5dab0563ec84, type: 2}
+  - level: 33
+    xpToNext: 605
+    reward: {fileID: 11400000, guid: e43208b0a109c40c2bec5dab0563ec84, type: 2}
+  - level: 34
+    xpToNext: 610
+    reward: {fileID: 11400000, guid: e43208b0a109c40c2bec5dab0563ec84, type: 2}
+  - level: 35
+    xpToNext: 615
+    reward: {fileID: 11400000, guid: 96f9d02dd3a3b430c8325a2f848cba01, type: 2}
+  - level: 36
+    xpToNext: 620
+    reward: {fileID: 11400000, guid: e43208b0a109c40c2bec5dab0563ec84, type: 2}
+  - level: 37
+    xpToNext: 625
+    reward: {fileID: 11400000, guid: 4e8de517d4ff246ad9010d170d66d21b, type: 2}
+  - level: 38
+    xpToNext: 630
+    reward: {fileID: 11400000, guid: 4e8de517d4ff246ad9010d170d66d21b, type: 2}
+  - level: 39
+    xpToNext: 635
+    reward: {fileID: 11400000, guid: 4e8de517d4ff246ad9010d170d66d21b, type: 2}
+  - level: 40
+    xpToNext: 640
+    reward: {fileID: 11400000, guid: 67f2f48feaa9e4b29a5107a7e2cb962d, type: 2}
+  - level: 41
+    xpToNext: 645
+    reward: {fileID: 11400000, guid: 4e8de517d4ff246ad9010d170d66d21b, type: 2}
+  - level: 42
+    xpToNext: 650
+    reward: {fileID: 11400000, guid: 5df9179c3473e490f88dc6f36188c87d, type: 2}
+  - level: 43
+    xpToNext: 655
+    reward: {fileID: 11400000, guid: 5df9179c3473e490f88dc6f36188c87d, type: 2}
+  - level: 44
+    xpToNext: 660
+    reward: {fileID: 11400000, guid: 5df9179c3473e490f88dc6f36188c87d, type: 2}
+  - level: 45
+    xpToNext: 665
+    reward: {fileID: 11400000, guid: 29de12f1661684fae8a5ef120efccd71, type: 2}
+  - level: 46
+    xpToNext: 670
+    reward: {fileID: 11400000, guid: 5df9179c3473e490f88dc6f36188c87d, type: 2}
+  - level: 47
+    xpToNext: 675
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 48
+    xpToNext: 680
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 49
+    xpToNext: 685
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 50
+    xpToNext: 685
+    reward: {fileID: 11400000, guid: 1be52ee8536164c68990b5263ea0d176, type: 2}
+  - level: 51
+    xpToNext: 690
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 52
+    xpToNext: 695
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 53
+    xpToNext: 700
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 54
+    xpToNext: 705
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 55
+    xpToNext: 705
+    reward: {fileID: 11400000, guid: 1be52ee8536164c68990b5263ea0d176, type: 2}
+  - level: 56
+    xpToNext: 710
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 57
+    xpToNext: 715
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 58
+    xpToNext: 720
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 59
+    xpToNext: 725
+    reward: {fileID: 11400000, guid: 20ae47b6a3b994fac9b6b228218810b4, type: 2}
+  - level: 60
+    xpToNext: 0
+    reward: {fileID: 11400000, guid: 1be52ee8536164c68990b5263ea0d176, type: 2}

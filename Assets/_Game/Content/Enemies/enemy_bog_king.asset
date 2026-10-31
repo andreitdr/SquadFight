@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_bog_king
   nameKey: enemy_bog_king_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 9000
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 325cbea5907504a63be333d5734e08dd, type: 2}
   passiveSkill: {fileID: 11400000, guid: c36e864ffba024cfb80fd6c80190bb47, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: e9813399aeed247c29995bcf89ab2aee, type: 2}
+  specials:
+  - {fileID: 11400000, guid: a16548044f1a5443bbb5bc7f407777db, type: 2}
+  - {fileID: 11400000, guid: d2569c6dceac34801a267d9a55b9bc80, type: 2}
   sprite: {fileID: 21300000, guid: 5a8740441d0304fa4a122629b53b5221, type: 3}
   tint: {r: 0.30980393, g: 0.42745098, b: 0.26666668, a: 1}
   artFrom: 

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769c6f0149ed24c52944413ee28ea587, type: 3}
+  m_Name: enemy_brass_scarab_anim
+  m_EditorClassIdentifier: Game.Data::Game.Data.SpriteAnimSet
+  displayScale: 2.4961598
+  feetY: 0.0708
+  clips:
+  - name: idle
+    fps: 4
+    loop: 1
+    frames:
+    - {fileID: 21300000, guid: 087e9e329fcfe4f188ccdf2ac459aec3, type: 3}
+    - {fileID: 21300000, guid: 04fc1d80ef3ec4f5db95796939d0d6cd, type: 3}
+    - {fileID: 21300000, guid: 4c263797e17f04f5e8b20d9215abe050, type: 3}
+    - {fileID: 21300000, guid: fc5dfb9d850ae4b0e89ebb98c270b50e, type: 3}
+  - name: attack
+    fps: 14
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: c0382ebb6f4da46e0a81b0ac8c2116e8, type: 3}
+    - {fileID: 21300000, guid: 47f3fc850797e48b7b7bbac714f2b057, type: 3}
+    - {fileID: 21300000, guid: d6e809d9eaf5b41f8a21f07aaab16e0e, type: 3}
+    - {fileID: 21300000, guid: fed14b48c7e4746c5976d4976e77fe7f, type: 3}
+    - {fileID: 21300000, guid: 08301b94eb0bd4982a585db3f93e0f9c, type: 3}
+    - {fileID: 21300000, guid: bf29d003352e14ccc89d3fca8631952f, type: 3}
+  - name: skill
+    fps: 12
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: 55cf50b947435456fa84a79d60b7ef0e, type: 3}
+    - {fileID: 21300000, guid: d6487e0d72cb3470198852b525d0b3e6, type: 3}
+    - {fileID: 21300000, guid: c27418083f4f7491299d993a487b92cf, type: 3}
+    - {fileID: 21300000, guid: 3f71da59c1c9d4436b47fda493e2da4f, type: 3}
+    - {fileID: 21300000, guid: 788a2ce8d4cd4442b98c13a8e061a84e, type: 3}
+    - {fileID: 21300000, guid: 0b0637cab6e2043228cb467265046c0b, type: 3}
+    - {fileID: 21300000, guid: c6d49068ceb794788a843471144821fc, type: 3}
+    - {fileID: 21300000, guid: a26fe35d8a56e4d36be1c44cdc9bef7f, type: 3}
+  - name: hit
+    fps: 12
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: bf238c9742b7940bbb6f3682141fc8b3, type: 3}
+    - {fileID: 21300000, guid: ef98dfab159d34385936f48eecbe491b, type: 3}
+    - {fileID: 21300000, guid: f9804e94ef53540f68538b21466c9074, type: 3}
+  - name: death
+    fps: 5
+    loop: 0
+    frames:
+    - {fileID: 21300000, guid: 83d87e48476be4cd7af85ed75b3b0519, type: 3}
+    - {fileID: 21300000, guid: a958a2a88ce6b45c8b2f1b0b676c05d5, type: 3}
+    - {fileID: 21300000, guid: f3be03ef73a0241bf9a2b8880d267d3c, type: 3}
+    - {fileID: 21300000, guid: 5b257558fb305402d96140b050b5b308, type: 3}
+  - name: victory
+    fps: 5
+    loop: 1
+    frames:
+    - {fileID: 21300000, guid: 3bb41960d9b3d479d9906e62a7a9f56f, type: 3}
+    - {fileID: 21300000, guid: ad64512cd17034733a99001498b8fb09, type: 3}
+    - {fileID: 21300000, guid: 6e7a03349727e4ffeb0d1c24b3a1692f, type: 3}

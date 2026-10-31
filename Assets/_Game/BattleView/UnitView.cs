@@ -32,7 +32,8 @@ namespace Game.BattleView
         public Vector2 Home => _home;
         public bool Dead { get; private set; }
 
-        public static UnitView Create(Transform parent, Combatant c, string displayName, Sprite sprite, Color tint, Vector2 anchor, float size, Theme th, SpriteAnimSet anim = null, Color? artColor = null)
+        public static UnitView Create(Transform parent, Combatant c, string displayName, Sprite sprite, Color tint, Vector2 anchor, float size, Theme th, SpriteAnimSet anim = null, Color? artColor = null,
+            string rankLabel = null, Color? rankColor = null)
         {
             var root = UIKit.Rect("Unit_" + c.Index, parent);
             root.anchorMin = root.anchorMax = anchor;
@@ -84,6 +85,16 @@ namespace Game.BattleView
             name.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(size + 60, 32), new Vector2(0, -size - 32), new Vector2(0.5f, 1));
             name.textWrappingMode = TextWrappingModes.NoWrap;
             name.enableAutoSizing = true; name.fontSizeMin = 14; name.fontSizeMax = 24;
+            if (!string.IsNullOrEmpty(rankLabel))
+            {
+                // Enemy rank tag above the head (Minion … Boss).
+                var rank = UIKit.Text(root, "Rank", rankLabel, 24, rankColor ?? th.text, TextAlignmentOptions.Center, bold: true);
+                rank.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(size + 60, 30), new Vector2(0, 26), new Vector2(0.5f, 1));
+                rank.textWrappingMode = TextWrappingModes.NoWrap;
+                rank.enableAutoSizing = true; rank.fontSizeMin = 14; rank.fontSizeMax = 24;
+                rank.outlineWidth = 0.2f;
+                rank.outlineColor = new Color32(0, 0, 0, 200);
+            }
             v._statusRow = UIKit.Rect("Status", root);
             v._statusRow.Anchor(new Vector2(0.5f, 1), new Vector2(size, 28), new Vector2(0, -size - 64), new Vector2(0.5f, 1));
             UIKit.HStack(v._statusRow.gameObject, 4, 0, TextAnchor.MiddleCenter, expandWidth: false);

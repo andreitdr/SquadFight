@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_rot_stag
   nameKey: enemy_rot_stag_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 15840
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 12f1ef32e302a4268b74a856395a666e, type: 2}
   passiveSkill: {fileID: 11400000, guid: 2cb7d250e98c34b62b5b80e3decfbebf, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 05df301b92e1147ad862d004ec4edc54, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 293e337f169b94b0999ca1d5f630283f, type: 2}
+  - {fileID: 11400000, guid: 8968d07c86cbe4b25bc5447c52e4f717, type: 2}
   sprite: {fileID: 21300000, guid: 6392a1e03716b4f52aecfb1209418515, type: 3}
   tint: {r: 0.49803922, g: 0.33333334, b: 0.22352941, a: 1}
   artFrom: 

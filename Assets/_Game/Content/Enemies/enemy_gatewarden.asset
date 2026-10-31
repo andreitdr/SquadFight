@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_gatewarden
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_gatewarden
+  nameKey: enemy_gatewarden_name
+  rank: 3
+  baseStats:
+    values:
+    - 1280
+    - 108
+    - 61
+    - 86
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 5a224fc5131ee438a9382a594491ca35, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 8176125284e824ea89540eb996518a76, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 78ce840ec742444af8317e61a8274a37, type: 2}
+  specials: []
+  sprite: {fileID: 21300000, guid: 92e48b91cfc6744ac98e46069845ee63, type: 3}
+  tint: {r: 0.43137255, g: 0.41568628, b: 0.5254902, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 92e48b91cfc6744ac98e46069845ee63, type: 3}
+  icon: {fileID: 21300000, guid: 7fc3ee2a9a37d4085a40ca4468f1b0bb, type: 3}
+  animations: {fileID: 11400000, guid: 83fb62c45549b4ea0bd06081db87926a, type: 2}

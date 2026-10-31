@@ -140,7 +140,8 @@ namespace Game.BattleView
             }
             var size = c.IsBoss ? 300f : 190f;
             var anchor = c.IsBoss && c.Team == Team.Enemy ? new Vector2(0.5f, 0.8f) : SlotAnchor(c.Team, Mathf.Max(0, c.Team == Team.Player ? c.Slot : slot), Math.Max(1, count));
-            var view = UnitView.Create(_stage, c, name, sprite, tint, anchor, size, Th, anim, artColor);
+            var rank = c.Team == Team.Enemy ? ScreenKit.RankName(Ctx, c.Rank) : null;
+            var view = UnitView.Create(_stage, c, name, sprite, tint, anchor, size, Th, anim, artColor, rank, ScreenKit.RankColor(Th, c.Rank));
             view.SetAnimSpeed(_speed);
             _units[c.Index] = view;
             _fx.transform.SetAsLastSibling();
@@ -403,11 +404,21 @@ namespace Game.BattleView
                 {
                     if (!_units.TryGetValue(e.Actor, out var actor)) return 0f;
                     var c = _sim.Get(e.Actor);
-                    var isActive = c.Active != null && e.SkillId == c.Active.Id;
+                    // Anything but the basic attack: the active skill, an enemy's extra skills, a boss special.
+                    var isActive = c.Basic == null || e.SkillId != c.Basic.Id;
+                    var special = c.Specials.Find(x => x.Id == e.SkillId);
+                    var skillName = Ctx.Session.Db.TryGetSkill(e.SkillId, out var used) ? Ctx.T(used.NameKey) : e.SkillId;
                     actor.PlayAction(isActive);
-                    if (isActive)
+                    if (special != null)
                     {
-                        _fx.FloatText(actor.LocalPos + new Vector2(0, 150), Ctx.T(c.Active.NameKey), Th.primary, 40, D(0.9f));
+                        ShowBanner(skillName, Th.negative);
+                        if (Ctx.Session.Settings.ScreenShake && !Tween.ReduceMotion) actor.Shake(D(0.4f), 10f);
+                        Ctx.PlaySfx("skill");
+                        Bark(e.Actor, HeroLines.Skill, 1f, force: true);
+                    }
+                    else if (isActive)
+                    {
+                        _fx.FloatText(actor.LocalPos + new Vector2(0, 150), skillName, Th.primary, 40, D(0.9f));
                         Ctx.PlaySfx("skill");
                         Bark(e.Actor, HeroLines.Skill, c.IsBoss ? 0.8f : 0.5f);
                     }
@@ -421,7 +432,7 @@ namespace Game.BattleView
                         else actor.Lunge(first.LocalPos, D(0.28f));
                     }
                     else if (first != null && RichEffects) _fx.Spark(first.LocalPos, Th.positive, 220, D(0.35f));
-                    return 0.3f;
+                    return special != null ? 0.7f : 0.3f;
                 }
                 case BattleEventType.Stunned:
                     if (_units.TryGetValue(e.Actor, out var stunned)) _fx.FloatText(stunned.LocalPos + new Vector2(0, 120), Ctx.T("stunned"), Th.warning, 36, D(0.7f));
@@ -534,6 +545,14 @@ namespace Game.BattleView
                 case BattleEventType.CooldownChanged:
                     RefreshHud();
                     return 0f;
+                case BattleEventType.SpecialCharged:
+                {
+                    if (!_units.TryGetValue(e.Actor, out var charger)) return 0f;
+                    var name = Ctx.Session.Db.TryGetSkill(e.SkillId, out var sp) ? Ctx.T(sp.NameKey) : e.SkillId;
+                    _fx.FloatText(charger.LocalPos + new Vector2(0, charger.Size * 0.7f), Ctx.F("special_charging", name), Th.warning, 42, D(1.1f));
+                    if (RichEffects) _fx.Spark(charger.LocalPos, Th.negative, charger.Size * 1.4f, D(0.6f));
+                    return 0.5f;
+                }
                 case BattleEventType.WaveCleared:
                     return 0.4f;
                 case BattleEventType.BattleEnded:

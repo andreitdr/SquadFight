@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8876e5a980540138203adaa56d64ad, type: 3}
+  m_Name: EnemyRankConfig
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyRankConfig
+  entries:
+  - rank: 0
+    hpMultiplier: 0.6
+    xp: 2
+    minSkills: 0
+  - rank: 1
+    hpMultiplier: 1
+    xp: 3
+    minSkills: 1
+  - rank: 2
+    hpMultiplier: 1.3
+    xp: 5
+    minSkills: 2
+  - rank: 3
+    hpMultiplier: 1.6
+    xp: 9
+    minSkills: 3
+  - rank: 4
+    hpMultiplier: 2
+    xp: 30
+    minSkills: 4

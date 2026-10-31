@@ -78,6 +78,12 @@ namespace Game.Services
                 }
             }
 
+            // Player level: a content update may lower the cap.
+            if (data.Player.Level > db.MaxPlayerLevel) { data.Player.Level = db.MaxPlayerLevel; data.Player.Xp = 0; fixes.Add("player level clamped"); }
+            if (data.Player.Level < 1) { data.Player.Level = 1; fixes.Add("player level fixed"); }
+            var need = PlayerLevelRules.XpToNext(data.Player.Level, db);
+            if (data.Player.Xp < 0 || (need > 0 && data.Player.Xp >= need) || (need == 0 && data.Player.Xp != 0)) { data.Player.Xp = need > 0 ? System.Math.Max(0, System.Math.Min(need - 1, data.Player.Xp)) : 0; fixes.Add("player xp clamped"); }
+
             foreach (var f in data.Progress.Fights.Where(f => f.BestStars < 0 || f.BestStars > 3)) f.BestStars = System.Math.Max(0, System.Math.Min(3, f.BestStars));
             return fixes;
         }

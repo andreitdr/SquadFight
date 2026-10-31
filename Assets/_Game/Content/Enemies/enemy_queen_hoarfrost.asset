@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_queen_hoarfrost
   nameKey: enemy_queen_hoarfrost_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 27600
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 80426df24e7f947bea5aee7f2f0f29b3, type: 2}
   passiveSkill: {fileID: 11400000, guid: defa7c71532524dcdab1f4982cd7dd27, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 3ebae3a7b202a45adaa68a830894b492, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 088298095f28c4f7fa6cd34033902db9, type: 2}
+  - {fileID: 11400000, guid: 7bd88a211365546feb6529c33fd22c5c, type: 2}
   sprite: {fileID: 21300000, guid: 359932e7245de49f2b7bb678ac2f1007, type: 3}
   tint: {r: 0.7921569, g: 0.9411765, b: 0.972549, a: 1}
   artFrom: 

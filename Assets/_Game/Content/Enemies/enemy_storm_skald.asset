@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_storm_skald
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_storm_skald
+  nameKey: enemy_storm_skald_name
+  rank: 2
+  baseStats:
+    values:
+    - 1890
+    - 195
+    - 46
+    - 98
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 2d38d34cda7404a1f8b34eb0a2946937, type: 2}
+  passiveSkill: {fileID: 11400000, guid: e6f709374e99946e483e0136caa92e0c, type: 2}
+  extraSkills: []
+  specials: []
+  sprite: {fileID: 21300000, guid: 04b60127fd2f24fec84a63e4f21333bd, type: 3}
+  tint: {r: 0.81960785, g: 0.7607843, b: 0.47843137, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 04b60127fd2f24fec84a63e4f21333bd, type: 3}
+  icon: {fileID: 21300000, guid: e628943aba9a943a781c82703996b63c, type: 3}
+  animations: {fileID: 11400000, guid: 2962261474dcf4ce4af2e4a90bcef07a, type: 2}

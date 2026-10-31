@@ -35,6 +35,7 @@ namespace Game.Save
             new Migration_3_To_4(),
             new Migration_4_To_5(),
             new Migration_5_To_6(),
+            new Migration_6_To_7(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -141,6 +142,21 @@ namespace Game.Save
                 if (h["activeSkillLevel"] == null) h["activeSkillLevel"] = 1;
                 if (h["passiveSkillLevel"] == null) h["passiveSkillLevel"] = 1;
             }
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v6 → v7: player level. Existing players start at level 1 with no XP (enemies give XP from now on).</summary>
+    public sealed class Migration_6_To_7 : ISaveMigration
+    {
+        public int From => 6;
+        public int To => 7;
+
+        public void Apply(JObject payload)
+        {
+            if (!(payload["player"] is JObject)) payload["player"] = new JObject { ["level"] = 1, ["xp"] = 0, ["totalXp"] = 0 };
         }
     }
 }

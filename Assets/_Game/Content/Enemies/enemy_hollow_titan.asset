@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_hollow_titan
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_hollow_titan
+  nameKey: enemy_hollow_titan_name
+  rank: 3
+  baseStats:
+    values:
+    - 8320
+    - 702
+    - 188
+    - 86
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: ed2c826bc831944518b0150553c1141f, type: 2}
+  passiveSkill: {fileID: 11400000, guid: f791f815ba4904331bb730102997163f, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 43e510315af824805aeef40185177cac, type: 2}
+  specials: []
+  sprite: {fileID: 21300000, guid: df2e2494c12364db99844f9a5e3f7fb9, type: 3}
+  tint: {r: 0.16470589, g: 0.14509805, b: 0.2509804, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: df2e2494c12364db99844f9a5e3f7fb9, type: 3}
+  icon: {fileID: 21300000, guid: 2d980ce5ac3b84edc9a54eacf9065116, type: 3}
+  animations: {fileID: 11400000, guid: 92f173ba625ff45f2b816461f81c2259, type: 2}

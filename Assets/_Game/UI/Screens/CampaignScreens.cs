@@ -167,27 +167,30 @@ namespace Game.UI
                 if (_vm.Fight.Waves.Count > 1) UIKit.Text(_content, "Wave", Ctx.F("wave_n", wave.Key + 1), Th.fontBody, Th.textDim).Size(preferredHeight: 56);
                 var row = UIKit.Rect("WaveRow", _content);
                 UIKit.HStack(row.gameObject, 16, 0, TextAnchor.MiddleLeft, expandWidth: false);
-                row.Size(preferredHeight: 190);
+                row.Size(preferredHeight: 224);
                 foreach (var e in wave)
                 {
                     var asset = Ctx.Config.GetEnemyAsset(e.Def.Id);
                     var cell = UIKit.Panel(row, "Enemy", Th.panel);
-                    cell.Size(180, 190);
+                    cell.Size(180, 224);
                     var art = ScreenKit.EnemyIcon(asset);
                     var icon = UIKit.Image(cell.transform, "Icon", art != null ? asset.ArtColor : asset != null ? asset.tint : Color.gray, art != null ? art : asset != null && asset.sprite != null ? asset.sprite : Th.diamond);
                     icon.rectTransform.Anchor(new Vector2(0.5f, 1), new Vector2(e.Def.IsBoss ? 120 : 100, e.Def.IsBoss ? 120 : 100), new Vector2(0, -12), new Vector2(0.5f, 1));
                     var n = UIKit.Text(cell.transform, "Name", ScreenKit.EnemyName(Ctx, e.Def.Id), 26, e.Def.IsBoss ? Th.negative : Th.text, TextAlignmentOptions.Center, bold: e.Def.IsBoss);
-                    n.rectTransform.Stretch(4, 128, 4, 30);
+                    n.rectTransform.Stretch(4, 128, 4, 64);
                     n.textWrappingMode = TextWrappingModes.NoWrap;
                     n.enableAutoSizing = true; n.fontSizeMin = 16; n.fontSizeMax = 26;
+                    var rank = UIKit.Text(cell.transform, "Rank", ScreenKit.RankName(Ctx, e.Def.Rank), 22, ScreenKit.RankColor(Th, e.Def.Rank), TextAlignmentOptions.Center, bold: e.Def.Rank >= EnemyRank.Elite);
+                    rank.rectTransform.Stretch(4, 162, 4, 32);
                     var p = UIKit.Text(cell.transform, "Power", e.Power.ToString(), 24, Th.textDim, TextAlignmentOptions.Center);
-                    p.rectTransform.Stretch(4, 160, 4, 0);
+                    p.rectTransform.Stretch(4, 194, 4, 0);
                 }
             }
 
             Section("possible_rewards");
             var d = _vm.Drops;
             var lines = new List<string>();
+            if (_vm.Xp > 0 && Ctx.Session.Db.PlayerLevels.Count > 0) lines.Add(Ctx.F("xp_reward", _vm.Xp));
             if (d.Gold) lines.Add(Ctx.T("gold"));
             if (d.HeroShards.Count > 0) lines.Add(Ctx.F("shards_of", string.Join(", ", d.HeroShards.Select(h => ScreenKit.HeroName(Ctx, h)))));
             if (d.ShardRarities.Count > 0) lines.Add(Ctx.F("random_shards", string.Join(", ", d.ShardRarities.Select(r => ScreenKit.RarityName(Ctx, r)))));
