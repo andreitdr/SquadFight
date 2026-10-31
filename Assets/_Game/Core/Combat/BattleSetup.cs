@@ -15,7 +15,8 @@ namespace Game.Core
     /// <summary>Builds combatant setups from content definitions (used by services, simulators and tests).</summary>
     public static class BattleSetupBuilder
     {
-        public static CombatantSetup Hero(HeroDef hero, int star, EquipmentStats equipment, int slot, GameDatabase db)
+        /// <summary>Hero with stars, gear and gold-bought skill levels (active and passive scaled by their potency).</summary>
+        public static CombatantSetup Hero(HeroDef hero, int star, EquipmentStats equipment, int slot, GameDatabase db, int activeLevel = 1, int passiveLevel = 1)
         {
             var mult = HeroProgressionRules.StarMultiplier(star, db);
             var pre = new StatBlock();
@@ -28,8 +29,8 @@ namespace Game.Core
                 PreStats = pre,
                 PercentStats = equipment?.Percent.Clone() ?? new StatBlock(),
                 Basic = db.GetSkill(hero.BasicSkillId),
-                Active = string.IsNullOrEmpty(hero.ActiveSkillId) ? null : db.GetSkill(hero.ActiveSkillId),
-                Passive = string.IsNullOrEmpty(hero.PassiveSkillId) ? null : db.GetSkill(hero.PassiveSkillId),
+                Active = string.IsNullOrEmpty(hero.ActiveSkillId) ? null : SkillLevelRules.Scale(db.GetSkill(hero.ActiveSkillId), SkillLevelRules.Potency(activeLevel, db)),
+                Passive = string.IsNullOrEmpty(hero.PassiveSkillId) ? null : SkillLevelRules.Scale(db.GetSkill(hero.PassiveSkillId), SkillLevelRules.Potency(passiveLevel, db)),
             };
         }
 

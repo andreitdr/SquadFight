@@ -20,6 +20,7 @@ namespace Game.Services
         public ProgressService Progress { get; }
         public RewardService Rewards { get; }
         public PlayerLevelService Levels { get; }
+        public ShopService Shop { get; }
         public SettingsService Settings { get; }
         public TutorialService Tutorial { get; }
         public DailyBonusService Daily { get; }
@@ -45,6 +46,7 @@ namespace Game.Services
             Progress.Rewards = Rewards;
             Levels = new PlayerLevelService(Context, Rewards);
             Progress.Levels = Levels;
+            Shop = new ShopService(Context, Currency, Inventory, Progress);
             Battles = new BattleFlowController(this);
             Settings = new SettingsService(Context);
             Tutorial = new TutorialService(Context);

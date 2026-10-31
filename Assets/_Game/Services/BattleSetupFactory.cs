@@ -2,7 +2,7 @@ using Game.Core;
 
 namespace Game.Services
 {
-    /// <summary>Builds a battle from the current party (final stars + equipment) and a fight definition.</summary>
+    /// <summary>Builds a battle from the current party (final stars + equipment + skill levels) and a fight definition.</summary>
     public static class BattleSetupFactory
     {
         public static BattleSetup Create(GameSession session, FightDef fight)
@@ -14,7 +14,8 @@ namespace Game.Services
             {
                 var id = slots[i];
                 if (id == null || !session.Roster.IsUnlocked(id)) continue;
-                setup.Players.Add(BattleSetupBuilder.Hero(db.GetHero(id), session.Roster.GetStar(id), session.Inventory.GetEquipmentStats(id), i, db));
+                setup.Players.Add(BattleSetupBuilder.Hero(db.GetHero(id), session.Roster.GetStar(id), session.Inventory.GetEquipmentStats(id), i, db,
+                    session.Roster.GetSkillLevel(id, HeroSkillSlot.Active), session.Roster.GetSkillLevel(id, HeroSkillSlot.Passive)));
             }
             BattleSetupBuilder.AddFightWaves(setup, fight, db);
             return setup;

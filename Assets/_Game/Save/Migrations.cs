@@ -35,6 +35,7 @@ namespace Game.Save
             new Migration_3_To_4(),
             new Migration_4_To_5(),
             new Migration_5_To_6(),
+            new Migration_6_To_7(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -127,11 +128,31 @@ namespace Game.Save
 
 namespace Game.Save
 {
-    /// <summary>v5 → v6: player level. Existing players start at level 1 with no XP (enemies give XP from now on).</summary>
+    /// <summary>v5 → v6: hero skill levels (gold upgrades) start at 1 for every hero.</summary>
     public sealed class Migration_5_To_6 : ISaveMigration
     {
         public int From => 5;
         public int To => 6;
+
+        public void Apply(JObject payload)
+        {
+            if (!(payload["heroes"] is JArray heroes)) return;
+            foreach (var h in heroes.OfType<JObject>())
+            {
+                if (h["activeSkillLevel"] == null) h["activeSkillLevel"] = 1;
+                if (h["passiveSkillLevel"] == null) h["passiveSkillLevel"] = 1;
+            }
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v6 → v7: player level. Existing players start at level 1 with no XP (enemies give XP from now on).</summary>
+    public sealed class Migration_6_To_7 : ISaveMigration
+    {
+        public int From => 6;
+        public int To => 7;
 
         public void Apply(JObject payload)
         {

@@ -35,6 +35,9 @@ namespace Game.Save
         public int Stars;
         /// <summary>Shards held (tracked for locked heroes too).</summary>
         public int Shards;
+        /// <summary>Gold-bought skill levels (1 = as authored).</summary>
+        public int ActiveSkillLevel = 1;
+        public int PassiveSkillLevel = 1;
     }
 
     public sealed class EquipmentSave
@@ -118,7 +121,7 @@ namespace Game.Save
 
     public static class SaveVersions
     {
-        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily". v5: audio muted. v6: "player" level.</summary>
-        public const int Current = 6;
+        /// <summary>v1: initial format (hero field "star"). v2: renamed to "stars". v3: added "pity". v4: "tutorial" + "daily". v5: audio muted. v6: hero skill levels. v7: "player" level.</summary>
+        public const int Current = 7;
     }
 }

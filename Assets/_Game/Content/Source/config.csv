@@ -29,3 +29,7 @@ combat.powerWeights,MaxHp=0.1;Attack=1;Defense=0.8;Speed=0.5;CritChance=100;Crit
 dailyBonusEnabled,false
 dailyBonusTable,daily_bonus
 uniqueHeroAbilities,true
+shopEnabled,true
+shopSlots,Weapon;Helmet;Chest;Gloves;Boots
+shopTierPrices,150;300;450;600;800;1000;1250;1500
+shopRarityPrices,Common=1;Uncommon=2;Rare=4;Epic=8

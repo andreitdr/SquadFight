@@ -164,7 +164,7 @@ Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31
 - [x] Ranks Minion < Soldier < Elite < Champion < Boss (`ranks.csv`): rank HP multiplier in battle, skill count per rank, XP per rank; validator checks climbing ranks, skill counts, specials only on bosses, and higher rank = more HP in every wave (`EnemyRankTests`).
 - [x] Extra active skills (own cooldowns) and boss special attacks charged at 60%/30% HP (ignore silence, delayed by stun); battle shows rank tags, "Charging …!" and a special banner.
 - [x] 64 new enemies with new generated art (8 per act); every boss has an extra skill + 2 specials; all 185 enemies appear in fights (`RealContent_EnemyRanks`).
-- [x] Player level: XP from defeated enemies, 60 levels with rewards, save v6, Home/result/preview UI (`PlayerLevelTests`).
+- [x] Player level: XP from defeated enemies, 60 levels with rewards, save v7, Home/result/preview UI (`PlayerLevelTests`).
 - [x] Balance: tune + ease 10 + recommend; casual 3/3 done (1,440 fights, 0 losses, level 51), hardcore 3/3 (level 60), greedy stalls at chapters 6–13; config validator 0/0.
 - [ ] Look at the new enemies, rank tags and special banners on a device.
 
@@ -178,6 +178,13 @@ Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31
 - [x] Centred content columns (`MaxSizeFitter`), Heroes/Bag grids add columns, Home centred, battle formation kept compact on a full-screen scene; tab bar grouped in the middle.
 - [x] `TabletLayoutTests` (EditMode); iPad 11" screenshots in the screen tour and battle test (`*_ipad.png`; needs a run with graphics — `-nographics` captures are blank).
 - [ ] Check on a real iPad / iPad Simulator.
+
+### Gold shop and skill levels (owner request, 2026-10-31; steps 03/05/06/12 reworked)
+- [x] Gear shop: current-tier weapons and armour at Common–Epic for gold; tier follows the campaign; one-transaction purchase saved at once (`ShopTests`, 9 tests).
+- [x] Skill levels 1–10 for active and passive; potency scales magnitudes only; levelled skills reach battles (`SkillLevelTests`, 11 tests incl. save v5→v6 migration and reconciler).
+- [x] Validator: skill level table and shop prices (price > sell value); config validator 0/0 on real content; CSV loader matches the asset pipeline incl. skill levels and shop rules.
+- [x] Tests: dotnet 318/318, Unity EditMode 353/353, PlayMode 15/15 (screen tour adds shop + skill-level shots).
+- [ ] Simulator does not spend gold on the new sinks yet (balance reports unchanged).
 
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)

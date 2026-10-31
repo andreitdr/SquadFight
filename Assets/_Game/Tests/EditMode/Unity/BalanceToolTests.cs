@@ -37,6 +37,9 @@ namespace Game.Tests.EditMode.UnityTests
             Assert.AreEqual(Canon(fromAssets, d => d.StarLevels), Canon(fromCsv, d => d.StarLevels));
             Assert.AreEqual(Canon(fromAssets, d => d.Ranks), Canon(fromCsv, d => d.Ranks));
             Assert.AreEqual(Canon(fromAssets, d => d.PlayerLevels), Canon(fromCsv, d => d.PlayerLevels));
+            Assert.AreEqual(Canon(fromAssets, d => d.SkillLevels), Canon(fromCsv, d => d.SkillLevels));
+            Assert.Greater(fromCsv.SkillLevels.Count, 1, "skill levels imported");
+            Assert.IsTrue(fromCsv.Rules.ShopEnabled, "shop enabled in content");
             Assert.AreEqual(Canon(fromAssets, d => d.Heroes.OrderBy(h => h.Id)), Canon(fromCsv, d => d.Heroes.OrderBy(h => h.Id)));
             Assert.AreEqual(Canon(fromAssets, d => d.Enemies.OrderBy(h => h.Id)), Canon(fromCsv, d => d.Enemies.OrderBy(h => h.Id)));
             Assert.AreEqual(Canon(fromAssets, d => d.Skills.OrderBy(h => h.Id)), Canon(fromCsv, d => d.Skills.OrderBy(h => h.Id)));

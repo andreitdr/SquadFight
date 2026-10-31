@@ -148,6 +148,23 @@ namespace Game.Core
         public float StatMultiplier = 1f;
     }
 
+    /// <summary>One row of the skill level table: gold to reach <see cref="Level"/> from the level below, and the potency there.</summary>
+    public sealed class SkillLevelDef
+    {
+        public int Level;
+        public int GoldCost;
+        /// <summary>Multiplier on the skill's magnitudes (damage, healing, shields, status sizes); 1 at level 1.</summary>
+        public float Potency = 1f;
+    }
+
+    /// <summary>Shop price multiplier for one rarity (a rarity without one is not sold).</summary>
+    public struct RarityPrice
+    {
+        public Rarity Rarity;
+        public float Multiplier;
+        public RarityPrice(Rarity rarity, float multiplier) { Rarity = rarity; Multiplier = multiplier; }
+    }
+
     public sealed class CurrencyDef
     {
         public string Id;
@@ -304,6 +321,14 @@ namespace Game.Core
 
         // Meta (step 18)
         public bool DailyBonusEnabled;
+
+        // Gear shop (owner request 2026-10-31)
+        public bool ShopEnabled;
+        /// <summary>Slots the shop sells (weapons and armour).</summary>
+        public List<EquipmentSlot> ShopSlots = new List<EquipmentSlot>();
+        /// <summary>Price of a tier-N item: ShopTierPrices[N-1] × chosen rarity multiplier × template rarity multiplier.</summary>
+        public List<int> ShopTierPrices = new List<int>();
+        public List<RarityPrice> ShopRarityPrices = new List<RarityPrice>();
 
         // Roster ("The Hundred")
         /// <summary>Validator rejects two heroes with the same active or passive behaviour, and heroes without a passive.</summary>

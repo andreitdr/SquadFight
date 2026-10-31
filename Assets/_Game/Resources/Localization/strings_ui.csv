@@ -70,6 +70,7 @@ error_inventoryfull,Your bag is full.,Inventarul este plin.
 error_fightlocked,Clear the previous fight first.,Termină mai întâi lupta anterioară.
 error_alreadyclaimed,Already claimed.,Deja revendicat.
 error_featuredisabled,This feature is disabled.,Această funcție este dezactivată.
+error_maxskilllevelreached,Already at max level.,Are deja nivelul maxim.
 # ---- gallery ----
 gallery_title,UI Gallery,Galerie UI
 # ---- step 12 screens ----
@@ -125,6 +126,11 @@ skill_basic,basic,de bază
 skill_active,active,activă
 skill_passive,passive,pasivă
 cooldown_turns,{0}-turn cooldown,reîncărcare {0} ture
+skill_level,Lv {0}/{1},Nv {0}/{1}
+skill_potency,+{0:0}% potency,+{0:0}% putere
+skill_max_level,Max level,Nivel maxim
+skill_upgrade_cost,"Upgrade: {0} gold (→ +{1:0}% potency)","Îmbunătățește: {0} aur (→ +{1:0}% putere)"
+skill_level_reached,{0} reached level {1}!,{0} a ajuns la nivelul {1}!
 equipment,Equipment,Echipament
 auto_equip,Equip best items,Echipează cele mai bune
 lore,Lore,Poveste
@@ -152,6 +158,11 @@ nothing_to_sell,Nothing to sell.,Nimic de vândut.
 bulk_sell_body,"Sell {0} items that are not upgrades for {1} gold?","Vinzi {0} obiecte care nu sunt îmbunătățiri pentru {1} aur?"
 sold_n,Sold {0} items.,Ai vândut {0} obiecte.
 sell_for,Sell ({0} gold),Vinde ({0} aur)
+shop,Shop,Magazin
+shop_tier,Tier {0} gear,Echipament de rang {0}
+shop_upgrade_for,Upgrade for {0}: +{1} power,Îmbunătățire pentru {0}: +{1} putere
+buy_for,Buy ({0} gold),Cumpără ({0} aur)
+bought_item,Bought {0}.,Ai cumpărat {0}.
 victory,Victory!,Victorie!
 defeat,Defeat,Înfrângere
 new_best,New best!,Nou record!

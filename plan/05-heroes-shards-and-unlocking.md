@@ -47,3 +47,4 @@ Events: `ShardsChanged`, `HeroUnlocked`, `HeroStarUpgraded`.
 - D1 consume vs keep: consume (config `consumeShardsOnUnlock`)
 - D2 overflow handling: converted to `shardOverflowCurrency` at `overflowCurrencyPerShard` (per rarity), both for incoming shards at max star and leftovers when max star is reached
 - Unlock is manual; star-ups also cost primary currency (`stars.csv currencyCost`); shard cost × rarity `starCostMultiplier`
+- Skill levels (owner request 2026-10-31, A15): active and passive levelled with gold (`skilllevels.csv`, `RosterService.UpgradeSkill`); potency scales the skill's magnitudes in battle (`SkillLevelRules.Scale`, applied in `BattleSetupBuilder.Hero`). Power rating is stat-based and does not include skill levels.

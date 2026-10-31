@@ -59,6 +59,7 @@ namespace Game.Services
                 StarCostMultiplier = F(r, "starCostMultiplier", 1), DropWeightModifier = F(r, "dropWeightModifier", 1), ItemSellValue = I(r, "itemSellValue"), OverflowCurrencyPerShard = I(r, "overflowCurrencyPerShard"),
             }).ToList();
             db.StarLevels = Read(folder, "stars").Rows.Select(r => new StarLevelDef { Star = I(r, "star"), ShardsRequired = I(r, "shardsRequired"), CurrencyCost = I(r, "currencyCost"), StatMultiplier = F(r, "statMultiplier", 1) }).ToList();
+            db.SkillLevels = Read(folder, "skilllevels", optional: true).Rows.Select(r => new SkillLevelDef { Level = I(r, "level"), GoldCost = I(r, "goldCost"), Potency = F(r, "potency", 1) }).ToList();
             db.Combat = new CombatRules
             {
                 MinDamage = CF("combat.minDamage", 1), DefenseK = CF("combat.defenseK", 1), MaxRounds = (int)CF("combat.maxRounds", 100), CritChanceCap = CF("combat.critChanceCap", 1),
@@ -193,6 +194,10 @@ namespace Game.Services
                 DailyBonusEnabled = CB("dailyBonusEnabled", false),
                 UniqueHeroAbilities = CB("uniqueHeroAbilities", false),
                 DailyBonusTableId = Null(C("dailyBonusTable", "")),
+                ShopEnabled = CB("shopEnabled", false),
+                ShopSlots = L(C("shopSlots", "")).Select(x => E<EquipmentSlot>(x)).ToList(),
+                ShopTierPrices = L(C("shopTierPrices", "")).Select(x => int.Parse(x, Inv)).ToList(),
+                ShopRarityPrices = L(C("shopRarityPrices", "")).Select(x => new RarityPrice(E<Rarity>(x.Split('=')[0]), float.Parse(x.Split('=')[1].Trim(), NumberStyles.Float, Inv))).ToList(),
             };
             return db.Index();
         }

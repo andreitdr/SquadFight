@@ -69,6 +69,17 @@ namespace Game.Data
         public bool uniqueHeroAbilities;
         public DropTable dailyBonusTable;
 
+        [Header("Skill levels & shop")]
+        [Tooltip("Gold-bought skill levels: level 1 = as authored (potency 1). Empty = skills cannot be levelled.")]
+        public List<SkillLevelData> skillLevels = new List<SkillLevelData>();
+        public bool shopEnabled;
+        [Tooltip("Slots the gear shop sells.")]
+        public List<EquipmentSlot> shopSlots = new List<EquipmentSlot>();
+        [Tooltip("Price of a tier-N item at multiplier 1 (index 0 = tier 1).")]
+        public List<int> shopTierPrices = new List<int>();
+        [Tooltip("Rarities on sale and their price multipliers (also applied to the template's own rarity).")]
+        public List<RarityPriceData> shopRarityPrices = new List<RarityPriceData>();
+
         public GameRules ToRules() => new GameRules
         {
             PartySize = partySize,
@@ -94,6 +105,30 @@ namespace Game.Data
             DailyBonusEnabled = dailyBonusEnabled,
             UniqueHeroAbilities = uniqueHeroAbilities,
             DailyBonusTableId = dailyBonusTable ? dailyBonusTable.id : null,
+            ShopEnabled = shopEnabled,
+            ShopSlots = new List<EquipmentSlot>(shopSlots),
+            ShopTierPrices = new List<int>(shopTierPrices),
+            ShopRarityPrices = shopRarityPrices.Select(p => new RarityPrice(p.rarity, p.multiplier)).ToList(),
         };
+
+        public IEnumerable<SkillLevelDef> SkillLevelsToCore() =>
+            skillLevels.Where(l => l != null).Select(l => new SkillLevelDef { Level = l.level, GoldCost = l.goldCost, Potency = l.potency });
+    }
+
+    [Serializable]
+    public sealed class SkillLevelData
+    {
+        public int level = 1;
+        [Tooltip("Primary currency to reach this level from the one below.")]
+        public int goldCost;
+        [Tooltip("Multiplier on the skill's damage, healing, shields and status sizes.")]
+        public float potency = 1f;
+    }
+
+    [Serializable]
+    public struct RarityPriceData
+    {
+        public Rarity rarity;
+        public float multiplier;
     }
 }

@@ -18,6 +18,8 @@ namespace Game.Core
         public CombatRules Combat = new CombatRules();
         public List<RarityDef> Rarities = new List<RarityDef>();
         public List<StarLevelDef> StarLevels = new List<StarLevelDef>();
+        /// <summary>Skill level table (empty = skills cannot be levelled).</summary>
+        public List<SkillLevelDef> SkillLevels = new List<SkillLevelDef>();
         public List<HeroDef> Heroes = new List<HeroDef>();
         public List<EnemyDef> Enemies = new List<EnemyDef>();
         public List<SkillDef> Skills = new List<SkillDef>();
@@ -79,6 +81,7 @@ namespace Game.Core
             StarLevels.Sort((a, b) => a.Star.CompareTo(b.Star));
             Ranks.Sort((a, b) => a.Rank.CompareTo(b.Rank));
             PlayerLevels.Sort((a, b) => a.Level.CompareTo(b.Level));
+            SkillLevels.Sort((a, b) => a.Level.CompareTo(b.Level));
             _indexed = true;
             return this;
         }
@@ -154,6 +157,14 @@ namespace Game.Core
         public PlayerLevelDef GetPlayerLevel(int level)
         {
             foreach (var l in PlayerLevels) if (l.Level == level) return l;
+            return null;
+        }
+
+        public int MaxSkillLevel => SkillLevels.Count == 0 ? 1 : SkillLevels[SkillLevels.Count - 1].Level;
+
+        public SkillLevelDef GetSkillLevel(int level)
+        {
+            foreach (var s in SkillLevels) if (s.Level == level) return s;
             return null;
         }
 
