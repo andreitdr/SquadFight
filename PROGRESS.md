@@ -171,6 +171,13 @@ Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31
 - [x] `TabletLayoutTests` (EditMode); iPad 11" screenshots in the screen tour and battle test (`*_ipad.png`; needs a run with graphics — `-nographics` captures are blank).
 - [ ] Check on a real iPad / iPad Simulator.
 
+### Gold shop and skill levels (owner request, 2026-10-31; steps 03/05/06/12 reworked)
+- [x] Gear shop: current-tier weapons and armour at Common–Epic for gold; tier follows the campaign; one-transaction purchase saved at once (`ShopTests`, 9 tests).
+- [x] Skill levels 1–10 for active and passive; potency scales magnitudes only; levelled skills reach battles (`SkillLevelTests`, 11 tests incl. save v5→v6 migration and reconciler).
+- [x] Validator: skill level table and shop prices (price > sell value); config validator 0/0 on real content; CSV loader matches the asset pipeline incl. skill levels and shop rules.
+- [x] Tests: dotnet 318/318, Unity EditMode 353/353, PlayMode 15/15 (screen tour adds shop + skill-level shots).
+- [ ] Simulator does not spend gold on the new sinks yet (balance reports unchanged).
+
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)
 

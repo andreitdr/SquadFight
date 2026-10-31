@@ -32,6 +32,8 @@ namespace Game.Services
                     first.Shards += dup.Shards;
                     first.Unlocked |= dup.Unlocked;
                     first.Stars = System.Math.Max(first.Stars, dup.Stars);
+                    first.ActiveSkillLevel = System.Math.Max(first.ActiveSkillLevel, dup.ActiveSkillLevel);
+                    first.PassiveSkillLevel = System.Math.Max(first.PassiveSkillLevel, dup.PassiveSkillLevel);
                     data.Heroes.Remove(dup);
                 }
                 fixes.Add($"merged duplicate hero rows {g.Key}");
@@ -44,6 +46,9 @@ namespace Game.Services
                 if (h.Unlocked && h.Stars < 1) { h.Stars = 1; fixes.Add($"star fixed {h.HeroId}"); }
                 if (h.Stars > maxStar) { h.Stars = maxStar; fixes.Add($"star clamped {h.HeroId}"); }
                 if (!h.Unlocked && h.Stars != 0) h.Stars = 0;
+                var maxSkill = db.MaxSkillLevel;
+                if (h.ActiveSkillLevel < 1 || h.ActiveSkillLevel > maxSkill) { h.ActiveSkillLevel = System.Math.Max(1, System.Math.Min(maxSkill, h.ActiveSkillLevel)); fixes.Add($"active skill level clamped {h.HeroId}"); }
+                if (h.PassiveSkillLevel < 1 || h.PassiveSkillLevel > maxSkill) { h.PassiveSkillLevel = System.Math.Max(1, System.Math.Min(maxSkill, h.PassiveSkillLevel)); fixes.Add($"passive skill level clamped {h.HeroId}"); }
             }
 
             foreach (var key in data.Currencies.Keys.ToList())

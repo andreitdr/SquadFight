@@ -39,7 +39,7 @@ namespace Game.EditorTools.Content
             }
         }
 
-        public static readonly string[] SourceFiles = { "config", "rarities", "stars", "skills", "passives", "heroes", "enemies", "equipment", "story", "droptables", "chapters", "fights" };
+        public static readonly string[] SourceFiles = { "config", "rarities", "stars", "skilllevels", "skills", "passives", "heroes", "enemies", "equipment", "story", "droptables", "chapters", "fights" };
 
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
@@ -438,6 +438,16 @@ namespace Game.EditorTools.Content
                     gc.uniqueHeroAbilities = CfgBool(cfg, "uniqueHeroAbilities", false);
                     var daily = Cfg(cfg, "dailyBonusTable", "");
                     gc.dailyBonusTable = string.IsNullOrEmpty(daily) ? null : tables.TryGetValue(daily, out var dbt) ? dbt : throw new FormatException($"config dailyBonusTable: unknown table '{daily}'");
+                    gc.skillLevels = src["skilllevels"].Rows.Select(r => new SkillLevelData { level = r.Int("level"), goldCost = r.Int("goldCost"), potency = r.Float("potency", 1) }).ToList();
+                    gc.shopEnabled = CfgBool(cfg, "shopEnabled", false);
+                    gc.shopSlots = ParseList(Cfg(cfg, "shopSlots", "")).Select(s => ParseEnum<EquipmentSlot>(s, "config shopSlots")).ToList();
+                    gc.shopTierPrices = ParseList(Cfg(cfg, "shopTierPrices", "")).Select(s => int.TryParse(s, NumberStyles.Integer, Inv, out var v) ? v : throw new FormatException($"config shopTierPrices: '{s}' is not a whole number")).ToList();
+                    gc.shopRarityPrices = ParseList(Cfg(cfg, "shopRarityPrices", "")).Select(s =>
+                    {
+                        var kv = s.Split('=');
+                        if (kv.Length != 2 || !float.TryParse(kv[1].Trim(), NumberStyles.Float, Inv, out var m)) throw new FormatException($"config shopRarityPrices: expected Rarity=multiplier, got '{s}'");
+                        return new RarityPriceData { rarity = ParseEnum<Rarity>(kv[0], "config shopRarityPrices"), multiplier = m };
+                    }).ToList();
                 });
 
                 ReportOrphans();

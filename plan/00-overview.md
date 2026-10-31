@@ -40,6 +40,7 @@ Core loop:
 | A12 | Languages | English first, localization-ready from day 1. **Owner decision (M2): lightweight CSV localizer (`TableLocalizer`) instead of the Unity Localization package.** | 14 |
 | A13 | Campaign & roster (owner request 2026-10-31) | **Dark-epic story "The Hundred": 8 acts × 5 chapters = 40 chapters, 9–11 main fights each (seeded random), 1–3 side quests per chapter. 100 heroes, 20 per class, rarity random per hero but strictly fewer at each higher rarity.** Shards spread over many fights and limited to the current acts' heroes; ~25% of main fights drop items only. | 02, 09, 10, 15 |
 | A14 | Side quests | Optional zones inside a chapter for lore and better items (unique relics); they open through an unlock condition and never count toward chapter completion, stars or the unlock chain. | 09, 10, 12 |
+| A15 | Gold sinks (owner request 2026-10-31) | **Gear shop**: weapons and armour of the best gear tier reached, bought with gold at a chosen rarity (Common–Epic). **Skill levels**: each hero's active and passive can be levelled with gold (1–10); a level multiplies the skill's magnitudes (potency), never its durations, cooldowns or chances. Tables in `config.csv` / `skilllevels.csv`. | 03, 05, 06, 07, 12 |
 
 ## 4. Architecture
 

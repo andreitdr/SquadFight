@@ -21,6 +21,7 @@ namespace Game.Core
         FightLocked,
         AlreadyClaimed,
         FeatureDisabled,
+        MaxSkillLevelReached,
     }
 
     /// <summary>Outcome of a rule-checked mutation. Rule violations never throw.</summary>

@@ -57,6 +57,8 @@ namespace Game.UI
             TutorialAnchor.Mark(party, "home_party");
             var heroes = UIKit.Button(row, "Heroes", Ctx.T("tab_heroes"), () => Navigation.GoTab(Ctx, "heroes"), UIKit.ButtonStyle.Secondary);
             _heroesDot = RedDot.Attach(heroes.transform);
+            if (Ctx.Session.Shop.Enabled)
+                TutorialAnchor.Mark(UIKit.Button(row, "Shop", Ctx.T("shop"), () => Ctx.Manager.Push<ShopScreen>(), UIKit.ButtonStyle.Secondary), "home_shop");
             Refresh();
         }
 

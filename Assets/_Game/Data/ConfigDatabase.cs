@@ -96,6 +96,7 @@ namespace Game.Data
                 Combat = Source.combatConfig ? Source.combatConfig.ToCore() : null,
                 Rarities = Source.rarityConfig ? Source.rarityConfig.ToCore().ToList() : new List<RarityDef>(),
                 StarLevels = Source.starConfig ? Source.starConfig.ToCore().ToList() : new List<StarLevelDef>(),
+                SkillLevels = Source.SkillLevelsToCore().ToList(),
                 Heroes = HeroAssets.Select(h => h.ToCore()).ToList(),
                 Enemies = EnemyAssets.Select(e => e.ToCore()).ToList(),
                 Skills = SkillAssets.Select(s => s.ToCore()).ToList(),

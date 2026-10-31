@@ -28,6 +28,12 @@ namespace Game.Services
         public HeroStarUpgraded(string heroId, int newStar) { HeroId = heroId; NewStar = newStar; }
     }
 
+    public readonly struct HeroSkillUpgraded
+    {
+        public readonly string HeroId; public readonly HeroSkillSlot Slot; public readonly int NewLevel;
+        public HeroSkillUpgraded(string heroId, HeroSkillSlot slot, int newLevel) { HeroId = heroId; Slot = slot; NewLevel = newLevel; }
+    }
+
     public readonly struct PartyChanged { }
 
     public readonly struct ItemAdded
@@ -52,6 +58,13 @@ namespace Game.Services
     {
         public readonly string InstanceId; public readonly long Value;
         public ItemSold(string id, long value) { InstanceId = id; Value = value; }
+    }
+
+    /// <summary>Published after the bought item's <see cref="ItemAdded"/>.</summary>
+    public readonly struct ItemBought
+    {
+        public readonly string InstanceId; public readonly string TemplateId; public readonly Rarity Rarity; public readonly long Price;
+        public ItemBought(string id, string templateId, Rarity rarity, long price) { InstanceId = id; TemplateId = templateId; Rarity = rarity; Price = price; }
     }
 
     public readonly struct FightCompleted

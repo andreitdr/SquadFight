@@ -39,4 +39,7 @@ namespace Game.Core
     public enum DropType { Currency, HeroShard, RandomHeroShardByRarity, Equipment, RandomEquipment }
 
     public enum UnlockConditionType { ClearFight, MinPartyPower, HeroOwned }
+
+    /// <summary>Hero skills that can be levelled up with gold (the basic attack cannot).</summary>
+    public enum HeroSkillSlot { Active, Passive }
 }
