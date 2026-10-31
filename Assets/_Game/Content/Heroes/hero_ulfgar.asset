@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_ulfgar
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_ulfgar
+  nameKey: hero_ulfgar_name
+  loreKey: hero_ulfgar_lore
+  rarity: 0
+  heroClass: 1
+  baseStats:
+    values:
+    - 390
+    - 69
+    - 15
+    - 115
+    - 0.15
+    - 1.7
+  basicSkill: {fileID: 11400000, guid: e3929b3c695bb484aa430d2db55dd33d, type: 2}
+  activeSkill: {fileID: 11400000, guid: 50f8a2a8e7eff4f12ad46f4fddc4801f, type: 2}
+  passiveSkill: {fileID: 11400000, guid: ae864af4588e74ef78aacce4f7f5ca49, type: 2}
+  origin: act_5
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.6431373, g: 0.26666668, b: 0.50980395, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  icon: {fileID: 0}
+  cardArt: {fileID: 0}
+  animations: {fileID: 0}

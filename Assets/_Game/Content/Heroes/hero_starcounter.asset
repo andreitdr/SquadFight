@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_starcounter
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_starcounter
+  nameKey: hero_starcounter_name
+  loreKey: hero_starcounter_lore
+  rarity: 4
+  heroClass: 4
+  baseStats:
+    values:
+    - 860
+    - 86
+    - 33
+    - 111
+    - 0.09
+    - 1.65
+  basicSkill: {fileID: 11400000, guid: db1747d8a18b84b15bed6d892c8fcfde, type: 2}
+  activeSkill: {fileID: 11400000, guid: 3e8ffd8288af2420e95fb207a938ad9e, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 7514d713f317a4e36ab1e8b3a39c0c15, type: 2}
+  origin: act_4
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.60784316, g: 0.7058824, b: 0.3529412, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  icon: {fileID: 0}
+  cardArt: {fileID: 0}
+  animations: {fileID: 0}

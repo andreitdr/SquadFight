@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_stake
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_stake
+  nameKey: hero_stake_name
+  loreKey: hero_stake_lore
+  rarity: 2
+  heroClass: 1
+  baseStats:
+    values:
+    - 510
+    - 92
+    - 20
+    - 118
+    - 0.17
+    - 1.75
+  basicSkill: {fileID: 11400000, guid: eb52919648ca245d88eb8336e5d58ac6, type: 2}
+  activeSkill: {fileID: 11400000, guid: 92320d7e7d1e44930b8b98982272f456, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 0281e77da131146a9b104d9a51683ddb, type: 2}
+  origin: act_7
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.7764706, g: 0.44705883, b: 0.6509804, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  icon: {fileID: 0}
+  cardArt: {fileID: 0}
+  animations: {fileID: 0}

@@ -101,68 +101,480 @@ fight_3_5_name,Fire Temple
 fight_3_6_name,Sky Bridge
 fight_3_7_name,Dragon's Gate
 fight_3_8_name,The Red Dragon
+hero_aerin_lore,"Lyra's mother, lost in the Hollow ten years ago. Found."
+hero_aerin_name,Aerin Greywillow
+hero_agathe_lore,"She has stitched more wounds than any surgeon, and prays while she sews."
+hero_agathe_name,Sister Agathe
+hero_agna_lore,She lights a candle for every soul the abbey lost. Each one burns.
+hero_agna_name,Agna of the Thousand Candles
+hero_aldous_lore,A monk who took a vow of silence and a vow of violence.
+hero_aldous_name,Brother Aldous
+hero_amsel_lore,He leads a choir of ghosts. Two of them are still alive.
+hero_amsel_name,Cantor Amsel
+hero_anvilborn_lore,A dwarf smith with an anvil for a shield. He insists it is a shield.
+hero_anvilborn_name,Dorn Anvilborn
 hero_apprentice_lore,An eager apprentice whose spells sometimes work exactly as planned.
 hero_apprentice_name,Pip
 hero_archer_lore,A keen-eyed archer who never misses twice.
 hero_archer_name,Lyra
+hero_ashwarden_lore,A village watchman who walked out of the Ashfall carrying three children and a door for a shield.
+hero_ashwarden_name,Brannoc Ashward
+hero_aurelian_lore,A Warden's grandson who took his grandfather's oath and shield.
+hero_aurelian_name,"Aurelian, Last Oath"
 hero_bard_lore,A bard whose songs make cowards brave.
 hero_bard_name,Fennick
+hero_barkskin_lore,A Wildwarden who let the Elder Tree grow into his skin.
+hero_barkskin_name,Oakheart Durn
+hero_benedikt_lore,He keeps the abbey graves. Lately he has to keep them closed.
+hero_benedikt_name,Old Benedikt
+hero_blackpowder_lore,Owns the only firearm in the world. It explodes about half the time.
+hero_blackpowder_name,Marrik Blackpowder
+hero_boltwright_lore,Builds repeating crossbows and tests them personally.
+hero_boltwright_name,Ada Boltwright
+hero_brannagh_lore,Sworn to die at the Throne. She intends to be late.
+hero_brannagh_name,Brannagh Doomsworn
+hero_brega_lore,Last commander of the Order of the Bulwark. The Order is her and four recruits.
+hero_brega_name,Commander Brega
+hero_briar_lore,"Raised by bears, ruined by the blight, saved by rage."
+hero_briar_name,Grund of the Briar
+hero_brinescholar_lore,He studied the drowned library until the ink began to read him.
+hero_brinescholar_name,Aurek Brine
+hero_chaplain_lore,The drowned chapel's last priest. He still rings the bell below the waves.
+hero_chaplain_name,Father Osk
+hero_cindermage_lore,She survived the dragon's last breath. Now the ash answers when she calls.
+hero_cindermage_name,Ilsa Cinderwake
 hero_cleric_lore,A healer from the mountain abbey.
 hero_cleric_name,Sister Maren
+hero_cogsworth_lore,A knight in a steam-driven suit. Nobody has seen inside it for years.
+hero_cogsworth_name,Sir Cogsworth
+hero_coralguard_lore,Half her armor is coral that grew over her while she slept beneath the waves.
+hero_coralguard_name,Maelis of the Reef
+hero_corra_lore,"Ilvane's sister. She came to the Throne to finish what her sister started, or undo it."
+hero_corra_name,Corra the Penitent
+hero_corsair_lore,"A Black Tide deserter. He plundered the drowned city, then saw what still lived in it."
+hero_corsair_name,Captain Rook Vane
 hero_dragonknight_lore,The last rider of the red dragons.
 hero_dragonknight_name,Drakon
+hero_drownedknight_lore,"He died on the sea wall. The tide sent him back, and he does not know why."
+hero_drownedknight_name,Sir Calder the Drowned
+hero_duneshield_lore,He leads caravans across the glass and has buried more travelers than he has delivered.
+hero_duneshield_name,Kaveh Dune-Shield
+hero_fawnsong_lore,"A shepherd whose flute calms beasts and, lately, the blighted."
+hero_fawnsong_name,Pell Fawnsong
+hero_ferrum_lore,A forge-golem with a dwarf's heart sealed in its chest. The dwarf volunteered.
+hero_ferrum_name,Ferrum
+hero_feyarcher_lore,A fey archer whose arrows arrive slightly before they are loosed.
+hero_feyarcher_name,Quill of the Gloaming
+hero_flamestep_lore,She dances on hot glass barefoot. The glass gives up first.
+hero_flamestep_name,Zaynab Flamestep
+hero_glasssting_lore,An assassin of the Sand Courts who tips her blades with scorpion venom.
+hero_glasssting_name,Asha Glasssting
+hero_glasswright_lore,"She spins storm-glass, the stuff the fourth Seal was made of."
+hero_glasswright_name,Seren Glasswright
+hero_gullscout_lore,A cliff-runner who reads storms in the flight of gulls.
+hero_gullscout_name,Wren Saltfeather
+hero_haldor_lore,The jarl who demanded the blood-oaths. He paid his own first.
+hero_haldor_name,Jarl Haldor
+hero_halvard_lore,A field surgeon who has taken off forty legs and saved forty lives.
+hero_halvard_name,Doctor Halvard
+hero_hamid_lore,A blind sand-seer who sees the Hollow coming in every grain.
+hero_hamid_name,Old Hamid
+hero_hammerfall_lore,She wields a hammer forged from the Last Ember's scraps.
+hero_hammerfall_name,Breda Hammerfall
+hero_harpooner_lore,She hunts things the size of churches with a rope and a prayer.
+hero_harpooner_name,Ottla Grimm
+hero_hawkmother_lore,Her hawks have eaten the eyes of three blight-lords.
+hero_hawkmother_name,Ysolde Hawkmother
+hero_hollowseer_lore,A gravedigger who dreamed of the Hollow Gate and has not slept since.
+hero_hollowseer_name,Orin the Unslept
+hero_hrolf_lore,His mother was a frost giant. He is the small one.
+hero_hrolf_name,Hrolf Half-Giant
 hero_hunter_lore,A tracker raised by the forest itself.
 hero_hunter_name,Kael Wildheart
+hero_icewall_lore,Shield-maiden of the north wall. Never retreated; once advanced by accident.
+hero_icewall_name,Sigrun Icewall
+hero_ilgrin_lore,The runesmith of Ironhold who reforged the Last Ember.
+hero_ilgrin_name,Master Ilgrin
+hero_ironbraid_lore,Shield-sister of the forge-guard. She braids iron wire into her hair for luck.
+hero_ironbraid_name,Grisela Ironbraid
+hero_ironskald_lore,A skald who fights with an axe and sings the deaths he causes.
+hero_ironskald_name,Bjorn Ironskald
+hero_kettle_lore,A forge-priestess who blesses weapons by hitting them.
+hero_kettle_name,Sister Kettle
 hero_knight_lore,A steadfast knight sworn to guard the Greenwood road.
 hero_knight_name,Aldric
+hero_lighthouse_lore,Keeper of the last lighthouse on the coast. Her lamp burns for the dead now.
+hero_lighthouse_name,Ebba Lampwright
+hero_lisbet_lore,"Corvin's apprentice. She writes down every oath of the Hundred, in her own blood."
+hero_lisbet_name,Lisbet Inkoath
+hero_longsight_lore,He can hit a coin across the dunes at noon. He charges extra for the coin.
+hero_longsight_name,Idris Longsight
+hero_lowbough_lore,Fletches arrows from blighted wood. They spread what they carry.
+hero_lowbough_name,Ashe Lowbough
+hero_maud_lore,She burned witches for the Church. Now she hunts the vampires who corrupted it.
+hero_maud_name,Inquisitor Maud
+hero_mosswhisper_lore,"She speaks with the moss, and the moss tells her where enemies will step."
+hero_mosswhisper_name,Fenna Mosswhisper
+hero_nadira_lore,Ilvane's apprentice. The Hollow took her left hand; she uses the hole.
+hero_nadira_name,Nadira the Hollowed
+hero_nettlecrown_lore,A blight-witch who turned on her coven when they fed children to the Rot Stag.
+hero_nettlecrown_name,Morra Nettlecrown
+hero_nightwatch_lore,"He watched the abbey walls for twenty years. The one night he slept, it fell."
+hero_nightwatch_name,Garrick Nightwatch
+hero_nyx_lore,She cut a hole in the Hollow with her sword. Something cut back.
+hero_nyx_name,Nyx Riftblade
+hero_ostra_lore,She steals seconds from her enemies and gives them to her friends.
+hero_ostra_name,Ostra Hourglass
 hero_paladin_lore,A paladin whose shield has never broken.
 hero_paladin_name,Seraphine
+hero_quell_lore,"The last Archmage, now that Ilvane is gone. He did not want the job."
+hero_quell_name,Magister Quell
+hero_rashid_lore,"A djinn bound to a sword by Ilvane. Freed by the party, he serves by choice."
+hero_rashid_name,Rashid the Unbound
+hero_reefhunter_lore,She spears eels in black water by the glow of their own hunger.
+hero_reefhunter_name,Tamsin Reef-Eye
+hero_rhys_lore,He hunts Hollow-spawn for bounty. The bounty-payers are all dead.
+hero_rhys_name,Rhys Voidhunter
+hero_riftguard_lore,Stands at the edge of the Rift every night and pushes things back in.
+hero_riftguard_name,Kestrel Riftguard
+hero_rimeblade_lore,Her sword is cold enough to stop a heart. She has checked.
+hero_rimeblade_name,Astrid Rimeblade
 hero_rogue_lore,A rogue who fights for coin and
 hero_rogue_name,Vex
+hero_runecarver_lore,"Carves runes into shields. Some are prayers, some are threats."
+hero_runecarver_name,Thyra Runecarver
+hero_saelith_lore,The oldest Wildwarden. She remembers when the Elder Tree was a seed.
+hero_saelith_name,Elder Saelith
+hero_sentinel_lore,A Warden's armor walking without a Warden. It answers to the Hundred.
+hero_sentinel_name,The Pale Sentinel
+hero_severin_lore,A son of House Vey who turned blood magic against his mother.
+hero_severin_name,Severin Vey
+hero_silvershot_lore,Her arrows are melted-down abbey candlesticks. Vex is jealous.
+hero_silvershot_name,Mira Silvershot
+hero_siren_lore,A siren who cut out her own song so it could never lure sailors again. She sings with her hands.
+hero_siren_name,"Lirael, Silent Siren"
+hero_skiv_lore,"A tunnel scavenger who knows every crack in Ironhold, and every pocket."
+hero_skiv_name,Skiv
+hero_snowstalker_lore,"White furs, white bow, white breath. You hear the arrow, then nothing."
+hero_snowstalker_name,Eira Snowstalker
+hero_sporecaller_lore,"Glowing spores drift from her sleeves. Where they land, wounds close or flesh rots."
+hero_sporecaller_name,Lumen Sporecaller
+hero_stagrider_lore,Rides the last white stag. The Rot Stag was its brother.
+hero_stagrider_name,Toma Antlerborn
+hero_stake_lore,He hunts House Vey with silver and spite.
+hero_stake_name,Lucan Stake
+hero_starcounter_lore,Counts the stars every night. Lately there are fewer.
+hero_starcounter_name,Pim Starcounter
 hero_stormcaller_lore,She speaks and the sky answers.
 hero_stormcaller_name,Zara Stormcaller
+hero_sunniva_lore,She carries the last lantern from the abbey into the dark.
+hero_sunniva_name,Sunniva Lightbearer
+hero_teague_lore,"Once Malrec's bodyguard. He knows every trick his master taught him, and hates them all."
+hero_teague_name,Teague the Turncloak
+hero_teodor_lore,He kept the Arcanum's library through the betrayal and will not forgive Ilvane.
+hero_teodor_name,Archivist Teodor
+hero_tess_lore,The Weeping Saint's last acolyte. She still hears the Saint cry.
+hero_tess_name,Acolyte Tess
+hero_thornblade_lore,A fey-court duelist exiled for winning a duel she was meant to lose.
+hero_thornblade_name,Sabine Thornblade
+hero_tidebreaker_lore,The harbor-master who held the sea wall alone the night Ys-Marrow drowned.
+hero_tidebreaker_name,Hesk Tidebreaker
+hero_tidecaller_lore,A sea-witch who bargained with the Tide Mother and lost something she will not name.
+hero_tidecaller_name,Nerys of the Deep
+hero_trapwright_lore,"Lays traps for wendigo. He has caught three, and a jarl."
+hero_trapwright_name,Gunnar Trapwright
+hero_ulfgar_lore,A clan berserker who swore a blood-oath to the party. The clan wants it back.
+hero_ulfgar_name,Ulfgar Bloodaxe
+hero_vala_lore,"A seeress who speaks to the frozen Titan. It speaks back, slowly."
+hero_vala_name,Vala Rimewitch
+hero_vespera_lore,She fires arrows of starlight. The stars are running out.
+hero_vespera_name,Vespera Starshot
+hero_vitrum_lore,A glass golem of the Arcanum whose maker is long dead. It still guards the door.
+hero_vitrum_name,Vitrum
+hero_wen_lore,A healer who learned to cure the Hollow-touched by taking the Hollow into herself.
+hero_wen_name,Wen Mendwell
+hero_wolfsister_lore,She runs with a wolf pack the clans pretend not to see.
+hero_wolfsister_name,Kari Wolfsister
+hero_yara_lore,"She keeps the last oasis. Every traveler drinks, even enemies, once."
+hero_yara_name,Mother Yara
+hero_ylva_lore,"She keeps the hearth fire of the clans alive, feeds anyone and scolds everyone."
+hero_ylva_name,Granny Ylva
+hero_ysmay_lore,A knight of House Vey who refused the blood. They took her family instead.
+hero_ysmay_name,Dame Ysmay
+passive_already_dead_desc,"Once per battle, near death, he refuses to fall: a big heal and more attack."
+passive_already_dead_name,Already Dead
+passive_ambush_desc,Opens every battle with a shot at the strongest enemy.
+passive_ambush_name,Ambush
+passive_annotated_desc,"When an ally falls, his skill is ready three turns sooner."
+passive_annotated_name,Annotated
+passive_blood_oath_desc,Every kill heals him.
+passive_blood_oath_name,Blood Oath
+passive_bloodrage_desc,"Once per battle, below half health, he flies into a rage: more attack and speed."
+passive_bloodrage_name,Bloodrage
+passive_borrowed_time_desc,At the start of battle every other ally's skill is a turn closer.
+passive_borrowed_time_name,Borrowed Time
+passive_burden_of_office_desc,After his skill he wraps himself in a ward.
+passive_burden_of_office_name,Burden of Office
+passive_cold_spite_desc,"When an ally falls, the cold slows every enemy."
+passive_cold_spite_name,Cold Spite
+passive_constellation_desc,Every fourth turn the stars mark every enemy.
+passive_constellation_name,Constellation
+passive_contagion_desc,A kill spreads a little poison to every enemy.
+passive_contagion_name,Contagion
+passive_deep_roots_desc,Grows a thin bark shield at the start of every turn.
+passive_deep_roots_name,Deep Roots
+passive_desert_hide_desc,Starts each battle with sun-hardened skin.
+passive_desert_hide_name,Desert Hide
+passive_devotion_desc,"When struck, 30% chance to heal the most wounded ally anyway."
+passive_devotion_name,Devotion
 passive_dragons_retort_desc,"When hit, bites back at the weakest enemy and drinks its blood (every 3rd turn at most)."
 passive_dragons_retort_name,Dragon's Retort
+passive_ebb_and_flow_desc,Every third turn the tide washes over the most wounded ally.
+passive_ebb_and_flow_name,Ebb and Flow
+passive_edge_walker_desc,At the start of battle steadies every other ally's footing.
+passive_edge_walker_name,Edge-Walker
+passive_ember_heart_desc,A kill sets a random enemy ablaze.
+passive_ember_heart_name,Ember Heart
+passive_ember_steps_desc,Every basic attack quickens her step (stacks 4 times).
+passive_ember_steps_name,Ember Steps
+passive_emptiness_desc,A kill wraps her in a void shield.
+passive_emptiness_name,Emptiness
 passive_encore_desc,35% chance after Battle Anthem to speed up every other ally's skills by one turn.
 passive_encore_name,Encore
+passive_etched_desc,Starts each battle by etching thorned runes on two random allies.
+passive_etched_name,Etched
+passive_eyes_above_desc,Every third turn her hawks mark the strongest enemy.
+passive_eyes_above_name,Eyes Above
+passive_foresight_desc,At the start of battle warns everyone: a little dodge for the party.
+passive_foresight_name,Foresight
+passive_forestwalk_desc,After being hit she slips into the undergrowth: likely to dodge the next blow.
+passive_forestwalk_name,Forestwalk
+passive_frostbite_desc,Basic attacks chill the weakest enemy.
+passive_frostbite_name,Frostbite
+passive_giant_s_blood_desc,Every hit he takes toughens him further (stacks 5 times).
+passive_giant_s_blood_name,Giant's Blood
+passive_gravedigger_desc,"When an ally falls, every enemy is marked for burial."
+passive_gravedigger_name,Gravedigger
+passive_grudge_desc,"When an ally falls, she taunts and hits much harder."
+passive_grudge_name,Grudge
+passive_guiding_light_desc,"When an ally falls, the lamp flares: more critical hits for everyone."
+passive_guiding_light_name,Guiding Light
+passive_harmony_desc,Every third turn two random allies are soothed by the choir.
+passive_harmony_name,Harmony
+passive_hidden_sting_desc,Critical hits bring her skill a turn closer.
+passive_hidden_sting_name,Hidden Sting
+passive_hollow_echo_desc,After her skill the cut echoes into a random enemy.
+passive_hollow_echo_name,Hollow Echo
+passive_hollow_vessel_desc,"Once per battle, when badly hurt, the emptiness inside mends her."
+passive_hollow_vessel_name,Hollow Vessel
+passive_holy_aim_desc,Basic attacks have a 30% chance to steady her aim.
+passive_holy_aim_name,Holy Aim
+passive_howl_desc,At the start of battle the pack howls: more attack for everyone.
+passive_howl_name,Howl
+passive_hunter_s_resolve_desc,A kill purges his curses and quickens him.
+passive_hunter_s_resolve_name,Hunter's Resolve
+passive_into_the_dark_desc,At the start of battle the light shows every enemy's weak spots.
+passive_into_the_dark_name,Into the Dark
+passive_ironclad_desc,"When hit, 30% chance to shrug off a harmful effect."
+passive_ironclad_name,Ironclad
 passive_kindling_desc,Basic attacks set the weakest enemy alight.
 passive_kindling_name,Kindling
+passive_last_rites_desc,"Once per battle, when an ally falls, he calls them back."
+passive_last_rites_name,Last Rites
+passive_leader_desc,Every fallen ally hardens his resolve (stacks twice).
+passive_leader_name,Leader
+passive_ledger_desc,Each fallen ally is written down: every ally hits harder (stacks 3 times).
+passive_ledger_name,Ledger
+passive_living_reef_desc,"Once per battle, below half health, the reef slowly mends her."
+passive_living_reef_name,Living Reef
+passive_lucky_misfire_desc,Critical hits reload the gun two turns sooner.
+passive_lucky_misfire_name,Lucky Misfire
+passive_lucky_star_desc,Basic attacks have a 30% chance to hurry a random ally's skill.
+passive_lucky_star_name,Lucky Star
+passive_lullaby_desc,"When struck, 30% chance to lull the strongest enemy to sleep."
+passive_lullaby_name,Lullaby
+passive_mirage_desc,"Once per battle, the first hit turns him into a mirage: very likely to dodge."
+passive_mirage_name,Mirage
+passive_mother_s_watch_desc,At the start of battle she watches over one ally: hard to hit.
+passive_mother_s_watch_name,Mother's Watch
+passive_mycelium_desc,Basic attacks seed a random ally with healing spores.
+passive_mycelium_name,Mycelium
+passive_never_again_desc,"When an ally falls, he will not let it happen twice: attack and speed."
+passive_never_again_name,Never Again
+passive_not_yet_desc,"Once per battle, a breath from death: a huge shield and deadly focus."
+passive_not_yet_name,Not Yet
+passive_nothing_inside_desc,"Once per battle, when broken below 30%, there is nothing left to hurt."
+passive_nothing_inside_name,Nothing Inside
+passive_oath_of_the_bulwark_desc,Every third turn she plants her shield and taunts.
+passive_oath_of_the_bulwark_name,Oath of the Bulwark
 passive_oathbound_desc,"When an ally falls, taunts all enemies and raises a shield."
 passive_oathbound_name,Oathbound
+passive_oathkeeper_desc,"When an ally falls, he regenerates and steps forward."
+passive_oathkeeper_name,Oathkeeper
+passive_old_habits_desc,Critical hits open a bleeding wound on the weakest enemy.
+passive_old_habits_name,Old Habits
 passive_opportunist_desc,A kill makes Backstab ready two turns sooner.
 passive_opportunist_name,Opportunist
+passive_out_of_time_desc,"After her skill, 30% chance it comes back a turn early."
+passive_out_of_time_name,Out of Time
+passive_overheat_desc,"Once per battle, near collapse, the boiler bursts and burns every enemy."
+passive_overheat_name,Overheat
+passive_patient_eye_desc,Basic attacks have a 25% chance to poison the weakest enemy.
+passive_patient_eye_name,Patient Eye
+passive_penance_desc,Each blow he endures heals every other ally a little.
+passive_penance_name,Penance
+passive_penitence_desc,"When struck, purges a curse and slowly heals (every fourth turn at most)."
+passive_penitence_name,Penitence
+passive_pickpocket_desc,Basic attacks have a 30% chance to steal an enemy's blessing.
+passive_pickpocket_name,Pickpocket
+passive_plunder_desc,A kill sharpens his eye: more critical hits for 3 turns.
+passive_plunder_name,Plunder
+passive_prism_desc,"After her skill, the light strengthens every ally."
+passive_prism_name,Prism
 passive_purifying_prayer_desc,Every other turn removes one harmful effect from the most wounded ally.
 passive_purifying_prayer_name,Purifying Prayer
+passive_quench_desc,"After her blessing, she cools the most wounded ally's wounds."
+passive_quench_name,Quench
+passive_reel_in_desc,"After her harpoon, 40% chance to haul the strongest enemy off its feet."
+passive_reel_in_name,Reel In
+passive_refused_desc,"Once per battle, near death, she drains the strongest enemy."
+passive_refused_name,Refused
+passive_reload_desc,After her skill she moves faster for two turns.
+passive_reload_name,Reload
+passive_riposte_desc,"When struck, 35% chance to answer with a counter-thrust."
+passive_riposte_name,Riposte
+passive_rot_feeds_me_desc,A kill heals her and makes her stronger for 2 turns.
+passive_rot_feeds_me_name,Rot Feeds Me
+passive_runic_ward_desc,Every fourth turn wards the most wounded ally.
+passive_runic_ward_name,Runic Ward
+passive_saga_desc,Each kill becomes a verse: every other ally hits harder.
+passive_saga_name,Saga
+passive_salt_ward_desc,Starts each battle behind a ward of salt.
+passive_salt_ward_name,Salt Ward
+passive_sanctuary_desc,Starts each battle by shielding the party.
+passive_sanctuary_name,Sanctuary
+passive_sanguine_desc,Every basic attack feeds him a little.
+passive_sanguine_name,Sanguine
+passive_sea_wind_desc,At the start of battle a tail wind speeds up the whole party.
+passive_sea_wind_name,Sea Wind
 passive_second_arrow_desc,30% chance after a basic attack to loose a second arrow at the weakest enemy.
 passive_second_arrow_name,Second Arrow
+passive_seed_of_renewal_desc,"Once per battle, when she is badly hurt, the whole party is healed."
+passive_seed_of_renewal_name,Seed of Renewal
+passive_shared_sorrow_desc,"Once per battle, when she is badly hurt, she shields everyone else."
+passive_shared_sorrow_name,Shared Sorrow
+passive_shatterproof_desc,"Once per battle, when cracked below 40%, its glass hardens."
+passive_shatterproof_name,Shatterproof
+passive_shepherd_desc,"When an ally falls, shields the rest of the flock."
+passive_shepherd_name,Shepherd
+passive_sleepless_desc,Every fourth turn marks the weakest enemy for death.
+passive_sleepless_name,Sleepless
+passive_smoke_lunged_desc,"When hit, regenerates a little health (every third turn at most)."
+passive_smoke_lunged_name,Smoke-Lunged
+passive_sparks_fly_desc,Critical hits shower every enemy with sparks.
+passive_sparks_fly_name,Sparks Fly
 passive_static_charge_desc,Critical hits arc to two random enemies.
 passive_static_charge_name,Static Charge
+passive_tempered_desc,Each blow he takes tempers him: a small shield (every third turn at most).
+passive_tempered_name,Tempered
+passive_titan_s_breath_desc,Every fourth turn the Titan exhales over every enemy.
+passive_titan_s_breath_name,Titan's Breath
+passive_triage_desc,"Each turn, 50% chance to give the most wounded ally a quick heal."
+passive_triage_name,Triage
+passive_tripwire_desc,"When struck, 25% chance to trip a random enemy, slowing it."
+passive_tripwire_name,Tripwire
+passive_trophy_desc,Every kill makes his critical hits deadlier (stacks 5 times).
+passive_trophy_name,Trophy
+passive_unbound_desc,A kill frees the djinn for one more strike on a random enemy.
+passive_unbound_name,Unbound
 passive_unbroken_desc,"Once per battle, below 35% HP: a heavy shield and all harmful effects removed."
 passive_unbroken_name,Unbroken
+passive_undertow_desc,"At the start of battle the tide drags at every enemy, slowing them."
+passive_undertow_name,Undertow
+passive_warm_broth_desc,"When an ally falls, the most wounded survivor gets a big heal."
+passive_warm_broth_name,Warm Broth
+passive_white_stag_desc,At the start of battle the stag blesses the party with regeneration.
+passive_white_stag_name,White Stag
+passive_wick_desc,Every third turn a candle flame leaps at a random enemy.
+passive_wick_name,Wick
 passive_wild_instinct_desc,Starts each battle with a 25% chance to dodge for 3 turns.
 passive_wild_instinct_name,Wild Instinct
+passive_zeal_desc,Every kill makes every ally's skill a turn closer.
+passive_zeal_name,Zeal
 skill_aegis_desc,Shields all allies and hardens the caster.
 skill_aegis_name,Aegis
 skill_anthem_desc,Raises all allies' attack and heals them a little.
 skill_anthem_name,Battle Anthem
+skill_anvil_slam_desc,Slams the anvil down: hits every enemy and may stagger them.
+skill_anvil_slam_name,Anvil Slam
+skill_arrow_before_dawn_desc,Strikes the strongest enemy; devastating if it is already below 40%.
+skill_arrow_before_dawn_name,Arrow Before Dawn
+skill_ashstorm_desc,Blasts every enemy with burning ash.
+skill_ashstorm_name,Ashstorm
+skill_avalanche_guard_desc,Braces like a mountain: a huge shield and every eye on him.
+skill_avalanche_guard_name,Avalanche Guard
 skill_backstab_desc,A devastating strike on one enemy.
 skill_backstab_name,Backstab
+skill_bash_desc,A blow with the shield rim.
+skill_bash_name,Shield Rap
+skill_beacon_shot_desc,A burning arrow that marks the strongest enemy for the whole party.
+skill_beacon_shot_name,Beacon Shot
+skill_bear_trap_desc,Snaps a trap on the strongest enemy: it is stuck and bleeding.
+skill_bear_trap_name,Bear Trap
+skill_betrayer_s_lesson_desc,A dirty trick on the strongest enemy that ruins its attack.
+skill_betrayer_s_lesson_name,Betrayer's Lesson
+skill_blessed_edge_desc,"Blesses every ally's weapon: harder hits, more criticals."
+skill_blessed_edge_name,Blessed Edge
+skill_blight_arrow_desc,A rotten arrow: heavy poison and crumbling armor.
+skill_blight_arrow_name,Blight Arrow
+skill_blood_boil_desc,Boils the blood of every enemy.
+skill_blood_boil_name,Blood Boil
+skill_boarding_hook_desc,Hooks the weakest enemy and tears open its armor.
+skill_boarding_hook_name,Boarding Hook
 skill_bolt_desc,Hurls a bolt of raw magic.
 skill_bolt_name,Arcane Bolt
+skill_bolt_storm_desc,"Six bolts at random enemies, each chipping away armor."
+skill_bolt_storm_name,Bolt Storm
 skill_boss_dark_nova_desc,Necrotic blast that weakens every enemy.
 skill_boss_dark_nova_name,Dark Nova
 skill_boss_fire_breath_desc,Engulfs every enemy in flame.
 skill_boss_fire_breath_name,Fire Breath
 skill_boss_smash_desc,Hits every enemy and may stun.
 skill_boss_smash_name,Ground Smash
+skill_bounty_desc,Finishes the weakest enemy: triple damage below 30% health.
+skill_bounty_name,Bounty
+skill_breakwater_desc,Shields every ally and draws the next attack.
+skill_breakwater_name,Breakwater
+skill_calming_tune_desc,Slows every enemy; some drift off to sleep.
+skill_calming_tune_name,Calming Tune
 skill_chain_lightning_desc,Shocks all enemies; may stun.
 skill_chain_lightning_name,Chain Lightning
+skill_charging_antlers_desc,The white stag charges two random enemies and may knock them down.
+skill_charging_antlers_name,Charging Antlers
 skill_chord_desc,A painful note aimed at one enemy.
 skill_chord_name,Sharp Chord
 skill_cleave_desc,Hits two random enemies.
 skill_cleave_name,Cleave
+skill_collapse_desc,Collapses the air over every enemy; some are struck mute.
+skill_collapse_name,Collapse
+skill_consecrated_arrow_desc,A blessed arrow that silences what it strikes.
+skill_consecrated_arrow_name,Consecrated Arrow
+skill_coral_bulwark_desc,"Hardens her coral: much tougher, and it cuts whoever strikes her."
+skill_coral_bulwark_name,Coral Bulwark
+skill_crimson_oath_desc,Drinks her full blow back as health and dares the enemy to answer.
+skill_crimson_oath_name,Crimson Oath
+skill_death_verse_desc,"A killing verse: crushing on a foe below 35% health, and it inspires him."
+skill_death_verse_name,Death-Verse
+skill_door_of_ash_desc,"Raises a charred door: taunts, shields itself and burns attackers with splinters."
+skill_door_of_ash_name,Door of Ash
 skill_dragon_fury_desc,Scorches all enemies; fury grows with each use.
 skill_dragon_fury_name,Dragon Fury
+skill_drowned_word_desc,Speaks a drowned word that strips an enemy of every blessing.
+skill_drowned_word_name,Drowned Word
+skill_ember_hammer_desc,A blazing hammer blow that leaves the target burning.
+skill_ember_hammer_name,Ember Hammer
+skill_empty_vigil_desc,Stands an empty vigil: a long taunt behind a shield.
+skill_empty_vigil_name,Empty Vigil
 skill_enemy_bite_desc,A savage bite.
 skill_enemy_bite_name,Bite
 skill_enemy_hex_desc,Weakens one enemy's attack.
@@ -175,22 +587,160 @@ skill_enemy_roar_desc,Raises all allies' attack.
 skill_enemy_roar_name,War Roar
 skill_enemy_volley_desc,Two arrows at random enemies.
 skill_enemy_volley_name,Bone Volley
+skill_falling_star_desc,Three falling stars at random enemies; a few are stunned.
+skill_falling_star_name,Falling Star
+skill_field_surgery_desc,"Patches up the most wounded ally: heals, removes curses, braces them."
+skill_field_surgery_name,Field Surgery
 skill_fireball_desc,Burns every enemy.
 skill_fireball_name,Fireball
+skill_flame_waltz_desc,"Three dancing flames at random enemies, each leaving a burn."
+skill_flame_waltz_name,Flame Waltz
+skill_frozen_rampart_desc,"Locks shields with the party: tougher, and attackers get frostbite."
+skill_frozen_rampart_name,Frozen Rampart
+skill_gale_arrows_desc,Four wind-borne arrows at random enemies.
+skill_gale_arrows_name,Gale Arrows
+skill_gate_whisper_desc,"Whispers a word from beyond the Gate at the strongest enemy, silencing it."
+skill_gate_whisper_name,Gate Whisper
+skill_glacial_prison_desc,Freezes the strongest enemy solid for two turns and cracks its armor.
+skill_glacial_prison_name,Glacial Prison
+skill_glass_shards_desc,Five shards of storm-glass at random enemies.
+skill_glass_shards_name,Glass Shards
+skill_hawk_strike_desc,Sends a hawk at the weakest enemy; its talons leave it bleeding.
+skill_hawk_strike_name,Hawk Strike
 skill_heal_desc,Heals the most wounded ally.
 skill_heal_name,Mending Light
+skill_hearthfire_desc,"Warmth spreads through the party, healing over three turns."
+skill_hearthfire_name,Hearthfire
+skill_hold_the_line_desc,The Bulwark formation: shields and defense for every ally.
+skill_hold_the_line_name,Hold the Line
+skill_hollow_lance_desc,A lance of nothing that tears away part of an enemy's max health.
+skill_hollow_lance_name,Hollow Lance
+skill_homecoming_arrow_desc,A true shot that also mends her own wounds.
+skill_homecoming_arrow_name,Homecoming Arrow
+skill_judgement_desc,"Pronounces judgement: blessings stripped, voice taken, a holy blow."
+skill_judgement_name,Judgement
+skill_lantern_of_dawn_desc,"The lantern blazes: curses gone, wounds eased, eyes sharpened."
+skill_lantern_of_dawn_name,Lantern of Dawn
+skill_last_stand_desc,"Throws everything at every enemy, guard forgotten."
+skill_last_stand_name,Last Stand
+skill_leviathan_harpoon_desc,Harpoons the strongest enemy for a share of its max health and makes it bleed.
+skill_leviathan_harpoon_name,Leviathan Harpoon
+skill_low_blow_desc,A dirty hit on the weakest enemy that saps its strength.
+skill_low_blow_name,Low Blow
 skill_marked_desc,Strong shot that weakens the target's defense.
 skill_marked_name,Hunter's Mark
+skill_maul_desc,"A reckless mauling: huge damage, but he drops his guard."
+skill_maul_name,Maul
+skill_mend_strike_desc,A light blow that also heals the caster a little.
+skill_mend_strike_name,Mending Strike
+skill_molten_core_desc,Its core runs hot: regenerates and hardens.
+skill_molten_core_name,Molten Core
+skill_noon_shot_desc,"Takes perfect aim, then a single crushing shot."
+skill_noon_shot_name,Noon Shot
+skill_oasis_desc,"Cool water heals every ally, now and over time."
+skill_oasis_name,Oasis
+skill_pack_hunt_desc,The pack tears into the weakest enemy; bleeding stacks.
+skill_pack_hunt_name,Pack Hunt
+skill_poisoned_barb_desc,A barbed bolt with stacking poison.
+skill_poisoned_barb_name,Poisoned Barb
+skill_pressure_vent_desc,Vents scalding steam over every enemy and draws their attention.
+skill_pressure_vent_name,Pressure Vent
+skill_push_back_desc,Shoves every enemy back: their skills are delayed and they slow.
+skill_push_back_name,Push Back
+skill_red_frenzy_desc,Three wild axe blows; each frenzy builds his strength.
+skill_red_frenzy_name,Red Frenzy
+skill_refract_desc,Turns its body into a prism: taunts and reflects most of the damage it takes.
+skill_refract_name,Refract
+skill_rend_desc,A tearing strike.
+skill_rend_name,Rend
+skill_requiem_desc,The ghost choir shields and hastens every ally.
+skill_requiem_name,Requiem
+skill_rest_eternal_desc,Grave-dust weakens and slows every enemy.
+skill_rest_eternal_name,Rest Eternal
+skill_rime_edge_desc,A freezing cut: slows hard and may freeze solid.
+skill_rime_edge_name,Rime Edge
+skill_riptide_desc,A wave crashes over every enemy and drags their skills back.
+skill_riptide_name,Riptide
+skill_rootwall_desc,Roots rise around the party; he draws every blow.
+skill_rootwall_name,Rootwall
+skill_rune_of_ruin_desc,A rune of ruin cracks every enemy's armor.
+skill_rune_of_ruin_name,Rune of Ruin
+skill_rune_of_warding_desc,Carves a ward on the most wounded ally: a heavy shield and curses lifted.
+skill_rune_of_warding_name,Rune of Warding
+skill_saltwater_blade_desc,A cold cut that drinks the life it spills.
+skill_saltwater_blade_name,Saltwater Blade
+skill_sand_prophecy_desc,Foretells every enemy's death: they take more damage and slow down.
+skill_sand_prophecy_name,Sand Prophecy
+skill_sandwall_desc,Throws up walls of sand in front of every other ally.
+skill_sandwall_name,Sandwall
+skill_seal_shield_desc,Raises the Warden shield over the party and breaks one curse each.
+skill_seal_shield_name,Seal Shield
 skill_shield_bash_desc,Heavy blow that may stun the target.
 skill_shield_bash_name,Shield Bash
 skill_shot_desc,Fires an arrow at one enemy.
 skill_shot_name,Quick Shot
+skill_silent_song_desc,A soundless song: may silence every enemy and weakens their attacks.
+skill_silent_song_name,Silent Song
+skill_silent_vow_desc,"Takes a silent vow: taunts, hardens and casts off curses."
+skill_silent_vow_name,Silent Vow
+skill_silver_stake_desc,A silver stake that burns away two of the target's blessings.
+skill_silver_stake_name,Silver Stake
 skill_slash_desc,Strikes one enemy.
 skill_slash_name,Slash
 skill_smite_desc,A holy strike.
 skill_smite_name,Smite
+skill_snare_line_desc,"Springs hidden snares under every enemy, slowing them."
+skill_snare_line_name,Snare Line
+skill_spark_desc,A crackle of magic at the weakest enemy.
+skill_spark_name,Spark
+skill_spiked_aegis_desc,Shields the most wounded ally and bristles with spikes herself.
+skill_spiked_aegis_name,Spiked Aegis
+skill_spore_bloom_desc,"Spores burst over every enemy, leaving them easier to hurt."
+skill_spore_bloom_name,Spore Bloom
 skill_stab_desc,A quick dagger thrust.
 skill_stab_name,Stab
+skill_star_chart_desc,Reads the stars for the party: more and harder critical hits.
+skill_star_chart_name,Star Chart
+skill_stitch_and_pray_desc,Stitches the most wounded ally and keeps praying over them.
+skill_stitch_and_pray_name,Stitch and Pray
+skill_stolen_time_desc,"Steals time from every enemy: skills delayed, speed lost."
+skill_stolen_time_name,Stolen Time
+skill_take_the_pain_desc,A huge heal on the most wounded ally; she takes some of the hurt.
+skill_take_the_pain_name,Take the Pain
+skill_tears_of_the_saint_desc,Holy tears heal the party and wash away every curse.
+skill_tears_of_the_saint_name,Tears of the Saint
+skill_thousand_thorns_desc,"Three lightning thrusts at random enemies, each one bleeding."
+skill_thousand_thorns_name,Thousand Thorns
+skill_thunderstick_desc,An enormous shot. 30% chance the recoil leaves him stunned.
+skill_thunderstick_name,Thunderstick
+skill_tolling_bell_desc,The bell heals every ally and lifts one curse from each.
+skill_tolling_bell_name,Tolling Bell
+skill_twin_shot_desc,Two quick arrows at random enemies.
+skill_twin_shot_name,Twin Shot
+skill_unmaking_desc,Unmakes one blessing from every enemy and wounds them all.
+skill_unmaking_name,Unmaking
+skill_unwriting_desc,Erases the strongest enemy's blessings and pushes back its skill.
+skill_unwriting_name,Unwriting
+skill_venom_kiss_desc,Finds the weakest enemy and poisons the wound.
+skill_venom_kiss_name,Venom Kiss
+skill_verdant_pulse_desc,A pulse of green life heals and toughens every ally.
+skill_verdant_pulse_name,Verdant Pulse
+skill_vigil_flames_desc,Four candle flames burn random enemies.
+skill_vigil_flames_name,Vigil Flames
+skill_void_cut_desc,A cut through reality that also takes a slice of max health.
+skill_void_cut_name,Void Cut
 skill_volley_desc,Three arrows at random enemies.
 skill_volley_name,Volley
+skill_volley_of_dawn_desc,"Arrows of dawn light on every enemy, marking them."
+skill_volley_of_dawn_name,Volley of Dawn
+skill_warcry_of_the_jarl_desc,"Rallies the party: more attack and speed, and he stands in front."
+skill_warcry_of_the_jarl_name,Warcry of the Jarl
+skill_whirlwind_cut_desc,"Becomes a whirlwind of blades through every enemy, hard to hit."
+skill_whirlwind_cut_name,Whirlwind Cut
+skill_whiteout_desc,Vanishes into the snow after a heavy shot.
+skill_whiteout_name,Whiteout
+skill_withering_curse_desc,Rots every enemy and saps their strength.
+skill_withering_curse_name,Withering Curse
+skill_written_oath_desc,"Writes the party into the oath: attack, defense and regeneration."
+skill_written_oath_name,Written Oath
 speaker_narrator,Narrator

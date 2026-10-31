@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_siren
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_siren
+  nameKey: hero_siren_name
+  loreKey: hero_siren_lore
+  rarity: 0
+  heroClass: 4
+  baseStats:
+    values:
+    - 400
+    - 49
+    - 17
+    - 105
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: db1747d8a18b84b15bed6d892c8fcfde, type: 2}
+  activeSkill: {fileID: 11400000, guid: a049c2c7283a643cfb7241bd881f7981, type: 2}
+  passiveSkill: {fileID: 11400000, guid: f9d26a01a037f4bbd907105cf28e2fca, type: 2}
+  origin: act_2
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.9137255, g: 0.83137256, b: 0.27450982, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  icon: {fileID: 0}
+  cardArt: {fileID: 0}
+  animations: {fileID: 0}

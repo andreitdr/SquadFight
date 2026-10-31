@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_amsel
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_amsel
+  nameKey: hero_amsel_name
+  loreKey: hero_amsel_lore
+  rarity: 0
+  heroClass: 4
+  baseStats:
+    values:
+    - 510
+    - 40
+    - 17
+    - 105
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: d19958837171f48b9b24f11ef44535d8, type: 2}
+  activeSkill: {fileID: 11400000, guid: ed2f20d3382c34d6b827458d70c73dc1, type: 2}
+  passiveSkill: {fileID: 11400000, guid: cc0d43903ee6c42f897c16bb2b70743e, type: 2}
+  origin: act_7
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.92156863, g: 0.8117647, b: 0.43529412, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  icon: {fileID: 0}
+  cardArt: {fileID: 0}
+  animations: {fileID: 0}

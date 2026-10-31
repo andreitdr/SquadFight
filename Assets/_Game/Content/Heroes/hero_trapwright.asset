@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b6cb2b068884f1e9dd1ef075d73bab, type: 3}
+  m_Name: hero_trapwright
+  m_EditorClassIdentifier: Game.Data::Game.Data.HeroDefinition
+  id: hero_trapwright
+  nameKey: hero_trapwright_name
+  loreKey: hero_trapwright_lore
+  rarity: 0
+  heroClass: 2
+  baseStats:
+    values:
+    - 390
+    - 56
+    - 12
+    - 119
+    - 0.15
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: c1885a23ba05540c5a206296b5604dcc, type: 2}
+  activeSkill: {fileID: 11400000, guid: e2d07174ab8e84324a60f80d45809ec2, type: 2}
+  passiveSkill: {fileID: 11400000, guid: aafd8bafd1f364e898216481c0bb4107, type: 2}
+  origin: act_5
+  portrait: {fileID: 21300000, guid: 4a94ee2fc81234b6cbb0674a1b016aed, type: 3}
+  tint: {r: 0.6627451, g: 0.9372549, b: 0.5019608, a: 1}
+  shardIcon: {fileID: 21300000, guid: 0f79617dd1bf44d4bb49a8bf463a65c9, type: 3}
+  icon: {fileID: 0}
+  cardArt: {fileID: 0}
+  animations: {fileID: 0}
