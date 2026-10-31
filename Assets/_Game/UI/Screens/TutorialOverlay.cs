@@ -24,6 +24,7 @@ namespace Game.UI
         private TutorialAnchor _lastTarget;
         private int _settleFrames;
         private bool _scrolled;
+        private ConfirmPopup _skipConfirm;
 
         public bool Visible => _root != null && _root.gameObject.activeSelf;
         public string TargetAnchor => _tutorial?.Current?.Anchor;
@@ -68,10 +69,25 @@ namespace Game.UI
             // Blockers cover the full screen; the Skip button sits in the free middle of the top bar, inside the safe area.
             var safe = UIKit.Rect("SafeArea", _root).Stretch();
             safe.gameObject.AddComponent<SafeAreaFitter>();
-            var skip = UIKit.Button(safe, "Skip", _ctx.T("tut_skip"), () =>
-                ConfirmPopup.Show(_ctx, _ctx.T("tut_skip_title"), _ctx.T("tut_skip_body"), () => _tutorial.Skip()), UIKit.ButtonStyle.Ghost, th.fontSmall);
+            var skip = UIKit.Button(safe, "Skip", _ctx.T("tut_skip"), ShowSkipConfirm, UIKit.ButtonStyle.Ghost, th.fontSmall);
             ((RectTransform)skip.transform).Anchor(new Vector2(0.5f, 1), new Vector2(260, 90), new Vector2(0, -(UIManager.TopBarHeight - 90) / 2f), new Vector2(0.5f, 1));
             Refresh();
+        }
+
+        /// <summary>One confirmation at a time: repeated taps on Skip do not stack popups.</summary>
+        private void ShowSkipConfirm()
+        {
+            if (_skipConfirm != null) return;
+            _skipConfirm = ConfirmPopup.Show(_ctx, _ctx.T("tut_skip_title"), _ctx.T("tut_skip_body"), () => _tutorial.Skip());
+        }
+
+        /// <summary>True when a popup that does not hold the target is open on top of it (the overlay would block its input).</summary>
+        private bool CoveredByPopup(TutorialAnchor anchor)
+        {
+            var popups = _ctx.Manager.Popups;
+            if (popups.Count == 0) return false;
+            var top = popups[popups.Count - 1];
+            return top != null && !anchor.transform.IsChildOf(top.transform);
         }
 
         private void OnTapped(string anchorId)
@@ -96,8 +112,9 @@ namespace Game.UI
         private void LateUpdate()
         {
             var step = _tutorial?.Current;
-            // Popups other than the targeted one keep their own input (e.g. confirmations).
-            var anchorVisible = step != null && TutorialAnchor.Active.TryGetValue(step.Anchor, out var anchor) && anchor != null && anchor.isActiveAndEnabled;
+            // Popups other than the targeted one keep their own input (e.g. confirmations): the overlay steps aside for them.
+            var anchorVisible = step != null && TutorialAnchor.Active.TryGetValue(step.Anchor, out var anchor) && anchor != null && anchor.isActiveAndEnabled
+                && !CoveredByPopup(anchor);
             var a = anchorVisible ? TutorialAnchor.Active[step.Anchor] : null;
             // A freshly built target is laid out (and its scroll view settled) only after its first frames; drawing then
             // would leave the hole in the wrong place for as long as a slow first frame stays on screen.

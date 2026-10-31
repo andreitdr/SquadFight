@@ -58,6 +58,35 @@ namespace Game.Tests.PlayMode
             LogAssert.NoUnexpectedReceived();
         }
 
+        [UnityTest]
+        public IEnumerator SkipConfirm_IsTappable_AndDoesNotStack()
+        {
+            var session = AppContext.Services.Get<GameSession>();
+            var manager = Object.FindAnyObjectByType<MainSceneRoot>().Manager;
+            yield return new WaitForSecondsRealtime(0.3f);
+            var overlay = Object.FindAnyObjectByType<TutorialOverlay>();
+            Assert.IsTrue(overlay.Visible);
+            var skip = overlay.transform.Find("Root/SafeArea/Skip").GetComponent<UnityEngine.UI.Button>();
+            skip.onClick.Invoke();
+            skip.onClick.Invoke();
+            skip.onClick.Invoke();
+            yield return null;
+            Assert.AreEqual(1, manager.Popups.Count, "repeated Skip taps open a single confirmation");
+            yield return new WaitForSecondsRealtime(0.4f);
+            Assert.IsFalse(overlay.Visible, "the overlay steps aside while the confirmation is open");
+
+            // A real tap on the Confirm button must reach it, not the overlay's blockers.
+            var confirm = (RectTransform)manager.Popups[0].transform.Find("Panel/Buttons/Confirm");
+            var hits = new System.Collections.Generic.List<RaycastResult>();
+            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = ScreenRect(confirm).center }, hits);
+            Assert.IsNotEmpty(hits);
+            Assert.IsTrue(hits[0].gameObject.transform.IsChildOf(confirm), "top hit is the Confirm button, got " + hits[0].gameObject.name);
+            ExecuteEvents.ExecuteHierarchy(hits[0].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
+            yield return null;
+            Assert.IsTrue(session.Tutorial.IsComplete, "confirming skips the tutorial");
+            Assert.AreEqual(0, manager.Popups.Count);
+        }
+
         /// <summary>Screen-space rect of a UI element (overlay canvases: world space is screen pixels).</summary>
         private static Rect ScreenRect(RectTransform rt)
         {
