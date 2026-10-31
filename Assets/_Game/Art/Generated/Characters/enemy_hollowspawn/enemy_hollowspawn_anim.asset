@@ -16,17 +16,13 @@ MonoBehaviour:
   feetY: 0.0708
   clips:
   - name: idle
-    fps: 8
+    fps: 4
     loop: 1
     frames:
     - {fileID: 21300000, guid: 0cc24646e8dc34eb8aac8f48f5ef6934, type: 3}
     - {fileID: 21300000, guid: 2e21a2583e9a74a33a3de1003b553232, type: 3}
     - {fileID: 21300000, guid: 1f8e444b73b884357b9bfbfe6b0fcde5, type: 3}
     - {fileID: 21300000, guid: 21a1f37c9b93a46de8bbd14c35c6212a, type: 3}
-    - {fileID: 21300000, guid: 31e30c6c36ccd4379978a00c3a7759c9, type: 3}
-    - {fileID: 21300000, guid: b02f7b250e4774a5d95e01553eca2423, type: 3}
-    - {fileID: 21300000, guid: fedf0f650945d4016861475a2ebd006c, type: 3}
-    - {fileID: 21300000, guid: 166e36e160eb44d3681ab7bfda9d3eda, type: 3}
   - name: attack
     fps: 14
     loop: 0
@@ -57,22 +53,17 @@ MonoBehaviour:
     - {fileID: 21300000, guid: d5b1ff60cf1d9492eab03ae70faf036b, type: 3}
     - {fileID: 21300000, guid: 15ec996062936456582b837154fbe4e5, type: 3}
   - name: death
-    fps: 10
+    fps: 5
     loop: 0
     frames:
     - {fileID: 21300000, guid: 63389dfb1e84d4bd3bfaadf36fe1fbca, type: 3}
     - {fileID: 21300000, guid: f668cf922470f4b619f5b2b6f2f23036, type: 3}
     - {fileID: 21300000, guid: ff26cb2148067420dbd8ffd5121690da, type: 3}
     - {fileID: 21300000, guid: bb9faa39f4c174dff81f5ab947938bc5, type: 3}
-    - {fileID: 21300000, guid: 7a405a7435b224a26bc9742fa10bee89, type: 3}
-    - {fileID: 21300000, guid: 67ebf521dec034d109ee9ae79e4c6ad0, type: 3}
   - name: victory
-    fps: 10
+    fps: 5
     loop: 1
     frames:
     - {fileID: 21300000, guid: 00236fbd658a142faa04c98eda4ef1ab, type: 3}
     - {fileID: 21300000, guid: 2367a706996124f1ab14d000f2107de5, type: 3}
     - {fileID: 21300000, guid: 489f4e8008b7a450ea96ce0fa6ed602a, type: 3}
-    - {fileID: 21300000, guid: 5b6a686647f7b449ba9810c0285b74b2, type: 3}
-    - {fileID: 21300000, guid: b726d0ac783874f3e8807c430b6ce2ef, type: 3}
-    - {fileID: 21300000, guid: cd9128f96a2a240819978584cb0172b6, type: 3}

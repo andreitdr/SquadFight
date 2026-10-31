@@ -157,7 +157,7 @@ Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31
 - [x] Old saves: a save with the original 24 fights cleared opens chapter 4 and the new fights of chapters 1–3 (`SaveFromTheOldThreeChapters_ContinuesIntoTheNewCampaign`); new heroes are added by the reconciler.
 - [x] Balance (BalanceCli progression, seeds 1–3): casual 3/3 complete in 1,440 fights, 0 losses, 0 walls, 59–64 heroes; hardcore 3/3 in 2,880 fights, 0 walls, 69–74 heroes; greedy (never replays on purpose) clears chapters 1–3 and stalls around chapter 10 (Tide Mother) — the 400-fight campaign assumes some replaying.
 - [x] Tests: dotnet 298/298, config validator 0/0, Unity EditMode 333/333, PlayMode 15/15 (`tools/test-all.sh`).
-- [~] Art for the new heroes/enemies/items/backgrounds is generated placeholder art; APK size with 172 new characters to be measured by the release build.
+- [x] Release APK 101 MB (was 185 MB before ASTC + lighter frames for the new characters; 57 MB before "The Hundred"). Art is generated placeholder art.
 - Known gap: gold piles up (≈540k earned vs ≈9k spent per casual run) — nothing new to spend it on; same issue noted at step 15, now larger.
 
 ### Android release pipeline (owner request, 2026-10-31)

@@ -1,6 +1,6 @@
 {
  "id": "hero_anvilborn",
- "frameSize": 288,
+ "frameSize": 240,
  "viewBox": [
   -40,
   -70,
@@ -8,20 +8,16 @@
   480
  ],
  "feetY": 0.9291666666666667,
- "heightRatio": 0.7639,
+ "heightRatio": 0.7583,
  "clips": {
   "idle": {
-   "fps": 8,
+   "fps": 4,
    "loop": true,
    "frames": [
     "idle_00.png",
     "idle_01.png",
     "idle_02.png",
-    "idle_03.png",
-    "idle_04.png",
-    "idle_05.png",
-    "idle_06.png",
-    "idle_07.png"
+    "idle_03.png"
    ]
   },
   "attack": {
@@ -60,50 +56,41 @@
    ]
   },
   "death": {
-   "fps": 10,
+   "fps": 5,
    "loop": false,
    "frames": [
     "death_00.png",
     "death_01.png",
     "death_02.png",
-    "death_03.png",
-    "death_04.png",
-    "death_05.png"
+    "death_03.png"
    ]
   },
   "victory": {
-   "fps": 10,
+   "fps": 5,
    "loop": true,
    "frames": [
     "victory_00.png",
     "victory_01.png",
-    "victory_02.png",
-    "victory_03.png",
-    "victory_04.png",
-    "victory_05.png"
+    "victory_02.png"
    ]
   }
  },
  "bbox": [
-  0.3368,
-  0.1979,
-  0.6771,
-  0.9618
+  0.3333,
+  0.2,
+  0.6792,
+  0.9583
  ],
  "clipList": [
   {
    "name": "idle",
-   "fps": 8,
+   "fps": 4,
    "loop": true,
    "frames": [
     "idle_00.png",
     "idle_01.png",
     "idle_02.png",
-    "idle_03.png",
-    "idle_04.png",
-    "idle_05.png",
-    "idle_06.png",
-    "idle_07.png"
+    "idle_03.png"
    ]
   },
   {
@@ -146,28 +133,23 @@
   },
   {
    "name": "death",
-   "fps": 10,
+   "fps": 5,
    "loop": false,
    "frames": [
     "death_00.png",
     "death_01.png",
     "death_02.png",
-    "death_03.png",
-    "death_04.png",
-    "death_05.png"
+    "death_03.png"
    ]
   },
   {
    "name": "victory",
-   "fps": 10,
+   "fps": 5,
    "loop": true,
    "frames": [
     "victory_00.png",
     "victory_01.png",
-    "victory_02.png",
-    "victory_03.png",
-    "victory_04.png",
-    "victory_05.png"
+    "victory_02.png"
    ]
   }
  ],

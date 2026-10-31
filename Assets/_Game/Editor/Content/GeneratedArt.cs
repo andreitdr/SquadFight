@@ -157,6 +157,23 @@ namespace Game.EditorTools.Content
             imp.compressionQuality = 60;
             imp.maxTextureSize = path.Contains("/Backgrounds/") ? 2048 : 1024;
             imp.spriteBorder = BorderFor(path);
+            // Mobile: explicit ASTC (all supported devices decode it). Character art and backgrounds are most of the build,
+            // so they use larger blocks; UI keeps the automatic format for crisp edges.
+            var block = path.Contains("/Backgrounds/") || path.Contains("/anim/") ? TextureImporterFormat.ASTC_8x8
+                : path.Contains("/Characters/") || path.Contains("/Items/") ? TextureImporterFormat.ASTC_6x6
+                : (TextureImporterFormat?)null;
+            foreach (var platform in new[] { "Android", "iPhone" })
+            {
+                var ps = imp.GetPlatformTextureSettings(platform);
+                ps.overridden = block.HasValue;
+                if (block.HasValue)
+                {
+                    ps.format = block.Value;
+                    ps.maxTextureSize = imp.maxTextureSize;
+                    ps.compressionQuality = 50;
+                }
+                imp.SetPlatformTextureSettings(ps);
+            }
             var settings = new TextureImporterSettings();
             imp.ReadTextureSettings(settings);
             settings.spriteMeshType = SpriteMeshType.FullRect; // uGUI Images; avoids tight-mesh edge artifacts
