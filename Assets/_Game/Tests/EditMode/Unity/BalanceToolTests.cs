@@ -35,6 +35,8 @@ namespace Game.Tests.EditMode.UnityTests
             Assert.AreEqual(Canon(fromAssets, d => d.Combat), Canon(fromCsv, d => d.Combat));
             Assert.AreEqual(Canon(fromAssets, d => d.Rarities.OrderBy(r => r.Rarity)), Canon(fromCsv, d => d.Rarities.OrderBy(r => r.Rarity)));
             Assert.AreEqual(Canon(fromAssets, d => d.StarLevels), Canon(fromCsv, d => d.StarLevels));
+            Assert.AreEqual(Canon(fromAssets, d => d.Ranks), Canon(fromCsv, d => d.Ranks));
+            Assert.AreEqual(Canon(fromAssets, d => d.PlayerLevels), Canon(fromCsv, d => d.PlayerLevels));
             Assert.AreEqual(Canon(fromAssets, d => d.Heroes.OrderBy(h => h.Id)), Canon(fromCsv, d => d.Heroes.OrderBy(h => h.Id)));
             Assert.AreEqual(Canon(fromAssets, d => d.Enemies.OrderBy(h => h.Id)), Canon(fromCsv, d => d.Enemies.OrderBy(h => h.Id)));
             Assert.AreEqual(Canon(fromAssets, d => d.Skills.OrderBy(h => h.Id)), Canon(fromCsv, d => d.Skills.OrderBy(h => h.Id)));

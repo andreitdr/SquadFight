@@ -49,6 +49,18 @@ namespace Game.Tests.EditMode
                 new SkillDef { Id = "skill_hit", NameKey = "k", Targeting = TargetingRule.SingleEnemy, Effects = { new EffectDef { Type = EffectType.Damage, Power = 1f } } },
                 new SkillDef { Id = "skill_aoe", NameKey = "k", Targeting = TargetingRule.AllEnemies, Cooldown = 2, Effects = { new EffectDef { Type = EffectType.Damage, Power = 0.5f } } },
                 new SkillDef { Id = "skill_heal", NameKey = "k", Targeting = TargetingRule.LowestHpAlly, Cooldown = 2, Effects = { new EffectDef { Type = EffectType.Heal, Power = 1f } } },
+                new SkillDef { Id = "skill_boss_slam", NameKey = "k", Targeting = TargetingRule.HighestAttackEnemy, Cooldown = 3, InitialCooldown = 1, Effects = { new EffectDef { Type = EffectType.Damage, Power = 1.5f } } },
+                new SkillDef { Id = "passive_boss_rage", NameKey = "k", Trigger = PassiveTrigger.OnLowHp, Threshold = 0.3f, OncePerBattle = true, Targeting = TargetingRule.Self, Effects = { new EffectDef { Type = EffectType.ApplyStatus, Stat = StatType.Attack, Value = 0.2f, Duration = 3 } } },
+                new SkillDef { Id = "special_boss_quake", NameKey = "k", Targeting = TargetingRule.AllEnemies, Threshold = 0.5f, Effects = { new EffectDef { Type = EffectType.Damage, Power = 0.8f } } },
+            };
+            // Minion ×1 HP keeps hand calculations on enemy_x simple.
+            db.Ranks = new List<RankDef>
+            {
+                new RankDef { Rank = EnemyRank.Minion, HpMultiplier = 1f, Xp = 2, MinSkills = 0 },
+                new RankDef { Rank = EnemyRank.Soldier, HpMultiplier = 1.2f, Xp = 3, MinSkills = 1 },
+                new RankDef { Rank = EnemyRank.Elite, HpMultiplier = 1.4f, Xp = 5, MinSkills = 2 },
+                new RankDef { Rank = EnemyRank.Champion, HpMultiplier = 1.7f, Xp = 8, MinSkills = 3 },
+                new RankDef { Rank = EnemyRank.Boss, HpMultiplier = 2f, Xp = 20, MinSkills = 4 },
             };
             db.Heroes = new List<HeroDef>
             {
@@ -60,8 +72,12 @@ namespace Game.Tests.EditMode
             };
             db.Enemies = new List<EnemyDef>
             {
-                new EnemyDef { Id = "enemy_x", NameKey = "k", BaseStats = Stats(300, 30, 10, 90), BasicSkillId = "skill_hit" },
-                new EnemyDef { Id = "enemy_boss", NameKey = "k", IsBoss = true, BaseStats = Stats(1500, 60, 25, 85), BasicSkillId = "skill_hit", ActiveSkillId = "skill_aoe" },
+                new EnemyDef { Id = "enemy_x", NameKey = "k", Rank = EnemyRank.Minion, BaseStats = Stats(300, 30, 10, 90), BasicSkillId = "skill_hit" },
+                new EnemyDef
+                {
+                    Id = "enemy_boss", NameKey = "k", Rank = EnemyRank.Boss, BaseStats = Stats(750, 60, 25, 85), BasicSkillId = "skill_hit", ActiveSkillId = "skill_aoe",
+                    PassiveSkillId = "passive_boss_rage", ExtraSkillIds = { "skill_boss_slam" }, SpecialSkillIds = { "special_boss_quake" },
+                },
             };
             db.Equipment = new List<EquipmentTemplateDef>
             {

@@ -69,7 +69,7 @@ namespace Game.Services
             {
                 Id = S(r, "id"), NameKey = S(r, "id") + "_name", DescriptionKey = S(r, "description").Length > 0 ? S(r, "id") + "_desc" : S(r, "id") + "_desc",
                 Targeting = E<TargetingRule>(S(r, "targeting")), TargetCount = Math.Max(1, I(r, "targetCount", 1)), Cooldown = I(r, "cooldown"), InitialCooldown = I(r, "initialCooldown"),
-                Effects = EffectSpec.Parse(S(r, "effects")),
+                Threshold = F(r, "threshold"), Effects = EffectSpec.Parse(S(r, "effects")),
             }).ToList();
             db.Skills.AddRange(Read(folder, "passives", optional: true).Rows.Select(r => new SkillDef
             {
@@ -90,7 +90,16 @@ namespace Game.Services
             }).ToList();
             db.Enemies = Read(folder, "enemies").Rows.Select(r => new EnemyDef
             {
-                Id = S(r, "id"), NameKey = S(r, "id") + "_name", IsBoss = B(r, "isBoss"), BaseStats = Stats(r), BasicSkillId = S(r, "basicSkill"), ActiveSkillId = Null(S(r, "activeSkill")), PassiveSkillId = Null(S(r, "passive")),
+                Id = S(r, "id"), NameKey = S(r, "id") + "_name", Rank = RankOf(r), BaseStats = Stats(r), BasicSkillId = S(r, "basicSkill"), ActiveSkillId = Null(S(r, "activeSkill")), PassiveSkillId = Null(S(r, "passive")),
+                ExtraSkillIds = L(S(r, "extraSkills")), SpecialSkillIds = L(S(r, "specials")),
+            }).ToList();
+            db.Ranks = Read(folder, "ranks", optional: true).Rows.Select(r => new RankDef
+            {
+                Rank = E<EnemyRank>(S(r, "rank")), HpMultiplier = F(r, "hpMultiplier", 1), Xp = I(r, "xp"), MinSkills = I(r, "minSkills"),
+            }).ToList();
+            db.PlayerLevels = Read(folder, "levels", optional: true).Rows.Select(r => new PlayerLevelDef
+            {
+                Level = I(r, "level"), XpToNext = I(r, "xpToNext"), RewardTableId = Null(S(r, "reward")),
             }).ToList();
             db.Equipment = Read(folder, "equipment").Rows.Select(r => new EquipmentTemplateDef
             {
@@ -189,6 +198,10 @@ namespace Game.Services
         }
 
         private static string Null(string v) => string.IsNullOrEmpty(v) ? null : v;
+
+        /// <summary>The "rank" column; older tables without it only had "isBoss".</summary>
+        private static EnemyRank RankOf(Dictionary<string, string> r) =>
+            S(r, "rank").Length > 0 ? E<EnemyRank>(S(r, "rank")) : B(r, "isBoss") ? EnemyRank.Boss : EnemyRank.Soldier;
 
         private static StatBlock StatBlockOf(string v)
         {

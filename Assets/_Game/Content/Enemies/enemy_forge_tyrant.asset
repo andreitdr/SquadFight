@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_forge_tyrant
   nameKey: enemy_forge_tyrant_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 36000
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 62f6956a6dc004ce288f3cc32301f820, type: 2}
   passiveSkill: {fileID: 11400000, guid: 6468459a442e24a3f80574f604f9e8d1, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 3e6dd213b42b443c889a6e0027b7ebc0, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 493fd33742fa242a188e933f74eeca52, type: 2}
+  - {fileID: 11400000, guid: 6cc980fdc708b4b93b36ade0f09f7489, type: 2}
   sprite: {fileID: 21300000, guid: 1a35ed6049e9044fd9b89eb8b0f8c541, type: 3}
   tint: {r: 0.8156863, g: 0, b: 0, a: 1}
   artFrom: 

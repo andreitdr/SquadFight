@@ -26,6 +26,8 @@ namespace Game.Core
         public List<ChapterDef> Chapters = new List<ChapterDef>();
         public List<FightDef> Fights = new List<FightDef>();
         public List<StoryBeatDef> StoryBeats = new List<StoryBeatDef>();
+        public List<RankDef> Ranks = new List<RankDef>();
+        public List<PlayerLevelDef> PlayerLevels = new List<PlayerLevelDef>();
 
         private readonly Dictionary<string, HeroDef> _heroes = new Dictionary<string, HeroDef>();
         private readonly Dictionary<string, EnemyDef> _enemies = new Dictionary<string, EnemyDef>();
@@ -75,6 +77,8 @@ namespace Game.Core
                 else if (r != null) DuplicateIds.Add("rarity:" + r.Rarity);
 
             StarLevels.Sort((a, b) => a.Star.CompareTo(b.Star));
+            Ranks.Sort((a, b) => a.Rank.CompareTo(b.Rank));
+            PlayerLevels.Sort((a, b) => a.Level.CompareTo(b.Level));
             _indexed = true;
             return this;
         }
@@ -134,6 +138,22 @@ namespace Game.Core
         public StarLevelDef GetStarLevel(int star)
         {
             foreach (var s in StarLevels) if (s.Star == star) return s;
+            return null;
+        }
+
+        /// <summary>The rank's row, or a neutral one (×1 HP, no XP) when ranks.csv does not list it.</summary>
+        public RankDef GetRank(EnemyRank rank)
+        {
+            foreach (var r in Ranks) if (r != null && r.Rank == rank) return r;
+            return new RankDef { Rank = rank };
+        }
+
+        /// <summary>Highest player level (1 when there is no level table).</summary>
+        public int MaxPlayerLevel => PlayerLevels.Count == 0 ? 1 : PlayerLevels[PlayerLevels.Count - 1].Level;
+
+        public PlayerLevelDef GetPlayerLevel(int level)
+        {
+            foreach (var l in PlayerLevels) if (l.Level == level) return l;
             return null;
         }
 

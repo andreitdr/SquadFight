@@ -27,11 +27,11 @@ Core loop:
 | # | Topic | Assumption | Impact if changed |
 |---|-------|-----------|-------------------|
 | A1 | Combat style | **Turn-based auto-battle**, speed-ordered turns; each hero has 1 basic attack + 1 active skill (player can tap to trigger skill, or Auto) **+ 1 passive trait (owner request 2026-10-31: unique active + passive per hero; 14 new effect types, passive triggers)**. | Steps 08, 13 |
-| A2 | Enemy count | 1–5 enemies per fight, optional boss. | 08, 09 |
+| A2 | Enemy count | 1–5 enemies per fight, optional boss. Enemies have a **rank** (Minion < Soldier < Elite < Champion < Boss): higher ranks have more HP and more skills; bosses also have special attacks charged at HP thresholds (owner request 2026-10-31). | 08, 09 |
 | A3 | Equipment slots | Weapon, Helmet, Chest, Gloves, Boots, Ring ×2 (7 slots, enum-driven so slot list is configurable). | 06, 07 |
 | A4 | Rarities | Common, Uncommon, Rare, Epic, Legendary (one shared enum for heroes and items). | 02, 05, 06 |
 | A5 | Equipment ownership | Items are unique instances; each equipped on one hero at a time; can be moved freely. | 06 |
-| A6 | Hero upgrade | "Shard star-ups": extra shards raise a **star level** (1→N), each star multiplies base stats via a configurable curve. No XP/levels in v1. | 05, 07 |
+| A6 | Hero upgrade | "Shard star-ups": extra shards raise a **star level** (1→N), each star multiplies base stats via a configurable curve. No hero XP/levels in v1. A **player level** (account XP from defeated enemies by rank, bosses the most; level-up rewards) was added on owner request 2026-10-31; it does not change hero stats. | 05, 07 |
 | A7 | Stamina | **None** (offline single-player; fights are free to replay). | 09 |
 | A8 | Monetization | **None in v1** (no ads/IAP). Optional later. | 18 |
 | A9 | Engine | The **owner's existing empty Unity project** (version as found in `ProjectVersion.txt`; do not upgrade), uGUI + TextMeshPro, new Input System. Render pipeline = whatever the template provides; game is 2D. | 01, 11 |

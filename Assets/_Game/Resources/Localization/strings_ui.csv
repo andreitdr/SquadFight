@@ -242,3 +242,15 @@ cleansed,Cleansed,Purificat
 dispelled,Dispelled,Risipit
 silenced,Silenced,Redus la tăcere
 passive,Passive,Pasivă
+# ---- enemy ranks / player level ----
+rank_minion,Minion,Minion
+rank_soldier,Soldier,Soldat
+rank_elite,Elite,Elită
+rank_champion,Champion,Campion
+rank_boss,Boss,Șef
+special_charging,Charging {0}!,Își încarcă {0}!
+xp_reward,{0} XP,{0} XP
+xp_gained,+{0} XP,+{0} XP
+player_level,Level {0},Nivelul {0}
+level_up,Level up! Level {0},Nivel nou! Nivelul {0}
+level_max,Max level,Nivel maxim

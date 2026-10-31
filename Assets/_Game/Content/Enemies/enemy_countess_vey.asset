@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_countess_vey
   nameKey: enemy_countess_vey_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 45030
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 5a348da56e01e4161930c974b5a93e86, type: 2}
   passiveSkill: {fileID: 11400000, guid: 3eb5c3ba902a346918946e68594ac6da, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: cedbf99e9f17f4060b4b23278af2a47e, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 5254e896ef4b04a7282dae4782bdb345, type: 2}
+  - {fileID: 11400000, guid: 28ec54548c6b9472fa2e9ff2056e997e, type: 2}
   sprite: {fileID: 21300000, guid: 0793aef0e5e6c43b8ab0583222318387, type: 3}
   tint: {r: 0.34901962, g: 0.050980393, b: 0.13333334, a: 1}
   artFrom: 

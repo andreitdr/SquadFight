@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_ash_husk
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_ash_husk
+  nameKey: enemy_ash_husk_name
+  rank: 0
+  baseStats:
+    values:
+    - 760
+    - 84
+    - 31
+    - 95
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  extraSkills: []
+  specials: []
+  sprite: {fileID: 21300000, guid: a42edd12d36f84171bbe251526a7a871, type: 3}
+  tint: {r: 0.56078434, g: 0.5294118, b: 0.4862745, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: a42edd12d36f84171bbe251526a7a871, type: 3}
+  icon: {fileID: 21300000, guid: 9a04ad8b45e2c427f806f6924772591c, type: 3}
+  animations: {fileID: 11400000, guid: 084626aa273574e9888d946eb3f98b92, type: 2}

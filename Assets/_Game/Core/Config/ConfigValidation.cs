@@ -70,6 +70,9 @@ namespace Game.Core
             foreach (var s in db.Skills.Where(s => s != null)) ValidateSkill(s, r);
             foreach (var h in db.Heroes.Where(h => h != null)) ValidateUnit($"hero:{h.Id}", h.BaseStats, h.BasicSkillId, h.ActiveSkillId, h.PassiveSkillId, h.NameKey, db, r);
             foreach (var e in db.Enemies.Where(e => e != null)) ValidateUnit($"enemy:{e.Id}", e.BaseStats, e.BasicSkillId, e.ActiveSkillId, e.PassiveSkillId, e.NameKey, db, r);
+            ValidateRanks(db, r);
+            foreach (var e in db.Enemies.Where(e => e != null)) ValidateEnemyRank(e, db, r);
+            ValidatePlayerLevels(db, r);
             if (db.Rules.UniqueHeroAbilities) ValidateHeroUniqueness(db, r);
             foreach (var e in db.Equipment.Where(e => e != null)) ValidateEquipment(e, db, r);
             foreach (var t in db.DropTables.Where(t => t != null)) ValidateDropTable(t, db, r);
@@ -178,6 +181,72 @@ namespace Game.Core
             {
                 if (!db.TryGetSkill(passive, out var p)) r.Error(ctx, $"missing passive skill '{passive}'");
                 else if (!p.IsPassive) r.Error(ctx, $"passive '{passive}' has no trigger");
+            }
+        }
+
+        /// <summary>One row per rank; each rank is strictly tougher (HP), richer (skills) and worth more XP than the one below.</summary>
+        private static void ValidateRanks(GameDatabase db, ValidationReport r)
+        {
+            RankDef prev = null;
+            foreach (EnemyRank rank in Enum.GetValues(typeof(EnemyRank)))
+            {
+                var ctx = "rank:" + rank;
+                var def = db.Ranks.FirstOrDefault(x => x != null && x.Rank == rank);
+                if (def == null) { r.Error(ctx, "missing rank row (ranks.csv)"); continue; }
+                if (db.Ranks.Count(x => x != null && x.Rank == rank) > 1) r.Error(ctx, "rank listed twice");
+                if (def.HpMultiplier <= 0) r.Error(ctx, "hpMultiplier must be > 0");
+                if (def.Xp < 0) r.Error(ctx, "xp must be >= 0");
+                if (def.MinSkills < 0) r.Error(ctx, "minSkills must be >= 0");
+                if (prev != null)
+                {
+                    if (def.HpMultiplier <= prev.HpMultiplier) r.Error(ctx, $"hpMultiplier must be higher than {prev.Rank}'s");
+                    if (def.Xp <= prev.Xp) r.Error(ctx, $"xp must be higher than {prev.Rank}'s");
+                    if (def.MinSkills <= prev.MinSkills) r.Error(ctx, $"minSkills must be higher than {prev.Rank}'s");
+                }
+                prev = def;
+            }
+        }
+
+        /// <summary>Skill count fits the rank; only bosses have specials (and every boss has one); extra/special skills are real actives.</summary>
+        private static void ValidateEnemyRank(EnemyDef e, GameDatabase db, ValidationReport r)
+        {
+            var ctx = "enemy:" + e.Id;
+            var min = db.GetRank(e.Rank).MinSkills;
+            var next = db.Ranks.Where(x => x != null && x.Rank > e.Rank).Select(x => (int?)x.MinSkills).Min();
+            if (e.SkillCount < min) r.Error(ctx, $"{e.Rank} needs at least {min} skill(s) besides the basic attack (has {e.SkillCount})");
+            if (next.HasValue && e.SkillCount >= next.Value) r.Error(ctx, $"{e.Rank} must have fewer than {next.Value} skill(s) besides the basic attack, or a higher rank (has {e.SkillCount})");
+            if (e.SpecialSkillIds.Count > 0 && e.Rank != EnemyRank.Boss) r.Error(ctx, "only bosses have special attacks");
+            if (e.Rank == EnemyRank.Boss && e.SpecialSkillIds.Count == 0) r.Error(ctx, "a boss needs at least one special attack");
+            var ids = new[] { e.ActiveSkillId, e.PassiveSkillId }.Concat(e.ExtraSkillIds).Concat(e.SpecialSkillIds).Where(x => !string.IsNullOrEmpty(x)).ToList();
+            foreach (var dup in ids.GroupBy(x => x).Where(g => g.Count() > 1)) r.Error(ctx, $"skill '{dup.Key}' is listed twice");
+            foreach (var id in e.ExtraSkillIds)
+            {
+                if (!db.TryGetSkill(id, out var x)) r.Error(ctx, $"missing extra skill '{id}'");
+                else if (x.IsPassive) r.Error(ctx, $"extra skill '{id}' is a passive");
+            }
+            var last = 1f;
+            foreach (var id in e.SpecialSkillIds)
+            {
+                if (!db.TryGetSkill(id, out var x)) { r.Error(ctx, $"missing special '{id}'"); continue; }
+                if (x.IsPassive) r.Error(ctx, $"special '{id}' is a passive");
+                if (x.Threshold <= 0 || x.Threshold >= 1) r.Error(ctx, $"special '{id}' needs an HP threshold in (0, 1)");
+                else if (x.Threshold > last) r.Warn(ctx, $"specials should be listed by falling HP threshold ('{id}')");
+                last = Math.Min(last, x.Threshold);
+            }
+        }
+
+        /// <summary>Levels 1..N without gaps, XP to the next level > 0 (except the cap), reward tables exist.</summary>
+        private static void ValidatePlayerLevels(GameDatabase db, ValidationReport r)
+        {
+            if (db.PlayerLevels.Count == 0) { r.Warn("levels", "no player levels: fights give no XP"); return; }
+            for (var i = 0; i < db.PlayerLevels.Count; i++)
+            {
+                var l = db.PlayerLevels[i];
+                var ctx = "level:" + l.Level;
+                if (l.Level != i + 1) r.Error(ctx, $"level table has a gap or duplicate (expected level {i + 1})");
+                if (i < db.PlayerLevels.Count - 1 && l.XpToNext <= 0) r.Error(ctx, "xpToNext must be > 0");
+                if (!string.IsNullOrEmpty(l.RewardTableId) && !db.TryGetDropTable(l.RewardTableId, out _)) r.Error(ctx, $"unknown reward table '{l.RewardTableId}'");
+                if (i == 0 && !string.IsNullOrEmpty(l.RewardTableId)) r.Warn(ctx, "level 1 reward is never granted (players start at level 1)");
             }
         }
 
@@ -375,6 +444,12 @@ namespace Game.Core
                         if (s == null || !db.TryGetEnemy(s.EnemyId, out _)) r.Error(ctx, $"wave {w + 1}: unknown enemy '{s?.EnemyId}'");
                         if (s != null && s.StatMultiplier <= 0) r.Error(ctx, $"wave {w + 1}: stat multiplier must be > 0");
                     }
+                    // What the player sees side by side: a higher rank always has more HP than a lower rank in the same wave.
+                    var units = wave.Spawns.Where(s => s != null && s.StatMultiplier > 0 && db.TryGetEnemy(s.EnemyId, out _))
+                        .Select(s => (e: db.GetEnemy(s.EnemyId), hp: BattleSetupBuilder.EnemyStats(db.GetEnemy(s.EnemyId), s.StatMultiplier, db)[StatType.MaxHp])).ToList();
+                    foreach (var hi in units)
+                        foreach (var lo in units.Where(u => u.e.Rank < hi.e.Rank && u.hp >= hi.hp).Take(1))
+                            r.Error(ctx, $"wave {w + 1}: {hi.e.Rank} '{hi.e.Id}' ({hi.hp:0} HP) must have more HP than {lo.e.Rank} '{lo.e.Id}' ({lo.hp:0} HP)");
                 }
                 if (string.IsNullOrEmpty(f.DropTableId)) r.Error(ctx, "missing drop table");
                 else if (!db.TryGetDropTable(f.DropTableId, out _)) r.Error(ctx, $"unknown drop table '{f.DropTableId}'");
@@ -420,7 +495,7 @@ namespace Game.Core
             var entries = AllEntries(db).ToList();
             var usedTables = new HashSet<string>(db.Fights.Where(f => f != null).SelectMany(f => new[] { f.DropTableId, f.FirstClearTableId })
                 .Concat(db.Chapters.Where(c => c != null).Select(c => c.ClearRewardTableId))
-                .Append(db.Rules.DefeatConsolationTableId).Append(db.Rules.DailyBonusTableId)
+                .Append(db.Rules.DefeatConsolationTableId).Append(db.Rules.DailyBonusTableId).Concat(db.PlayerLevels.Select(l => l.RewardTableId))
                 .Where(s => !string.IsNullOrEmpty(s)));
             foreach (var h in db.Heroes.Where(h => h != null))
             {
@@ -437,7 +512,7 @@ namespace Game.Core
                 if (!droppable) r.Warn("equipment:" + e.Id, "item is never dropped");
             }
             var usedSkills = new HashSet<string>(db.Heroes.Where(h => h != null).SelectMany(h => new[] { h.BasicSkillId, h.ActiveSkillId, h.PassiveSkillId })
-                .Concat(db.Enemies.Where(e => e != null).SelectMany(e => new[] { e.BasicSkillId, e.ActiveSkillId, e.PassiveSkillId })).Where(s => s != null));
+                .Concat(db.Enemies.Where(e => e != null).SelectMany(e => new[] { e.BasicSkillId, e.ActiveSkillId, e.PassiveSkillId }.Concat(e.ExtraSkillIds).Concat(e.SpecialSkillIds))).Where(s => s != null));
             foreach (var s in db.Skills.Where(s => s != null && !usedSkills.Contains(s.Id))) r.Warn("skill:" + s.Id, "skill is not used");
         }
     }

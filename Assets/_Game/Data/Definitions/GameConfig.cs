@@ -26,6 +26,8 @@ namespace Game.Data
         public RarityConfig rarityConfig;
         public StarUpgradeConfig starConfig;
         public CombatConfig combatConfig;
+        public EnemyRankConfig rankConfig;
+        public PlayerLevelConfig levelConfig;
 
         [Header("Party & start")]
         [Range(1, 5)] public int partySize = 5;

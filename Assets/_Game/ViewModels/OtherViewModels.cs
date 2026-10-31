@@ -240,8 +240,11 @@ namespace Game.ViewModels
             Fight.Waves.SelectMany((w, wi) => w.Spawns.Select(sp =>
             {
                 var e = _s.Db.GetEnemy(sp.EnemyId);
-                return new EnemyView { Def = e, Wave = wi, Multiplier = sp.StatMultiplier, Power = PowerRating.Compute(BattleSetupBuilder.ScaleCombatStats(e.BaseStats, sp.StatMultiplier), _s.Db.Combat) };
+                return new EnemyView { Def = e, Wave = wi, Multiplier = sp.StatMultiplier, Power = PowerRating.Compute(BattleSetupBuilder.EnemyStats(e, sp.StatMultiplier, _s.Db), _s.Db.Combat) };
             })).ToList();
+
+        /// <summary>Player XP for defeating every enemy of the fight.</summary>
+        public int Xp => PlayerLevelRules.XpForFight(Fight, _s.Db);
 
         public DropPreview Drops
         {
@@ -311,42 +314,49 @@ namespace Game.ViewModels
         public string NextFightId => _s.Progress.GetNextRecommendedFight();
         public bool HasNextFight => Victory && NextFightId != null && NextFightId != Completion.FightId && !_s.Progress.IsFightCleared(NextFightId);
 
-        public IReadOnlyList<RewardLine> Lines
+        public int XpGained => Completion.Level?.XpGained ?? 0;
+        public int Level => Completion.Level?.LevelAfter ?? _s.Levels.Level;
+        public bool LeveledUp => Completion.Level?.LeveledUp == true;
+        /// <summary>XP into the reached level and the XP that level needs (0 = level cap).</summary>
+        public int LevelXp => Completion.Level?.XpAfter ?? _s.Levels.Xp;
+        public int LevelXpToNext => PlayerLevelRules.XpToNext(Level, _s.Db);
+
+        /// <summary>Fight rewards, then the rewards of any level reached.</summary>
+        public IReadOnlyList<RewardLine> Lines => LinesOf(Completion.Rewards).Concat(LinesOf(Completion.Level?.Rewards)).ToList();
+
+        private IReadOnlyList<RewardLine> LinesOf(RewardResult r)
         {
-            get
+            var lines = new List<RewardLine>();
+            if (r?.Bundle == null) return lines;
+            foreach (var c in r.Bundle.Currencies.Where(c => c.Value > 0))
+                lines.Add(new RewardLine { Type = RewardLine.Kind.Currency, Id = c.Key, Amount = c.Value });
+            foreach (var sh in r.Bundle.Shards.Where(x => x.Value > 0))
             {
-                var lines = new List<RewardLine>();
-                var r = Completion.Rewards;
-                if (r?.Bundle == null) return lines;
-                foreach (var c in r.Bundle.Currencies.Where(c => c.Value > 0))
-                    lines.Add(new RewardLine { Type = RewardLine.Kind.Currency, Id = c.Key, Amount = c.Value });
-                foreach (var sh in r.Bundle.Shards.Where(x => x.Value > 0))
+                var hero = _s.Db.GetHero(sh.Key);
+                r.ShardProgress.TryGetValue(sh.Key, out var prog);
+                var unlocked = _s.Roster.IsUnlocked(sh.Key);
+                var need = unlocked ? (_s.Roster.GetStarUpInfo(sh.Key).IsMaxStar ? 0 : _s.Roster.GetStarUpInfo(sh.Key).NeedShards) : _s.Roster.GetUnlockInfo(sh.Key).Need;
+                lines.Add(new RewardLine
                 {
-                    var hero = _s.Db.GetHero(sh.Key);
-                    r.ShardProgress.TryGetValue(sh.Key, out var prog);
-                    var unlocked = _s.Roster.IsUnlocked(sh.Key);
-                    var need = unlocked ? (_s.Roster.GetStarUpInfo(sh.Key).IsMaxStar ? 0 : _s.Roster.GetStarUpInfo(sh.Key).NeedShards) : _s.Roster.GetUnlockInfo(sh.Key).Need;
-                    lines.Add(new RewardLine
-                    {
-                        Type = RewardLine.Kind.Shards, Id = sh.Key, Amount = sh.Value, Rarity = hero.Rarity, ShardsBefore = prog.before, ShardsAfter = prog.after, ShardsNeeded = need,
-                        NowUnlockable = r.NowUnlockable.Contains(sh.Key), StarUpAvailable = r.StarUpAvailable.Contains(sh.Key), Converted = r.ConvertedShards.ContainsKey(sh.Key),
-                    });
-                }
-                foreach (var it in r.Bundle.Items)
-                {
-                    var info = _s.Inventory.Get(it.InstanceId);
-                    lines.Add(new RewardLine
-                    {
-                        Type = RewardLine.Kind.Item, Id = it.InstanceId, Amount = 1, Item = info, Rarity = it.Rarity,
-                        Better = r.BetterItems.Contains(it.InstanceId), Converted = r.AutoSold.Contains(it.InstanceId),
-                    });
-                }
-                return lines.OrderBy(l => l.Type).ThenByDescending(l => l.Rarity).ToList();
+                    Type = RewardLine.Kind.Shards, Id = sh.Key, Amount = sh.Value, Rarity = hero.Rarity, ShardsBefore = prog.before, ShardsAfter = prog.after, ShardsNeeded = need,
+                    NowUnlockable = r.NowUnlockable.Contains(sh.Key), StarUpAvailable = r.StarUpAvailable.Contains(sh.Key), Converted = r.ConvertedShards.ContainsKey(sh.Key),
+                });
             }
+            foreach (var it in r.Bundle.Items)
+            {
+                var info = _s.Inventory.Get(it.InstanceId);
+                lines.Add(new RewardLine
+                {
+                    Type = RewardLine.Kind.Item, Id = it.InstanceId, Amount = 1, Item = info, Rarity = it.Rarity,
+                    Better = r.BetterItems.Contains(it.InstanceId), Converted = r.AutoSold.Contains(it.InstanceId),
+                });
+            }
+            return lines.OrderBy(l => l.Type).ThenByDescending(l => l.Rarity).ToList();
         }
 
         /// <summary>Heroes that became unlockable with these rewards (celebration popup).</summary>
-        public IReadOnlyList<string> NowUnlockable => Completion.Rewards?.NowUnlockable ?? new List<string>();
+        public IReadOnlyList<string> NowUnlockable =>
+            (Completion.Rewards?.NowUnlockable ?? new List<string>()).Concat(Completion.Level?.Rewards?.NowUnlockable ?? new List<string>()).Distinct().ToList();
     }
 
     /// <summary>Settings screen (backed by SettingsService).</summary>
@@ -385,6 +395,7 @@ namespace Game.ViewModels
             On<FightCompleted>(s.Bus, _ => Raise());
             On<PartyChanged>(s.Bus, _ => Raise());
             On<StateReset>(s.Bus, _ => Raise());
+            On<PlayerLevelChanged>(s.Bus, _ => Raise());
             dots.Changed += Forward;
         }
 
@@ -400,6 +411,11 @@ namespace Game.ViewModels
         public int PartyPower => _s.PartyPower;
         public int TotalStars => _s.Db.Chapters.Sum(c => _s.Progress.ChapterStars(c.Id));
         public int MaxStars => _s.Db.Fights.Count * 3;
+        public int Level => _s.Levels.Level;
+        public int Xp => _s.Levels.Xp;
+        /// <summary>0 at the level cap.</summary>
+        public int XpToNext => _s.Levels.XpToNext;
+        public bool HasLevels => _s.Db.PlayerLevels.Count > 0;
 
         public override void Dispose()
         {

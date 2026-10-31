@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_titan_fury
   nameKey: enemy_titan_fury_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 33120
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 7e8e94a1a2182456a9d12e5f875f7d1c, type: 2}
   passiveSkill: {fileID: 11400000, guid: 338efad6871f8475e8956e4cf1d250e7, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 126f45bd7efb64c94b09935f621ddbcc, type: 2}
+  specials:
+  - {fileID: 11400000, guid: f76c3ec3b66974923a7cf74782876b1a, type: 2}
+  - {fileID: 11400000, guid: 5b40f19d2ebb64bf190c1f367911dbed, type: 2}
   sprite: {fileID: 21300000, guid: 40d29958206bd459eb5a05adefbe648e, type: 3}
   tint: {r: 0.5647059, g: 0.8784314, b: 0.9372549, a: 1}
   artFrom: 

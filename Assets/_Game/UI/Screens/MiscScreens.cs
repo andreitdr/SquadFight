@@ -148,6 +148,7 @@ namespace Game.UI
 
             var scroll = UIKit.ScrollView(body, "Rewards", out var content, 16, 0);
             ((RectTransform)scroll.transform).Stretch(0, 400, 0, 380);
+            if (_vm.XpGained > 0 || _vm.LeveledUp) XpPanel(content);
             var lines = _vm.Lines;
             if (lines.Count == 0) UIKit.Text(content, "None", Ctx.T("no_rewards"), Th.fontBody, Th.textDim, TextAlignmentOptions.Center).Size(preferredHeight: 80);
             for (var i = 0; i < lines.Count; i++) RewardRow(content, lines[i], 0.4f + i * 0.12f);
@@ -186,6 +187,24 @@ namespace Game.UI
         {
             Ctx.Manager.PopToRoot();
             Ctx.Manager.Push<FightPreviewScreen>(fightId);
+        }
+
+        /// <summary>"+N XP", the level bar and a highlighted "Level up!" when a level was reached.</summary>
+        private void XpPanel(Transform parent)
+        {
+            var panel = UIKit.Panel(parent, "Xp", Th.panel);
+            UIKit.VStack(panel.gameObject, 8, 16);
+            var head = UIKit.Text(panel.transform, "Gain", Ctx.F("xp_gained", _vm.XpGained) + "  ·  " + Ctx.F("player_level", _vm.Level), Th.fontBody, Th.text, TextAlignmentOptions.Center, bold: true);
+            head.Size(preferredHeight: 56);
+            var bar = ProgressBar.Create(panel.transform, 36, Th.secondary);
+            if (_vm.LevelXpToNext > 0) bar.Set(_vm.LevelXp, _vm.LevelXpToNext);
+            else bar.Set(1f, Ctx.T("level_max"));
+            if (_vm.LeveledUp)
+            {
+                var up = UIKit.Text(panel.transform, "LevelUp", Ctx.F("level_up", _vm.Level), Th.fontLarge, Th.primary, TextAlignmentOptions.Center, bold: true);
+                up.Size(preferredHeight: 70);
+                Tween.Scale(up.transform, 0.5f, 1f, 0.4f, Ease.OutBack, delay: 0.3f);
+            }
         }
 
         private void RewardRow(Transform parent, RewardLine l, float delay)

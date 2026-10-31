@@ -9,6 +9,12 @@ hand-written head rows of chapters 1-3 in a fixed, repeatable way:
   * equipment.csv: adds the `tier` column (the original 24 items are tier 1);
   * enemies.csv: adds the `passive` column;
   * story.csv: rewrites the chapter 1-3 beats in the darker tone (same ids).
+  * enemies.csv: adds the `passive` column; `rank` replaces `isBoss` (bosses stay Boss, the others get the rank their
+    skill count gives) and `extraSkills`/`specials` hold the boss kits of bestiary_design.py;
+  * skills.csv: adds the `threshold` column (boss specials).
+Also writes levels.csv (player levels) and the level-up drop tables.
+Waves are rank-aware: Elites from a chapter's middle on, Champions in its last third and in side quests, and a higher
+rank always has more HP than a lower rank in the same wave (the validator checks this too).
 Enemy multipliers are first guesses: `BalanceCli tune` refits them, `BalanceCli recommend` fills recommendedPower.
 """
 import os
@@ -20,6 +26,7 @@ import csvsections as cs  # noqa: E402
 from campaign_design import ACTS, FIGHTS_PER_CHAPTER, SPEAKERS  # noqa: E402
 from campaign_design_late import ACTS_LATE  # noqa: E402
 from roster_design import HEROES as NEW_HEROES  # noqa: E402
+from bestiary_design import BOSS_KITS, NEW_ENEMIES, NEW_FOES  # noqa: E402
 
 KEY = 'gen_campaign'
 ALL_ACTS = ACTS + ACTS_LATE
@@ -47,6 +54,14 @@ SIDE_WEIGHTS = {a: GEAR_WEIGHTS[min(8, a + 2)] for a in range(1, 9)}
 SHARD_WEIGHTS = [('Common', 40, 2, 3), ('Uncommon', 30, 2, 3), ('Rare', 17, 1, 3), ('Epic', 9, 1, 2), ('Legendary', 4, 1, 2)]
 UNLOCK = {'Common': 10, 'Uncommon': 20, 'Rare': 40, 'Epic': 80, 'Legendary': 160}
 ITEM_ONLY_SHARE = 0.3
+RANKS = ['Minion', 'Soldier', 'Elite', 'Champion', 'Boss']
+SKILL_RANK = {0: 'Minion', 1: 'Soldier', 2: 'Elite', 3: 'Champion'}
+# Player levels: total XP to reach level L = LEVEL_XP_A x (L - 1) ^ LEVEL_XP_POW. A casual run earns ~650 XP per chapter
+# (`BalanceCli levels`), so it ends near level 50; levels 51-60 are for players who keep fighting.
+MAX_LEVEL = 60
+LEVEL_XP_A, LEVEL_XP_POW = 164, 1.3
+# Level-up rewards by the act a casual player is in at that level (first level reached inside each act).
+LEVEL_ACT_FROM = {1: 1, 2: 11, 3: 19, 4: 25, 5: 31, 6: 37, 7: 42, 8: 47}
 # Heroes met before their act (they appear in an earlier chapter's story): hero id -> chapter of recruitment.
 RECRUIT_CHAPTER = {'hero_aldous': 28, 'hero_lisbet': 32, 'hero_sunniva': 34}
 
@@ -116,28 +131,63 @@ def head_text(comments, header, rows):
 
 # ------------------------------------------------------------------------------------------------ enemies
 
+def skill_row(sid, x, initial='1', threshold=''):
+    return [sid, x['name'], x['desc'], x['targeting'], str(x['count']), str(x.get('cooldown', 0)), initial, x['effects'], threshold]
+
+
+def passive_row(pid, x):
+    return [pid, x['name'], x['desc'], x['trigger'], f"{x['threshold']:g}" if x['threshold'] else '', f"{x['chance']:g}" if x['chance'] else '',
+            str(x['cooldown']), 'true' if x['once'] else 'false', x['targeting'], str(x['count']), x['effects']]
+
+
+def boss_kit(key, skills, passives):
+    """Adds a boss's extra active, specials (and passive, if the kit has one); returns (passive id, extra ids, special ids)."""
+    kit = BOSS_KITS[key]
+    extra = 'skill_x_' + key
+    skills.append(skill_row(extra, kit['extra'], initial='2'))
+    specials = []
+    for n, sp in enumerate(kit['specials'], 1):
+        sid = f'special_{key}_{n}'
+        skills.append(skill_row(sid, dict(sp, cooldown=0), initial='0', threshold=f"{sp['threshold']:g}"))
+        specials.append(sid)
+    passive = ''
+    if kit['passive']:
+        passive = 'passive_e_' + key
+        passives.append(passive_row(passive, kit['passive']))
+    return passive, [extra], specials
+
+
 def enemy_rows(existing_ids):
+    """Rows for every designed enemy (campaign + new bestiary) and their skills; bosses get their kits."""
     rows, skills, passives = [], [], []
     for act in ALL_ACTS:
         a = act['num']
-        for e in act['enemies']:
+        for e in act['enemies'] + NEW_ENEMIES.get(a, []):
             eid = 'enemy_' + e['key']
             assert eid not in existing_ids, eid
             hp, atk, df, spd, cc, cd = ROLE[e['role']]
             s = ACT_SCALE[a] * e['scale']
             basic = 'skill_enemy_bite' if e['role'] in ('striker', 'swarm') else 'skill_enemy_hit'
             active = passive = ''
+            extras, specials = [], []
             if e['active']:
                 active = 'skill_e_' + e['key']
-                x = e['active']
-                skills.append([active, x['name'], x['desc'], x['targeting'], str(x['count']), str(x['cooldown']), '1', x['effects']])
+                skills.append(skill_row(active, e['active']))
+            if e.get('extra'):
+                extras.append('skill_x_' + e['key'])
+                skills.append(skill_row(extras[0], e['extra'], initial='2'))
             if e['passive']:
                 passive = 'passive_e_' + e['key']
-                x = e['passive']
-                passives.append([passive, x['name'], x['desc'], x['trigger'], f"{x['threshold']:g}" if x['threshold'] else '', f"{x['chance']:g}" if x['chance'] else '',
-                                 str(x['cooldown']), 'true' if x['once'] else 'false', x['targeting'], str(x['count']), x['effects']])
-            rows.append([eid, e['name'], 'true' if e['role'] == 'boss' else 'false', str(round(hp * s / 10) * 10), str(round(atk * s)), str(round(df * s ** 0.6)),
-                         str(spd), f'{cc:g}', f'{cd:g}', basic, active, passive, e['tint'], 'enemy_' + e['art'] if e['art'] else ''])
+                passives.append(passive_row(passive, e['passive']))
+            if e['role'] == 'boss':
+                rank = 'Boss'
+                kit_passive, extras, specials = boss_kit(e['key'], skills, passives)
+                passive = passive or kit_passive
+            else:
+                rank = e.get('rank') or SKILL_RANK[bool(active) + bool(passive) + len(extras)]
+                assert rank == SKILL_RANK[bool(active) + bool(passive) + len(extras)], f'{eid}: {rank} with the wrong skill count'
+            rows.append([eid, e['name'], rank, str(round(hp * s / 10) * 10), str(round(atk * s)), str(round(df * s ** 0.6)),
+                         str(spd), f'{cc:g}', f'{cd:g}', basic, active, passive, ';'.join(extras), ';'.join(specials), e['tint'], 'enemy_' + e['art'] if e['art'] else ''])
     return rows, skills, passives
 
 
@@ -184,22 +234,60 @@ def wave_text(spawns):
     return '+'.join(f'enemy_{k}@{fmt(m)}' for k, m in spawns)
 
 
-def pick(foes, n):
-    # The first listed foes are the chapter's staples.
-    weights = [len(foes) - i + 1 for i in range(len(foes))]
-    return [RNG.choices(foes, weights)[0] for _ in range(n)]
+# key -> (rank, HP in battle before the fight multiplier); filled in main() from enemies.csv and ranks.csv.
+INFO = {}
+
+
+def pick(foes, n, ranks=None):
+    """n weighted picks among foes of the given ranks (the first listed foes are the chapter's staples)."""
+    pool = [k for k in foes if ranks is None or INFO[k][0] in ranks]
+    if not pool:
+        return []
+    weights = [len(pool) - i + 1 for i in range(len(pool))]
+    return [RNG.choices(pool, weights)[0] for _ in range(n)]
+
+
+def ordered(wave, foes):
+    """Makes every higher rank in the wave have more HP than every lower rank: an offending lower-rank enemy is swapped
+    for a same-or-lower-rank foe that fits, or dropped (the wave keeps at least one enemy)."""
+    def ok(k, others):
+        r, hp = INFO[k]
+        return all((INFO[o][1] > hp if RANKS.index(INFO[o][0]) > RANKS.index(r) else INFO[o][1] < hp if RANKS.index(INFO[o][0]) < RANKS.index(r) else True) for o in others)
+    out = sorted(wave, key=lambda k: -RANKS.index(INFO[k][0]))  # place high ranks first
+    kept = []
+    for k in out:
+        if ok(k, kept):
+            kept.append(k)
+            continue
+        r = RANKS.index(INFO[k][0])
+        fits = [f for f in foes if RANKS.index(INFO[f][0]) <= r and ok(f, kept)]
+        same = [f for f in fits if INFO[f][0] == INFO[k][0]]
+        if fits:
+            kept.append(same[0] if same else max(fits, key=lambda f: RANKS.index(INFO[f][0])))
+    order = {k: i for i, k in enumerate(wave)}
+    return sorted(kept, key=lambda k: order.get(k, len(wave))) or wave[:1]
+
+
+def compose(foes, n, frac, harder):
+    """One wave of n enemies: fodder (Minion/Soldier), Elites from the chapter's middle on, a Champion near its end."""
+    champs = 1 if (harder or frac >= 0.65) and n >= 3 and any(INFO[k][0] == 'Champion' for k in foes) and RNG.random() < (0.8 if harder else 0.5) else 0
+    elites = (1 if frac >= 0.3 or harder else 0) + (1 if frac >= 0.75 and n >= 4 else 0)
+    wave = pick(foes, champs, {'Champion'})
+    wave += pick(foes, min(elites, n - len(wave) - 1 if n > 1 else 0), {'Elite'})
+    wave += pick(foes, n - len(wave), {'Minion', 'Soldier'}) or pick(foes, n - len(wave))
+    return ordered(wave, foes)
 
 
 def build_waves(foes, i, count, mult, boss=None, harder=False):
     frac = i / max(1, count - 1)
     if boss:
-        first = pick(foes, 3)
-        adds = pick(foes, 1 if frac < 1 or not harder else 2)
-        return wave_text([(k, mult) for k in first]) + ' / ' + wave_text([(boss, mult)] + [(k, mult) for k in adds])
+        first = compose(foes, 3, frac, harder)
+        adds = pick(foes, 1 if frac < 1 or not harder else 2, {'Minion', 'Soldier'}) or pick(foes, 1)
+        return wave_text([(k, mult) for k in first]) + ' / ' + wave_text([(k, mult) for k in ordered([boss] + adds, foes + [boss])])
     size = min(5, 2 + round(frac * 3) + (1 if harder else 0))
     if frac < 0.4 and not harder:
-        return wave_text([(k, mult) for k in pick(foes, size)])
-    return wave_text([(k, mult) for k in pick(foes, max(2, size - 1))]) + ' / ' + wave_text([(k, mult) for k in pick(foes, max(2, size - 2))])
+        return wave_text([(k, mult) for k in compose(foes, size, frac, harder)])
+    return wave_text([(k, mult) for k in compose(foes, max(2, size - 1), frac, harder)]) + ' / ' + wave_text([(k, mult) for k in compose(foes, max(2, size - 2), frac, harder)])
 
 
 def multiplier(p, frac):
@@ -226,13 +314,38 @@ def main():
         e_header.append('art')
         for r in e_rows:
             r.append('')
+    if 'isBoss' in e_header:
+        e_header[e_header.index('isBoss')] = 'rank'
+    if 'extraSkills' not in e_header:
+        i = e_header.index('passive') + 1
+        e_header[i:i] = ['extraSkills', 'specials']
+        for r in e_rows:
+            r[i:i] = ['', '']
+    ec = {c: i for i, c in enumerate(e_header)}
     existing_enemies = {r[0] for r in e_rows}
     gen_enemies, gen_skills, gen_passives = enemy_rows(existing_enemies)
+    # Hand-written enemies (chapters 1-3): bosses get their kits, the others the rank of their skill count.
+    for r in e_rows:
+        key = r[0][len('enemy_'):]
+        if r[ec['rank']] in ('true', 'Boss'):
+            r[ec['rank']] = 'Boss'
+            kit_passive, extras, specials = boss_kit(key, gen_skills, gen_passives)
+            r[ec['passive']] = r[ec['passive']] or kit_passive
+            r[ec['extraSkills']], r[ec['specials']] = ';'.join(extras), ';'.join(specials)
+        else:
+            r[ec['rank']] = SKILL_RANK[bool(r[ec['activeSkill']]) + bool(r[ec['passive']]) + len([x for x in r[ec['extraSkills']].split(';') if x])]
+    ranks = {r[0]: float(r[1]) for r in cs.rows(cs.read('ranks.csv')[0])[1:]}
+    for r in e_rows + gen_enemies:
+        INFO[r[0][len('enemy_'):]] = (r[ec['rank']], float(r[ec['maxHp']]) * ranks[r[ec['rank']]])
     enemy_ids = existing_enemies | {r[0] for r in gen_enemies}
     _, e_sections = cs.read('enemies.csv')
     e_sections[KEY] = cs.to_text(gen_enemies)
     cs.write('enemies.csv', head_text(e_comments, e_header, e_rows), e_sections)
-    cs.update('skills.csv', KEY, gen_skills)
+    k_comments, k_header, k_rows, k_sections = strings_of_head('skills.csv')
+    if 'threshold' not in k_header:
+        k_header.append('threshold')
+    k_sections[KEY] = cs.to_text(gen_skills)
+    cs.write('skills.csv', head_text(k_comments, k_header, k_rows), k_sections)
     cs.update('passives.csv', KEY, gen_passives)
 
     # ---- equipment: tier column, tiers 2-8, relics
@@ -281,6 +394,25 @@ def main():
         t = f'fc_a{a}'
         D(t, 'G', 'Currency', 'gold', lo=gold(a, 80))
         D(t, 'G', 'RandomEquipment', str(a), weights=GEAR_WEIGHTS[min(8, a + 1)])
+
+    # ---- player levels: levels.csv + reward tables per act band (gold and a random shard of the act's pool; every 5th
+    # level also gear)
+    level_rows = []
+    for lv in range(1, MAX_LEVEL + 1):
+        a = max(k for k, first in LEVEL_ACT_FROM.items() if lv >= first)
+        xp = 0 if lv == MAX_LEVEL else int(round(LEVEL_XP_A * (lv ** LEVEL_XP_POW - (lv - 1) ** LEVEL_XP_POW) / 5) * 5)
+        level_rows.append([str(lv), str(xp), '' if lv == 1 else f'level_a{a}_gear' if lv % 5 == 0 else f'level_a{a}'])
+    for a in range(1, 9):
+        pool = '+'.join(f'act_{k}' for k in range(1, a + 1))
+        for t, g in ((f'level_a{a}', 80), (f'level_a{a}_gear', 150)):
+            D(t, 'G', 'Currency', 'gold', lo=gold(a, g))
+            for k, (rar, w, lo, hi) in enumerate(SHARD_WEIGHTS):
+                D(t, 'shards', 'RandomHeroShardByRarity', pool, rar, weight=w, lo=lo, hi=hi, rolls=(1, 1) if k == 0 else None)
+        D(f'level_a{a}_gear', 'G', 'RandomEquipment', str(a), weights=GEAR_WEIGHTS[min(8, a + 1)])
+    with open(os.path.join(cs.SRC, 'levels.csv'), 'w', newline='') as f:
+        f.write('# Player levels. GENERATED by tools/content/gen_campaign.py (MAX_LEVEL, LEVEL_XP_*, LEVEL_ACT_FROM): edit there and re-run.\n'
+                '# xpToNext = XP from this level to the next (0 on the last level = the cap); reward = drop table rolled on reaching the level.\n')
+        f.write(cs.to_text([['level', 'xpToNext', 'reward']] + level_rows) + '\n')
 
     # ---- hero placement: which fights hand out each hero's targeted shards (3 grants of 20% each)
     act_fights = {}  # act -> list of (n, fight index) for non-boss main fights of chapters >= 4 (and new ones of 1-3)
@@ -356,6 +488,7 @@ def main():
             gen_chapters.append([cid, str(n), ch['name'], f'clear_{n}', ''])
             D(f'clear_{n}', 'G', 'Currency', 'gold', lo=gold(a, 300))
             D(f'clear_{n}', 'G', 'RandomEquipment', str(a), weights=GEAR_WEIGHTS[min(8, a + 2)])
+        foes = ch['foes'] + [k for k in NEW_FOES.get(n, []) if k not in ch['foes']]
         mid = [round(count * x) for x in (0.45, 0.7)]
         ids = []
         next_new = 9
@@ -378,7 +511,7 @@ def main():
                 mult = sum(ms) / len(ms)
             else:
                 mult = multiplier(p, frac)
-            waves = build_waves(ch['foes'], i, count, mult, boss=ch['boss'] if boss_fight else None)
+            waves = build_waves(foes, i, count, mult, boss=ch['boss'] if boss_fight else None)
             pre, post = [], []
             if n > 3 and i == 0:
                 for k, (sp, text) in enumerate(ch['intro'] or []):
@@ -426,7 +559,7 @@ def main():
             opener = ids[at]
             frac = at / max(1, count - 1)
             mult = (multiplier(p, frac) if n > 3 else 1.6 + 0.3 * n) * 1.12
-            waves = build_waves(ch['foes'], at, count, mult, harder=True)
+            waves = build_waves(foes, at, count, mult, harder=True)
             pre = [beat(f'beat_side_{n}_{j + 1}', sp, q['pre'][1])]
             post = [beat(f'beat_side_{n}_{j + 1}_lore', 'journal', q['lore'])]
             first = f'fc_{sid}'

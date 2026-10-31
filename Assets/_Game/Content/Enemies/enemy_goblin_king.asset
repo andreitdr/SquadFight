@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_goblin_king
   nameKey: enemy_goblin_king_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 1500
@@ -25,8 +25,15 @@ MonoBehaviour:
     - 1.5
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 7eb92d8d33242454b8708a9ceb79be9d, type: 2}
+  passiveSkill: {fileID: 11400000, guid: b0f1f16d44cab4fbfbf3250d7a22f642, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: ae5bfe0ee72e544cebddd8170a4033bc, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 4e166596a41444693b8f208cc1e41e64, type: 2}
+  - {fileID: 11400000, guid: ed4f1403e70504c039b77e9aa59f09ea, type: 2}
   sprite: {fileID: 21300000, guid: 49cca21cf3896433fa32d6ee0cd0bd4a, type: 3}
   tint: {r: 0.3764706, g: 0.42352942, b: 0.21960784, a: 1}
+  artFrom: 
   portrait: {fileID: 21300000, guid: 49cca21cf3896433fa32d6ee0cd0bd4a, type: 3}
   icon: {fileID: 21300000, guid: 7d736de35bf75419a8964fe4b75eae15, type: 3}
   animations: {fileID: 11400000, guid: 069a5b9d001f2459aa1b2eaa70f68797, type: 2}

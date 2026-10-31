@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_rune_smith
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_rune_smith
+  nameKey: enemy_rune_smith_name
+  rank: 2
+  baseStats:
+    values:
+    - 2460
+    - 255
+    - 54
+    - 98
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: f7402628105614a049c64e923861c9c1, type: 2}
+  passiveSkill: {fileID: 11400000, guid: decab917948fc4aebbe59871886db895, type: 2}
+  extraSkills: []
+  specials: []
+  sprite: {fileID: 21300000, guid: 08445b09d4fd34a52b9bf488644cc70d, type: 3}
+  tint: {r: 0.7529412, g: 0.5411765, b: 0.24313726, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 08445b09d4fd34a52b9bf488644cc70d, type: 3}
+  icon: {fileID: 21300000, guid: c04f0e1ee7c1248979384aa4857f06cb, type: 3}
+  animations: {fileID: 11400000, guid: f14c6faa751c44ae4a7c6ff56a42e959, type: 2}

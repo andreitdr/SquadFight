@@ -15,6 +15,8 @@ namespace Game.Core
         CombatantDied, WaveCleared, BattleEnded,
         // Appended (step "The Hundred"): keep order, hashes and the presentation switch rely on it.
         DotTick, HotTick, Dodged, Revived, Cleansed, Dispelled, Silenced, PassiveTriggered, CooldownChanged, ThornsReflected,
+        // Appended (enemy ranks): a boss's HP crossed a special's threshold; it fires on the boss's next turn.
+        SpecialCharged,
     }
 
     /// <summary>

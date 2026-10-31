@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Game.Core
 {
@@ -38,11 +39,22 @@ namespace Game.Core
             Team = Team.Enemy,
             Slot = slot,
             IsBoss = enemy.IsBoss,
-            PreStats = ScaleCombatStats(enemy.BaseStats, statMultiplier),
+            Rank = enemy.Rank,
+            PreStats = EnemyStats(enemy, statMultiplier, db),
             Basic = db.GetSkill(enemy.BasicSkillId),
             Active = string.IsNullOrEmpty(enemy.ActiveSkillId) ? null : db.GetSkill(enemy.ActiveSkillId),
             Passive = string.IsNullOrEmpty(enemy.PassiveSkillId) ? null : db.GetSkill(enemy.PassiveSkillId),
+            Extras = enemy.ExtraSkillIds.Select(db.GetSkill).ToList(),
+            Specials = enemy.SpecialSkillIds.Select(db.GetSkill).ToList(),
         };
+
+        /// <summary>An enemy's stats in a fight: base scaled by the spawn multiplier, then max HP by its rank.</summary>
+        public static StatBlock EnemyStats(EnemyDef enemy, float statMultiplier, GameDatabase db)
+        {
+            var s = ScaleCombatStats(enemy.BaseStats, statMultiplier);
+            s[StatType.MaxHp] *= db.GetRank(enemy.Rank).HpMultiplier;
+            return s;
+        }
 
         /// <summary>Scales HP/Attack/Defense; speed and crit stats stay unchanged (turn order would otherwise drift with difficulty).</summary>
         public static StatBlock ScaleCombatStats(StatBlock s, float multiplier)

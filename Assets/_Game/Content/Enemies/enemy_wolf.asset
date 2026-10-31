@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_wolf
   nameKey: enemy_wolf_name
-  isBoss: 0
+  rank: 0
   baseStats:
     values:
     - 250
@@ -25,8 +25,12 @@ MonoBehaviour:
     - 1.5
   basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
   activeSkill: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  extraSkills: []
+  specials: []
   sprite: {fileID: 21300000, guid: b3d4253d315644fe594ca16579d29e08, type: 3}
   tint: {r: 0.6117647, g: 0.6117647, b: 0.6117647, a: 1}
+  artFrom: 
   portrait: {fileID: 21300000, guid: b3d4253d315644fe594ca16579d29e08, type: 3}
   icon: {fileID: 21300000, guid: 637de470a2d964e32b75ed127f454902, type: 3}
   animations: {fileID: 11400000, guid: 9a170d7c480e54192a58d93f3e805e66, type: 2}

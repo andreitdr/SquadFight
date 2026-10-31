@@ -24,11 +24,41 @@ namespace Game.Core
     {
         public string Id;
         public string NameKey;
-        public bool IsBoss;
+        public EnemyRank Rank = EnemyRank.Soldier;
+        public bool IsBoss => Rank == EnemyRank.Boss;
         public StatBlock BaseStats = new StatBlock();
         public string BasicSkillId;
         public string ActiveSkillId;
         public string PassiveSkillId;
+        /// <summary>More active skills (Champions and Bosses), each with its own cooldown; used after <see cref="ActiveSkillId"/>.</summary>
+        public List<string> ExtraSkillIds = new List<string>();
+        /// <summary>Boss special attacks: each charges once when HP first drops to its <see cref="SkillDef.Threshold"/> and fires on the next turn.</summary>
+        public List<string> SpecialSkillIds = new List<string>();
+
+        /// <summary>Skills beyond the basic attack (actives, passive, specials): what a rank's skill count measures.</summary>
+        public int SkillCount => (string.IsNullOrEmpty(ActiveSkillId) ? 0 : 1) + (string.IsNullOrEmpty(PassiveSkillId) ? 0 : 1) + ExtraSkillIds.Count + SpecialSkillIds.Count;
+    }
+
+    /// <summary>One enemy rank (ranks.csv): how much tougher it is and what defeating it is worth.</summary>
+    public sealed class RankDef
+    {
+        public EnemyRank Rank;
+        /// <summary>Applied to the enemy's max HP in battle (on top of the fight's stat multiplier).</summary>
+        public float HpMultiplier = 1f;
+        /// <summary>Player XP for defeating one enemy of this rank.</summary>
+        public int Xp;
+        /// <summary>Skills beyond the basic attack (see <see cref="EnemyDef.SkillCount"/>): at least this many, and fewer than the next rank's minimum.</summary>
+        public int MinSkills;
+    }
+
+    /// <summary>One player level (levels.csv). The last row is the level cap.</summary>
+    public sealed class PlayerLevelDef
+    {
+        public int Level;
+        /// <summary>XP needed to go from this level to the next (ignored on the last row).</summary>
+        public int XpToNext;
+        /// <summary>Rolled once when the player reaches this level (none for level 1).</summary>
+        public string RewardTableId;
     }
 
     public sealed class SkillDef

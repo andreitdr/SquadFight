@@ -39,4 +39,10 @@ namespace Game.Core
     public enum DropType { Currency, HeroShard, RandomHeroShardByRarity, Equipment, RandomEquipment }
 
     public enum UnlockConditionType { ClearFight, MinPartyPower, HeroOwned }
+
+    /// <summary>
+    /// Enemy rank, weakest first. A higher rank has more HP (rank multiplier) and more skills, and gives more player XP.
+    /// <see cref="Boss"/> is the top rank: it also has special attacks. Append only: assets store the numeric value.
+    /// </summary>
+    public enum EnemyRank { Minion, Soldier, Elite, Champion, Boss }
 }

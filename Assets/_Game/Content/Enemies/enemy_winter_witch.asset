@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_winter_witch
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_winter_witch
+  nameKey: enemy_winter_witch_name
+  rank: 3
+  baseStats:
+    values:
+    - 1750
+    - 253
+    - 36
+    - 100
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 3403085cb82884d3db65cacaa8a1fcc0, type: 2}
+  passiveSkill: {fileID: 11400000, guid: dfe6284bca106408bbd8f09fe4a3fb3b, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 5d385469721684fb982a0cc19dc4ee5a, type: 2}
+  specials: []
+  sprite: {fileID: 21300000, guid: 1d61d665c7f094c51823d950e626f8ed, type: 3}
+  tint: {r: 0.7882353, g: 0.89411765, b: 0.9607843, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 1d61d665c7f094c51823d950e626f8ed, type: 3}
+  icon: {fileID: 21300000, guid: 8dbf7966a8b164fcb82128956434eba2, type: 3}
+  animations: {fileID: 11400000, guid: 15bd9a45bfa5b4412b3396c483464cf2, type: 2}

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_steam_knight
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_steam_knight
+  nameKey: enemy_steam_knight_name
+  rank: 2
+  baseStats:
+    values:
+    - 4800
+    - 405
+    - 135
+    - 86
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 0ac3a729b288c4d5db76bb5108dd1f5d, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 2b801e1e22d2e4aee963e09bfafadb30, type: 2}
+  extraSkills: []
+  specials: []
+  sprite: {fileID: 21300000, guid: 214b9f81846ae4d019c7233f85911ca2, type: 3}
+  tint: {r: 0.4392157, g: 0.5019608, b: 0.5647059, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 214b9f81846ae4d019c7233f85911ca2, type: 3}
+  icon: {fileID: 21300000, guid: 0fdc7af448a0d4ac6bf84bdd3e47078e, type: 3}
+  animations: {fileID: 11400000, guid: 17f0867c52d3f483389d04ecae262ef3, type: 2}

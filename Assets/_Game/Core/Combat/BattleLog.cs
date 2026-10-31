@@ -46,6 +46,7 @@ namespace Game.Core
                     case BattleEventType.Silenced: sb.AppendLine($"  {N(e.Actor)} is silenced"); break;
                     case BattleEventType.PassiveTriggered: sb.AppendLine($"  {N(e.Actor)} passive {e.SkillId}"); break;
                     case BattleEventType.CooldownChanged: sb.AppendLine($"    {N(e.Target)} cooldown → {e.Amount}"); break;
+                    case BattleEventType.SpecialCharged: sb.AppendLine($"  {N(e.Actor)} charges special {e.SkillId}"); break;
                     case BattleEventType.ThornsReflected: sb.AppendLine($"    {N(e.Target)} takes {e.Amount} thorns → {e.HpAfter} HP"); break;
                     case BattleEventType.ShieldExpired: sb.AppendLine($"    {N(e.Target)} shield fades"); break;
                     case BattleEventType.CombatantDied: sb.AppendLine($"    {N(e.Target)} is defeated"); break;

@@ -73,6 +73,12 @@ namespace Game.Services
     }
 
     /// <summary>The whole player state was replaced (reset / debug load). Views should rebuild.</summary>
+    public readonly struct PlayerLevelChanged
+    {
+        public readonly int OldLevel; public readonly int NewLevel; public readonly int XpGained;
+        public PlayerLevelChanged(int oldLevel, int newLevel, int xpGained) { OldLevel = oldLevel; NewLevel = newLevel; XpGained = xpGained; }
+    }
+
     public readonly struct StateReset { }
 
     public readonly struct SettingsChanged { }

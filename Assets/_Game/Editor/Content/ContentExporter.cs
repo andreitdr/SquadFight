@@ -23,7 +23,7 @@ namespace Game.EditorTools.Content
         {
             Export(ContentPaths.Source);
             AssetDatabase.Refresh();
-            Debug.Log("[Export] heroes/enemies/equipment/rarities/stars written to " + ContentPaths.Source);
+            Debug.Log("[Export] heroes/enemies/equipment/rarities/stars/ranks written to " + ContentPaths.Source);
         }
 
         public static void Export(string folder)
@@ -38,10 +38,11 @@ namespace Game.EditorTools.Content
                     .Concat(StatBlock.All.Select(s => N(h.baseStats[s])))
                     .Concat(new[] { h.basicSkill ? h.basicSkill.id : "", h.activeSkill ? h.activeSkill.id : "", h.passiveSkill ? h.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(h.tint), T(h.loreKey) }))));
 
-            File.WriteAllText(Path.Combine(folder, "enemies.csv"), Csv.Write(new[] { "id", "name", "isBoss" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "passive", "tint", "art" }),
-                OrderLike(folder, "enemies.csv", cdb.EnemyAssets).Select(e => new[] { e.id, T(e.nameKey), e.isBoss ? "true" : "false" }
+            string Ids(IEnumerable<SkillDefinition> list) => string.Join(";", list.Where(x => x).Select(x => x.id));
+            File.WriteAllText(Path.Combine(folder, "enemies.csv"), Csv.Write(new[] { "id", "name", "rank" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "passive", "extraSkills", "specials", "tint", "art" }),
+                OrderLike(folder, "enemies.csv", cdb.EnemyAssets).Select(e => new[] { e.id, T(e.nameKey), e.rank.ToString() }
                     .Concat(StatBlock.All.Select(s => N(e.baseStats[s])))
-                    .Concat(new[] { e.basicSkill ? e.basicSkill.id : "", e.activeSkill ? e.activeSkill.id : "", e.passiveSkill ? e.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(e.tint), e.artFrom ?? "" }))));
+                    .Concat(new[] { e.basicSkill ? e.basicSkill.id : "", e.activeSkill ? e.activeSkill.id : "", e.passiveSkill ? e.passiveSkill.id : "", Ids(e.extraSkills), Ids(e.specials), "#" + ColorUtility.ToHtmlStringRGB(e.tint), e.artFrom ?? "" }))));
 
             File.WriteAllText(Path.Combine(folder, "equipment.csv"), Csv.Write(new[] { "id", "name", "slot", "rarity", "tier", "stats", "setId" },
                 cdb.Source.equipment.Select(e => new[] { e.id, T(e.nameKey), e.slot.ToString(), e.rarity.ToString(), e.tier.ToString(Inv),
@@ -53,6 +54,10 @@ namespace Game.EditorTools.Content
 
             File.WriteAllText(Path.Combine(folder, "stars.csv"), Csv.Write(new[] { "star", "shardsRequired", "currencyCost", "statMultiplier" },
                 cdb.Source.starConfig.levels.Select(l => new[] { l.star.ToString(Inv), l.shardsRequired.ToString(Inv), l.currencyCost.ToString(Inv), N(l.statMultiplier) })));
+
+            if (cdb.Source.rankConfig)
+                File.WriteAllText(Path.Combine(folder, "ranks.csv"), Csv.Write(new[] { "rank", "hpMultiplier", "xp", "minSkills" },
+                    cdb.Source.rankConfig.entries.Select(e => new[] { e.rank.ToString(), N(e.hpMultiplier), e.xp.ToString(Inv), e.minSkills.ToString(Inv) })));
         }
 
         /// <summary>Keeps the existing row order of a CSV when exporting assets gathered in another order.</summary>

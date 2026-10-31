@@ -25,7 +25,7 @@ switch (cmd)
                 var r = reports[k];
                 var losses = r.Fights.Sum(f => f.Attempts - f.Wins);
                 var heroes = r.HeroUnlockedAtFight.Count;
-                Console.WriteLine($"{p,-8} s{seed} {(r.Completed ? "done" : "STUCK " + r.StuckAt),-14} fights {r.TotalFights,5} losses {losses,4} heroes {heroes,3}/{db.Heroes.Count} gold +{r.GoldEarned}/-{r.GoldSpent} walls {r.Walls.Count} [{string.Join(",", r.Walls.Take(8))}]");
+                Console.WriteLine($"{p,-8} s{seed} {(r.Completed ? "done" : "STUCK " + r.StuckAt),-14} fights {r.TotalFights,5} losses {losses,4} heroes {heroes,3}/{db.Heroes.Count} gold +{r.GoldEarned}/-{r.GoldSpent} level {r.PlayerLevel} ({r.PlayerXp} xp) walls {r.Walls.Count} [{string.Join(",", r.Walls.Take(8))}]");
             }
         break;
     }
@@ -190,6 +190,22 @@ switch (cmd)
             if (db.GetFightOrder(id) % 10 == 0) Console.WriteLine($"{sw.ElapsedMilliseconds,7} ms  first try {id,-14} power {s.PartyPower,6} rec {db.GetFight(id).RecommendedPower,6} heroes {s.Roster.UnlockedHeroIds.Count()} items {s.Inventory.Query(includeEquipped: true).Count()}");
         });
         Console.WriteLine($"{sw.ElapsedMilliseconds} ms, {r.TotalFights} fights, {(r.Completed ? "done" : "stuck at " + r.StuckAt)}, walls: {string.Join(",", r.Walls.Take(15))}");
+        break;
+    }
+    case "levels":
+    {
+        // Total XP of casual players when they first reach each chapter (sets LEVEL_ACT_FROM in gen_campaign.py).
+        var firsts = db.Chapters.ToDictionary(c => c.FightIds[0], c => c.Id);
+        var seen = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<int>>();
+        var runs = new CampaignReport[3];
+        var gate = new object();
+        System.Threading.Tasks.Parallel.For(0, runs.Length, k => runs[k] = CampaignSimulator.Run(db, new CasualPolicy(), (ulong)(k + 1), 5000, (id, s) =>
+        {
+            if (!firsts.TryGetValue(id, out var ch)) return;
+            lock (gate) { if (!seen.TryGetValue(ch, out var l)) seen[ch] = l = new System.Collections.Generic.List<int>(); l.Add((int)s.Levels.TotalXp); }
+        }));
+        foreach (var c in db.Chapters) Console.WriteLine($"{c.Id,-12} xp {(seen.TryGetValue(c.Id, out var l) ? string.Join("/", l) : "-")}");
+        foreach (var r in runs) Console.WriteLine($"casual s{r.Seed}: {r.TotalFights} fights, level {r.PlayerLevel}, {r.PlayerXp} xp");
         break;
     }
     case "validate":

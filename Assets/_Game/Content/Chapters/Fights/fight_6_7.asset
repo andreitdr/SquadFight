@@ -17,17 +17,17 @@ MonoBehaviour:
   waves:
   - spawns:
     - enemy: {fileID: 11400000, guid: 7773d02f8e3ac415fbb8d1a0a3b5c9a4, type: 2}
-      statMultiplier: 2.17
-    - enemy: {fileID: 11400000, guid: 78a966c21b4bc4781a4d80facb18ff0b, type: 2}
-      statMultiplier: 2.17
-    - enemy: {fileID: 11400000, guid: 7773d02f8e3ac415fbb8d1a0a3b5c9a4, type: 2}
-      statMultiplier: 2.17
-  - spawns:
-    - enemy: {fileID: 11400000, guid: 78a966c21b4bc4781a4d80facb18ff0b, type: 2}
-      statMultiplier: 2.17
+      statMultiplier: 2.85
     - enemy: {fileID: 11400000, guid: bc4d4fe6581d548c5b4e6555b7bb5ced, type: 2}
-      statMultiplier: 2.17
-  recommendedPower: 2870
+      statMultiplier: 2.85
+    - enemy: {fileID: 11400000, guid: b0a65a3d4c9ca409aac6dfce0cd409e8, type: 2}
+      statMultiplier: 2.85
+  - spawns:
+    - enemy: {fileID: 11400000, guid: 8bdeb9b64c99e4de5b82b42a16e674d6, type: 2}
+      statMultiplier: 2.85
+    - enemy: {fileID: 11400000, guid: 7773d02f8e3ac415fbb8d1a0a3b5c9a4, type: 2}
+      statMultiplier: 2.85
+  recommendedPower: 2990
   dropTable: {fileID: 11400000, guid: 264921ea290c6430a86926b8500aeba2, type: 2}
   firstClearTable: {fileID: 11400000, guid: 35e4d373947be4465a8a866c9e66e779, type: 2}
   starTurnLimit: 0

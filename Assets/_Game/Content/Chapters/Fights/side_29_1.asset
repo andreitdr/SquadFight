@@ -16,18 +16,18 @@ MonoBehaviour:
   nameKey: side_29_1_name
   waves:
   - spawns:
-    - enemy: {fileID: 11400000, guid: 8ca3a3c10d7154c4a84a82cbedd3ebb6, type: 2}
-      statMultiplier: 3.66
+    - enemy: {fileID: 11400000, guid: 522c9d609ab5a4c99b391704c03cbceb, type: 2}
+      statMultiplier: 3.08
     - enemy: {fileID: 11400000, guid: 283f58350752c4115b4d62eb04c41af7, type: 2}
-      statMultiplier: 3.66
+      statMultiplier: 3.08
     - enemy: {fileID: 11400000, guid: ee7259c101c634521bfbcd81a4bb2c0c, type: 2}
-      statMultiplier: 3.66
+      statMultiplier: 3.08
   - spawns:
+    - enemy: {fileID: 11400000, guid: 522c9d609ab5a4c99b391704c03cbceb, type: 2}
+      statMultiplier: 3.08
     - enemy: {fileID: 11400000, guid: 283f58350752c4115b4d62eb04c41af7, type: 2}
-      statMultiplier: 3.66
-    - enemy: {fileID: 11400000, guid: ee7259c101c634521bfbcd81a4bb2c0c, type: 2}
-      statMultiplier: 3.66
-  recommendedPower: 10120
+      statMultiplier: 3.08
+  recommendedPower: 10310
   dropTable: {fileID: 11400000, guid: 3cb3a58a91c5e4431950711b2f30748e, type: 2}
   firstClearTable: {fileID: 11400000, guid: d9bf634f9103c457d8c94ebbb0c89d37, type: 2}
   starTurnLimit: 0

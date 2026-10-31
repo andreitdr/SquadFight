@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_weeping_saint
   nameKey: enemy_weeping_saint_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 59250
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 5c24ff583513142f59a75a3c8b5b0844, type: 2}
   passiveSkill: {fileID: 11400000, guid: 773c2cc7185e34e06941d2d54b98b670, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 854f5bb1ffbd944f096db373d127d49a, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 4c35be660a6d14e49ac2c94b1f71ba44, type: 2}
+  - {fileID: 11400000, guid: 60251b96c97fc4d2fb232fbf5fdd514a, type: 2}
   sprite: {fileID: 21300000, guid: e550678c5d2fd45528cf9cd46394fb10, type: 3}
   tint: {r: 0.94509804, g: 0.98039216, b: 0.93333334, a: 1}
   artFrom: 

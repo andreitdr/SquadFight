@@ -526,103 +526,162 @@ chapter_8_name,"Ys-Marrow, the Drowned City"
 chapter_9_name,The Cathedral of Tides
 currency_gold_name,Gold
 enemy_abbess_corvina_name,Abbess Corvina the Fallen
+enemy_abbey_ghoul_name,Abbey Ghoul
+enemy_ash_husk_name,Ash Husk
+enemy_ash_revenant_name,Ash Revenant
 enemy_ash_wraith_name,Ash Wraith
 enemy_ashen_goblin_name,Ashen Goblin
 enemy_ashen_knight_name,"Sir Morcant, the Ashen Knight"
 enemy_ashen_matron_name,The Ashen Matron
+enemy_barnacle_brute_name,Barnacle Brute
 enemy_bat_lord_name,Bat Lord
 enemy_blight_alpha_name,Blight Alpha
 enemy_blight_boar_name,The Blight Boar
 enemy_blight_heart_name,The Blight Heart
 enemy_blightbeast_name,Blight Beast
+enemy_blood_inquisitor_name,Blood Inquisitor
 enemy_blood_knight_name,Vey Blood Knight
+enemy_blood_leech_name,Blood Leech
 enemy_blood_thrall_name,Blood Thrall
 enemy_bog_king_name,Bog-King Ulmar
 enemy_bone_archer_name,Bone Archer
+enemy_bramble_sprite_name,Bramble Sprite
 enemy_brass_colossus_name,The Brass Colossus
 enemy_brass_construct_name,Brass Construct
+enemy_brass_scarab_name,Brass Scarab
 enemy_brass_sentinel_name,Brass Sentinel
 enemy_briar_archer_name,Briar Archer
+enemy_brine_crab_name,Brine Crabling
 enemy_bulwark_captain_name,Fallen Bulwark Captain
 enemy_captain_morrow_name,Captain Morrow
 enemy_casimir_vey_name,Lord Casimir Vey
 enemy_choir_mother_name,Mother Ilse of the Choir
 enemy_cinder_hound_name,Cinder Hound
 enemy_cinder_imp_name,Cinder Imp
+enemy_cinder_rat_name,Cinder Rat
+enemy_cinder_stalker_name,Cinder Stalker
 enemy_clan_raider_name,Rival Clan Raider
 enemy_coral_crab_name,Coral Crab
 enemy_corsair_gunner_name,Corsair Gunner
 enemy_countess_vey_name,Countess Elisabet Vey
 enemy_court_assassin_name,Sand Court Assassin
 enemy_crab_brute_name,Crab-Man Brute
+enemy_crimson_acolyte_name,Crimson Acolyte
 enemy_cultist_name,Cultist
+enemy_deep_lurker_name,Deep Lurker
 enemy_djinn_spark_name,Lesser Djinn
+enemy_djinn_vizier_name,Djinn Vizier
 enemy_dragon_echo_name,Echo of the Red Dragon
 enemy_dragon_priest_name,Dragon Priest
 enemy_drowned_captain_name,Drowned Captain
+enemy_drowned_deckhand_name,Drowned Deckhand
 enemy_drowned_sailor_name,Drowned Sailor
+enemy_dune_bandit_name,Dune Bandit
 enemy_echo_wraith_name,Echo Wraith
 enemy_eel_swarm_name,Bloodeel Swarm
 enemy_elder_thornling_name,Elder Thornling
 enemy_elder_thrall_name,Elder Thrall
+enemy_elder_treant_name,Elder Treant
 enemy_elder_wraith_name,Elder Ice Wraith
 enemy_ember_ghoul_name,Ember Ghoul
+enemy_ember_mite_name,Ember Mite
 enemy_fallen_bulwark_name,Fallen Bulwark Knight
 enemy_fallen_saint_name,Fallen Saint
+enemy_fey_hunter_name,Fey Huntress
 enemy_fey_knight_name,Summer Fey Knight
 enemy_forge_construct_name,Forge Construct
+enemy_forge_gunner_name,Forge Gunner
 enemy_forge_tyrant_name,The Forge Tyrant
 enemy_frost_giant_name,Frost Giant
+enemy_frost_thrall_name,Frost Thrall
+enemy_frost_troll_name,Frost Troll
 enemy_frost_wolf_name,Frost Wolf
+enemy_gargoyle_name,Abbey Gargoyle
+enemy_gate_hound_name,Gate Hound
 enemy_gate_skeleton_name,Gatewatch Skeleton
+enemy_gatewarden_name,The Gatewarden
 enemy_ghoul_name,Ghoul
 enemy_giant_jarl_name,Frost Giant Jarl
+enemy_glacier_golem_name,Glacier Golem
+enemy_glass_beetle_name,Glass Beetle
 enemy_glass_scorpion_name,Glass Scorpion
+enemy_glass_seer_name,Glass Seer
 enemy_goblin_king_name,Goblin King
 enemy_goblin_name,Goblin
 enemy_goblin_shaman_name,Goblin Shaman
 enemy_greater_magma_name,Greater Magma Elemental
 enemy_greater_spawn_name,Greater Hollowspawn
 enemy_hollow_cultist_name,Hollow Cultist
+enemy_hollow_duelist_name,Hollow Duelist
 enemy_hollow_king_name,"Aurem, the Hollow King"
+enemy_hollow_sentinel_name,Hollow Sentinel
+enemy_hollow_shell_name,Hollow Shell
+enemy_hollow_titan_name,Hollow Titan
 enemy_hollowling_name,Hollowling
 enemy_hollowspawn_name,Hollowspawn
+enemy_ice_archer_name,Ice Archer
 enemy_ice_wraith_name,Ice Wraith
 enemy_ilvane_name,Archmage Ilvane
 enemy_iron_juggernaut_name,Iron Juggernaut
+enemy_iron_warlord_name,Iron Warlord
+enemy_kraken_spawn_name,Kraken Spawn
+enemy_lava_wyrm_name,Lava Wyrm
 enemy_lich_name,The Lich
 enemy_magma_elemental_name,Magma Elemental
 enemy_malrec_guard_name,Pale Guard
 enemy_malrec_name,Malrec the Pale
 enemy_marshal_odo_name,Fallen Marshal Odo
 enemy_master_assassin_name,Master of Knives
+enemy_mirage_dancer_name,Mirage Dancer
 enemy_mire_hag_name,The Mire Hag
+enemy_mossback_name,Mossback
+enemy_night_hunter_name,Night Hunter
+enemy_null_archer_name,Null Archer
 enemy_null_priest_name,Null Priest
 enemy_obsidian_scorpion_name,Obsidian Scorpion
 enemy_orc_brute_name,Orc Brute
 enemy_orc_shaman_name,Orc Shaman
 enemy_pale_rider_name,The Pale Rider
+enemy_penitent_name,Penitent
 enemy_plague_doctor_name,Plague Doctor
 enemy_prince_aubrel_name,Prince Aubrel of Summer
+enemy_pyre_priest_name,Pyre Priest
 enemy_queen_hoarfrost_name,Queen Hoarfrost
 enemy_raider_berserker_name,Clan Berserker
 enemy_red_dragon_name,Red Dragon
+enemy_reef_harpooner_name,Reef Harpooner
 enemy_rift_beast_name,Rift Beast
+enemy_rift_caller_name,Rift Caller
 enemy_rift_maw_name,The Rift Maw
+enemy_rime_hunter_name,Rime Hunter
 enemy_rime_shaman_name,Rime Shaman
+enemy_road_looter_name,Ashfall Looter
 enemy_rot_dryad_name,Rot Dryad
 enemy_rot_stag_name,The Rot Stag
+enemy_rotling_name,Rotling
+enemy_rune_smith_name,Rune Smith
 enemy_rune_turret_name,Rune Turret
 enemy_saint_of_thorns_name,The Saint of Thorns
+enemy_salt_witch_name,Salt Witch
+enemy_sand_archer_name,Sand Archer
+enemy_sand_colossus_name,Sand Colossus
 enemy_sand_mage_name,Arcanum Renegade
 enemy_sand_wraith_name,Sand Wraith
 enemy_scorpion_queen_name,Queen of Scorpions
+enemy_scrap_drone_name,Scrap Drone
+enemy_seal_breaker_name,Seal Breaker
 enemy_siren_name,Siren
 enemy_skeleton_name,Skeleton
+enemy_snow_imp_name,Snow Imp
 enemy_spore_crawler_name,Spore Crawler
+enemy_spore_mother_name,Spore Mother
+enemy_steam_knight_name,Steam Knight
 enemy_storm_djinn_name,"Azhar, the Storm Djinn"
+enemy_storm_skald_name,Storm Skald
 enemy_thane_grimhild_name,Thane Grimhild
 enemy_the_hunger_name,The Hunger
+enemy_thorn_knight_name,Thorn Knight
+enemy_thorn_slinger_name,Thorn Slinger
 enemy_thornling_name,Thornling
 enemy_tide_acolyte_name,Tide Acolyte
 enemy_tide_corsair_name,Black Tide Corsair
@@ -633,7 +692,10 @@ enemy_tunnel_crawler_name,Tunnel Crawler
 enemy_tunnel_maw_name,The Tunnel Maw
 enemy_unit_seven_name,Foreman Unit Seven
 enemy_vampire_bat_name,Vampire Bats
+enemy_vampire_knight_name,Vampire Knight
 enemy_vizier_hashem_name,Vizier Hashem
+enemy_void_herald_name,Void Herald
+enemy_void_mite_name,Void Mite
 enemy_void_reaver_name,Void Reaver
 enemy_void_stalker_name,Void Stalker
 enemy_vorn_name,Vorn the Pale Hand
@@ -642,7 +704,9 @@ enemy_weeping_saint_name,The Weeping Saint
 enemy_wendigo_name,The Wendigo
 enemy_wendigo_spawn_name,Wendigo Spawn
 enemy_winter_knight_name,Winter Fey Knight
+enemy_winter_witch_name,Winter Witch
 enemy_wolf_name,Wolf
+enemy_wreck_captain_name,Wreck Captain
 enemy_wyvern_name,Wyvern
 enemy_zealot_inquisitor_name,Zealot Inquisitor
 enemy_zealot_name,Bloodmoon Zealot
@@ -1397,22 +1461,30 @@ passive_dragons_retort_desc,"When hit, bites back at the weakest enemy and drink
 passive_dragons_retort_name,Dragon's Retort
 passive_e_abbess_corvina_desc,Heals all allies every few turns.
 passive_e_abbess_corvina_name,Corrupted Grace
+passive_e_ash_revenant_desc,Starts the battle wrapped in smoke.
+passive_e_ash_revenant_name,Smoulder
 passive_e_ashen_goblin_desc,Hard to hit at first.
 passive_e_ashen_goblin_name,Soot Cloud
 passive_e_ashen_knight_desc,At one third health he burns with dragonfire.
 passive_e_ashen_knight_name,Dragon's Ash
 passive_e_ashen_matron_desc,At half health she weeps ash: shields herself.
 passive_e_ashen_matron_name,Mourning
+passive_e_barnacle_brute_desc,Every hit it takes cuts the attacker.
+passive_e_barnacle_brute_name,Barnacle Hide
 passive_e_blight_boar_desc,Hardens when wounded.
 passive_e_blight_boar_name,Thick Hide
 passive_e_blight_heart_desc,"Heals heavily at one third health, once."
 passive_e_blight_heart_name,Graft
+passive_e_blood_inquisitor_desc,"After a skill, heals itself a little."
+passive_e_blood_inquisitor_name,Zeal
 passive_e_blood_thrall_desc,Heals when it hits.
 passive_e_blood_thrall_name,Thirst
 passive_e_bog_king_desc,Regenerates every turn.
 passive_e_bog_king_name,Bog Body
 passive_e_brass_colossus_desc,Every hit adds plating.
 passive_e_brass_colossus_name,Plating
+passive_e_brass_scarab_desc,"Below 50% HP: a shield, once."
+passive_e_brass_scarab_name,Brass Shell
 passive_e_captain_morrow_desc,Each fallen crew member makes him angrier.
 passive_e_captain_morrow_name,Crew
 passive_e_casimir_vey_desc,Turns to mist when wounded.
@@ -1421,54 +1493,124 @@ passive_e_choir_mother_desc,Heals herself when struck (every few turns).
 passive_e_choir_mother_name,Harmony
 passive_e_cinder_imp_desc,Bursts into flames on death... of an ally.
 passive_e_cinder_imp_name,Explode
+passive_e_cinder_stalker_desc,Hard to hit after a kill.
+passive_e_cinder_stalker_name,Heat Haze
 passive_e_countess_vey_desc,"Once, revives a fallen ally."
 passive_e_countess_vey_name,Eternal
 passive_e_court_assassin_desc,Starts hidden.
 passive_e_court_assassin_name,Smoke
+passive_e_crimson_acolyte_desc,"When an ally falls, its attack rises."
+passive_e_crimson_acolyte_name,Devotion
+passive_e_deep_lurker_desc,Hard to hit after it is struck.
+passive_e_deep_lurker_name,Slippery
+passive_e_djinn_vizier_desc,"Once, at 30% HP: heals itself."
+passive_e_djinn_vizier_name,Lamp-bound
 passive_e_dragon_echo_desc,Each fallen hero makes the echo stronger.
 passive_e_dragon_echo_name,Grief
 passive_e_drowned_sailor_desc,Slow to die.
 passive_e_drowned_sailor_name,Waterlogged
 passive_e_elder_thornling_desc,Very spiny hide.
 passive_e_elder_thornling_name,Thick Spines
+passive_e_elder_treant_desc,Starts the battle with thick bark.
+passive_e_elder_treant_name,Deep Roots
+passive_e_fey_hunter_desc,Sometimes looses a second arrow.
+passive_e_fey_hunter_name,Second Arrow
 passive_e_forge_tyrant_desc,Every hit it takes reflects heat.
 passive_e_forge_tyrant_name,Furnace Heart
+passive_e_frost_troll_desc,Regenerates every turn.
+passive_e_frost_troll_name,Troll Blood
+passive_e_gargoyle_desc,"Below 40% HP: hits back at everyone, once."
+passive_e_gargoyle_name,Crumbling Wings
+passive_e_gate_hound_desc,A kill makes it faster.
+passive_e_gate_hound_name,Blood Scent
+passive_e_gatewarden_desc,Hurting it hurts back for a while after it is hit.
+passive_e_gatewarden_name,Spiked Bars
+passive_e_glacier_golem_desc,Starts the battle with a shield of ice.
+passive_e_glacier_golem_name,Frozen Core
+passive_e_glass_seer_desc,Every few turns shields the most wounded ally.
+passive_e_glass_seer_name,Foresight
+passive_e_goblin_king_desc,"Once, at 50% HP: a shield."
+passive_e_goblin_king_name,King's Guard
+passive_e_hollow_duelist_desc,"When hit, may slip away."
+passive_e_hollow_duelist_name,Unseen Step
 passive_e_hollow_king_desc,"At one third health he remembers who he was: a vast shield, curses gone."
 passive_e_hollow_king_name,The First Warden
+passive_e_hollow_sentinel_desc,"Below 40% HP: a heavy shield, once."
+passive_e_hollow_sentinel_name,Hollow Guard
+passive_e_hollow_titan_desc,Every hit it takes cuts the attacker.
+passive_e_hollow_titan_name,Emptiness
 passive_e_hollowling_desc,Grows stronger when an ally falls.
 passive_e_hollowling_name,Hunger
 passive_e_hollowspawn_desc,Hard to hurt at first.
 passive_e_hollowspawn_name,Emptiness
 passive_e_ilvane_desc,"Once, near death, splits into a mirage."
 passive_e_ilvane_name,Mirror Self
+passive_e_iron_warlord_desc,"Once, at 35% HP: removes harmful effects and shields itself."
+passive_e_iron_warlord_name,Iron Will
+passive_e_kraken_spawn_desc,"Regrows lost limbs below 50% HP, once."
+passive_e_kraken_spawn_name,Regrowth
+passive_e_lava_wyrm_desc,"When hit, may splash burning blood."
+passive_e_lava_wyrm_name,Magma Blood
+passive_e_lich_desc,"Once, at 35% HP: heals itself."
+passive_e_lich_name,Phylactery
 passive_e_malrec_desc,At half health he raises a Warden's shield.
 passive_e_malrec_name,Warden's Craft
 passive_e_marshal_odo_desc,Taunts and shields at the start.
 passive_e_marshal_odo_name,Black Oath
+passive_e_mirage_dancer_desc,Starts the battle half-unseen.
+passive_e_mirage_dancer_name,Mirage
 passive_e_mire_hag_desc,Revives a fallen ally once.
 passive_e_mire_hag_name,Hag's Bargain
+passive_e_mossback_desc,Regrows a little every turn.
+passive_e_mossback_name,Overgrowth
+passive_e_night_hunter_desc,Starts the battle in darkness.
+passive_e_night_hunter_name,Night Cloak
 passive_e_pale_rider_desc,Hard to hit at the start.
 passive_e_pale_rider_name,Spectral
 passive_e_prince_aubrel_desc,Hard to hit at first.
 passive_e_prince_aubrel_name,Glamour
+passive_e_pyre_priest_desc,"When an ally falls, heals the most wounded ally."
+passive_e_pyre_priest_name,Last Rites
 passive_e_queen_hoarfrost_desc,"Reflects damage when struck, every few turns."
 passive_e_queen_hoarfrost_name,Ice Mirror
 passive_e_raider_berserker_desc,Gets stronger as it bleeds.
 passive_e_raider_berserker_name,Frenzy
+passive_e_red_dragon_desc,Starts the battle armoured.
+passive_e_red_dragon_name,Dragon Scales
+passive_e_rift_caller_desc,Every few turns shields every ally.
+passive_e_rift_caller_name,Echoing Void
 passive_e_rift_maw_desc,Regenerates every turn.
 passive_e_rift_maw_name,Bottomless
+passive_e_rime_hunter_desc,"When an ally falls, its attack rises."
+passive_e_rime_hunter_name,Pack Tactics
 passive_e_rot_stag_desc,Every hit it takes spreads poison to a random hero.
 passive_e_rot_stag_name,Spreading Rot
+passive_e_rune_smith_desc,Starts the battle tempering every ally's armour.
+passive_e_rune_smith_name,Tempered
 passive_e_saint_of_thorns_desc,Reflects much of the damage it takes.
 passive_e_saint_of_thorns_name,Martyr
+passive_e_salt_witch_desc,Starts the battle shielding every ally.
+passive_e_salt_witch_name,Salt Circle
+passive_e_sand_colossus_desc,Hits it takes are softened for a turn.
+passive_e_sand_colossus_name,Shifting Sands
 passive_e_scorpion_queen_desc,When a scorpion falls she hardens.
 passive_e_scorpion_queen_name,Brood
+passive_e_seal_breaker_desc,Starts the battle shielded.
+passive_e_seal_breaker_name,Hollow Shell
+passive_e_spore_mother_desc,"When hit, may poison the attacker's side."
+passive_e_spore_mother_name,Spore Cloud
+passive_e_steam_knight_desc,"Below 40% HP: attack rises, once."
+passive_e_steam_knight_name,Pressure Valve
 passive_e_storm_djinn_desc,Hard to hit when wounded.
 passive_e_storm_djinn_name,Eye of the Storm
+passive_e_storm_skald_desc,Every few turns heals the most wounded ally.
+passive_e_storm_skald_name,Mending Verse
 passive_e_thane_grimhild_desc,Her clan shields her when wounded.
 passive_e_thane_grimhild_name,Shield Wall
 passive_e_the_hunger_desc,Each kill heals it greatly.
 passive_e_the_hunger_name,Insatiable
+passive_e_thorn_knight_desc,"Below 40% HP: attack rises, once."
+passive_e_thorn_knight_name,Knight's Vow
 passive_e_thornling_desc,Spiny hide.
 passive_e_thornling_name,Spines
 passive_e_tide_mother_desc,At one third health the Seal flares: she shields and enrages.
@@ -1481,8 +1623,12 @@ passive_e_tunnel_maw_desc,Shields itself every few turns.
 passive_e_tunnel_maw_name,Burrow
 passive_e_unit_seven_desc,Repairs itself at half health.
 passive_e_unit_seven_name,Repair Protocol
+passive_e_vampire_knight_desc,"Once, at 30% HP: a heavy shield."
+passive_e_vampire_knight_name,Undying
 passive_e_vizier_hashem_desc,Shields his allies when the fight begins.
 passive_e_vizier_hashem_name,Bodyguards
+passive_e_void_herald_desc,"Once, at 40% HP: every ally heals."
+passive_e_void_herald_name,Herald's Mantle
 passive_e_void_stalker_desc,Dodges early hits.
 passive_e_void_stalker_name,Unseen
 passive_e_vorn_desc,Opens the battle by marking every hero.
@@ -1491,6 +1637,10 @@ passive_e_weeping_saint_desc,"At one third health she begs, and the Seal shields
 passive_e_weeping_saint_name,Let Me Go
 passive_e_wendigo_desc,Each kill makes it faster.
 passive_e_wendigo_name,Starvation
+passive_e_winter_witch_desc,"When hit, may reflect the cold back."
+passive_e_winter_witch_name,Ice Mirror
+passive_e_wreck_captain_desc,Every few turns raises every ally's attack.
+passive_e_wreck_captain_name,Captain's Orders
 passive_ebb_and_flow_desc,Every third turn the tide washes over the most wounded ally.
 passive_ebb_and_flow_name,Ebb and Flow
 passive_edge_walker_desc,At the start of battle steadies every other ally's footing.
@@ -1814,12 +1964,16 @@ skill_drowned_word_desc,Speaks a drowned word that strips an enemy of every bles
 skill_drowned_word_name,Drowned Word
 skill_e_abbess_corvina_desc,Silences and curses every hero.
 skill_e_abbess_corvina_name,Black Psalm
+skill_e_ash_revenant_desc,"A sweeping, burning cleave."
+skill_e_ash_revenant_name,Cinder Cleave
 skill_e_ash_wraith_desc,Chokes every hero with ash.
 skill_e_ash_wraith_name,Smother
 skill_e_ashen_knight_desc,Impales the strongest hero; tears max health.
 skill_e_ashen_knight_name,Ashen Lance
 skill_e_ashen_matron_desc,Sets every hero alight.
 skill_e_ashen_matron_name,Funeral Pyre
+skill_e_barnacle_brute_desc,A crushing punch that cracks armour.
+skill_e_barnacle_brute_name,Encrusted Fist
 skill_e_bat_lord_desc,Dives at the weakest hero.
 skill_e_bat_lord_name,Night Dive
 skill_e_blight_alpha_desc,Rallies the pack.
@@ -1830,6 +1984,8 @@ skill_e_blight_heart_desc,"Poison in every hero, and it drinks from them."
 skill_e_blight_heart_name,Root Rot
 skill_e_blightbeast_desc,A gore that leaves poison.
 skill_e_blightbeast_name,Rotting Gore
+skill_e_blood_inquisitor_desc,Sentences the strongest hero: silenced.
+skill_e_blood_inquisitor_name,Sentence
 skill_e_blood_knight_desc,Drains every hero.
 skill_e_blood_knight_name,Crimson Cleave
 skill_e_bog_king_desc,Slows every hero.
@@ -1838,6 +1994,8 @@ skill_e_brass_colossus_desc,Burns every hero.
 skill_e_brass_colossus_name,Furnace Blast
 skill_e_brass_construct_desc,"Heavy blow, may stagger."
 skill_e_brass_construct_name,Piston Fist
+skill_e_brass_scarab_desc,Charges a hero; it moves slower.
+skill_e_brass_scarab_name,Burrowing Charge
 skill_e_brass_sentinel_desc,Taunts and reflects.
 skill_e_brass_sentinel_name,Lockdown
 skill_e_briar_archer_desc,Three thorned arrows.
@@ -1852,6 +2010,8 @@ skill_e_choir_mother_desc,Silences and slows every hero.
 skill_e_choir_mother_name,Drowning Chorus
 skill_e_cinder_hound_desc,A bite that keeps burning.
 skill_e_cinder_hound_name,Burning Bite
+skill_e_cinder_stalker_desc,Pounces on the weakest hero.
+skill_e_cinder_stalker_name,Ember Pounce
 skill_e_clan_raider_desc,Throws an axe at the strongest hero.
 skill_e_clan_raider_name,Axe Throw
 skill_e_coral_crab_desc,Shell that cuts back.
@@ -1864,8 +2024,14 @@ skill_e_court_assassin_desc,Strikes the weakest hero and silences them.
 skill_e_court_assassin_name,Silent Knife
 skill_e_crab_brute_desc,Crushes armor.
 skill_e_crab_brute_name,Pincer Crush
+skill_e_crimson_acolyte_desc,Drains the weakest hero.
+skill_e_crimson_acolyte_name,Blood Rite
+skill_e_deep_lurker_desc,Drags the weakest hero under.
+skill_e_deep_lurker_name,From the Deep
 skill_e_djinn_spark_desc,Sparks at random heroes.
 skill_e_djinn_spark_name,Spark Storm
+skill_e_djinn_vizier_desc,Lightning on every hero.
+skill_e_djinn_vizier_name,Wish of Ruin
 skill_e_dragon_echo_desc,The fire you remember. Burns every hero.
 skill_e_dragon_echo_name,Remembered Fire
 skill_e_drowned_captain_desc,Hits every hero.
@@ -1876,6 +2042,8 @@ skill_e_eel_swarm_desc,Bites the weakest hero.
 skill_e_eel_swarm_name,Feeding Frenzy
 skill_e_elder_thrall_desc,Bites the weakest hero hard.
 skill_e_elder_thrall_name,Blood Frenzy
+skill_e_elder_treant_desc,Roots every hero: slower.
+skill_e_elder_treant_name,Root Snare
 skill_e_elder_wraith_desc,Freezes the strongest hero.
 skill_e_elder_wraith_name,Deep Freeze
 skill_e_ember_ghoul_desc,Burning claws.
@@ -1884,36 +2052,66 @@ skill_e_fallen_bulwark_desc,Taunts and hardens.
 skill_e_fallen_bulwark_name,Black Shield
 skill_e_fallen_saint_desc,Curses every hero.
 skill_e_fallen_saint_name,Black Miracle
+skill_e_fey_hunter_desc,Marks the strongest hero for the pack.
+skill_e_fey_hunter_name,Hunter's Mark
 skill_e_fey_knight_desc,Strikes and may charm (stun).
 skill_e_fey_knight_name,Glamour Blade
 skill_e_forge_construct_desc,A heavy blow that burns.
 skill_e_forge_construct_name,Hammer Arm
+skill_e_forge_gunner_desc,Burning slag on one hero.
+skill_e_forge_gunner_name,Slag Shot
 skill_e_forge_tyrant_desc,Molten metal on every hero.
 skill_e_forge_tyrant_name,Molten Rain
 skill_e_frost_giant_desc,"Stomps every hero, may stagger."
 skill_e_frost_giant_name,Glacier Stomp
+skill_e_frost_troll_desc,A club blow that may stun.
+skill_e_frost_troll_name,Glacial Club
 skill_e_frost_wolf_desc,Bleeding bites.
 skill_e_frost_wolf_name,Pack Bite
+skill_e_gargoyle_desc,Turns to stone: taunts and hardens.
+skill_e_gargoyle_name,Stone Skin
+skill_e_gate_hound_desc,Lunges at the weakest hero.
+skill_e_gate_hound_name,Hound Lunge
 skill_e_gate_skeleton_desc,Taunts and hardens.
 skill_e_gate_skeleton_name,Bone Wall
+skill_e_gatewarden_desc,Taunts the heroes and hardens.
+skill_e_gatewarden_name,Iron Gate
 skill_e_giant_jarl_desc,Rallies every ally.
 skill_e_giant_jarl_name,Jarl's Roar
+skill_e_glacier_golem_desc,Taunts behind a wall of ice.
+skill_e_glacier_golem_name,Ice Wall
 skill_e_glass_scorpion_desc,Poisons and cracks armor.
 skill_e_glass_scorpion_name,Glass Sting
+skill_e_glass_seer_desc,Silences the strongest hero.
+skill_e_glass_seer_name,Shatter Glare
 skill_e_greater_magma_desc,Erupts under every hero.
 skill_e_greater_magma_name,Eruption
 skill_e_greater_spawn_desc,Eats the weakest hero.
 skill_e_greater_spawn_name,Consume
 skill_e_hollow_cultist_desc,Silences a hero.
 skill_e_hollow_cultist_name,Gate Hymn
+skill_e_hollow_duelist_desc,Strikes the strongest hero; its attack falls.
+skill_e_hollow_duelist_name,Riposte
 skill_e_hollow_king_desc,Unmakes every hero a little.
 skill_e_hollow_king_name,Crown of Nothing
+skill_e_hollow_sentinel_desc,Bashes a hero and may stun it.
+skill_e_hollow_sentinel_name,Gate Bash
+skill_e_hollow_titan_desc,Crushes a hero for a share of its health.
+skill_e_hollow_titan_name,Titan's Grip
+skill_e_ice_archer_desc,An arrow that slows a hero.
+skill_e_ice_archer_name,Frost Arrow
 skill_e_ice_wraith_desc,Slows every hero.
 skill_e_ice_wraith_name,Frost Shroud
 skill_e_ilvane_desc,Strips blessings and tears at every hero.
 skill_e_ilvane_name,Hollow Storm
 skill_e_iron_juggernaut_desc,Rolls over every hero.
 skill_e_iron_juggernaut_name,Steamroll
+skill_e_iron_warlord_desc,Every ally gains attack and armour.
+skill_e_iron_warlord_name,Warlord's Banner
+skill_e_kraken_spawn_desc,Lashes three random heroes.
+skill_e_kraken_spawn_name,Tentacle Lash
+skill_e_lava_wyrm_desc,Spits lava on three random heroes.
+skill_e_lava_wyrm_name,Lava Spit
 skill_e_magma_elemental_desc,Burns every hero.
 skill_e_magma_elemental_name,Magma Splash
 skill_e_malrec_desc,"Silences, marks and drains every hero."
@@ -1924,50 +2122,90 @@ skill_e_marshal_odo_desc,Strips blessings and marks every hero.
 skill_e_marshal_odo_name,Oath Broken
 skill_e_master_assassin_desc,Knives at every hero.
 skill_e_master_assassin_name,Knife Fan
+skill_e_mirage_dancer_desc,Cuts two random heroes.
+skill_e_mirage_dancer_name,Mirage Cut
 skill_e_mire_hag_desc,Weakens every hero.
 skill_e_mire_hag_name,Bog Curse
+skill_e_mossback_desc,Taunts the heroes behind a mossy shield.
+skill_e_mossback_name,Moss Wall
+skill_e_night_hunter_desc,Marks the strongest hero.
+skill_e_night_hunter_name,Silver Bolt
+skill_e_null_archer_desc,An arrow that strips a hero's buffs.
+skill_e_null_archer_name,Null Arrow
 skill_e_null_priest_desc,Strips blessings from every hero.
 skill_e_null_priest_name,Unprayer
 skill_e_obsidian_scorpion_desc,"A crushing, poisoned sting."
 skill_e_obsidian_scorpion_name,Obsidian Sting
 skill_e_pale_rider_desc,Tramples every hero.
 skill_e_pale_rider_name,Ride Down
+skill_e_penitent_desc,Whips one hero; it bleeds.
+skill_e_penitent_name,Flagellate
 skill_e_plague_doctor_desc,Heals and cleanses an ally.
 skill_e_plague_doctor_name,Bitter Tonic
 skill_e_prince_aubrel_desc,Silences and marks the strongest hero.
 skill_e_prince_aubrel_name,Court Sentence
+skill_e_pyre_priest_desc,Sets every hero alight.
+skill_e_pyre_priest_name,Pyre Hymn
 skill_e_queen_hoarfrost_desc,Freezes and silences every hero.
 skill_e_queen_hoarfrost_name,Winter's Embrace
+skill_e_reef_harpooner_desc,A barbed harpoon that makes a hero bleed.
+skill_e_reef_harpooner_name,Barbed Harpoon
 skill_e_rift_beast_desc,Tears a slice of max health.
 skill_e_rift_beast_name,Rift Maul
+skill_e_rift_caller_desc,Tears at every hero.
+skill_e_rift_caller_name,Rift Tear
 skill_e_rift_maw_desc,Devours blessings and health of every hero.
 skill_e_rift_maw_name,Swallow the Light
+skill_e_rime_hunter_desc,Cuts the weakest hero: it bleeds and slows.
+skill_e_rime_hunter_name,Hamstring
 skill_e_rime_shaman_desc,Shields the most wounded ally.
 skill_e_rime_shaman_name,Ice Ward
+skill_e_road_looter_desc,"Throws ash in a hero's eyes, lowering its attack."
+skill_e_road_looter_name,Dirty Trick
 skill_e_rot_dryad_desc,Heals allies over time.
 skill_e_rot_dryad_name,Rotting Bloom
 skill_e_rot_stag_desc,Gores every hero; some are knocked down.
 skill_e_rot_stag_name,Antler Storm
+skill_e_rune_smith_desc,Repairs the most wounded ally.
+skill_e_rune_smith_name,Rune Repair
 skill_e_rune_turret_desc,Bolts at random heroes.
 skill_e_rune_turret_name,Rune Bolts
 skill_e_saint_of_thorns_desc,Bleeds every hero.
 skill_e_saint_of_thorns_name,Crown of Thorns
+skill_e_salt_witch_desc,Curses the strongest hero: weaker attack.
+skill_e_salt_witch_name,Brine Curse
+skill_e_sand_archer_desc,An arrow wrapped in sand: lower attack.
+skill_e_sand_archer_name,Blinding Shot
+skill_e_sand_colossus_desc,Batters every hero; slower.
+skill_e_sand_colossus_name,Sandstorm
 skill_e_sand_mage_desc,Shields every ally.
 skill_e_sand_mage_name,Ward of Glass
 skill_e_sand_wraith_desc,Blinds every hero (less crit).
 skill_e_sand_wraith_name,Sandblast
 skill_e_scorpion_queen_desc,Poison rains on every hero.
 skill_e_scorpion_queen_name,Venom Rain
+skill_e_seal_breaker_desc,A blow that cracks armour.
+skill_e_seal_breaker_name,Break the Seal
 skill_e_siren_desc,May put a hero to sleep.
 skill_e_siren_name,Luring Song
 skill_e_spore_crawler_desc,Poisons every hero.
 skill_e_spore_crawler_name,Spore Burst
+skill_e_spore_mother_desc,Heals every ally a little.
+skill_e_spore_mother_name,Healing Spores
+skill_e_steam_knight_desc,Scalds every hero.
+skill_e_steam_knight_name,Steam Vent
 skill_e_storm_djinn_desc,"Lightning at random heroes, stunning some."
 skill_e_storm_djinn_name,Thousand Lightnings
+skill_e_storm_skald_desc,A saga that raises every ally's attack.
+skill_e_storm_skald_name,War Saga
 skill_e_thane_grimhild_desc,Marks and bleeds every hero.
 skill_e_thane_grimhild_name,Blood Feud
 skill_e_the_hunger_desc,Takes a share of every hero's life.
 skill_e_the_hunger_name,Devour
+skill_e_thorn_knight_desc,Impales the weakest hero; it bleeds.
+skill_e_thorn_knight_name,Briar Lance
+skill_e_thorn_slinger_desc,A poisoned thorn at the weakest hero.
+skill_e_thorn_slinger_name,Poison Thorn
 skill_e_tide_acolyte_desc,Heals the most wounded ally.
 skill_e_tide_acolyte_name,Brine Mending
 skill_e_tide_corsair_desc,Two quick slashes.
@@ -1986,8 +2224,12 @@ skill_e_unit_seven_desc,Hits every hero and delays their skills.
 skill_e_unit_seven_name,Quota Enforcement
 skill_e_vampire_bat_desc,Bites at random heroes.
 skill_e_vampire_bat_name,Swarm
+skill_e_vampire_knight_desc,Drains the weakest hero.
+skill_e_vampire_knight_name,Crimson Lunge
 skill_e_vizier_hashem_desc,Weakens and silences the strongest hero.
 skill_e_vizier_hashem_name,Poisoned Decree
+skill_e_void_herald_desc,Unmakes every hero.
+skill_e_void_herald_name,Herald's Call
 skill_e_void_reaver_desc,Strikes three random heroes.
 skill_e_void_reaver_name,Reave
 skill_e_void_stalker_desc,Cuts the weakest hero from nowhere.
@@ -2004,6 +2246,10 @@ skill_e_wendigo_spawn_desc,Drains the weakest hero.
 skill_e_wendigo_spawn_name,Starving Bite
 skill_e_winter_knight_desc,Slows hard.
 skill_e_winter_knight_name,Frost Glamour
+skill_e_winter_witch_desc,Freezes every hero: damage and slower.
+skill_e_winter_witch_name,Blizzard
+skill_e_wreck_captain_desc,Fires on every hero.
+skill_e_wreck_captain_name,Broadside
 skill_e_zealot_desc,Reckless blow.
 skill_e_zealot_inquisitor_desc,Silences and burns.
 skill_e_zealot_inquisitor_name,False Judgement
@@ -2180,8 +2426,280 @@ skill_withering_curse_desc,Rots every enemy and saps their strength.
 skill_withering_curse_name,Withering Curse
 skill_written_oath_desc,"Writes the party into the oath: attack, defense and regeneration."
 skill_written_oath_name,Written Oath
+skill_x_abbess_corvina_desc,Blesses her flock.
+skill_x_abbess_corvina_name,Corrupt Blessing
+skill_x_ash_revenant_desc,A heavy blow at the strongest hero.
+skill_x_ash_revenant_name,Revenant Strike
+skill_x_ashen_knight_desc,Burns two heroes.
+skill_x_ashen_knight_name,Dragonfire Slash
+skill_x_ashen_matron_desc,Lashes the weakest hero with burning ash.
+skill_x_ashen_matron_name,Cinder Lash
+skill_x_blight_boar_desc,Tosses a hero aside.
+skill_x_blight_boar_name,Tusk Toss
+skill_x_blight_heart_desc,Roots two random heroes.
+skill_x_blight_heart_name,Grasping Roots
+skill_x_blood_inquisitor_desc,Whips every hero; they bleed.
+skill_x_blood_inquisitor_name,Scourge
+skill_x_bog_king_desc,Poisons every hero.
+skill_x_bog_king_name,Swamp Gas
+skill_x_brass_colossus_desc,Scalds every hero.
+skill_x_brass_colossus_name,Steam Burst
+skill_x_captain_morrow_desc,Shoots the weakest hero.
+skill_x_captain_morrow_name,Pistol Shot
+skill_x_casimir_vey_desc,Bats tear three heroes.
+skill_x_casimir_vey_name,Bat Swarm
+skill_x_choir_mother_desc,A note that pushes skills back.
+skill_x_choir_mother_name,Shrill Note
+skill_x_countess_vey_desc,A kiss that bleeds a hero dry.
+skill_x_countess_vey_name,Bleeding Kiss
+skill_x_djinn_vizier_desc,Pushes a hero's skills back.
+skill_x_djinn_vizier_name,Bound Oath
+skill_x_dragon_echo_desc,A roar from the past.
+skill_x_dragon_echo_name,Echoed Roar
+skill_x_elder_treant_desc,Crushes a hero and may stun it.
+skill_x_elder_treant_name,Crushing Bough
+skill_x_forge_tyrant_desc,Hammers the strongest hero.
+skill_x_forge_tyrant_name,Hammerfall
+skill_x_frost_troll_desc,Batters every hero.
+skill_x_frost_troll_name,Avalanche Roar
+skill_x_gatewarden_desc,Slams every hero.
+skill_x_gatewarden_name,Gate Slam
+skill_x_goblin_king_desc,Every goblin hits harder.
+skill_x_goblin_king_name,Royal Decree
+skill_x_hollow_king_desc,The throne crushes the strongest hero.
+skill_x_hollow_king_name,Throne's Weight
+skill_x_hollow_titan_desc,Shakes every hero; may stun.
+skill_x_hollow_titan_name,Quake of Nothing
+skill_x_ilvane_desc,Strips every hero's buffs.
+skill_x_ilvane_name,Arcane Unravel
+skill_x_iron_warlord_desc,Crushes the strongest hero and stuns it.
+skill_x_iron_warlord_name,Anvil Strike
+skill_x_kraken_spawn_desc,Blinds every hero: lower attack.
+skill_x_kraken_spawn_name,Ink Cloud
+skill_x_lava_wyrm_desc,Coils in molten rock.
+skill_x_lava_wyrm_name,Molten Coil
+skill_x_lich_desc,Imprisons a hero in bone.
+skill_x_lich_name,Bone Prison
+skill_x_malrec_desc,Commands a hero: its skills slip back.
+skill_x_malrec_name,Pale Command
+skill_x_marshal_odo_desc,Every ally hardens.
+skill_x_marshal_odo_name,Black Command
+skill_x_mire_hag_desc,Weakens the strongest hero.
+skill_x_mire_hag_name,Toad Curse
+skill_x_pale_rider_desc,Pierces the strongest hero.
+skill_x_pale_rider_name,Spectral Lance
+skill_x_prince_aubrel_desc,A feint that strips a hero's buffs.
+skill_x_prince_aubrel_name,Courtly Feint
+skill_x_queen_hoarfrost_desc,Freezes a hero.
+skill_x_queen_hoarfrost_name,Frost Crown
+skill_x_red_dragon_desc,Sweeps two random heroes.
+skill_x_red_dragon_name,Tail Sweep
+skill_x_rift_maw_desc,Pulls every hero in; slower.
+skill_x_rift_maw_name,Gravity Well
+skill_x_rot_stag_desc,Gores the weakest hero; it rots.
+skill_x_rot_stag_name,Rotting Antlers
+skill_x_saint_of_thorns_desc,Crowns a hero in thorns.
+skill_x_saint_of_thorns_name,Thorn Crown
+skill_x_sand_colossus_desc,Crushes the strongest hero.
+skill_x_sand_colossus_name,Colossal Fist
+skill_x_scorpion_queen_desc,Stings a hero; it may be paralysed.
+skill_x_scorpion_queen_name,Paralysing Sting
+skill_x_storm_djinn_desc,Lightning jumps between four heroes.
+skill_x_storm_djinn_name,Chain Lightning
+skill_x_thane_grimhild_desc,Bashes the strongest hero.
+skill_x_thane_grimhild_name,Shield Bash
+skill_x_the_hunger_desc,Bites the weakest hero and feeds.
+skill_x_the_hunger_name,Ravenous Bite
+skill_x_thorn_knight_desc,Wraps itself in thorns.
+skill_x_thorn_knight_name,Thorn Ward
+skill_x_tide_mother_desc,Drags the strongest hero under.
+skill_x_tide_mother_name,Riptide
+skill_x_tidepriest_desc,Lashes three random heroes.
+skill_x_tidepriest_name,Brine Lash
+skill_x_titan_fury_desc,Throws a boulder at two heroes.
+skill_x_titan_fury_name,Boulder Throw
+skill_x_tunnel_maw_desc,Shakes every hero; slower.
+skill_x_tunnel_maw_name,Tremor
+skill_x_unit_seven_desc,Drills through a hero's armour.
+skill_x_unit_seven_name,Pneumatic Drill
+skill_x_vampire_knight_desc,Turns to mist.
+skill_x_vampire_knight_name,Blood Mist
+skill_x_vizier_hashem_desc,A bribe: a hero's skills slip back.
+skill_x_vizier_hashem_name,Bribe
+skill_x_void_herald_desc,Silences two random heroes.
+skill_x_void_herald_name,Silence of the Void
+skill_x_vorn_desc,Silences the strongest hero.
+skill_x_vorn_name,Hollow Touch
+skill_x_weeping_saint_desc,Tears that weaken every hero.
+skill_x_weeping_saint_name,Tears
+skill_x_wendigo_desc,Gnaws the weakest hero and feeds.
+skill_x_wendigo_name,Gnaw
+skill_x_winter_witch_desc,Silences the strongest hero.
+skill_x_winter_witch_name,Hex of Rime
+skill_x_wreck_captain_desc,Hauls the strongest hero under the keel and stuns it.
+skill_x_wreck_captain_name,Keelhaul
 speaker_corvin,Corvin
 speaker_journal,Chronicle
 speaker_narrator,Narrator
 speaker_villager,Villager
 speaker_ysra,Warden Ysra
+special_abbess_corvina_1_desc,Every hero is silenced.
+special_abbess_corvina_1_name,Black Mass
+special_abbess_corvina_2_desc,Feeds on every hero.
+special_abbess_corvina_2_name,Unholy Communion
+special_ashen_knight_1_desc,Rises in dragon ash.
+special_ashen_knight_1_name,Ashen Oath
+special_ashen_knight_2_desc,Burns the world.
+special_ashen_knight_2_name,Last Ember
+special_ashen_matron_1_desc,The whole pyre rises over the heroes.
+special_ashen_matron_1_name,Pyre of the Faithful
+special_ashen_matron_2_desc,Ends the weakest hero.
+special_ashen_matron_2_name,Last Rite
+special_blight_boar_1_desc,Tramples every hero.
+special_blight_boar_1_name,Stampede
+special_blight_boar_2_desc,Goes berserk.
+special_blight_boar_2_name,Blood Rage
+special_blight_heart_1_desc,Rot blooms: every ally heals.
+special_blight_heart_1_name,Bloom of Rot
+special_blight_heart_2_desc,The heart bursts over every hero.
+special_blight_heart_2_name,Heartwood Burst
+special_bog_king_1_desc,The bog swallows two heroes and holds them.
+special_bog_king_1_name,Sinkhole
+special_bog_king_2_desc,"Rises from the bog, healing and armouring."
+special_bog_king_2_name,King of the Mire
+special_brass_colossus_1_desc,Every gear spins: faster and stronger.
+special_brass_colossus_1_name,Overdrive
+special_brass_colossus_2_desc,The furnace bursts.
+special_brass_colossus_2_name,Meltdown
+special_captain_morrow_1_desc,The crew rallies: every ally hits harder.
+special_captain_morrow_1_name,All Hands!
+special_captain_morrow_2_desc,Every cannon at once.
+special_captain_morrow_2_name,Final Broadside
+special_casimir_vey_1_desc,Drinks from every hero.
+special_casimir_vey_1_name,Crimson Feast
+special_casimir_vey_2_desc,Becomes mist and mends.
+special_casimir_vey_2_name,Mist Escape
+special_choir_mother_1_desc,A song for the drowned: every hero is silenced.
+special_choir_mother_1_name,Requiem
+special_choir_mother_2_desc,Her voice breaks every hero.
+special_choir_mother_2_name,Crescendo
+special_countess_vey_1_desc,The moon turns red: every ally rises.
+special_countess_vey_1_name,Blood Moon
+special_countess_vey_2_desc,A tide of blood.
+special_countess_vey_2_name,Crimson Tide
+special_dragon_echo_1_desc,Old fire burns every hero.
+special_dragon_echo_1_name,Memory of Fire
+special_dragon_echo_2_desc,The grief breaks loose.
+special_dragon_echo_2_name,Grief Unbound
+special_forge_tyrant_1_desc,The floor turns to lava.
+special_forge_tyrant_1_name,Molten Floor
+special_forge_tyrant_2_desc,The forge roars.
+special_forge_tyrant_2_name,Heart of the Forge
+special_goblin_king_1_desc,Hurls his crown at the strongest hero and stuns it.
+special_goblin_king_1_name,Crown Toss
+special_goblin_king_2_desc,Smashes every hero in a rage.
+special_goblin_king_2_name,Goblin Frenzy
+special_hollow_king_1_desc,The empty court rises: every ally heals.
+special_hollow_king_1_name,Court of Nothing
+special_hollow_king_2_desc,The end.
+special_hollow_king_2_name,End of All Oaths
+special_ilvane_1_desc,Mirrors shield her from harm.
+special_ilvane_1_name,Mirror Ward
+special_ilvane_2_desc,Unmakes the air around every hero.
+special_ilvane_2_name,Hollow Cataclysm
+special_lich_1_desc,Rings for every hero: damage and weaker attack.
+special_lich_1_name,Death Knell
+special_lich_2_desc,Drains the weakest hero's soul.
+special_lich_2_name,Soul Harvest
+special_malrec_1_desc,Seals himself behind his craft.
+special_malrec_1_name,Warden's Seal
+special_malrec_2_desc,Breaks every hero.
+special_malrec_2_name,The Ninth Oath
+special_marshal_odo_1_desc,His bulwarks lock shields.
+special_marshal_odo_1_name,Shield Wall
+special_marshal_odo_2_desc,Charges every hero.
+special_marshal_odo_2_name,Oathbreaker's Charge
+special_mire_hag_1_desc,"Poisons every hero, deeply."
+special_mire_hag_1_name,Bubbling Cauldron
+special_mire_hag_2_desc,Takes a share of every hero's life.
+special_mire_hag_2_name,The Hag's Price
+special_pale_rider_1_desc,Rides through every hero.
+special_pale_rider_1_name,Phantom Charge
+special_pale_rider_2_desc,Rides down the weakest hero.
+special_pale_rider_2_name,Death Ride
+special_prince_aubrel_1_desc,The court rises: every ally heals and hardens.
+special_prince_aubrel_1_name,Summer Court
+special_prince_aubrel_2_desc,Freezes every hero in place.
+special_prince_aubrel_2_name,Winter Verdict
+special_queen_hoarfrost_1_desc,The palace shields her court.
+special_queen_hoarfrost_1_name,Ice Palace
+special_queen_hoarfrost_2_desc,Winter takes every hero.
+special_queen_hoarfrost_2_name,Eternal Winter
+special_red_dragon_1_desc,A sea of fire over every hero.
+special_red_dragon_1_name,Inferno
+special_red_dragon_2_desc,Rears up and crushes the strongest hero.
+special_red_dragon_2_name,Wrath of the Peak
+special_rift_maw_1_desc,Nothing escapes: every hero is stunned.
+special_rift_maw_1_name,Event Horizon
+special_rift_maw_2_desc,Swallows a share of every hero.
+special_rift_maw_2_name,Swallow Whole
+special_rot_stag_1_desc,Charges through every hero.
+special_rot_stag_1_name,Wild Hunt
+special_rot_stag_2_desc,Impales the strongest hero.
+special_rot_stag_2_name,Antler Crown
+special_saint_of_thorns_1_desc,Thorns everywhere.
+special_saint_of_thorns_1_name,Martyrdom
+special_saint_of_thorns_2_desc,Thorns pierce every hero.
+special_saint_of_thorns_2_name,Garden of Thorns
+special_scorpion_queen_1_desc,Her brood covers three heroes.
+special_scorpion_queen_1_name,Brood Swarm
+special_scorpion_queen_2_desc,Venom that eats every hero.
+special_scorpion_queen_2_name,Queen's Venom
+special_storm_djinn_1_desc,The storm stills: every hero is stunned.
+special_storm_djinn_1_name,Eye of the Tempest
+special_storm_djinn_2_desc,A thousand bolts.
+special_storm_djinn_2_name,Wrath of the Sky
+special_thane_grimhild_1_desc,The clan rallies: every ally hits harder.
+special_thane_grimhild_1_name,Clan Muster
+special_thane_grimhild_2_desc,The feud is paid in blood.
+special_thane_grimhild_2_name,Blood Price
+special_the_hunger_1_desc,Devours a share of every hero.
+special_the_hunger_1_name,Endless Maw
+special_the_hunger_2_desc,Consumes everything.
+special_the_hunger_2_name,Consume All
+special_tide_mother_1_desc,A maelstrom spins every hero.
+special_tide_mother_1_name,Maelstrom
+special_tide_mother_2_desc,The sea itself rises.
+special_tide_mother_2_name,Mother of Storms
+special_tidepriest_1_desc,Cleanses itself and calls the tide to heal.
+special_tidepriest_1_name,Rite of the Deep
+special_tidepriest_2_desc,Fills every hero's lungs.
+special_tidepriest_2_name,Drowning Litany
+special_titan_fury_1_desc,The ground breaks under every hero.
+special_titan_fury_1_name,Earthshatter
+special_titan_fury_2_desc,Rage of the mountain.
+special_titan_fury_2_name,Titan's Wrath
+special_tunnel_maw_1_desc,The tunnel falls on two heroes.
+special_tunnel_maw_1_name,Cave-in
+special_tunnel_maw_2_desc,Swallows the weakest hero.
+special_tunnel_maw_2_name,Devour Whole
+special_unit_seven_1_desc,Overrides its limits.
+special_unit_seven_1_name,Safety Override
+special_unit_seven_2_desc,Every machine fires at once.
+special_unit_seven_2_name,Total Recall
+special_vizier_hashem_1_desc,The guard shields every ally.
+special_vizier_hashem_1_name,Palace Guard
+special_vizier_hashem_2_desc,Signs the weakest hero's death.
+special_vizier_hashem_2_name,Death Warrant
+special_vorn_1_desc,A wave of pale hands drags at every hero.
+special_vorn_1_name,Pale Tide
+special_vorn_2_desc,Takes a share of every hero's life.
+special_vorn_2_name,Herald's Due
+special_weeping_saint_1_desc,A lament that silences every hero.
+special_weeping_saint_1_name,Lament
+special_weeping_saint_2_desc,"""Let me go."" Everything breaks."
+special_weeping_saint_2_name,Release
+special_wendigo_1_desc,Every hero freezes in fear.
+special_wendigo_1_name,Howl of Hunger
+special_wendigo_2_desc,Feeds on the weakest hero.
+special_wendigo_2_name,Feast

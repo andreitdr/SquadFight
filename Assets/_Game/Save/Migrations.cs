@@ -34,6 +34,7 @@ namespace Game.Save
             new Migration_2_To_3(),
             new Migration_3_To_4(),
             new Migration_4_To_5(),
+            new Migration_5_To_6(),
         });
 
         public bool CanMigrate(int from, int to)
@@ -120,6 +121,21 @@ namespace Game.Save
             if (!(payload["settings"] is JObject settings)) return;
             settings["musicVolume"] = 0f;
             settings["sfxVolume"] = 0f;
+        }
+    }
+}
+
+namespace Game.Save
+{
+    /// <summary>v5 → v6: player level. Existing players start at level 1 with no XP (enemies give XP from now on).</summary>
+    public sealed class Migration_5_To_6 : ISaveMigration
+    {
+        public int From => 5;
+        public int To => 6;
+
+        public void Apply(JObject payload)
+        {
+            if (!(payload["player"] is JObject)) payload["player"] = new JObject { ["level"] = 1, ["xp"] = 0, ["totalXp"] = 0 };
         }
     }
 }

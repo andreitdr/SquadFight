@@ -105,6 +105,9 @@ namespace Game.Services
         public readonly Dictionary<Rarity, int> ItemsEarned = new Dictionary<Rarity, int>();
         public long GoldEarned;
         public long GoldSpent;
+        /// <summary>Player level and total XP at the end of the run.</summary>
+        public int PlayerLevel;
+        public long PlayerXp;
         public readonly List<string> Walls = new List<string>();
         public string StuckAt;
 
@@ -238,6 +241,8 @@ namespace Game.Services
                 var attemptsToClear = fs.Attempts - fs.Wins + (fs.Wins > 0 ? 1 : 0);
                 if (fs.Wins == 0 || attemptsToClear > 2) report.Walls.Add($"{f.Id} ({attemptsToClear} tries)");
             }
+            report.PlayerLevel = session.Levels.Level;
+            report.PlayerXp = session.Levels.TotalXp;
             return report;
         }
     }

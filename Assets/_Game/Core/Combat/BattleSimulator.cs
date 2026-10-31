@@ -9,7 +9,8 @@ namespace Game.Core
     /// transitions) and appends <see cref="BattleEvent"/>s. Same setup + seed + queued inputs ⇒ identical events.
     /// Rounds: every living unit acts once, ordered by speed (desc), then slot, then id. Timeout after MaxRounds = defeat.
     /// A turn: TurnStart passive → DoT/HoT ticks → action (unless stunned) → AfterBasic/AfterActive passive → statuses tick down.
-    /// Passives never trigger other passives (no chains).
+    /// Passives never trigger other passives (no chains). Enemy action priority: charged boss special (ignores cooldowns and
+    /// silence; a stun only delays it) → active skill → extra skills in order → basic attack.
     /// </summary>
     public sealed class BattleSimulator
     {
@@ -170,9 +171,14 @@ namespace Game.Core
                     actor.ActiveCooldown = skill.Cooldown;
                     _queuedSkills.Remove(actor.Index);
                 }
+                else
+                {
+                    var extra = actor.Extras.IndexOf(skill);
+                    if (extra >= 0) actor.ExtraCooldowns[extra] = skill.Cooldown;
+                }
                 Emit(new BattleEvent { Type = BattleEventType.ActionChosen, Actor = actor.Index, SkillId = skill.Id, Targets = targets.Select(t => t.Index).ToArray() });
                 Execute(actor, skill, targets);
-                Trigger(actor, skill == actor.Active ? PassiveTrigger.AfterActive : PassiveTrigger.AfterBasic);
+                Trigger(actor, skill == actor.Basic ? PassiveTrigger.AfterBasic : PassiveTrigger.AfterActive);
             }
             EndTurn(actor);
         }
@@ -195,7 +201,11 @@ namespace Game.Core
                         if (source != null) source.Totals.DamageDealt += loss;
                         Emit(new BattleEvent { Type = BattleEventType.DotTick, Actor = source?.Index ?? -1, Target = c.Index, Amount = loss, HpAfter = c.Hp, StatusId = group.Key });
                         if (c.Hp <= 0) Die(c, source);
-                        else Trigger(c, PassiveTrigger.OnLowHp);
+                        else
+                        {
+                            Trigger(c, PassiveTrigger.OnLowHp);
+                            ChargeSpecials(c);
+                        }
                     }
                     else
                     {
@@ -210,15 +220,30 @@ namespace Game.Core
 
         private SkillDef ChooseSkill(Combatant actor)
         {
-            if (!actor.ActiveReady) return actor.Basic;
+            if (actor.PendingSpecials.Count > 0) return actor.PendingSpecials.Dequeue();
+            var extra = actor.ReadyExtra();
+            if (!actor.ActiveReady && extra < 0) return actor.Basic;
             var wants = actor.Team == Team.Enemy || AutoSkills || _queuedSkills.Contains(actor.Index);
             if (!wants) return actor.Basic;
+            var skill = actor.ActiveReady ? actor.Active : actor.Extras[extra];
             if (actor.Has(StatusKind.Silence))
             {
-                Emit(new BattleEvent { Type = BattleEventType.Silenced, Actor = actor.Index, SkillId = actor.Active.Id });
+                Emit(new BattleEvent { Type = BattleEventType.Silenced, Actor = actor.Index, SkillId = skill.Id });
                 return actor.Basic;
             }
-            return actor.Active;
+            return skill;
+        }
+
+        /// <summary>Charges every special whose HP threshold the unit has just reached (once each); it fires on the unit's next turn.</summary>
+        private void ChargeSpecials(Combatant c)
+        {
+            for (var i = 0; i < c.Specials.Count; i++)
+            {
+                if (c.SpecialCharged[i] || !c.Alive || c.HpRatio > c.Specials[i].Threshold) continue;
+                c.SpecialCharged[i] = true;
+                c.PendingSpecials.Enqueue(c.Specials[i]);
+                Emit(new BattleEvent { Type = BattleEventType.SpecialCharged, Actor = c.Index, SkillId = c.Specials[i].Id });
+            }
         }
 
         private List<Combatant> Opponents(Combatant c) => (c.Team == Team.Player ? _enemies : _players).Where(x => x.Alive).ToList();
@@ -400,9 +425,12 @@ namespace Game.Core
                     break;
                 case EffectType.CooldownShift:
                 {
-                    if (dst.Active == null) break;
-                    dst.ActiveCooldown = Math.Max(0, dst.ActiveCooldown + (int)Math.Round(e.Value));
-                    Emit(new BattleEvent { Type = BattleEventType.CooldownChanged, Actor = src.Index, Target = dst.Index, Amount = dst.ActiveCooldown, Value = e.Value, SkillId = skill.Id });
+                    if (!dst.HasActives) break;
+                    var delta = (int)Math.Round(e.Value);
+                    if (dst.Active != null) dst.ActiveCooldown = Math.Max(0, dst.ActiveCooldown + delta);
+                    for (var x = 0; x < dst.ExtraCooldowns.Length; x++) dst.ExtraCooldowns[x] = Math.Max(0, dst.ExtraCooldowns[x] + delta);
+                    var shown = dst.Active != null ? dst.ActiveCooldown : dst.ExtraCooldowns[0];
+                    Emit(new BattleEvent { Type = BattleEventType.CooldownChanged, Actor = src.Index, Target = dst.Index, Amount = shown, Value = e.Value, SkillId = skill.Id });
                     break;
                 }
             }
@@ -469,6 +497,7 @@ namespace Game.Core
             fallen.WasRevived = true;
             fallen.Hp = Math.Max(1, Math.Min(fallen.MaxHp, DamageCalculator.RoundToInt(fallen.MaxHp * e.Value)));
             fallen.ActiveCooldown = fallen.Active?.Cooldown ?? 0;
+            for (var x = 0; x < fallen.Extras.Count; x++) fallen.ExtraCooldowns[x] = fallen.Extras[x].Cooldown;
             Emit(new BattleEvent { Type = BattleEventType.Revived, Actor = src.Index, Target = fallen.Index, Amount = fallen.Hp, HpAfter = fallen.Hp, SkillId = skill.Id });
         }
 
@@ -522,6 +551,7 @@ namespace Game.Core
                 dst.Totals.DamageDealt += back;
                 Emit(new BattleEvent { Type = BattleEventType.ThornsReflected, Actor = dst.Index, Target = src.Index, Amount = back, HpAfter = src.Hp });
                 if (src.Hp <= 0) Die(src, dst);
+                else ChargeSpecials(src);
             }
 
             if (crit && src.Alive) Trigger(src, PassiveTrigger.OnCrit);
@@ -529,6 +559,7 @@ namespace Game.Core
             {
                 Trigger(dst, PassiveTrigger.OnHitTaken);
                 Trigger(dst, PassiveTrigger.OnLowHp);
+                ChargeSpecials(dst);
             }
             return hpLoss + absorbed;
         }
@@ -570,6 +601,7 @@ namespace Game.Core
             c.ShieldTurns = 0;
             c.Statuses.Clear();
             c.StunTurns = 0;
+            c.PendingSpecials.Clear();
             _queuedSkills.Remove(c.Index);
             Emit(new BattleEvent { Type = BattleEventType.CombatantDied, Actor = killer?.Index ?? -1, Target = c.Index });
             if (killer != null && killer != c && killer.Alive) Trigger(killer, PassiveTrigger.OnKill);
@@ -580,6 +612,7 @@ namespace Game.Core
         {
             if (!actor.Alive) return;
             if (actor.ActiveCooldown > 0) actor.ActiveCooldown--;
+            for (var x = 0; x < actor.ExtraCooldowns.Length; x++) if (actor.ExtraCooldowns[x] > 0) actor.ExtraCooldowns[x]--;
             if (actor.PassiveCooldown > 0) actor.PassiveCooldown--;
             for (var i = actor.Statuses.Count - 1; i >= 0; i--)
             {

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d431c006401f744a5b25c4944b56ec3d, type: 3}
+  m_Name: level_a8
+  m_EditorClassIdentifier: Game.Data::Game.Data.DropTable
+  id: level_a8
+  guaranteed:
+  - type: 0
+    refId: gold
+    rarity: 0
+    anySlot: 1
+    slot: 0
+    rarityWeights: []
+    weight: 1
+    amountMin: 416
+    amountMax: 416
+  groups:
+  - minRolls: 1
+    maxRolls: 1
+    withoutReplacement: 0
+    entries:
+    - type: 2
+      refId: act_1+act_2+act_3+act_4+act_5+act_6+act_7+act_8
+      rarity: 0
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 40
+      amountMin: 2
+      amountMax: 3
+    - type: 2
+      refId: act_1+act_2+act_3+act_4+act_5+act_6+act_7+act_8
+      rarity: 1
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 30
+      amountMin: 2
+      amountMax: 3
+    - type: 2
+      refId: act_1+act_2+act_3+act_4+act_5+act_6+act_7+act_8
+      rarity: 2
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 17
+      amountMin: 1
+      amountMax: 3
+    - type: 2
+      refId: act_1+act_2+act_3+act_4+act_5+act_6+act_7+act_8
+      rarity: 3
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 9
+      amountMin: 1
+      amountMax: 2
+    - type: 2
+      refId: act_1+act_2+act_3+act_4+act_5+act_6+act_7+act_8
+      rarity: 4
+      anySlot: 1
+      slot: 0
+      rarityWeights: []
+      weight: 4
+      amountMin: 1
+      amountMax: 2

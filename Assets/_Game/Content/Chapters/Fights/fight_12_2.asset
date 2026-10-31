@@ -16,12 +16,12 @@ MonoBehaviour:
   nameKey: fight_12_2_name
   waves:
   - spawns:
-    - enemy: {fileID: 11400000, guid: 1399568d7f8454a97ab41908c41b1157, type: 2}
-      statMultiplier: 5.14
     - enemy: {fileID: 11400000, guid: 2d7cd513c39904922b3f275f50d2d64a, type: 2}
-      statMultiplier: 5.14
-  recommendedPower: 3760
-  dropTable: {fileID: 11400000, guid: acd105a1bc78642059894a212b31a586, type: 2}
+      statMultiplier: 5.29
+    - enemy: {fileID: 11400000, guid: c715f41d0dbde4ff39cc533bdaaad4b0, type: 2}
+      statMultiplier: 5.29
+  recommendedPower: 3790
+  dropTable: {fileID: 11400000, guid: fbcc03e0340544d55b895eedaaf5c7ea, type: 2}
   firstClearTable: {fileID: 11400000, guid: 662ef5de40080470d917fa1ba7e6f6ee, type: 2}
   starTurnLimit: 0
   background: {fileID: 21300000, guid: 2cec9873de8db4db2a46de370e9b18ea, type: 3}

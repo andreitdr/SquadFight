@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_null_archer
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_null_archer
+  nameKey: enemy_null_archer_name
+  rank: 1
+  baseStats:
+    values:
+    - 4160
+    - 624
+    - 67
+    - 108
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 28558f70171d447a6b2567b1df56c005, type: 2}
+  passiveSkill: {fileID: 0}
+  extraSkills: []
+  specials: []
+  sprite: {fileID: 21300000, guid: 83efd0d93bce24f5cb26165e179bfc69, type: 3}
+  tint: {r: 0.3529412, g: 0.30980393, b: 0.5411765, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 83efd0d93bce24f5cb26165e179bfc69, type: 3}
+  icon: {fileID: 21300000, guid: d5142456f94774875aa5c8623322d565, type: 3}
+  animations: {fileID: 11400000, guid: f503969b7fe30413ebefb0a3ccd7d8eb, type: 2}

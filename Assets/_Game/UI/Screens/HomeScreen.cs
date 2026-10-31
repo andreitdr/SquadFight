@@ -7,8 +7,9 @@ namespace Game.UI
     public sealed class HomeScreen : ScreenBase
     {
         private HomeViewModel _vm;
-        private TextMeshProUGUI _chapter, _next, _stars;
-        private ProgressBar _progress;
+        private TextMeshProUGUI _chapter, _next, _stars, _level;
+        private ProgressBar _progress, _xp;
+        private RectTransform _levelRow;
         private UnityEngine.UI.Button _continue;
         private RedDot _heroesDot;
 
@@ -31,6 +32,17 @@ namespace Game.UI
                 Tween.Scale(logo.transform, 0.85f, 1f, 0.5f, Ease.OutBack);
             }
             else UIKit.Text(col, "Title", "SquadFight", Th.fontHuge, Th.primary, TextAlignmentOptions.Center, bold: true).Size(preferredHeight: 170);
+
+            // Player level: XP from defeated enemies (bosses give the most).
+            _levelRow = UIKit.Rect("Level", col);
+            UIKit.HStack(_levelRow.gameObject, Th.spacing, 0, TextAnchor.MiddleCenter);
+            _levelRow.Size(preferredHeight: 64);
+            _level = UIKit.Text(_levelRow, "Label", "", Th.fontBody, Th.primary, TextAlignmentOptions.Left, bold: true);
+            _level.Size(preferredWidth: 260, preferredHeight: 64);
+            _level.textWrappingMode = TextWrappingModes.NoWrap;
+            _level.enableAutoSizing = true; _level.fontSizeMin = 24; _level.fontSizeMax = Th.fontBody;
+            _xp = ProgressBar.Create(_levelRow, 40, Th.secondary);
+            _xp.Size(flexibleWidth: 1);
 
             var card = UIKit.Panel(col, "ChapterCard", Th.panel);
             UIKit.VStack(card.gameObject, 16, Th.padding);
@@ -76,6 +88,10 @@ namespace Game.UI
             _progress.Set(_vm.ChapterCleared, _vm.ChapterTotal);
             _next.text = _vm.CampaignComplete ? Ctx.T("campaign_complete") : _vm.NextFight != null ? Ctx.F("next_fight", Ctx.T(_vm.NextFight.NameKey)) : "";
             _stars.text = Ctx.F("stars_total", _vm.TotalStars, _vm.MaxStars);
+            _levelRow.gameObject.SetActive(_vm.HasLevels);
+            _level.text = Ctx.F("player_level", _vm.Level);
+            if (_vm.XpToNext > 0) _xp.Set(_vm.Xp, _vm.XpToNext);
+            else _xp.Set(1f, Ctx.T("level_max"));
             _continue.SetLabel(_vm.CampaignComplete ? Ctx.T("replay") : Ctx.T("continue"));
             _heroesDot.Show(_vm.Dots.AnyHeroBadge);
         }

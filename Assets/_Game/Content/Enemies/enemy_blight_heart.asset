@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
   id: enemy_blight_heart
   nameKey: enemy_blight_heart_name
-  isBoss: 1
+  rank: 4
   baseStats:
     values:
     - 18220
@@ -26,6 +26,11 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
   activeSkill: {fileID: 11400000, guid: 02d92de36ffaf4614ab51866fb8c3bfb, type: 2}
   passiveSkill: {fileID: 11400000, guid: 59d33f484dbf94181b7de549af4215bf, type: 2}
+  extraSkills:
+  - {fileID: 11400000, guid: 8f95e8186101b4e56b26ef533930a679, type: 2}
+  specials:
+  - {fileID: 11400000, guid: 44a813d717d5042a7be47a02173f49ce, type: 2}
+  - {fileID: 11400000, guid: 7168b2093062148f585bcbcbd3aace80, type: 2}
   sprite: {fileID: 21300000, guid: 1d331b9a9deff43f4b725091b4786ef5, type: 3}
   tint: {r: 0.1764706, g: 0.22745098, b: 0.12156863, a: 1}
   artFrom: 
