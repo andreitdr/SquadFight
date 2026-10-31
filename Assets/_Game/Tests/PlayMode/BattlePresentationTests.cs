@@ -57,6 +57,7 @@ namespace Game.Tests.PlayMode
                 {
                     captured = true;
                     UICapture.Capture(_root.transform, 1080, 2340, "TestResults/screens/battle_mid.png");
+                    UICapture.Capture(_root.transform, 1668, 2388, "TestResults/screens/battle_mid_ipad.png");
                 }
                 yield return null;
             }

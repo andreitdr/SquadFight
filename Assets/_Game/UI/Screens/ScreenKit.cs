@@ -55,9 +55,14 @@ namespace Game.UI
     public static class ScreenKit
     {
         public const float HeaderHeight = 130;
+        /// <summary>Content column caps (reference units; phones are ≤ 1080 wide so only tablets reach them).</summary>
+        public const float ReadableWidth = 1400, WideWidth = 2100;
 
-        /// <summary>Header band (back button when the stack has more than one screen) and a content rect below it.</summary>
-        public static RectTransform Header(UIContext ctx, RectTransform root, string title, Action onBack = null, bool showBack = true)
+        /// <summary>
+        /// Header band (back button when the stack has more than one screen) and a content rect below it, centred and capped
+        /// at <paramref name="maxWidth"/> so tablets get a readable column instead of stretched rows.
+        /// </summary>
+        public static RectTransform Header(UIContext ctx, RectTransform root, string title, Action onBack = null, bool showBack = true, float maxWidth = ReadableWidth)
         {
             var th = ctx.Theme;
             var header = UIKit.Rect("Header", root).TopBand(HeaderHeight);
@@ -74,7 +79,9 @@ namespace Game.UI
             t.enableAutoSizing = true;
             t.fontSizeMin = 32;
             t.fontSizeMax = th.fontTitle;
-            return UIKit.Rect("Body", root).Stretch(0, HeaderHeight, 0, 0);
+            var body = UIKit.Rect("Body", root).Stretch(0, HeaderHeight, 0, 0);
+            MaxSizeFitter.Attach(body, maxWidth);
+            return body;
         }
 
         public static string HeroName(UIContext ctx, string heroId) => ctx.Session.Db.TryGetHero(heroId, out var h) ? ctx.T(h.NameKey) : heroId;

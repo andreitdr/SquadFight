@@ -176,3 +176,9 @@ Format: **[step] Decision** — why. `DEFAULTED – owner may override` marks ch
 
 ## Battle skip is dev-only (owner request, 2026-10-31; supersedes "Skip" in plan/13 and MILESTONE-M2)
 - **The battle Skip button exists only in the Editor and development builds** (`#if UNITY_EDITOR || DEVELOPMENT_BUILD`, like the debug console). Release builds (`BuildOptions.None`) have no Skip: battles always play out; speed ×1/×2/×3, Auto and Pause → Retreat remain.
+
+## iPad / tablet layout (owner request, 2026-10-31)
+Owner: the game must work well on iPad without simply blowing the phone UI up.
+- **Canvas from physical size** (`AdaptiveCanvasScaler`): phones keep 1080×1920 / match 0.5 (unchanged). Tablets (h/w ≤ 1.65 — iPad mini is 1.52, 16:10 Android 1.6; phones start at 16:9 = 1.78) get a canvas `width = screen inches × 300 units/inch` (clamped 1300–2400, iPad Retina 264 dpi when the device reports none). Phones run at ~370 units/inch, so tablet UI is ~1.2× its phone size in inches — the same ratio iPadOS uses for points — instead of the ~2× the old rule gave. iPad mini ≈ 1370, iPad 11" ≈ 1895, iPad 13" ≈ 2345 units wide.
+- **Use the room, don't stretch it**: screen bodies are centred columns (`MaxSizeFitter`; `ScreenKit.ReadableWidth` 1400 for lists/forms, `WideWidth` 2100 for the Heroes and Bag grids); backgrounds, top bar and tab bar stay full-bleed (tabs grouped in the middle). Pooled grids add columns instead of widening cells (cells grow ≤ 15%, then the grid is centred). Home is a centred column (max 1900 tall); the battle formation stays in a 1300×1700 stage in the middle of the full-screen scene. Popups/toasts already had fixed widths.
+- Portrait only on iPad too (`requiresFullScreen`, no Split View) — landscape would need separate layouts. Phones are unaffected: every cap is wider than a phone canvas.

@@ -153,6 +153,12 @@ Current step: — (all 18 steps done; owner actions remain, see MILESTONE-M3.md)
 - [x] Releases: signed APK built locally (`tools/build-apk.sh`) after each push to main; the owner uploads it to GitHub Releases. No CI.
 - [x] Project-local emulator (`tools/android-emulator.sh`, `AndroidEmulator/` gitignored): release APK installs, boots to Home, tutorial + touch input reach the Fight Preview.
 
+### iPad / tablet layout (owner request, 2026-10-31)
+- [x] Tablets get a canvas sized from the physical screen (`AdaptiveCanvasScaler`, ~1.2× phone size in inches instead of ~2×); phones unchanged.
+- [x] Centred content columns (`MaxSizeFitter`), Heroes/Bag grids add columns, Home centred, battle formation kept compact on a full-screen scene; tab bar grouped in the middle.
+- [x] `TabletLayoutTests` (EditMode); iPad 11" screenshots in the screen tour and battle test (`*_ipad.png`; needs a run with graphics — `-nographics` captures are blank).
+- [ ] Check on a real iPad / iPad Simulator.
+
 ## Pending owner questions (batched)
 - none (M2 answers: CSV localizer; skip device tests for now)
 

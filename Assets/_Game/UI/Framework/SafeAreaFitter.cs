@@ -34,11 +34,14 @@ namespace Game.UI
 
     public static class AspectHelper
     {
-        /// <summary>Portrait height/width: ≤1.5 tablet (4:3 ≈ 1.33), ≤1.9 standard (16:9 ≈ 1.78), else tall (19.5:9 ≈ 2.17).</summary>
+        /// <summary>
+        /// Portrait height/width: ≤1.65 tablet (4:3 ≈ 1.33, iPad mini ≈ 1.52, 16:10 Android ≈ 1.6), ≤1.9 standard
+        /// (16:9 ≈ 1.78), else tall (19.5:9 ≈ 2.17).
+        /// </summary>
         public static AspectClass Classify(float width, float height)
         {
             var r = height / Mathf.Max(1f, width);
-            return r <= 1.5f ? AspectClass.Tablet : r <= 1.9f ? AspectClass.Standard : AspectClass.Tall;
+            return r <= 1.65f ? AspectClass.Tablet : r <= 1.9f ? AspectClass.Standard : AspectClass.Tall;
         }
 
         public static AspectClass Current => Classify(Screen.width, Screen.height);

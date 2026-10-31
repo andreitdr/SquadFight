@@ -61,7 +61,10 @@ namespace Game.UI
             var host = ctx.Manager.TabBarHost;
             var bg = UIKit.Image(host, "TabBarBg", ctx.Theme.panel);
             bg.rectTransform.Stretch();
-            UIKit.HStack(bg.gameObject, 8, 14);
+            // Full-width bar, tabs grouped in the middle on tablets.
+            var tabs = UIKit.Rect("Tabs", bg.transform).Stretch();
+            MaxSizeFitter.Attach(tabs, ScreenKit.ReadableWidth);
+            UIKit.HStack(tabs.gameObject, 8, 14);
             var bar = bg.gameObject.AddComponent<TabBar>();
             bar._ctx = ctx;
             bar._dots = dots;
@@ -70,7 +73,7 @@ namespace Game.UI
             for (var i = 0; i < Ids.Length; i++)
             {
                 var id = Ids[i];
-                var b = UIKit.Button(bg.transform, "Tab_" + id, ctx.T(labels[i]), () => Navigation.GoTab(ctx, id), UIKit.ButtonStyle.Ghost, 34);
+                var b = UIKit.Button(tabs, "Tab_" + id, ctx.T(labels[i]), () => Navigation.GoTab(ctx, id), UIKit.ButtonStyle.Ghost, 34);
                 bar._buttons[i] = b;
                 var tabIcon = ctx.Theme.TabIcon(id);
                 if (tabIcon != null)

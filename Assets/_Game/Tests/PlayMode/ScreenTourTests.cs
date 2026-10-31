@@ -60,6 +60,8 @@ namespace Game.Tests.PlayMode
         {
             yield return new WaitForSecondsRealtime(0.7f);
             UICapture.Capture(Manager.transform, 1080, 2340, $"TestResults/screens/tour_{name}.png");
+            // iPad Pro 11" (portrait): canvas sized from the physical width, content in centred columns.
+            UICapture.Capture(Manager.transform, 1668, 2388, $"TestResults/screens/tour_{name}_ipad.png");
         }
 
         [UnityTest]

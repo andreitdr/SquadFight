@@ -53,6 +53,7 @@ namespace Game.BattleView
 
         public override bool ShowTopBar => false;
         public override bool ShowTabBar => false;
+        private const float MaxStageWidth = 1300, MaxStageHeight = 1700;
 
         private sealed class SkillButton
         {
@@ -84,6 +85,8 @@ namespace Game.BattleView
             }
 
             _stage = UIKit.Rect("Stage", Root).Stretch(0, 260, 0, 330);
+            // Tablets: keep the phone-like formation in the middle of the scene instead of spreading units across the screen.
+            MaxSizeFitter.Attach(_stage, MaxStageWidth, MaxStageHeight);
             _fx = BattleFx.Create(_stage, Th);
             _bubble = SpeechBubble.Create(_stage, 520);
 

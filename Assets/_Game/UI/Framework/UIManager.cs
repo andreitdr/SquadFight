@@ -68,11 +68,7 @@ namespace Game.UI
             var canvas = go.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = order;
-            var scaler = go.AddComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(ReferenceWidth, ReferenceHeight);
-            scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-            scaler.matchWidthOrHeight = 0.5f;
+            AdaptiveCanvasScaler.Add(go);
             go.AddComponent<GraphicRaycaster>();
             var root = UIKit.Rect("SafeArea", go.transform).Stretch();
             if (safeArea) root.gameObject.AddComponent<SafeAreaFitter>();

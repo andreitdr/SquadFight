@@ -36,10 +36,7 @@ namespace Game.UI
             var canvas = go.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 25;
-            var scaler = go.AddComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(UIManager.ReferenceWidth, UIManager.ReferenceHeight);
-            scaler.matchWidthOrHeight = 0.5f;
+            AdaptiveCanvasScaler.Add(go);
             go.AddComponent<GraphicRaycaster>();
             var o = go.AddComponent<TutorialOverlay>();
             o._ctx = ctx;

@@ -7,7 +7,8 @@ namespace Game.UI
 {
     /// <summary>
     /// Virtualized, pooled vertical list/grid: only the rows in view (+1 buffer row) exist, recycled while scrolling.
-    /// No layout groups (cheap to scroll 1,000+ items at 60 fps).
+    /// No layout groups (cheap to scroll 1,000+ items at 60 fps). Grids (2+ columns) add columns when the list is wider than
+    /// the 1080 reference (tablets) so cells keep their phone size; a single-column list stays one column.
     /// </summary>
     public sealed class RecycleList : MonoBehaviour, ICaptureRefresh
     {
@@ -21,6 +22,8 @@ namespace Game.UI
         private int _count;
         private Vector2 _lastPos = new Vector2(float.NaN, float.NaN);
         private float _lastWidth = -1;
+        private int _baseColumns = 1;
+        private float _baseCellWidth, _cellWidth, _gridLeft;
 
         public int Columns { get; private set; } = 1;
         public float ItemHeight { get; private set; }
@@ -30,6 +33,9 @@ namespace Game.UI
         public int ActiveItems => _visible.Count;
         public int CreatedItems { get; private set; }
         public ScrollRect Scroll => _scroll;
+
+        /// <summary>Cells may grow this much past their phone width before the grid is centred instead.</summary>
+        public const float MaxCellGrowth = 1.15f;
 
         public static RecycleList Create(Transform parent, float itemHeight, Func<Transform, RectTransform> create, Action<int, RectTransform> bind, int columns = 1, float spacing = 20, float padding = 24)
         {
@@ -50,9 +56,10 @@ namespace Game.UI
             list._create = create;
             list._bind = bind;
             list.ItemHeight = itemHeight;
-            list.Columns = Mathf.Max(1, columns);
+            list.Columns = list._baseColumns = Mathf.Max(1, columns);
             list.Spacing = spacing;
             list.Padding = padding;
+            list._baseCellWidth = (UIManager.ReferenceWidth - padding * 2 - spacing * (list.Columns - 1)) / list.Columns;
             list._scroll.onValueChanged.AddListener(_ => list.Layout());
             return list;
         }
@@ -60,8 +67,7 @@ namespace Game.UI
         public void SetCount(int count, bool resetScroll = false)
         {
             _count = Mathf.Max(0, count);
-            var rows = Mathf.CeilToInt(_count / (float)Columns);
-            _content.sizeDelta = new Vector2(0, rows * (ItemHeight + Spacing) - (rows > 0 ? Spacing : 0) + Padding * 2);
+            UpdateContentHeight();
             if (resetScroll) _content.anchoredPosition = Vector2.zero;
             RefreshAll();
         }
@@ -73,6 +79,23 @@ namespace Game.UI
             _visible.Clear();
             _lastPos = new Vector2(float.NaN, float.NaN);
             Layout();
+        }
+
+        private void UpdateContentHeight()
+        {
+            var rows = Mathf.CeilToInt(_count / (float)Columns);
+            _content.sizeDelta = new Vector2(0, rows * (ItemHeight + Spacing) - (rows > 0 ? Spacing : 0) + Padding * 2);
+        }
+
+        /// <summary>Columns, cell width and left edge for a content width (pure; tests).</summary>
+        public static (int columns, float cellWidth, float left) GridFor(float width, int baseColumns, float baseCellWidth, float spacing, float padding)
+        {
+            var columns = baseColumns;
+            if (baseColumns > 1) columns = Mathf.Max(baseColumns, Mathf.FloorToInt((width - padding * 2 + spacing) / (baseCellWidth + spacing)));
+            var cell = (width - padding * 2 - spacing * (columns - 1)) / columns;
+            if (baseColumns > 1) cell = Mathf.Min(cell, baseCellWidth * MaxCellGrowth);
+            var left = (width - columns * cell - spacing * (columns - 1)) * 0.5f;
+            return (columns, cell, left);
         }
 
         private void LateUpdate() => Layout();
@@ -90,6 +113,14 @@ namespace Game.UI
             {
                 // Viewport got its final size (or rotated): cell widths change, rebind everything.
                 _lastWidth = width;
+                var grid = GridFor(width, _baseColumns, _baseCellWidth, Spacing, Padding);
+                if (grid.columns != Columns)
+                {
+                    Columns = grid.columns;
+                    UpdateContentHeight();
+                }
+                _cellWidth = grid.cellWidth;
+                _gridLeft = grid.left;
                 foreach (var kv in _visible) Release(kv.Value);
                 _visible.Clear();
                 _lastPos = new Vector2(float.NaN, float.NaN);
@@ -112,7 +143,7 @@ namespace Game.UI
                 _visible.Remove(i);
             }
 
-            var cellW = (width - Padding * 2 - Spacing * (Columns - 1)) / Columns;
+            var cellW = _cellWidth;
             for (var i = first; i <= last; i++)
             {
                 if (_visible.ContainsKey(i)) continue;
@@ -123,7 +154,7 @@ namespace Game.UI
                 item.anchorMin = item.anchorMax = new Vector2(0, 1);
                 item.pivot = new Vector2(0, 1);
                 item.sizeDelta = new Vector2(cellW, ItemHeight);
-                item.anchoredPosition = new Vector2(Padding + col * (cellW + Spacing), -(Padding + row * rowH));
+                item.anchoredPosition = new Vector2(_gridLeft + col * (cellW + Spacing), -(Padding + row * rowH));
                 _bind(i, item);
                 _visible[i] = item;
             }

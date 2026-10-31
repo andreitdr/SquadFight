@@ -28,7 +28,11 @@ namespace Game.UI
             var top = UIKit.Rect("ChapterBar", body).TopBand(170);
             top.gameObject.AddComponent<RectMask2D>();
             _banner = UIKit.Image(top, "Banner", Color.white);
-            _banner.rectTransform.Anchor(new Vector2(0.5f, 0.5f), new Vector2(1080, 422));
+            // Covers the bar at any width (tablets are wider than the 1080 reference), cropped to the middle.
+            _banner.rectTransform.Stretch();
+            var bannerFit = _banner.gameObject.AddComponent<AspectRatioFitter>();
+            bannerFit.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+            bannerFit.aspectRatio = 1080f / 422f;
             UIKit.Image(top, "Shade", new Color(0.04f, 0.03f, 0.08f, 0.72f)).rectTransform.Stretch();
             _prev = UIKit.Button(top, "Prev", "<", () => _vm.SelectChapter(_vm.SelectedChapter - 1), UIKit.ButtonStyle.Ghost, Th.fontTitle);
             ((RectTransform)_prev.transform).Anchor(new Vector2(0, 0.5f), new Vector2(130, 130), new Vector2(Th.padding, 0), new Vector2(0, 0.5f));

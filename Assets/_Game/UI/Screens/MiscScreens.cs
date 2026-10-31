@@ -24,7 +24,7 @@ namespace Game.UI
         {
             _vm = new InventoryViewModel(Ctx.Session, UIScreensSetup.Dots);
             _vm.Changed += _ => Refresh();
-            var body = ScreenKit.Header(Ctx, Root, Ctx.T("tab_inventory"));
+            var body = ScreenKit.Header(Ctx, Root, Ctx.T("tab_inventory"), maxWidth: ScreenKit.WideWidth);
             var tabs = Tabs.Create(body, Filters.Select(f => f.HasValue ? ScreenKit.SlotName(Ctx, f.Value) : Ctx.T("all")).ToArray(), 0, 100);
             var trt = (RectTransform)tabs.transform;
             trt.TopBand(100, 0);
@@ -126,6 +126,7 @@ namespace Game.UI
         {
             _vm = new ResultViewModel(Ctx.Session, (FightCompletion)Args);
             var body = UIKit.Rect("Body", Root).Stretch(Th.padding, Th.padding, Th.padding, Th.padding);
+            MaxSizeFitter.Attach(body, ScreenKit.ReadableWidth);
             var title = UIKit.Text(body, "Banner", Ctx.T(_vm.Victory ? "victory" : "defeat"), 120, _vm.Victory ? Th.primary : Th.negative, TextAlignmentOptions.Center, bold: true);
             ((RectTransform)title.transform).TopBand(170, 10);
             Tween.Scale(title.transform, 0.4f, 1f, 0.45f, Ease.OutBack);

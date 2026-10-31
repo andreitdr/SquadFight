@@ -22,7 +22,7 @@ namespace Game.UI
         {
             _vm = new HeroListViewModel(Ctx.Session, UIScreensSetup.Dots);
             _vm.Changed += _ => Refresh();
-            var body = ScreenKit.Header(Ctx, Root, Ctx.T("tab_heroes"));
+            var body = ScreenKit.Header(Ctx, Root, Ctx.T("tab_heroes"), maxWidth: ScreenKit.WideWidth);
             var tabs = Tabs.Create(body, new[] { Ctx.T("sort_rarity"), Ctx.T("sort_power"), Ctx.T("sort_name") });
             ((RectTransform)tabs.transform).TopBand(110, 0);
             ((RectTransform)tabs.transform).offsetMin = new Vector2(Th.padding, ((RectTransform)tabs.transform).offsetMin.y);
@@ -64,7 +64,7 @@ namespace Game.UI
     public sealed class HeroDetailScreen : ScreenBase
     {
         private HeroDetailViewModel _vm;
-        private RectTransform _content;
+        private RectTransform _body, _content;
 
         public override string TabId => "heroes";
 
@@ -72,8 +72,8 @@ namespace Game.UI
         {
             _vm = new HeroDetailViewModel(Ctx.Session, (string)Args);
             _vm.Changed += _ => Refresh();
-            var body = ScreenKit.Header(Ctx, Root, Ctx.T(_vm.Def.NameKey));
-            var scroll = UIKit.ScrollView(body, "Scroll", out _content, Th.spacing, Th.padding);
+            _body = ScreenKit.Header(Ctx, Root, Ctx.T(_vm.Def.NameKey));
+            var scroll = UIKit.ScrollView(_body, "Scroll", out _content, Th.spacing, Th.padding);
             ((RectTransform)scroll.transform).Stretch();
             Refresh();
         }
@@ -230,7 +230,8 @@ namespace Game.UI
             var line = HeroLines.Pick(Ctx, heroId, trigger);
             if (line == null) return;
             if (_bubble == null) _bubble = SpeechBubble.Create(Root);
-            var tip = new Vector2(-Root.rect.width * 0.5f + 330, Root.rect.height * 0.5f - 300);
+            // Next to the portrait, which sits at the left edge of the (tablet-centred) content column.
+            var tip = new Vector2(-Root.rect.width * 0.5f + _body.offsetMin.x + 330, Root.rect.height * 0.5f - 300);
             _bubble.Show(line, tip, 2.8f, 34, 640);
         }
 

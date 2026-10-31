@@ -13,12 +13,15 @@ namespace Game.UI
         private RedDot _heroesDot;
 
         public override string TabId => "home";
+        private const float MaxColumnHeight = 1900;
 
         protected override void Build()
         {
             _vm = new HomeViewModel(Ctx.Session, UIScreensSetup.Dots ?? new NotificationsModel(Ctx.Session));
             _vm.Changed += _ => Refresh();
             var col = UIKit.Rect("Column", Root).Stretch(Th.padding, Th.padding, Th.padding, Th.padding);
+            // Tablets: a phone-width column centred on the (much taller) screen.
+            MaxSizeFitter.Attach(col, ScreenKit.ReadableWidth, MaxColumnHeight);
             UIKit.VStack(col.gameObject, Th.spacing, 0, TextAnchor.UpperCenter);
 
             if (Th.logo != null)
