@@ -15,6 +15,9 @@ namespace Game.Core
         public StatBlock BaseStats = new StatBlock();
         public string BasicSkillId;
         public string ActiveSkillId;
+        public string PassiveSkillId;
+        /// <summary>Story act the hero belongs to; random shard drops can be limited to an origin pool.</summary>
+        public string Origin;
     }
 
     public sealed class EnemyDef
@@ -25,6 +28,7 @@ namespace Game.Core
         public StatBlock BaseStats = new StatBlock();
         public string BasicSkillId;
         public string ActiveSkillId;
+        public string PassiveSkillId;
     }
 
     public sealed class SkillDef
@@ -39,25 +43,42 @@ namespace Game.Core
         /// <summary>Turns before the skill is first usable.</summary>
         public int InitialCooldown;
         public List<EffectDef> Effects = new List<EffectDef>();
+
+        // Passives only (Trigger != None). Cooldown = holder turns between triggers.
+        public PassiveTrigger Trigger;
+        /// <summary>OnLowHp: HP ratio at or below which it fires (once).</summary>
+        public float Threshold;
+        /// <summary>Chance 0..1 to fire; 0 is treated as 1.</summary>
+        public float Chance;
+        public bool OncePerBattle;
+        public bool IsPassive => Trigger != PassiveTrigger.None;
     }
 
+    /// <summary>
+    /// One effect of a skill. Fields per type ("attack" = caster attack when the effect lands):
+    /// Damage/Heal/Shield: Power × attack (Shield lasts Duration) · Stun/Silence/Taunt: Duration, Chance ·
+    /// ApplyStatus: Stat ± Value for Duration · DamageOverTime: StatusId (burn/poison/bleed), Power × attack per turn ·
+    /// HealOverTime: Power × attack per turn · Drain: Power, heals the caster Value × damage · Execute: Power, ×Value2 at or below Value HP ·
+    /// PercentHpDamage: Value × target max HP, capped at Value2 × attack · Cleanse/Dispel: removes Value statuses (0 = all) ·
+    /// Revive: one fallen ally of the caster's team at Value × max HP · Thorns: reflects Value of direct damage ·
+    /// Dodge: Value chance to evade direct damage · CooldownShift: adds Value to active cooldowns · Mark: +Value damage taken.
+    /// Statuses tick down at the end of the holder's turn; DoT/HoT apply at the start of it.
+    /// </summary>
     public sealed class EffectDef
     {
         public EffectType Type;
         public EffectTarget Target;
-        /// <summary>Damage/heal/shield: multiplier on caster attack.</summary>
         public float Power;
-        /// <summary>ApplyStatus: stat modified.</summary>
         public StatType Stat;
-        /// <summary>ApplyStatus: percent change (0.2 = +20%, -0.3 = -30%).</summary>
         public float Value;
-        /// <summary>ApplyStatus/Shield/Stun: duration in the holder's turns.</summary>
+        public float Value2;
+        /// <summary>Duration in the holder's turns.</summary>
         public int Duration;
         public StackingRule Stacking;
         public int MaxStacks = 1;
-        /// <summary>Identity for stacking; defaults to "skillId#index" when empty.</summary>
+        /// <summary>Identity for stacking; defaults to "skillId#index" for stat changes and to the kind name for other statuses.</summary>
         public string StatusId;
-        /// <summary>Chance 0..1 to apply (status/stun). 0 is treated as 1.</summary>
+        /// <summary>Chance 0..1 to apply. 0 is treated as 1.</summary>
         public float Chance;
     }
 
@@ -246,6 +267,10 @@ namespace Game.Core
 
         // Meta (step 18)
         public bool DailyBonusEnabled;
+
+        // Roster ("The Hundred")
+        /// <summary>Validator rejects two heroes with the same active or passive behaviour, and heroes without a passive.</summary>
+        public bool UniqueHeroAbilities;
         public string DailyBonusTableId;
     }
 }

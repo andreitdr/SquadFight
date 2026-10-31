@@ -33,15 +33,15 @@ namespace Game.EditorTools.Content
             string T(string key) => text.HasIn("en", key) ? text.Get(key) : "";
             var statCols = StatBlock.All.Select(s => char.ToLowerInvariant(s.ToString()[0]) + s.ToString().Substring(1)).ToArray();
 
-            File.WriteAllText(Path.Combine(folder, "heroes.csv"), Csv.Write(new[] { "id", "name", "rarity", "class" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "tint", "lore" }),
-                cdb.Source.heroes.Select(h => new[] { h.id, T(h.nameKey), h.rarity.ToString(), h.heroClass.ToString() }
+            File.WriteAllText(Path.Combine(folder, "heroes.csv"), Csv.Write(new[] { "id", "name", "rarity", "class", "origin" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "passive", "tint", "lore" }),
+                cdb.Source.heroes.Select(h => new[] { h.id, T(h.nameKey), h.rarity.ToString(), h.heroClass.ToString(), h.origin ?? "" }
                     .Concat(StatBlock.All.Select(s => N(h.baseStats[s])))
-                    .Concat(new[] { h.basicSkill ? h.basicSkill.id : "", h.activeSkill ? h.activeSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(h.tint), T(h.loreKey) }))));
+                    .Concat(new[] { h.basicSkill ? h.basicSkill.id : "", h.activeSkill ? h.activeSkill.id : "", h.passiveSkill ? h.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(h.tint), T(h.loreKey) }))));
 
-            File.WriteAllText(Path.Combine(folder, "enemies.csv"), Csv.Write(new[] { "id", "name", "isBoss" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "tint" }),
+            File.WriteAllText(Path.Combine(folder, "enemies.csv"), Csv.Write(new[] { "id", "name", "isBoss" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "passive", "tint" }),
                 OrderLike(folder, "enemies.csv", cdb.EnemyAssets).Select(e => new[] { e.id, T(e.nameKey), e.isBoss ? "true" : "false" }
                     .Concat(StatBlock.All.Select(s => N(e.baseStats[s])))
-                    .Concat(new[] { e.basicSkill ? e.basicSkill.id : "", e.activeSkill ? e.activeSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(e.tint) }))));
+                    .Concat(new[] { e.basicSkill ? e.basicSkill.id : "", e.activeSkill ? e.activeSkill.id : "", e.passiveSkill ? e.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(e.tint) }))));
 
             File.WriteAllText(Path.Combine(folder, "equipment.csv"), Csv.Write(new[] { "id", "name", "slot", "rarity", "stats", "setId" },
                 cdb.Source.equipment.Select(e => new[] { e.id, T(e.nameKey), e.slot.ToString(), e.rarity.ToString(),

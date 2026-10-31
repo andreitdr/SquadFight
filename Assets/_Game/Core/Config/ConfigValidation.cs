@@ -68,8 +68,9 @@ namespace Game.Core
             ValidateCombat(db, r);
             ValidateRules(db, r);
             foreach (var s in db.Skills.Where(s => s != null)) ValidateSkill(s, r);
-            foreach (var h in db.Heroes.Where(h => h != null)) ValidateUnit($"hero:{h.Id}", h.BaseStats, h.BasicSkillId, h.ActiveSkillId, h.NameKey, db, r);
-            foreach (var e in db.Enemies.Where(e => e != null)) ValidateUnit($"enemy:{e.Id}", e.BaseStats, e.BasicSkillId, e.ActiveSkillId, e.NameKey, db, r);
+            foreach (var h in db.Heroes.Where(h => h != null)) ValidateUnit($"hero:{h.Id}", h.BaseStats, h.BasicSkillId, h.ActiveSkillId, h.PassiveSkillId, h.NameKey, db, r);
+            foreach (var e in db.Enemies.Where(e => e != null)) ValidateUnit($"enemy:{e.Id}", e.BaseStats, e.BasicSkillId, e.ActiveSkillId, e.PassiveSkillId, e.NameKey, db, r);
+            if (db.Rules.UniqueHeroAbilities) ValidateHeroUniqueness(db, r);
             foreach (var e in db.Equipment.Where(e => e != null)) ValidateEquipment(e, db, r);
             foreach (var t in db.DropTables.Where(t => t != null)) ValidateDropTable(t, db, r);
             ValidateCampaign(db, r);
@@ -159,7 +160,7 @@ namespace Game.Core
             if (g.DailyBonusEnabled && !db.TryGetDropTable(g.DailyBonusTableId, out _)) r.Error("rules", "daily bonus is enabled but its table is missing");
         }
 
-        private static void ValidateUnit(string ctx, StatBlock stats, string basic, string active, string nameKey, GameDatabase db, ValidationReport r)
+        private static void ValidateUnit(string ctx, StatBlock stats, string basic, string active, string passive, string nameKey, GameDatabase db, ValidationReport r)
         {
             if (string.IsNullOrEmpty(nameKey)) r.Error(ctx, "missing name key");
             if (stats == null) { r.Error(ctx, "missing base stats"); return; }
@@ -171,6 +172,33 @@ namespace Game.Core
             if (stats[StatType.CritDamage] < 1) r.Error(ctx, "CritDamage must be >= 1");
             if (string.IsNullOrEmpty(basic) || !db.TryGetSkill(basic, out _)) r.Error(ctx, $"missing basic skill '{basic}'");
             if (!string.IsNullOrEmpty(active) && !db.TryGetSkill(active, out _)) r.Error(ctx, $"missing active skill '{active}'");
+            if (db.TryGetSkill(basic, out var b) && b.IsPassive) r.Error(ctx, $"basic skill '{basic}' is a passive");
+            if (db.TryGetSkill(active, out var a) && a.IsPassive) r.Error(ctx, $"active skill '{active}' is a passive");
+            if (!string.IsNullOrEmpty(passive))
+            {
+                if (!db.TryGetSkill(passive, out var p)) r.Error(ctx, $"missing passive skill '{passive}'");
+                else if (!p.IsPassive) r.Error(ctx, $"passive '{passive}' has no trigger");
+            }
+        }
+
+        /// <summary>Every hero must feel different: no two heroes share an active or a passive (by behaviour, not by name).</summary>
+        private static void ValidateHeroUniqueness(GameDatabase db, ValidationReport r)
+        {
+            void Check(Func<HeroDef, string> skillId, string what)
+            {
+                var seen = new Dictionary<string, string>();
+                foreach (var h in db.Heroes.Where(h => h != null))
+                {
+                    var id = skillId(h);
+                    if (string.IsNullOrEmpty(id)) { if (what == "passive") r.Error("hero:" + h.Id, "hero has no passive"); continue; }
+                    if (!db.TryGetSkill(id, out var s)) continue;
+                    var sig = EffectSpec.Signature(s);
+                    if (seen.TryGetValue(sig, out var other)) r.Error("hero:" + h.Id, $"{what} '{id}' behaves exactly like the {what} of '{other}' (abilities must be unique)");
+                    else seen[sig] = h.Id;
+                }
+            }
+            Check(h => h.ActiveSkillId, "active");
+            Check(h => h.PassiveSkillId, "passive");
         }
 
         private static void ValidateSkill(SkillDef s, ValidationReport r)
@@ -179,7 +207,12 @@ namespace Game.Core
             if (string.IsNullOrEmpty(s.NameKey)) r.Error(ctx, "missing name key");
             if (s.Effects.Count == 0) r.Error(ctx, "skill has no effects");
             if (s.Cooldown < 0 || s.InitialCooldown < 0) r.Error(ctx, "cooldowns must be >= 0");
-            if (s.Targeting == TargetingRule.RandomEnemies && s.TargetCount < 1) r.Error(ctx, "RandomEnemies needs targetCount >= 1");
+            if ((s.Targeting == TargetingRule.RandomEnemies || s.Targeting == TargetingRule.RandomAllies) && s.TargetCount < 1) r.Error(ctx, $"{s.Targeting} needs targetCount >= 1");
+            if (s.IsPassive)
+            {
+                if (s.Trigger == PassiveTrigger.OnLowHp && (s.Threshold <= 0 || s.Threshold >= 1)) r.Error(ctx, "OnLowHp passive needs a threshold in (0, 1)");
+                if (s.Chance < 0 || s.Chance > 1) r.Error(ctx, "passive chance must be in [0, 1]");
+            }
             for (var i = 0; i < s.Effects.Count; i++)
             {
                 var e = s.Effects[i];
@@ -190,6 +223,10 @@ namespace Game.Core
                     case EffectType.Damage:
                     case EffectType.Heal:
                     case EffectType.Shield:
+                    case EffectType.Drain:
+                    case EffectType.Execute:
+                    case EffectType.DamageOverTime:
+                    case EffectType.HealOverTime:
                         if (e.Power <= 0) r.Error(ectx, $"{e.Type} power must be > 0");
                         break;
                     case EffectType.ApplyStatus:
@@ -197,8 +234,39 @@ namespace Game.Core
                         if (e.Value <= -1) r.Error(ectx, "status value must be > -1 (a stat cannot drop below 0%)");
                         break;
                 }
-                if ((e.Type == EffectType.ApplyStatus || e.Type == EffectType.Stun || e.Type == EffectType.Shield) && e.Duration < 1)
-                    r.Error(ectx, "duration must be >= 1");
+                switch (e.Type)
+                {
+                    case EffectType.Drain:
+                        if (e.Value <= 0 || e.Value > 2) r.Error(ectx, "drain ratio must be in (0, 2]");
+                        break;
+                    case EffectType.Execute:
+                        if (e.Value <= 0 || e.Value >= 1) r.Error(ectx, "execute threshold must be in (0, 1)");
+                        if (e.Value2 <= 1) r.Error(ectx, "execute multiplier must be > 1");
+                        break;
+                    case EffectType.PercentHpDamage:
+                        if (e.Value <= 0 || e.Value > 1) r.Error(ectx, "percent HP damage must be in (0, 1]");
+                        if (e.Value2 <= 0) r.Error(ectx, "percent HP damage cap must be > 0");
+                        break;
+                    case EffectType.Revive:
+                        if (e.Value <= 0 || e.Value > 1) r.Error(ectx, "revive HP ratio must be in (0, 1]");
+                        break;
+                    case EffectType.Thorns:
+                    case EffectType.Mark:
+                        if (e.Value <= 0 || e.Value > 2) r.Error(ectx, $"{e.Type} value must be in (0, 2]");
+                        break;
+                    case EffectType.Dodge:
+                        if (e.Value <= 0 || e.Value >= 1) r.Error(ectx, "dodge chance must be in (0, 1)");
+                        break;
+                    case EffectType.CooldownShift:
+                        if (e.Value == 0) r.Error(ectx, "cooldown shift must not be 0");
+                        break;
+                    case EffectType.Cleanse:
+                    case EffectType.Dispel:
+                        if (e.Value < 0) r.Error(ectx, "count must be >= 0 (0 = all)");
+                        break;
+                }
+                if (EffectSpec.StatusKindOf(e.Type) != null || e.Type == EffectType.Stun || e.Type == EffectType.Shield)
+                    if (e.Duration < 1) r.Error(ectx, "duration must be >= 1");
                 if (e.Stacking == StackingRule.Stack && e.MaxStacks < 1) r.Error(ectx, "maxStacks must be >= 1");
                 if (e.Chance < 0 || e.Chance > 1) r.Error(ectx, "chance must be in [0, 1]");
             }
@@ -250,7 +318,8 @@ namespace Game.Core
                     if (!db.TryGetHero(e.RefId, out _)) r.Error(ctx, $"unknown hero '{e.RefId}'");
                     break;
                 case DropType.RandomHeroShardByRarity:
-                    if (!db.Heroes.Any(h => h != null && h.Rarity == e.Rarity)) r.Error(ctx, $"no hero of rarity {e.Rarity}");
+                    if (DropRoller.ShardCandidates(e, db).Count == 0)
+                        r.Error(ctx, string.IsNullOrEmpty(e.RefId) ? $"no hero of rarity {e.Rarity}" : $"no {e.Rarity} hero with origin '{e.RefId}'");
                     break;
                 case DropType.Equipment:
                     if (!db.TryGetEquipment(e.RefId, out _)) r.Error(ctx, $"unknown equipment template '{e.RefId}'");
@@ -348,7 +417,7 @@ namespace Game.Core
             foreach (var h in db.Heroes.Where(h => h != null))
             {
                 var obtainable = db.Rules.StartingHeroIds.Contains(h.Id)
-                    || entries.Any(e => (e.Type == DropType.HeroShard && e.RefId == h.Id) || (e.Type == DropType.RandomHeroShardByRarity && e.Rarity == h.Rarity));
+                    || entries.Any(e => (e.Type == DropType.HeroShard && e.RefId == h.Id) || (e.Type == DropType.RandomHeroShardByRarity && DropRoller.ShardCandidates(e, db).Contains(h)));
                 if (!obtainable) r.Warn("hero:" + h.Id, "hero is never obtainable (not a starting hero and no drop gives its shards)");
             }
             var usedEnemies = new HashSet<string>(db.Fights.Where(f => f != null).SelectMany(f => f.Waves.Where(w => w != null).SelectMany(w => w.Spawns.Where(s => s != null).Select(s => s.EnemyId))));
@@ -359,8 +428,8 @@ namespace Game.Core
                 var droppable = entries.Any(x => (x.Type == DropType.Equipment && x.RefId == e.Id) || (x.Type == DropType.RandomEquipment && (x.SlotFilter == null || x.SlotFilter == e.Slot)));
                 if (!droppable) r.Warn("equipment:" + e.Id, "item is never dropped");
             }
-            var usedSkills = new HashSet<string>(db.Heroes.Where(h => h != null).SelectMany(h => new[] { h.BasicSkillId, h.ActiveSkillId })
-                .Concat(db.Enemies.Where(e => e != null).SelectMany(e => new[] { e.BasicSkillId, e.ActiveSkillId })).Where(s => s != null));
+            var usedSkills = new HashSet<string>(db.Heroes.Where(h => h != null).SelectMany(h => new[] { h.BasicSkillId, h.ActiveSkillId, h.PassiveSkillId })
+                .Concat(db.Enemies.Where(e => e != null).SelectMany(e => new[] { e.BasicSkillId, e.ActiveSkillId, e.PassiveSkillId })).Where(s => s != null));
             foreach (var s in db.Skills.Where(s => s != null && !usedSkills.Contains(s.Id))) r.Warn("skill:" + s.Id, "skill is not used");
         }
     }

@@ -13,6 +13,7 @@ namespace Game.Data
         public StatTable baseStats = new StatTable();
         public SkillDefinition basicSkill;
         public SkillDefinition activeSkill;
+        public SkillDefinition passiveSkill;
         public Sprite sprite;
         public Color tint = Color.white;
         [Header("Art (Tools/Game/Art/Apply Generated Art fills empty slots)")]
@@ -24,6 +25,7 @@ namespace Game.Data
         {
             Id = id, NameKey = nameKey, IsBoss = isBoss, BaseStats = baseStats.ToStatBlock(),
             BasicSkillId = basicSkill ? basicSkill.id : null, ActiveSkillId = activeSkill ? activeSkill.id : null,
+            PassiveSkillId = passiveSkill ? passiveSkill.id : null,
         };
     }
 }

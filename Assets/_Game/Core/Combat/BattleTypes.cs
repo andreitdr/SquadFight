@@ -13,6 +13,8 @@ namespace Game.Core
         BattleStarted, WaveStarted, RoundStarted, TurnStarted, ActionChosen, Stunned,
         DamageDealt, HealApplied, ShieldApplied, StatusApplied, StatusExpired, ShieldExpired,
         CombatantDied, WaveCleared, BattleEnded,
+        // Appended (step "The Hundred"): keep order, hashes and the presentation switch rely on it.
+        DotTick, HotTick, Dodged, Revived, Cleansed, Dispelled, Silenced, PassiveTriggered, CooldownChanged, ThornsReflected,
     }
 
     /// <summary>

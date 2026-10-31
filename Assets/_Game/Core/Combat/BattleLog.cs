@@ -30,9 +30,23 @@ namespace Game.Core
                     case BattleEventType.HealApplied: sb.AppendLine($"    {N(e.Target)} heals {e.Amount} → {e.HpAfter} HP"); break;
                     case BattleEventType.ShieldApplied: sb.AppendLine($"    {N(e.Target)} gains a {e.Amount} shield ({e.Duration} turns)"); break;
                     case BattleEventType.StatusApplied:
-                        sb.AppendLine(e.StatusId == "stun" ? $"    {N(e.Target)} is stunned for {e.Duration}" : $"    {N(e.Target)} {e.Stat} {e.Value:+0%;-0%} for {e.Duration} (x{e.Stacks})");
+                        sb.AppendLine(e.StatusId == "stun" ? $"    {N(e.Target)} is stunned for {e.Duration}"
+                            : e.StatusId != null && e.StatusId.Contains("#") ? $"    {N(e.Target)} {e.Stat} {e.Value:+0%;-0%} for {e.Duration} (x{e.Stacks})"
+                            : $"    {N(e.Target)} gains {e.StatusId} for {e.Duration} (x{e.Stacks})");
                         break;
-                    case BattleEventType.StatusExpired: sb.AppendLine($"    {N(e.Target)} {e.Stat} effect wears off"); break;
+                    case BattleEventType.StatusExpired:
+                        sb.AppendLine(e.StatusId != null && e.StatusId.Contains("#") ? $"    {N(e.Target)} {e.Stat} effect wears off" : $"    {N(e.Target)} {e.StatusId} wears off");
+                        break;
+                    case BattleEventType.DotTick: sb.AppendLine($"    {N(e.Target)} suffers {e.Amount} {e.StatusId} → {e.HpAfter} HP"); break;
+                    case BattleEventType.HotTick: sb.AppendLine($"    {N(e.Target)} regenerates {e.Amount} → {e.HpAfter} HP"); break;
+                    case BattleEventType.Dodged: sb.AppendLine($"    {N(e.Target)} dodges"); break;
+                    case BattleEventType.Revived: sb.AppendLine($"    {N(e.Target)} is revived with {e.Amount} HP"); break;
+                    case BattleEventType.Cleansed: sb.AppendLine($"    {N(e.Target)} is cleansed ({e.Amount})"); break;
+                    case BattleEventType.Dispelled: sb.AppendLine($"    {N(e.Target)} loses {e.Amount} buff(s)"); break;
+                    case BattleEventType.Silenced: sb.AppendLine($"  {N(e.Actor)} is silenced"); break;
+                    case BattleEventType.PassiveTriggered: sb.AppendLine($"  {N(e.Actor)} passive {e.SkillId}"); break;
+                    case BattleEventType.CooldownChanged: sb.AppendLine($"    {N(e.Target)} cooldown → {e.Amount}"); break;
+                    case BattleEventType.ThornsReflected: sb.AppendLine($"    {N(e.Target)} takes {e.Amount} thorns → {e.HpAfter} HP"); break;
                     case BattleEventType.ShieldExpired: sb.AppendLine($"    {N(e.Target)} shield fades"); break;
                     case BattleEventType.CombatantDied: sb.AppendLine($"    {N(e.Target)} is defeated"); break;
                     case BattleEventType.WaveCleared: sb.AppendLine($"--- Wave {e.Wave + 1} cleared ---"); break;

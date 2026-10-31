@@ -15,6 +15,9 @@ namespace Game.Data
         public StatTable baseStats = new StatTable();
         public SkillDefinition basicSkill;
         public SkillDefinition activeSkill;
+        public SkillDefinition passiveSkill;
+        [Tooltip("Story act the hero comes from (act_1..act_8); random shard drops can be limited to an origin pool.")]
+        public string origin;
         public Sprite portrait;
         [Tooltip("Tint applied to the (placeholder) portrait.")]
         public Color tint = Color.white;
@@ -30,6 +33,7 @@ namespace Game.Data
         {
             Id = id, NameKey = nameKey, LoreKey = loreKey, Rarity = rarity, Class = heroClass,
             BaseStats = baseStats.ToStatBlock(), BasicSkillId = basicSkill ? basicSkill.id : null, ActiveSkillId = activeSkill ? activeSkill.id : null,
+            PassiveSkillId = passiveSkill ? passiveSkill.id : null, Origin = string.IsNullOrEmpty(origin) ? null : origin,
         };
     }
 }

@@ -28,3 +28,4 @@ combat.aiTargeting,LowestHp
 combat.powerWeights,MaxHp=0.1;Attack=1;Defense=0.8;Speed=0.5;CritChance=100;CritDamage=20
 dailyBonusEnabled,false
 dailyBonusTable,daily_bonus
+uniqueHeroAbilities,true

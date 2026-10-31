@@ -70,7 +70,7 @@ namespace Game.Services
                 foreach (var e in t.Guaranteed.Concat(t.Groups.SelectMany(g => g.Entries)))
                 {
                     if (e.Type == DropType.HeroShard) ids.Add(e.RefId);
-                    else if (e.Type == DropType.RandomHeroShardByRarity) ids.AddRange(db.Heroes.Where(h => h.Rarity == e.Rarity).Select(h => h.Id));
+                    else if (e.Type == DropType.RandomHeroShardByRarity) ids.AddRange(DropRoller.ShardCandidates(e, db).Select(h => h.Id));
                 }
             if (ids.Count == 0) ids.AddRange(db.Heroes.Where(h => !_roster.IsUnlocked(h.Id)).Select(h => h.Id));
             return ids.Distinct().Where(id => db.TryGetHero(id, out _)).OrderBy(id => id, StringComparer.Ordinal).ToList();

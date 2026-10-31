@@ -56,8 +56,10 @@ namespace Game.Data
         public float power = 1f;
         [Tooltip("ApplyStatus: stat to modify.")]
         public StatType stat;
-        [Tooltip("ApplyStatus: percent change, 0.2 = +20%.")]
+        [Tooltip("ApplyStatus: percent change, 0.2 = +20%. Other types: ratio/threshold/chance/count (see EffectDef).")]
         public float value;
+        [Tooltip("Execute: damage multiplier. PercentHpDamage: cap as a multiple of attack.")]
+        public float value2;
         [Tooltip("Turns (status, shield, stun).")]
         public int duration;
         public StackingRule stacking;
@@ -69,8 +71,14 @@ namespace Game.Data
 
         public EffectDef ToCore() => new EffectDef
         {
-            Type = type, Target = target, Power = power, Stat = stat, Value = value, Duration = duration,
+            Type = type, Target = target, Power = power, Stat = stat, Value = value, Value2 = value2, Duration = duration,
             Stacking = stacking, MaxStacks = maxStacks, StatusId = string.IsNullOrEmpty(statusId) ? null : statusId, Chance = chance,
+        };
+
+        public static EffectData FromCore(EffectDef e) => new EffectData
+        {
+            type = e.Type, target = e.Target, power = e.Power, stat = e.Stat, value = e.Value, value2 = e.Value2, duration = e.Duration,
+            stacking = e.Stacking, maxStacks = e.MaxStacks, statusId = e.StatusId, chance = e.Chance,
         };
     }
 

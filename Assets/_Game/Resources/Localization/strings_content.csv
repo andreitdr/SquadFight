@@ -121,6 +121,26 @@ hero_rogue_lore,A rogue who fights for coin and
 hero_rogue_name,Vex
 hero_stormcaller_lore,She speaks and the sky answers.
 hero_stormcaller_name,Zara Stormcaller
+passive_dragons_retort_desc,"When hit, bites back at the weakest enemy and drinks its blood (every 3rd turn at most)."
+passive_dragons_retort_name,Dragon's Retort
+passive_encore_desc,35% chance after Battle Anthem to speed up every other ally's skills by one turn.
+passive_encore_name,Encore
+passive_kindling_desc,Basic attacks set the weakest enemy alight.
+passive_kindling_name,Kindling
+passive_oathbound_desc,"When an ally falls, taunts all enemies and raises a shield."
+passive_oathbound_name,Oathbound
+passive_opportunist_desc,A kill makes Backstab ready two turns sooner.
+passive_opportunist_name,Opportunist
+passive_purifying_prayer_desc,Every other turn removes one harmful effect from the most wounded ally.
+passive_purifying_prayer_name,Purifying Prayer
+passive_second_arrow_desc,30% chance after a basic attack to loose a second arrow at the weakest enemy.
+passive_second_arrow_name,Second Arrow
+passive_static_charge_desc,Critical hits arc to two random enemies.
+passive_static_charge_name,Static Charge
+passive_unbroken_desc,"Once per battle, below 35% HP: a heavy shield and all harmful effects removed."
+passive_unbroken_name,Unbroken
+passive_wild_instinct_desc,Starts each battle with a 25% chance to dodge for 3 turns.
+passive_wild_instinct_name,Wild Instinct
 skill_aegis_desc,Shields all allies and hardens the caster.
 skill_aegis_name,Aegis
 skill_anthem_desc,Raises all allies' attack and heals them a little.

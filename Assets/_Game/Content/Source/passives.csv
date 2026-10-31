@@ -1,0 +1,14 @@
+# Passive skills: fire on a trigger, never chain into other passives. cooldown = holder turns between triggers.
+# trigger: BattleStart | TurnStart | AfterBasic | AfterActive | OnHitTaken | OnCrit | OnKill | OnAllyDeath | OnLowHp (threshold = HP ratio)
+# targeting defaults to Self; effects use the skills.csv syntax (see CONTENT_SCHEMA.md).
+id,name,description,trigger,threshold,chance,cooldown,oncePerBattle,targeting,targetCount,effects
+passive_oathbound,Oathbound,"When an ally falls, taunts all enemies and raises a shield.",OnAllyDeath,,,0,false,Self,1,Taunt:2|Shield:0.8:2
+passive_second_arrow,Second Arrow,30% chance after a basic attack to loose a second arrow at the weakest enemy.,AfterBasic,,0.3,0,false,LowestHpEnemy,1,Damage:0.5
+passive_kindling,Kindling,Basic attacks set the weakest enemy alight.,AfterBasic,,,0,false,LowestHpEnemy,1,Dot:burn:0.2:2
+passive_purifying_prayer,Purifying Prayer,Every other turn removes one harmful effect from the most wounded ally.,TurnStart,,,1,false,LowestHpAlly,1,Cleanse:1
+passive_opportunist,Opportunist,A kill makes Backstab ready two turns sooner.,OnKill,,,0,false,Self,1,Cooldown:-2
+passive_unbroken,Unbroken,"Once per battle, below 35% HP: a heavy shield and all harmful effects removed.",OnLowHp,0.35,,0,true,Self,1,Shield:2:3|Cleanse
+passive_wild_instinct,Wild Instinct,Starts each battle with a 25% chance to dodge for 3 turns.,BattleStart,,,0,false,Self,1,Dodge:0.25:3
+passive_static_charge,Static Charge,Critical hits arc to two random enemies.,OnCrit,,,0,false,RandomEnemies,2,Damage:0.4
+passive_encore,Encore,35% chance after Battle Anthem to speed up every other ally's skills by one turn.,AfterActive,,0.35,0,false,AllOtherAllies,1,Cooldown:-1
+passive_dragons_retort,Dragon's Retort,"When hit, bites back at the weakest enemy and drinks its blood (every 3rd turn at most).",OnHitTaken,,,2,false,LowestHpEnemy,1,Drain:0.6:1

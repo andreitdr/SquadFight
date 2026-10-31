@@ -17,10 +17,19 @@ namespace Game.Data
         public List<EffectData> effects = new List<EffectData>();
         public Sprite icon;
 
+        [Header("Passive (trigger None = basic/active skill; cooldown = holder turns between triggers)")]
+        public PassiveTrigger trigger;
+        [Range(0, 1), Tooltip("OnLowHp: HP ratio at or below which it fires.")]
+        public float threshold;
+        [Range(0, 1), Tooltip("Chance to fire (0 = always).")]
+        public float chance;
+        public bool oncePerBattle;
+
         public SkillDef ToCore() => new SkillDef
         {
             Id = id, NameKey = nameKey, DescriptionKey = descriptionKey, Targeting = targeting, TargetCount = targetCount,
             Cooldown = cooldown, InitialCooldown = initialCooldown, Effects = effects.Where(e => e != null).Select(e => e.ToCore()).ToList(),
+            Trigger = trigger, Threshold = threshold, Chance = chance, OncePerBattle = oncePerBattle,
         };
     }
 }

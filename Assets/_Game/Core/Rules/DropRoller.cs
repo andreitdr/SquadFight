@@ -70,7 +70,7 @@ namespace Game.Core
                     break;
                 case DropType.RandomHeroShardByRarity:
                 {
-                    var heroes = db.Heroes.Where(h => h.Rarity == e.Rarity).ToList();
+                    var heroes = ShardCandidates(e, db);
                     if (heroes.Count == 0) break;
                     var hero = heroes[rng.NextInt(0, heroes.Count)];
                     bundle.AddShards(hero.Id, Scale(Amount(e, rng), db.Rules.ShardDropMultiplier));
@@ -114,6 +114,16 @@ namespace Game.Core
                     result[e] = e.Weight > 0 && total > 0 ? avgRolls * e.Weight / total : 0;
             }
             return result;
+        }
+
+        /// <summary>
+        /// Heroes a <see cref="DropType.RandomHeroShardByRarity"/> entry can give: the entry's rarity, limited to the origin pool in
+        /// <c>RefId</c> when set ("act_1+act_2" = heroes whose origin is one of those).
+        /// </summary>
+        public static List<HeroDef> ShardCandidates(DropEntryDef e, GameDatabase db)
+        {
+            var pool = string.IsNullOrEmpty(e.RefId) ? null : new HashSet<string>(e.RefId.Split('+').Select(x => x.Trim()).Where(x => x.Length > 0));
+            return db.Heroes.Where(h => h != null && h.Rarity == e.Rarity && (pool == null || pool.Contains(h.Origin ?? ""))).ToList();
         }
     }
 }

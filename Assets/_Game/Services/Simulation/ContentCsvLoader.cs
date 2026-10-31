@@ -20,9 +20,10 @@ namespace Game.Services
             public readonly List<Dictionary<string, string>> Rows = new List<Dictionary<string, string>>();
         }
 
-        private static Table Read(string folder, string name)
+        private static Table Read(string folder, string name, bool optional = false)
         {
             var t = new Table();
+            if (optional && !File.Exists(Path.Combine(folder, name + ".csv"))) return t;
             var rows = TableLocalizer.ParseCsv(File.ReadAllText(Path.Combine(folder, name + ".csv")).Replace("\r", ""))
                 .Where(r => r.Length > 0 && !(r.Length == 1 && r[0].Trim() == "") && !r[0].StartsWith("#")).ToList();
             if (rows.Count == 0) return t;
@@ -67,8 +68,14 @@ namespace Game.Services
             {
                 Id = S(r, "id"), NameKey = S(r, "id") + "_name", DescriptionKey = S(r, "description").Length > 0 ? S(r, "id") + "_desc" : S(r, "id") + "_desc",
                 Targeting = E<TargetingRule>(S(r, "targeting")), TargetCount = Math.Max(1, I(r, "targetCount", 1)), Cooldown = I(r, "cooldown"), InitialCooldown = I(r, "initialCooldown"),
-                Effects = Effects(S(r, "effects")),
+                Effects = EffectSpec.Parse(S(r, "effects")),
             }).ToList();
+            db.Skills.AddRange(Read(folder, "passives", optional: true).Rows.Select(r => new SkillDef
+            {
+                Id = S(r, "id"), NameKey = S(r, "id") + "_name", DescriptionKey = S(r, "id") + "_desc",
+                Trigger = E<PassiveTrigger>(S(r, "trigger")), Threshold = F(r, "threshold"), Chance = F(r, "chance"), Cooldown = I(r, "cooldown"), OncePerBattle = B(r, "oncePerBattle"),
+                Targeting = E(S(r, "targeting"), TargetingRule.Self), TargetCount = Math.Max(1, I(r, "targetCount", 1)), Effects = EffectSpec.Parse(S(r, "effects")),
+            }));
             StatBlock Stats(Dictionary<string, string> r)
             {
                 var b = new StatBlock();
@@ -78,11 +85,11 @@ namespace Game.Services
             db.Heroes = Read(folder, "heroes").Rows.Select(r => new HeroDef
             {
                 Id = S(r, "id"), NameKey = S(r, "id") + "_name", LoreKey = S(r, "id") + "_lore", Rarity = E<Rarity>(S(r, "rarity")), Class = E<HeroClass>(S(r, "class")),
-                BaseStats = Stats(r), BasicSkillId = S(r, "basicSkill"), ActiveSkillId = S(r, "activeSkill").Length > 0 ? S(r, "activeSkill") : null,
+                BaseStats = Stats(r), BasicSkillId = S(r, "basicSkill"), ActiveSkillId = Null(S(r, "activeSkill")), PassiveSkillId = Null(S(r, "passive")), Origin = Null(S(r, "origin")),
             }).ToList();
             db.Enemies = Read(folder, "enemies").Rows.Select(r => new EnemyDef
             {
-                Id = S(r, "id"), NameKey = S(r, "id") + "_name", IsBoss = B(r, "isBoss"), BaseStats = Stats(r), BasicSkillId = S(r, "basicSkill"), ActiveSkillId = S(r, "activeSkill").Length > 0 ? S(r, "activeSkill") : null,
+                Id = S(r, "id"), NameKey = S(r, "id") + "_name", IsBoss = B(r, "isBoss"), BaseStats = Stats(r), BasicSkillId = S(r, "basicSkill"), ActiveSkillId = Null(S(r, "activeSkill")), PassiveSkillId = Null(S(r, "passive")),
             }).ToList();
             db.Equipment = Read(folder, "equipment").Rows.Select(r => new EquipmentTemplateDef
             {
@@ -171,6 +178,7 @@ namespace Game.Services
                 PityFightsWithoutShard = (int)CF("pityFightsWithoutShard", 5),
                 ShowDropOdds = CB("showDropOdds", false),
                 DailyBonusEnabled = CB("dailyBonusEnabled", false),
+                UniqueHeroAbilities = CB("uniqueHeroAbilities", false),
                 DailyBonusTableId = Null(C("dailyBonusTable", "")),
             };
             return db.Index();
@@ -200,32 +208,5 @@ namespace Game.Services
             var type = E<UnlockConditionType>(p[0]);
             return type == UnlockConditionType.MinPartyPower ? new UnlockConditionDef { Type = type, Value = int.Parse(p[1].Trim(), Inv) } : new UnlockConditionDef { Type = type, RefId = p[1].Trim() };
         }).ToList();
-
-        private static List<EffectDef> Effects(string v)
-        {
-            var list = new List<EffectDef>();
-            foreach (var raw in v.Split('|').Select(s => s.Trim()).Where(s => s.Length > 0))
-            {
-                var spec = raw;
-                var e = new EffectDef { Target = EffectTarget.SkillTargets, MaxStacks = 1 };
-                if (spec.StartsWith("self>", StringComparison.OrdinalIgnoreCase)) { e.Target = EffectTarget.Self; spec = spec.Substring(5); }
-                var p = spec.Split(':').Select(s => s.Trim()).ToArray();
-                float Fp(int i, float fb = 0) => i < p.Length && p[i].Length > 0 ? float.Parse(p[i], Inv) : fb;
-                switch (p[0].ToLowerInvariant())
-                {
-                    case "damage": e.Type = EffectType.Damage; e.Power = Fp(1, 1); break;
-                    case "heal": e.Type = EffectType.Heal; e.Power = Fp(1, 1); break;
-                    case "shield": e.Type = EffectType.Shield; e.Power = Fp(1, 1); e.Duration = (int)Fp(2, 2); break;
-                    case "stun": e.Type = EffectType.Stun; e.Power = 0; e.Duration = (int)Fp(1, 1); e.Chance = Fp(2); break;
-                    case "status":
-                        e.Type = EffectType.ApplyStatus; e.Power = 0; e.Stat = E<StatType>(p[1]); e.Value = Fp(2); e.Duration = (int)Fp(3, 1);
-                        e.Stacking = p.Length > 4 && p[4].Length > 0 ? E<StackingRule>(p[4]) : StackingRule.Refresh; e.MaxStacks = (int)Fp(5, 1); e.Chance = Fp(6);
-                        break;
-                    default: throw new FormatException("unknown effect " + raw);
-                }
-                list.Add(e);
-            }
-            return list;
-        }
     }
 }

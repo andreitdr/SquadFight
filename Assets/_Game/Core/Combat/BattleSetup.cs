@@ -28,6 +28,7 @@ namespace Game.Core
                 PercentStats = equipment?.Percent.Clone() ?? new StatBlock(),
                 Basic = db.GetSkill(hero.BasicSkillId),
                 Active = string.IsNullOrEmpty(hero.ActiveSkillId) ? null : db.GetSkill(hero.ActiveSkillId),
+                Passive = string.IsNullOrEmpty(hero.PassiveSkillId) ? null : db.GetSkill(hero.PassiveSkillId),
             };
         }
 
@@ -40,6 +41,7 @@ namespace Game.Core
             PreStats = ScaleCombatStats(enemy.BaseStats, statMultiplier),
             Basic = db.GetSkill(enemy.BasicSkillId),
             Active = string.IsNullOrEmpty(enemy.ActiveSkillId) ? null : db.GetSkill(enemy.ActiveSkillId),
+            Passive = string.IsNullOrEmpty(enemy.PassiveSkillId) ? null : db.GetSkill(enemy.PassiveSkillId),
         };
 
         /// <summary>Scales HP/Attack/Defense; speed and crit stats stay unchanged (turn order would otherwise drift with difficulty).</summary>

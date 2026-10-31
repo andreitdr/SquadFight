@@ -39,7 +39,7 @@ namespace Game.EditorTools.Content
             }
         }
 
-        public static readonly string[] SourceFiles = { "config", "rarities", "stars", "skills", "heroes", "enemies", "equipment", "story", "droptables", "chapters", "fights" };
+        public static readonly string[] SourceFiles = { "config", "rarities", "stars", "skills", "passives", "heroes", "enemies", "equipment", "story", "droptables", "chapters", "fights" };
 
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
@@ -177,6 +177,34 @@ namespace Game.EditorTools.Content
                         s.initialCooldown = row.Int("initialCooldown");
                         s.effects = ParseEffects(row.Req("effects"), row.Context);
                         s.icon = PlaceholderArt.Get("star");
+                        s.trigger = PassiveTrigger.None;
+                        s.threshold = 0;
+                        s.chance = 0;
+                        s.oncePerBattle = false;
+                    });
+                }
+                // Passives: skills with a trigger (same asset type, same folder)
+                foreach (var row in src["passives"].Rows)
+                {
+                    var id = row.Req("id");
+                    if (skills.ContainsKey(id)) throw new FormatException($"{row.Context}: passive id '{id}' is also a skill id");
+                    var s = GetOrCreate<SkillDefinition>(ContentPaths.Skills, id, row.Context);
+                    skills[id] = s;
+                    Track(s, "passive " + id, () =>
+                    {
+                        s.nameKey = Text(id + "_name", row.Req("name"));
+                        s.descriptionKey = Text(id + "_desc", row.Str("description"));
+                        s.trigger = row.Enum<PassiveTrigger>("trigger");
+                        if (s.trigger == PassiveTrigger.None) throw new FormatException($"{row.Context}: passive needs a trigger");
+                        s.threshold = row.Float("threshold");
+                        s.chance = row.Float("chance");
+                        s.cooldown = row.Int("cooldown");
+                        s.initialCooldown = 0;
+                        s.oncePerBattle = row.Bool("oncePerBattle");
+                        s.targeting = string.IsNullOrEmpty(row.Str("targeting")) ? TargetingRule.Self : row.Enum<TargetingRule>("targeting");
+                        s.targetCount = Math.Max(1, row.Int("targetCount", 1));
+                        s.effects = ParseEffects(row.Req("effects"), row.Context);
+                        s.icon = PlaceholderArt.Get("star");
                     });
                 }
 
@@ -206,6 +234,8 @@ namespace Game.EditorTools.Content
                         h.baseStats.Set(ReadStats(row));
                         h.basicSkill = SkillRef(row, "basicSkill", true);
                         h.activeSkill = SkillRef(row, "activeSkill", false);
+                        h.passiveSkill = SkillRef(row, "passive", false);
+                        h.origin = row.Str("origin");
                         h.tint = ParseColor(row.Req("tint"), row.Context);
                         if (h.portrait == null) h.portrait = PlaceholderArt.Get("circle"); // keep real art
                         if (h.shardIcon == null) h.shardIcon = PlaceholderArt.Get("shard");
@@ -226,6 +256,7 @@ namespace Game.EditorTools.Content
                         e.baseStats.Set(ReadStats(row));
                         e.basicSkill = SkillRef(row, "basicSkill", true);
                         e.activeSkill = SkillRef(row, "activeSkill", false);
+                        e.passiveSkill = SkillRef(row, "passive", false);
                         e.tint = ParseColor(row.Req("tint"), row.Context);
                         if (e.sprite == null) e.sprite = PlaceholderArt.Get(e.isBoss ? "star" : "diamond"); // keep real art
                     });
@@ -392,6 +423,7 @@ namespace Game.EditorTools.Content
                     gc.pityFightsWithoutShard = (int)CfgFloat(cfg, "pityFightsWithoutShard", 5);
                     gc.showDropOdds = CfgBool(cfg, "showDropOdds", false);
                     gc.dailyBonusEnabled = CfgBool(cfg, "dailyBonusEnabled", false);
+                    gc.uniqueHeroAbilities = CfgBool(cfg, "uniqueHeroAbilities", false);
                     var daily = Cfg(cfg, "dailyBonusTable", "");
                     gc.dailyBonusTable = string.IsNullOrEmpty(daily) ? null : tables.TryGetValue(daily, out var dbt) ? dbt : throw new FormatException($"config dailyBonusTable: unknown table '{daily}'");
                 });
@@ -548,45 +580,11 @@ namespace Game.EditorTools.Content
                 return list;
             }
 
-            /// <summary>
-            /// Effects separated by '|'. Optional "self&gt;" prefix targets the caster.
-            /// Damage:power · Heal:power · Shield:power:duration · Stun:duration[:chance] · Status:Stat:value:duration[:Stacking[:maxStacks[:chance]]]
-            /// </summary>
+            /// <summary>Effect mini-syntax, parsed by the shared Core parser (<see cref="EffectSpec"/>).</summary>
             private static List<EffectData> ParseEffects(string v, string ctx)
             {
-                var list = new List<EffectData>();
-                foreach (var raw in v.Split('|').Select(s => s.Trim()).Where(s => s.Length > 0))
-                {
-                    var spec = raw;
-                    var e = new EffectData();
-                    if (spec.StartsWith("self>", StringComparison.OrdinalIgnoreCase)) { e.target = EffectTarget.Self; spec = spec.Substring(5); }
-                    var p = spec.Split(':').Select(s => s.Trim()).ToArray();
-                    var ectx = $"{ctx} effect '{raw}'";
-                    float F(int i, float fb = 0) => i < p.Length && p[i].Length > 0 ? CsvRow.ParseFloat(p[i], ectx) : fb;
-                    int I(int i, int fb = 0) => (int)F(i, fb);
-                    switch (p[0].ToLowerInvariant())
-                    {
-                        case "damage": e.type = EffectType.Damage; e.power = F(1, 1); break;
-                        case "heal": e.type = EffectType.Heal; e.power = F(1, 1); break;
-                        case "shield": e.type = EffectType.Shield; e.power = F(1, 1); e.duration = I(2, 2); break;
-                        case "stun": e.type = EffectType.Stun; e.power = 0; e.duration = I(1, 1); e.chance = F(2, 0); break;
-                        case "status":
-                            if (p.Length < 4) throw new FormatException($"{ectx}: expected Status:Stat:value:duration");
-                            e.type = EffectType.ApplyStatus;
-                            e.power = 0;
-                            e.stat = ParseEnum<StatType>(p[1], ectx);
-                            e.value = F(2);
-                            e.duration = I(3, 1);
-                            e.stacking = p.Length > 4 && p[4].Length > 0 ? ParseEnum<StackingRule>(p[4], ectx) : StackingRule.Refresh;
-                            e.maxStacks = I(5, 1);
-                            e.chance = F(6, 0);
-                            break;
-                        default: throw new FormatException($"{ectx}: unknown effect type '{p[0]}'");
-                    }
-                    list.Add(e);
-                }
-                if (list.Count == 0) throw new FormatException($"{ctx}: no effects");
-                return list;
+                try { return EffectSpec.Parse(v).Select(EffectData.FromCore).ToList(); }
+                catch (FormatException ex) { throw new FormatException($"{ctx}: {ex.Message}"); }
             }
 
             /// <summary>Waves separated by '/', spawns by '+': "goblin@1.0+wolf / goblin_king@1.5".</summary>

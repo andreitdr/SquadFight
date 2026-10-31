@@ -63,6 +63,8 @@ namespace Game.Data
         [Header("Meta")]
         [Tooltip("D8: daily login bonus (device clock, tamper tolerant). Off by default.")]
         public bool dailyBonusEnabled;
+        [Tooltip("Validator: every hero needs a passive, and no two heroes may share an active or passive behaviour.")]
+        public bool uniqueHeroAbilities;
         public DropTable dailyBonusTable;
 
         public GameRules ToRules() => new GameRules
@@ -88,6 +90,7 @@ namespace Game.Data
             PityFightsWithoutShard = pityFightsWithoutShard,
             ShowDropOdds = showDropOdds,
             DailyBonusEnabled = dailyBonusEnabled,
+            UniqueHeroAbilities = uniqueHeroAbilities,
             DailyBonusTableId = dailyBonusTable ? dailyBonusTable.id : null,
         };
     }

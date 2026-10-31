@@ -13,9 +13,21 @@ namespace Game.Core
 
     public enum HeroClass { Tank, Warrior, Ranger, Mage, Support }
 
-    public enum TargetingRule { SingleEnemy, AllEnemies, SingleAlly, AllAllies, Self, LowestHpAlly, RandomEnemies }
+    /// <summary>Append only: assets store the numeric value.</summary>
+    public enum TargetingRule { SingleEnemy, AllEnemies, SingleAlly, AllAllies, Self, LowestHpAlly, RandomEnemies, LowestHpEnemy, HighestAttackEnemy, RandomAllies, AllOtherAllies }
 
-    public enum EffectType { Damage, Heal, ApplyStatus, Shield, Stun }
+    /// <summary>Append only: assets store the numeric value. Field use per type is documented on <see cref="EffectDef"/>.</summary>
+    public enum EffectType
+    {
+        Damage, Heal, ApplyStatus, Shield, Stun,
+        DamageOverTime, HealOverTime, Drain, Execute, PercentHpDamage, Taunt, Silence, Cleanse, Dispel, Revive, Thorns, Dodge, CooldownShift, Mark,
+    }
+
+    /// <summary>What a live status does. <see cref="StatChange"/> is the classic stat buff/debuff.</summary>
+    public enum StatusKind { StatChange, DamageOverTime, HealOverTime, Taunt, Silence, Thorns, Dodge, Mark }
+
+    /// <summary>When a passive skill fires. <see cref="None"/> = a normal basic/active skill.</summary>
+    public enum PassiveTrigger { None, BattleStart, TurnStart, AfterBasic, AfterActive, OnHitTaken, OnCrit, OnKill, OnAllyDeath, OnLowHp }
 
     /// <summary>Who an effect lands on: the skill's selected targets or the caster.</summary>
     public enum EffectTarget { SkillTargets, Self }
