@@ -125,6 +125,7 @@ namespace Game.ViewModels
         public StatBreakdown Stats => _s.Roster.GetStatBreakdown(HeroId);
         public SkillDef BasicSkill => _s.Db.TryGetSkill(Def.BasicSkillId, out var k) ? k : null;
         public SkillDef ActiveSkill => _s.Db.TryGetSkill(Def.ActiveSkillId, out var k) ? k : null;
+        public SkillDef PassiveSkill => _s.Db.TryGetSkill(Def.PassiveSkillId, out var k) ? k : null;
         public string PrimaryCurrency => _s.Db.Rules.PrimaryCurrencyId;
         public bool InParty => _s.Party.Contains(HeroId);
 

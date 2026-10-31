@@ -278,6 +278,7 @@ namespace Game.Core
             if (string.IsNullOrEmpty(e.NameKey)) r.Error(ctx, "missing name key");
             if (e.Stats.Count == 0) r.Error(ctx, "item has no stats");
             if (!db.Rules.SlotLayout.Contains(e.Slot)) r.Error(ctx, $"slot {e.Slot} is not in the slot layout");
+            if (e.Tier < 0) r.Error(ctx, "tier must be >= 0 (0 = unique item)");
             foreach (var m in e.Stats)
                 if (m.Value <= 0) r.Warn(ctx, $"non-positive stat {m}");
         }
@@ -325,8 +326,8 @@ namespace Game.Core
                     if (!db.TryGetEquipment(e.RefId, out _)) r.Error(ctx, $"unknown equipment template '{e.RefId}'");
                     break;
                 case DropType.RandomEquipment:
-                    if (!db.Equipment.Any(x => x != null && (e.SlotFilter == null || x.Slot == e.SlotFilter)))
-                        r.Error(ctx, $"no equipment template for slot {e.SlotFilter}");
+                    if (DropRoller.RandomEquipmentCandidates(e, db).Count == 0)
+                        r.Error(ctx, string.IsNullOrEmpty(e.RefId) ? $"no equipment template for slot {e.SlotFilter}" : $"no equipment template of tier '{e.RefId}' for slot {e.SlotFilter?.ToString() ?? "any"}");
                     if (e.RarityWeights.Count == 0 || e.RarityWeights.Sum(w => Math.Max(0, w.Weight)) <= 0)
                         r.Error(ctx, "random equipment needs rarity weights with a positive sum");
                     if (e.RarityWeights.Any(w => w.Weight < 0)) r.Error(ctx, "rarity weights must be >= 0");
@@ -432,7 +433,7 @@ namespace Game.Core
             foreach (var t in db.DropTables.Where(t => t != null && !usedTables.Contains(t.Id))) r.Warn("droptable:" + t.Id, "drop table is not used");
             foreach (var e in db.Equipment.Where(e => e != null))
             {
-                var droppable = entries.Any(x => (x.Type == DropType.Equipment && x.RefId == e.Id) || (x.Type == DropType.RandomEquipment && (x.SlotFilter == null || x.SlotFilter == e.Slot)));
+                var droppable = entries.Any(x => (x.Type == DropType.Equipment && x.RefId == e.Id) || (x.Type == DropType.RandomEquipment && DropRoller.RandomEquipmentCandidates(x, db).Contains(e)));
                 if (!droppable) r.Warn("equipment:" + e.Id, "item is never dropped");
             }
             var usedSkills = new HashSet<string>(db.Heroes.Where(h => h != null).SelectMany(h => new[] { h.BasicSkillId, h.ActiveSkillId, h.PassiveSkillId })

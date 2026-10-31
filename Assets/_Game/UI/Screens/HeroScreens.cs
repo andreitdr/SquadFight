@@ -145,6 +145,7 @@ namespace Game.UI
             Section("skills");
             SkillRow(_vm.BasicSkill, Ctx.T("skill_basic"));
             SkillRow(_vm.ActiveSkill, Ctx.T("skill_active"));
+            SkillRow(_vm.PassiveSkill, Ctx.T("skill_passive"));
 
             // Equipment
             if (_vm.Unlocked)

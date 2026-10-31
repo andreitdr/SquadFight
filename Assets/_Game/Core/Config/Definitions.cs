@@ -90,6 +90,8 @@ namespace Game.Core
         /// <summary>Default rarity this template drops at; instances may have any rarity.</summary>
         public Rarity Rarity;
         public List<StatModifier> Stats = new List<StatModifier>();
+        /// <summary>Gear tier (one per story act). Random drops can be limited to tiers; tier 0 = unique item, never random.</summary>
+        public int Tier = 1;
         /// <summary>Reserved for item sets (v1.1).</summary>
         public string SetId;
     }

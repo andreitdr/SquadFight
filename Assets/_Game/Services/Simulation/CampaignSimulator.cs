@@ -15,6 +15,8 @@ namespace Game.Services
         void Manage(GameSession session);
         /// <summary>Extra clears of a fight right after first beating it (farming habit).</summary>
         int ReplaysAfterFirstClear { get; }
+        /// <summary>Plays side quests as soon as they open (one try each time a main fight is cleared).</summary>
+        bool DoesSideQuests { get; }
     }
 
     /// <summary>Unlocks/stars up whenever possible, equips the best items, fields the strongest party.</summary>
@@ -22,6 +24,7 @@ namespace Game.Services
     {
         public virtual string Name => "greedy";
         public virtual int ReplaysAfterFirstClear => 0;
+        public virtual bool DoesSideQuests => false;
 
         public virtual void Manage(GameSession s)
         {
@@ -52,10 +55,13 @@ namespace Game.Services
                     if (bestItem.InstanceId != null) s.Inventory.Equip(hero, bestItem.InstanceId, slot);
                 }
 
-            // Sell surplus low-rarity items that are not upgrades for anyone.
+            // Sell items that are no upgrade for the current party (keeps the bag, and this loop, small over 400+ fights).
             if (s.Db.Rules.SellEnabled)
-                foreach (var item in s.Inventory.Query(includeEquipped: false).Where(i => i.Rarity <= Rarity.Uncommon).ToList())
-                    if (!s.Inventory.IsUpgradeForParty(item.InstanceId, s.Roster.UnlockedHeroIds)) s.Inventory.SellItem(item.InstanceId);
+            {
+                var party = s.Party.Members.ToList();
+                foreach (var item in s.Inventory.Query(includeEquipped: false).ToList())
+                    if (!s.Inventory.IsUpgradeForParty(item.InstanceId, party)) s.Inventory.SellItem(item.InstanceId);
+            }
         }
     }
 
@@ -63,12 +69,14 @@ namespace Game.Services
     {
         public override string Name => "casual";
         public override int ReplaysAfterFirstClear => 2;
+        public override bool DoesSideQuests => true;
     }
 
     public sealed class HardcorePolicy : GreedyPolicy
     {
         public override string Name => "hardcore";
-        public override int ReplaysAfterFirstClear => 10;
+        public override int ReplaysAfterFirstClear => 5;
+        public override bool DoesSideQuests => true;
     }
 
     public sealed class FightStats
@@ -133,11 +141,15 @@ namespace Game.Services
 
     /// <summary>
     /// Plays the whole campaign headlessly with the real services and battle simulator, following a policy.
-    /// Strategy: try the next uncleared fight; on a loss, farm the newest cleared fight once and retry.
+    /// Strategy: try the next uncleared main fight; on a loss, farm the newest cleared fight once and retry. Policies that do
+    /// side quests try each open one once after every main-fight clear. The campaign is complete when the main path is.
     /// </summary>
     public static class CampaignSimulator
     {
-        public static CampaignReport Run(GameDatabase db, IPlayerPolicy policy, ulong seed, int maxFights = 5000, Action<string, GameSession> onBeforeFirstAttempt = null)
+        /// <param name="stopBefore">Stops (not completed) right before the first attempt of a main fight it returns true for.</param>
+        /// <param name="giveUpAfter">A main fight lost this many times in a row ends the run as stuck.</param>
+        public static CampaignReport Run(GameDatabase db, IPlayerPolicy policy, ulong seed, int maxFights = 5000, Action<string, GameSession> onBeforeFirstAttempt = null,
+            Func<string, bool> stopBefore = null, int giveUpAfter = 40)
         {
             var clock = new ManualClock();
             var session = new GameSession(db, NewGameFactory.Create(db, clock), null, new SeededRandom(seed), clock);
@@ -152,11 +164,26 @@ namespace Game.Services
 
             string lastCleared = null;
             var farmNext = false;
+            var mainPath = db.Fights.Where(f => !f.IsSideQuest).Select(f => f.Id).OrderBy(db.GetFightOrder).ToList();
+            var sideQuests = db.Fights.Where(f => f.IsSideQuest).Select(f => f.Id).OrderBy(db.GetFightOrder).ToList();
+            var sideTried = new HashSet<string>();
             policy.Manage(session);
             while (report.TotalFights < maxFights)
             {
-                var next = db.Fights.Select(f => f.Id).OrderBy(db.GetFightOrder).FirstOrDefault(id => !session.Progress.IsFightCleared(id));
+                var next = mainPath.FirstOrDefault(id => !session.Progress.IsFightCleared(id));
                 if (next == null) { report.Completed = true; break; }
+                if (stopBefore != null && stats[next].Attempts == 0 && stopBefore(next)) break;
+                if (stats[next].Attempts - stats[next].Wins >= giveUpAfter) { report.StuckAt = next + " (gave up)"; break; }
+                if (policy.DoesSideQuests && !farmNext)
+                {
+                    var side = sideQuests.FirstOrDefault(id => !sideTried.Contains(id) && !session.Progress.IsFightCleared(id) && session.Progress.IsFightUnlocked(id));
+                    if (side != null)
+                    {
+                        // One try per opening; a lost side quest is retried after the next main-fight clear.
+                        sideTried.Add(side);
+                        next = side;
+                    }
+                }
                 // After a loss, farm the newest cleared fight once, then retry.
                 var target = farmNext && lastCleared != null ? lastCleared : next;
                 farmNext = false;
@@ -177,6 +204,7 @@ namespace Game.Services
                     fs.Wins++;
                     if (target == next)
                     {
+                        if (!db.GetFight(target).IsSideQuest) sideTried.RemoveWhere(id => !session.Progress.IsFightCleared(id));
                         fs.FirstClearAtFight = report.TotalFights;
                         fs.PartyPowerAtFirstClear = power;
                         lastCleared = target;
@@ -195,16 +223,17 @@ namespace Game.Services
                 }
                 else
                 {
-                    farmNext = target == next;
+                    farmNext = target == next && !db.GetFight(target).IsSideQuest;
                     policy.Manage(session);
                 }
             }
             if (!report.Completed && report.StuckAt == null)
-                report.StuckAt = db.Fights.Select(f => f.Id).OrderBy(db.GetFightOrder).FirstOrDefault(id => !session.Progress.IsFightCleared(id));
+                report.StuckAt = mainPath.FirstOrDefault(id => !session.Progress.IsFightCleared(id));
             foreach (var f in db.Fights.OrderBy(f => db.GetFightOrder(f.Id)))
             {
                 var fs = stats[f.Id];
                 report.Fights.Add(fs);
+                if (f.IsSideQuest) continue; // optional: never a wall
                 // A wall = the fight needed more than two tries for the first clear (win rate of the attempts before clearing < 50%).
                 var attemptsToClear = fs.Attempts - fs.Wins + (fs.Wins > 0 ? 1 : 0);
                 if (fs.Wins == 0 || attemptsToClear > 2) report.Walls.Add($"{f.Id} ({attemptsToClear} tries)");

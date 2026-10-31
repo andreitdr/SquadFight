@@ -16,6 +16,10 @@ namespace Game.Data
         public SkillDefinition passiveSkill;
         public Sprite sprite;
         public Color tint = Color.white;
+        [Tooltip("Reuse another enemy's generated art (an elite variant), tinted with this enemy's tint.")]
+        public string artFrom;
+        /// <summary>Colour to draw generated art with: white, or a tint for variants that borrow another enemy's art.</summary>
+        public Color ArtColor => string.IsNullOrEmpty(artFrom) ? Color.white : Color.Lerp(Color.white, tint, 0.55f);
         [Header("Art (Tools/Game/Art/Apply Generated Art fills empty slots)")]
         public Sprite portrait;
         public Sprite icon;

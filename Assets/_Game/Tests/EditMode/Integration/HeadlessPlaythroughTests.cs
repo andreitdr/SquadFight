@@ -35,6 +35,53 @@ namespace Game.Tests.EditMode
         }
 
         [Test]
+        public void RealContent_HundredHeroes_FortyChapters()
+        {
+            var db = Db();
+            Assert.AreEqual(100, db.Heroes.Count);
+            foreach (HeroClass c in System.Enum.GetValues(typeof(HeroClass)))
+            {
+                var counts = System.Enum.GetValues(typeof(Rarity)).Cast<Rarity>().Select(r => db.Heroes.Count(h => h.Class == c && h.Rarity == r)).ToArray();
+                Assert.AreEqual(20, counts.Sum(), c.ToString());
+                for (var i = 1; i < counts.Length; i++) Assert.Less(counts[i], counts[i - 1], $"{c}: each rarity must be rarer than the one below");
+                Assert.GreaterOrEqual(counts[counts.Length - 1], 1, $"{c} has a Legendary");
+            }
+            Assert.IsTrue(db.Heroes.All(h => h.PassiveSkillId != null && !string.IsNullOrEmpty(h.Origin)));
+            Assert.AreEqual(40, db.Chapters.Count);
+            Assert.IsTrue(db.Chapters.All(c => c.FightIds.Count >= 9 && c.FightIds.Count <= 11), "9-11 main fights per chapter");
+            Assert.IsTrue(db.Chapters.All(c => c.SideQuestIds.Count >= 1 && c.SideQuestIds.Count <= 3), "1-3 side quests per chapter");
+            Assert.IsTrue(db.Chapters.All(c => db.GetFight(c.FightIds.Last()).Waves.Any(w => w.Spawns.Any(sp => db.GetEnemy(sp.EnemyId).IsBoss))), "every chapter ends with a boss");
+            var itemOnly = db.Fights.Count(f => !f.IsSideQuest && db.GetDropTable(f.DropTableId).Groups.SelectMany(g => g.Entries).All(e => e.Type != DropType.RandomHeroShardByRarity && e.Type != DropType.HeroShard));
+            Assert.Greater(itemOnly, 40, "some fights give items only");
+        }
+
+        [Test]
+        public void SaveFromTheOldThreeChapters_ContinuesIntoTheNewCampaign()
+        {
+            var db = Db();
+            var clock = new ManualClock();
+            var data = NewGameFactory.Create(db, clock);
+            var s = new GameSession(db, data, null, new SeededRandom(3), clock);
+            // The original 24 fights (fight_1_1..fight_3_8) cleared, as in a save made before "The Hundred".
+            foreach (var c in new[] { 1, 2, 3 })
+                for (var i = 1; i <= 8; i++)
+                {
+                    var f = s.State.GetOrCreateFight($"fight_{c}_{i}");
+                    f.Cleared = true;
+                    f.FirstClearClaimed = true;
+                    f.BestStars = 3;
+                }
+            Assert.IsTrue(s.Progress.IsChapterUnlocked("chapter_4"), "chapter 3's boss is still its last fight");
+            Assert.IsTrue(s.Progress.IsFightUnlocked("fight_1_9"), "new fights inside old chapters open for old saves");
+            Assert.IsFalse(s.Progress.IsChapterCleared("chapter_1"), "until the new fights are cleared");
+            var json = new SaveSerializer().Encode(s.ExportForSave(), 1, new System.DateTime(2026, 10, 31, 0, 0, 0, System.DateTimeKind.Utc));
+            var back = new SaveSerializer().Decode(json);
+            Assert.AreEqual(DecodeStatus.Ok, back.Status, back.Error);
+            var again = new GameSession(db, back.Data, null, new SeededRandom(3), clock);
+            Assert.IsTrue(again.Progress.IsChapterUnlocked("chapter_4"));
+        }
+
+        [Test]
         public void NewGame_Fights_Rewards_Unlock_Equip_Save_Reload_StateIdentical()
         {
             var db = Db();
@@ -104,7 +151,7 @@ namespace Game.Tests.EditMode
             Assert.AreEqual(0, errors);
             Assert.IsNull(h.Manager.LastError);
             Assert.AreEqual(500, s.State.Data.Progress.TotalFights);
-            Assert.AreEqual(s.Db.Fights.Count, s.Progress.TotalClearedFights, "a farming player clears the campaign within 500 fights");
+            Assert.IsTrue(s.Db.Chapters.Take(4).All(c => s.Progress.IsChapterCleared(c.Id)), "a farming player clears the first acts' chapters within 500 fights");
             var decoded = new SaveSerializer().Decode(h.Storage.Files[SaveStore.MainKey]);
             Assert.AreEqual(DecodeStatus.Ok, decoded.Status);
             Assert.AreEqual(0, SaveReconciler.Reconcile(decoded.Data, s.Db).Count, "save never drifts into an inconsistent state");
@@ -115,7 +162,7 @@ namespace Game.Tests.EditMode
         {
             var db = Db();
             var snaps = FightBalance.SnapshotsAtFirstAttempt(db, new CasualPolicy(), 1);
-            Assert.AreEqual(db.Fights.Count, snaps.Count, "simulated player reaches every fight");
+            Assert.AreEqual(db.Fights.Count, snaps.Count, "simulated player reaches every fight, side quests included");
             var first = FightBalance.Run(FightBalance.Preset(db, db.Rules.StartingHeroIds, 1, Rarity.Common), db.Fights[0], 30, 1, "starters");
             Assert.Greater(first.WinRate, 0.9, "fight 1-1 is a tutorial fight");
             StringAssert.Contains("| fight_1_1 |", FightBalance.Table(new[] { first }));

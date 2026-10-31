@@ -32,7 +32,7 @@ namespace Game.BattleView
         public Vector2 Home => _home;
         public bool Dead { get; private set; }
 
-        public static UnitView Create(Transform parent, Combatant c, string displayName, Sprite sprite, Color tint, Vector2 anchor, float size, Theme th, SpriteAnimSet anim = null)
+        public static UnitView Create(Transform parent, Combatant c, string displayName, Sprite sprite, Color tint, Vector2 anchor, float size, Theme th, SpriteAnimSet anim = null, Color? artColor = null)
         {
             var root = UIKit.Rect("Unit_" + c.Index, parent);
             root.anchorMin = root.anchorMax = anchor;
@@ -54,10 +54,10 @@ namespace Game.BattleView
             {
                 // Frames carry padding for weapons/FX: grow the image and sit the feet on the body's bottom edge.
                 var frame = size * anim.displayScale;
-                v.BodyImage = UIKit.Image(v.Body, "Sprite", Color.white, anim.FirstFrame);
+                v.BodyImage = UIKit.Image(v.Body, "Sprite", artColor ?? Color.white, anim.FirstFrame);
                 v.BodyImage.rectTransform.Anchor(new Vector2(0.5f, 0), new Vector2(frame, frame), new Vector2(0, -frame * anim.feetY), new Vector2(0.5f, 0));
                 v.BodyImage.preserveAspect = true;
-                v._baseColor = Color.white;
+                v._baseColor = artColor ?? Color.white;
                 v._flashColor = new Color(1f, 0.42f, 0.42f);
                 v.Anim = SpriteAnimator.Attach(v.BodyImage, anim);
             }
@@ -175,6 +175,16 @@ namespace Game.BattleView
             }
             Tween.Fade(group, 0.15f, duration);
             Tween.Scale(Body, 1f, 0.7f, duration, Ease.InQuad);
+        }
+
+        /// <summary>Back from the dead (Revive effect): visible again, idle, with the given HP.</summary>
+        public void Revive(int hp, float duration)
+        {
+            Dead = false;
+            if (gameObject.TryGetComponent<CanvasGroup>(out var group)) Tween.Fade(group, 1f, duration);
+            Body.localScale = Vector3.one;
+            if (Anim != null) Anim.Play(SpriteAnimSet.Idle);
+            SetHp(hp, 0);
         }
 
         // ---- animation hooks (no-ops for placeholder art)

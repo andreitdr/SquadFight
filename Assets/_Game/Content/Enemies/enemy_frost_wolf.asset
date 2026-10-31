@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_frost_wolf
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_frost_wolf
+  nameKey: enemy_frost_wolf_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 1290
+    - 184
+    - 23
+    - 118
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
+  activeSkill: {fileID: 11400000, guid: 8b45ac546fe7f4a30ae13f54b27f83d6, type: 2}
+  passiveSkill: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b3d4253d315644fe594ca16579d29e08, type: 3}
+  tint: {r: 0.8666667, g: 0.90588236, b: 0.93333334, a: 1}
+  artFrom: enemy_wolf
+  portrait: {fileID: 21300000, guid: b3d4253d315644fe594ca16579d29e08, type: 3}
+  icon: {fileID: 21300000, guid: 637de470a2d964e32b75ed127f454902, type: 3}
+  animations: {fileID: 11400000, guid: 9a170d7c480e54192a58d93f3e805e66, type: 2}

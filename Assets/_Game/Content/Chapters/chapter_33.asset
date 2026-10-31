@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27280a3049df49d488520497a16de7a, type: 3}
+  m_Name: chapter_33
+  m_EditorClassIdentifier: Game.Data::Game.Data.ChapterDefinition
+  id: chapter_33
+  nameKey: chapter_33_name
+  fights:
+  - {fileID: 11400000, guid: 2f3a7b13fb0e542a2ad5d993ae03ecb8, type: 2}
+  - {fileID: 11400000, guid: b5c009a73565d48e198cdf00d47f9c64, type: 2}
+  - {fileID: 11400000, guid: 8d56ade54a13f440185dc3d2c6379667, type: 2}
+  - {fileID: 11400000, guid: f76a42694adcf47708ba23f8272f87b9, type: 2}
+  - {fileID: 11400000, guid: 982d1a520fcb54ccab2874d3563c1df0, type: 2}
+  - {fileID: 11400000, guid: 591c5e2d7ad0f446f8f5ed085a334331, type: 2}
+  - {fileID: 11400000, guid: 2d6eaad44d49d4db19664686b81e0b90, type: 2}
+  - {fileID: 11400000, guid: 08df22a3456234b979b06d974f2ed3ec, type: 2}
+  - {fileID: 11400000, guid: e8140d96daf6c481c9d05fdf4133cd4a, type: 2}
+  sideQuests:
+  - {fileID: 11400000, guid: de06a4b70f7284c0f8398e0accec09af, type: 2}
+  - {fileID: 11400000, guid: c29d1320d49664a2bb965246c680f216, type: 2}
+  unlockConditions: []
+  clearReward: {fileID: 11400000, guid: 213f3bbc09fcb4c82a8e718d1a926d1f, type: 2}
+  background: {fileID: 21300000, guid: 72d59b96edb05431894c45f847b3924a, type: 3}
+  banner: {fileID: 21300000, guid: 79c329ce6e4be40e3a43f17f43f5039a, type: 3}

@@ -21,7 +21,9 @@ def one(cid):
         return cid, 0
     boss = cid in roster.BOSSES
     out = os.path.join(CHAR_DIR, cid)
-    m = rig.render_character(S, out, frame_px=512 if boss else 360)
+    # The 172 characters added for "The Hundred" use smaller frames to keep the build size down.
+    px = (512 if boss else 360) if cid in roster.ORIGINAL_IDS else (400 if boss else 288)
+    m = rig.render_character(S, out, frame_px=px)
     return cid, sum(len(c['frames']) for c in m['clips'].values())
 
 

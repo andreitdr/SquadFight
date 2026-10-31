@@ -88,11 +88,12 @@ namespace Game.EditorTools.Content
             }
             foreach (var enemy in Find<EnemyDefinition>())
             {
-                var dir = $"{Chars}/{enemy.id}";
+                var artId = string.IsNullOrEmpty(enemy.artFrom) ? enemy.id : enemy.artFrom;
+                var dir = $"{Chars}/{artId}";
                 n += Assign(enemy, ref enemy.portrait, LoadSprite($"{dir}/portrait.png"));
                 n += Assign(enemy, ref enemy.icon, LoadSprite($"{dir}/icon.png"));
                 n += Assign(enemy, ref enemy.sprite, LoadSprite($"{dir}/portrait.png"));
-                if (anims.TryGetValue(enemy.id, out var set)) n += Assign(enemy, ref enemy.animations, set);
+                if (anims.TryGetValue(artId, out var set)) n += Assign(enemy, ref enemy.animations, set);
             }
             foreach (var beat in Find<StoryBeatDefinition>())
             {
@@ -258,6 +259,15 @@ namespace Game.EditorTools.Content
             n += Assign(theme, ref theme.statusStun, LoadSprite($"{Icons}/status_stun.png"));
             n += Assign(theme, ref theme.statusShield, LoadSprite($"{Icons}/status_shield.png"));
             n += Assign(theme, ref theme.statusHeal, LoadSprite($"{Icons}/status_heal.png"));
+            n += Assign(theme, ref theme.statusBurn, LoadSprite($"{Icons}/status_burn.png"));
+            n += Assign(theme, ref theme.statusPoison, LoadSprite($"{Icons}/status_poison.png"));
+            n += Assign(theme, ref theme.statusBleed, LoadSprite($"{Icons}/status_bleed.png"));
+            n += Assign(theme, ref theme.statusRegen, LoadSprite($"{Icons}/status_regen.png"));
+            n += Assign(theme, ref theme.statusTaunt, LoadSprite($"{Icons}/status_taunt.png"));
+            n += Assign(theme, ref theme.statusSilence, LoadSprite($"{Icons}/status_silence.png"));
+            n += Assign(theme, ref theme.statusThorns, LoadSprite($"{Icons}/status_thorns.png"));
+            n += Assign(theme, ref theme.statusDodge, LoadSprite($"{Icons}/status_dodge.png"));
+            n += Assign(theme, ref theme.statusMark, LoadSprite($"{Icons}/status_mark.png"));
             n += Assign(theme, ref theme.statusAttackUp, LoadSprite($"{Icons}/status_attack_up.png"));
             n += Assign(theme, ref theme.statusAttackDown, LoadSprite($"{Icons}/status_attack_down.png"));
             n += Assign(theme, ref theme.statusDefenseUp, LoadSprite($"{Icons}/status_defense_up.png"));

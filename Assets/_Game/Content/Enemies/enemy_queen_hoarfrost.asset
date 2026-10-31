@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_queen_hoarfrost
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_queen_hoarfrost
+  nameKey: enemy_queen_hoarfrost_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 27600
+    - 690
+    - 150
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 80426df24e7f947bea5aee7f2f0f29b3, type: 2}
+  passiveSkill: {fileID: 11400000, guid: defa7c71532524dcdab1f4982cd7dd27, type: 2}
+  sprite: {fileID: 21300000, guid: 359932e7245de49f2b7bb678ac2f1007, type: 3}
+  tint: {r: 0.7921569, g: 0.9411765, b: 0.972549, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 359932e7245de49f2b7bb678ac2f1007, type: 3}
+  icon: {fileID: 21300000, guid: 7c343cd271b30431788119497d18d296, type: 3}
+  animations: {fileID: 11400000, guid: c2ddabc1dc01c4350b79b8ca2a6977a2, type: 2}

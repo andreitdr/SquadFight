@@ -319,6 +319,22 @@ def gen_icons():
     icon('status_heal', ''.join([circle(64, 64, 54, d.lin([(0, '#b8ffb8'), (1, '#2aa04a')]), '#0a3a14', 6), rect(54, 30, 20, 68, 6, '#ffffff', '#0a3a14', 3),
                                  rect(30, 54, 68, 20, 6, '#ffffff', '#0a3a14', 3)]), d)
 
+    # ---- statuses of the 100-hero roster
+    def named(name, color, body):
+        d = D()
+        icon(name, ''.join([circle(64, 64, 54, d.lin([(0, shade(color, 0.4)), (1, shade(color, -0.35))]), ink(color), 6)] + body), d)
+    flame = 'M64 104 C36 100 32 72 48 52 C50 64 58 66 60 58 C58 42 66 30 76 22 C76 40 96 50 94 74 C92 94 80 104 64 104 Z'
+    drop = 'M64 22 C80 50 92 64 92 80 C92 98 78 108 64 108 C50 108 36 98 36 80 C36 64 48 50 64 22 Z'
+    named('status_burn', '#e8641a', [path(flame, '#ffd36a', '#5a1a04', 4)])
+    named('status_poison', '#4aa02a', [path(drop, '#c8ff6a', '#14380a', 4), circle(56, 76, 6, '#14380a'), circle(72, 70, 5, '#14380a')])
+    named('status_bleed', '#b0102a', [path(drop, '#ff5a6a', '#3a0408', 4)])
+    named('status_regen', '#2aa06a', [path('M64 100 C30 90 30 50 64 28 C98 50 98 90 64 100 Z', '#b8ffd0', '#0a3a20', 4), path('M64 96 L64 46', 'none', '#0a3a20', 4)])
+    named('status_taunt', '#6a7a90', [path('M64 24 L94 34 Q96 74 64 98 Q32 74 34 34 Z', '#f2f6ff', '#1e2638', 4), rect(58, 40, 12, 32, 4, '#e0303c'), circle(64, 84, 6, '#e0303c')])
+    named('status_silence', '#7a4ab0', [ellipse(64, 66, 30, 18, '#f2e8ff', '#2a0e4a', 4), path('M30 100 L98 30', 'none', '#e0303c', 9)])
+    named('status_thorns', '#7a5a2a', [poly(star_points(64, 64, 42, 18, 10), '#c8a060', '#2a1808', 4)])
+    named('status_dodge', '#2ab0c0', [path('M30 90 Q60 30 104 38', 'none', '#ffffff', 9), path('M26 64 Q54 22 90 24', 'none', '#ffffff', 6, opacity=0.6)])
+    named('status_mark', '#c02a2a', [circle(64, 64, 34, 'none', '#ffffff', 7), circle(64, 64, 16, 'none', '#ffffff', 7), circle(64, 64, 5, '#ffffff')])
+
     # ---- battle controls & misc
     d = D()
     icon('ui_pause', ''.join([rect(30, 22, 24, 84, 8, '#ffffff', '#1a1a24', 5), rect(74, 22, 24, 84, 8, '#ffffff', '#1a1a24', 5)]), d)

@@ -257,6 +257,7 @@ namespace Game.EditorTools.Content
                         e.basicSkill = SkillRef(row, "basicSkill", true);
                         e.activeSkill = SkillRef(row, "activeSkill", false);
                         e.passiveSkill = SkillRef(row, "passive", false);
+                        e.artFrom = row.Str("art");
                         e.tint = ParseColor(row.Req("tint"), row.Context);
                         if (e.sprite == null) e.sprite = PlaceholderArt.Get(e.isBoss ? "star" : "diamond"); // keep real art
                     });
@@ -276,6 +277,7 @@ namespace Game.EditorTools.Content
                         t.rarity = row.Enum<Rarity>("rarity");
                         t.stats = ParseModifiers(row.Req("stats"), row.Context);
                         t.setId = row.Str("setId");
+                        t.tier = row.Int("tier", 1);
                         if (t.icon == null) t.icon = PlaceholderArt.Get("icon_" + t.slot.ToString().ToLowerInvariant()); // keep real art
                     });
                 }

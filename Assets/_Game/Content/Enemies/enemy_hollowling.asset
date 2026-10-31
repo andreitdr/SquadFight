@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_hollowling
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_hollowling
+  nameKey: enemy_hollowling_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 450
+    - 64
+    - 12
+    - 118
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
+  activeSkill: {fileID: 0}
+  passiveSkill: {fileID: 11400000, guid: b6dcc743993934717a4cca80d92ab191, type: 2}
+  sprite: {fileID: 21300000, guid: ad6e51ca58e5c4944ac48edbbc083096, type: 3}
+  tint: {r: 0.23137255, g: 0.2, b: 0.33333334, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: ad6e51ca58e5c4944ac48edbbc083096, type: 3}
+  icon: {fileID: 21300000, guid: a49a51a94bf3c493d86a3dbbf20963e0, type: 3}
+  animations: {fileID: 11400000, guid: aee3f174d58794061b44fa4fcda521d3, type: 2}

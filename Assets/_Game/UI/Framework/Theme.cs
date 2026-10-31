@@ -69,6 +69,8 @@ namespace Game.UI
         [Tooltip("Index = HeroClass.")]
         public Sprite[] classIcons = new Sprite[0];
         public Sprite statusStun, statusShield, statusHeal;
+        [Tooltip("Statuses of the 100-hero roster (fall back to the stat icons when empty).")]
+        public Sprite statusBurn, statusPoison, statusBleed, statusRegen, statusTaunt, statusSilence, statusThorns, statusDodge, statusMark;
         public Sprite statusAttackUp, statusAttackDown, statusDefenseUp, statusDefenseDown, statusSpeedUp, statusSpeedDown, statusCritUp, statusCritDown;
 
         [Header("Motion")]
@@ -103,9 +105,25 @@ namespace Game.UI
             tab == "home" ? tabHome : tab == "campaign" ? tabCampaign : tab == "heroes" ? tabHeroes : tab == "inventory" ? tabInventory : tab == "settings" ? tabSettings : null;
 
         /// <summary>Status badge for a battle status (stun, or a stat buff/debuff); null when not skinned.</summary>
+        /// <summary>True for the named (non-stat) statuses that help their holder.</summary>
+        public static bool IsBuffStatus(string statusId) => statusId == "regen" || statusId == "taunt" || statusId == "thorns" || statusId == "dodge";
+        public static bool IsNamedStatus(string statusId) => statusId != null && !statusId.Contains("#") && statusId != "stun";
+
         public Sprite StatusIcon(string statusId, StatType stat, bool buff)
         {
             if (statusId == "stun") return statusStun;
+            switch (statusId)
+            {
+                case "burn": return statusBurn ? statusBurn : statusAttackDown;
+                case "poison": return statusPoison ? statusPoison : statusDefenseDown;
+                case "bleed": return statusBleed ? statusBleed : statusAttackDown;
+                case "regen": return statusRegen ? statusRegen : statusHeal;
+                case "taunt": return statusTaunt ? statusTaunt : statusShield;
+                case "silence": return statusSilence ? statusSilence : statusStun;
+                case "thorns": return statusThorns ? statusThorns : statusDefenseUp;
+                case "dodge": return statusDodge ? statusDodge : statusSpeedUp;
+                case "mark": return statusMark ? statusMark : statusDefenseDown;
+            }
             switch (stat)
             {
                 case StatType.Attack: return buff ? statusAttackUp : statusAttackDown;

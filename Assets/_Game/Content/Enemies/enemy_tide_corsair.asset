@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_tide_corsair
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_tide_corsair
+  nameKey: enemy_tide_corsair_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 850
+    - 125
+    - 25
+    - 122
+    - 0.12
+    - 1.6
+  basicSkill: {fileID: 11400000, guid: 917763884cd4c479aab15c58e455044d, type: 2}
+  activeSkill: {fileID: 11400000, guid: c5802ccd9e09d4af3b60ad6255fa632b, type: 2}
+  passiveSkill: {fileID: 0}
+  sprite: {fileID: 21300000, guid: b8cd63c4227b0492f8a8e11b5386f82f, type: 3}
+  tint: {r: 0.18431373, g: 0.24313726, b: 0.27450982, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: b8cd63c4227b0492f8a8e11b5386f82f, type: 3}
+  icon: {fileID: 21300000, guid: 5fde10a9be8b5486e9afec030a57a953, type: 3}
+  animations: {fileID: 11400000, guid: 8d7d32d61274b4d588565b9d780a7b79, type: 2}

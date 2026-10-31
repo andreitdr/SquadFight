@@ -3,6 +3,10 @@
 Offline mobile hero collector (Unity 6000.6.7f1, C#, portrait, Android + iOS). Pick a party of 5, fight through the campaign,
 collect shards to unlock and star-up heroes, equip gear. No server, no accounts, no network permission.
 
+Content: the dark-epic campaign "The Hundred" (8 acts, 40 chapters, 401 main fights, 79 optional side quests) and
+100 heroes (20 per class), each with a unique active skill and passive. Most content rows are generated from the design
+tables in `tools/content/` (see CONTENT_SCHEMA.md, "Generated content").
+
 ## Layout
 | Path | What |
 |------|------|

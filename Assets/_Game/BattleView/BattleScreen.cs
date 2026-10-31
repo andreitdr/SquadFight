@@ -120,6 +120,7 @@ namespace Game.BattleView
             Sprite sprite;
             Color tint;
             SpriteAnimSet anim;
+            var artColor = Color.white;
             if (c.Team == Team.Player)
             {
                 var a = Ctx.Config.GetHeroAsset(c.DefId);
@@ -135,10 +136,11 @@ namespace Game.BattleView
                 sprite = a != null && a.sprite != null ? a.sprite : Th.diamond;
                 tint = a != null ? a.tint : Color.gray;
                 anim = a != null ? a.animations : null;
+                artColor = a != null ? a.ArtColor : Color.white;
             }
             var size = c.IsBoss ? 300f : 190f;
             var anchor = c.IsBoss && c.Team == Team.Enemy ? new Vector2(0.5f, 0.8f) : SlotAnchor(c.Team, Mathf.Max(0, c.Team == Team.Player ? c.Slot : slot), Math.Max(1, count));
-            var view = UnitView.Create(_stage, c, name, sprite, tint, anchor, size, Th, anim);
+            var view = UnitView.Create(_stage, c, name, sprite, tint, anchor, size, Th, anim, artColor);
             view.SetAnimSpeed(_speed);
             _units[c.Index] = view;
             _fx.transform.SetAsLastSibling();
@@ -457,9 +459,10 @@ namespace Game.BattleView
                 case BattleEventType.StatusApplied:
                     if (_units.TryGetValue(e.Target, out var st))
                     {
-                        var buff = e.StatusId != "stun" && e.Value > 0;
+                        var named = Theme.IsNamedStatus(e.StatusId);
+                        var buff = named ? Theme.IsBuffStatus(e.StatusId) : e.StatusId != "stun" && e.Value > 0;
                         st.AddStatus(e.StatusId, buff, Th, Th.StatusIcon(e.StatusId, e.Stat, buff));
-                        var label = e.StatusId == "stun" ? Ctx.T("stunned") : $"{ScreenKit.StatName(Ctx, e.Stat)} {(e.Value > 0 ? "+" : "")}{e.Value * 100:0}%";
+                        var label = e.StatusId == "stun" ? Ctx.T("stunned") : named ? Ctx.T("status_" + e.StatusId) : $"{ScreenKit.StatName(Ctx, e.Stat)} {(e.Value > 0 ? "+" : "")}{e.Value * 100:0}%";
                         _fx.FloatText(st.LocalPos + new Vector2(0, 130), label, buff ? Th.positive : e.StatusId == "stun" ? Th.warning : Th.negative, 32, D(0.8f));
                     }
                     return 0.18f;
@@ -481,6 +484,56 @@ namespace Game.BattleView
                         else if (_units.TryGetValue(e.Actor, out var killer) && killer.Team == Team.Player) Bark(e.Actor, HeroLines.Kill, 0.3f);
                     }
                     return 0.35f;
+                case BattleEventType.DotTick:
+                    if (_units.TryGetValue(e.Target, out var dotted))
+                    {
+                        dotted.SetHp(e.HpAfter, dotted.Shield);
+                        dotted.Flash(D(0.15f));
+                        var dotColor = e.StatusId == "poison" ? Th.positive : e.StatusId == "bleed" ? Th.negative : Th.warning;
+                        _fx.FloatText(dotted.LocalPos + new Vector2(0, 80), $"{Ctx.T("status_" + e.StatusId)} {e.Amount}", dotColor, 40, D(0.7f));
+                    }
+                    return 0.2f;
+                case BattleEventType.HotTick:
+                    if (_units.TryGetValue(e.Target, out var regen))
+                    {
+                        regen.SetHp(e.HpAfter, regen.Shield);
+                        if (e.Amount > 0) _fx.FloatText(regen.LocalPos + new Vector2(0, 80), "+" + e.Amount, Th.positive, 40, D(0.7f));
+                    }
+                    return 0.15f;
+                case BattleEventType.Dodged:
+                    if (_units.TryGetValue(e.Target, out var dodger)) _fx.FloatText(dodger.LocalPos + new Vector2(0, 100), Ctx.T("dodged"), Th.text, 40, D(0.7f));
+                    return 0.2f;
+                case BattleEventType.ThornsReflected:
+                    if (_units.TryGetValue(e.Target, out var pricked))
+                    {
+                        pricked.SetHp(e.HpAfter, pricked.Shield);
+                        _fx.FloatText(pricked.LocalPos + new Vector2(0, 60), $"{Ctx.T("status_thorns")} {e.Amount}", Th.negative, 36, D(0.7f));
+                    }
+                    return 0.15f;
+                case BattleEventType.Revived:
+                    if (_units.TryGetValue(e.Target, out var risen))
+                    {
+                        risen.Revive(e.HpAfter, D(0.4f));
+                        if (RichEffects) _fx.Spark(risen.LocalPos, Th.primary, 300, D(0.5f));
+                        _fx.FloatText(risen.LocalPos + new Vector2(0, 150), Ctx.T("revived"), Th.primary, 48, D(1f));
+                        Ctx.PlaySfx("heal");
+                    }
+                    return 0.6f;
+                case BattleEventType.Cleansed:
+                case BattleEventType.Dispelled:
+                    if (_units.TryGetValue(e.Target, out var purged))
+                        _fx.FloatText(purged.LocalPos + new Vector2(0, 120), Ctx.T(e.Type == BattleEventType.Cleansed ? "cleansed" : "dispelled"), e.Type == BattleEventType.Cleansed ? Th.positive : Th.negative, 34, D(0.7f));
+                    return 0.15f;
+                case BattleEventType.Silenced:
+                    if (_units.TryGetValue(e.Actor, out var mute)) _fx.FloatText(mute.LocalPos + new Vector2(0, 120), Ctx.T("silenced"), Th.warning, 36, D(0.7f));
+                    return 0.3f;
+                case BattleEventType.PassiveTriggered:
+                    if (_units.TryGetValue(e.Actor, out var owner) && _sim.Get(e.Actor)?.Passive != null)
+                        _fx.FloatText(owner.LocalPos + new Vector2(0, 170), Ctx.T(_sim.Get(e.Actor).Passive.NameKey), Th.secondary, 34, D(0.8f));
+                    return 0.25f;
+                case BattleEventType.CooldownChanged:
+                    RefreshHud();
+                    return 0f;
                 case BattleEventType.WaveCleared:
                     return 0.4f;
                 case BattleEventType.BattleEnded:

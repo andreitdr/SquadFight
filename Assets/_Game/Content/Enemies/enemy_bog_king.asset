@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_bog_king
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_bog_king
+  nameKey: enemy_bog_king_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 9000
+    - 225
+    - 77
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 325cbea5907504a63be333d5734e08dd, type: 2}
+  passiveSkill: {fileID: 11400000, guid: c36e864ffba024cfb80fd6c80190bb47, type: 2}
+  sprite: {fileID: 21300000, guid: 5a8740441d0304fa4a122629b53b5221, type: 3}
+  tint: {r: 0.30980393, g: 0.42745098, b: 0.26666668, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 5a8740441d0304fa4a122629b53b5221, type: 3}
+  icon: {fileID: 21300000, guid: 352ac8b97aa0e43db90107bfd4767f1c, type: 3}
+  animations: {fileID: 11400000, guid: afaf9bb83728f4b30a25ae137733217f, type: 2}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd325125045e4f8da0b149013ac99cf, type: 3}
+  m_Name: beat_recruit_rimeblade
+  m_EditorClassIdentifier: Game.Data::Game.Data.StoryBeatDefinition
+  id: beat_recruit_rimeblade
+  speakerKey: hero_rimeblade_name
+  textKey: beat_recruit_rimeblade_text
+  portrait: {fileID: 21300000, guid: 811ad4be9eb264d1797e22f409df3d25, type: 3}

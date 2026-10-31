@@ -1,3 +1,4 @@
+using System.Linq;
 using Game.Core;
 using Game.Data;
 using Game.Save;
@@ -56,7 +57,8 @@ namespace Game.App
             var saveManager = new SaveManager(new SaveStore(new FileSaveStorage(SaveFolderOverride ?? Application.persistentDataPath), clock), clock, logger);
             var db = config.Database;
             var load = saveManager.Load(() => NewGameFactory.Create(db, clock));
-            foreach (var fix in SaveReconciler.Reconcile(load.Data, db)) logger.Warning("[Save] reconcile: " + fix);
+            // New heroes from a content update are routine and not logged; anything else the reconciler fixes is a warning.
+            foreach (var fix in SaveReconciler.Reconcile(load.Data, db).Where(f => !f.StartsWith("added hero "))) logger.Warning("[Save] reconcile: " + fix);
             var session = new GameSession(db, load.Data, saveManager, services.Get<IRandom>(), clock, logger);
             saveManager.Bind(session.ExportForSave);
             if (load.Source == LoadSource.NewGame) saveManager.SaveNow();

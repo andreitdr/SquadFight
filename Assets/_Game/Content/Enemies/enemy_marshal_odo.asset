@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_marshal_odo
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_marshal_odo
+  nameKey: enemy_marshal_odo_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 32400
+    - 810
+    - 165
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: e7f8aafa84add4d5ba9d67f81d558c6f, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 9b2c5d59dbf20475b979c9b4c74d82cc, type: 2}
+  sprite: {fileID: 21300000, guid: 0310f14c0f3e6452d96d994248f7e528, type: 3}
+  tint: {r: 0.105882354, g: 0.105882354, b: 0.11764706, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 0310f14c0f3e6452d96d994248f7e528, type: 3}
+  icon: {fileID: 21300000, guid: 3dd4c5424fceb4f53bb130a44eb120cc, type: 3}
+  animations: {fileID: 11400000, guid: 8968324c8d66f44e5bd2829587537fbf, type: 2}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_forge_construct
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_forge_construct
+  nameKey: enemy_forge_construct_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 4800
+    - 405
+    - 135
+    - 86
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: ed6606bd6d8804e888c5302b682273b0, type: 2}
+  passiveSkill: {fileID: 0}
+  sprite: {fileID: 21300000, guid: cdf517c83eac2425ca7130520004d9a2, type: 3}
+  tint: {r: 0.49019608, g: 0.52156866, b: 0.5921569, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: cdf517c83eac2425ca7130520004d9a2, type: 3}
+  icon: {fileID: 21300000, guid: 7cd1d1a4d6c354cbdb31133883e76cb2, type: 3}
+  animations: {fileID: 11400000, guid: 52b08d5a11a9049c18106033455cf788, type: 2}

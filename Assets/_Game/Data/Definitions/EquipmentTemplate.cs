@@ -12,13 +12,15 @@ namespace Game.Data
         public EquipmentSlot slot;
         public Rarity rarity;
         public List<StatModifierData> stats = new List<StatModifierData>();
+        [Min(0), Tooltip("Gear tier (one per act). 0 = unique item: only dropped by name, never by RandomEquipment.")]
+        public int tier = 1;
         public Sprite icon;
         [Tooltip("Reserved for item sets (v1.1).")]
         public string setId;
 
         public EquipmentTemplateDef ToCore() => new EquipmentTemplateDef
         {
-            Id = id, NameKey = nameKey, Slot = slot, Rarity = rarity, SetId = setId, Stats = stats.Select(s => s.ToCore()).ToList(),
+            Id = id, NameKey = nameKey, Slot = slot, Rarity = rarity, SetId = setId, Tier = tier, Stats = stats.Select(s => s.ToCore()).ToList(),
         };
     }
 }

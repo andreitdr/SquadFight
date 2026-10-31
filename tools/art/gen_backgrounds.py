@@ -224,8 +224,46 @@ SCENES = {'home': home, 'chapter_1': greenwood, 'chapter_2': crypt, 'chapter_3':
 BANNER_Y = {'home': 520, 'chapter_1': 300, 'chapter_2': 360, 'chapter_3': 160}
 
 
+# Chapters 4-40 reuse the three scenes (re-seeded per chapter) with an act colour grade: (scene, hue, strength, saturation, brightness).
+ACT_LOOK = {1: (peak, 0.07, 0.5, 0.35, 0.75), 2: (crypt, 0.52, 0.6, 0.8, 0.9), 3: (greenwood, 0.22, 0.5, 0.6, 0.75), 4: (peak, 0.11, 0.7, 0.7, 1.1),
+            5: (greenwood, 0.55, 0.6, 0.3, 1.15), 6: (peak, 0.04, 0.3, 1.0, 0.9), 7: (crypt, 0.97, 0.7, 0.9, 0.8), 8: (crypt, 0.72, 0.5, 0.35, 0.7)}
+
+
+def grade(img, hue, strength, sat, bright):
+    import numpy as np
+    hsv = np.asarray(img.convert('HSV')).astype(np.float32) / 255.0
+    dh = ((hue - hsv[..., 0] + 0.5) % 1.0) - 0.5
+    hsv[..., 0] = (hsv[..., 0] + dh * strength) % 1.0
+    hsv[..., 1] = np.clip(hsv[..., 1] * sat, 0, 1)
+    hsv[..., 2] = np.clip(hsv[..., 2] * bright, 0, 1)
+    chans = (hsv * 255).astype('uint8')
+    return Image.merge('HSV', [Image.fromarray(chans[..., i]) for i in range(3)]).convert('RGB')
+
+
+def chapter_scenes():
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'content'))
+    from campaign_design import ACTS
+    from campaign_design_late import ACTS_LATE
+    n = 0
+    for act in ACTS + ACTS_LATE:
+        for _ in act['chapters']:
+            n += 1
+            if n > 3:
+                yield 'chapter_%d' % n, act['num']
+
+
 def main():
     os.makedirs(BG_DIR, exist_ok=True)
+    for name, a in chapter_scenes():
+        fn, hue, strength, sat, bright = ACT_LOOK[a]
+        d, body = fn(random.Random(name))
+        img = grade(rasterize(document(''.join(body), W, H, defs=d)).convert('RGB'), hue, strength, sat, bright)
+        img.save(os.path.join(BG_DIR, name + '.jpg'), quality=82, optimize=True, progressive=False)
+        y = BANNER_Y['chapter_%d' % {peak: 3, crypt: 2, greenwood: 1}[fn]]
+        img.crop((0, y, W, y + int(W * 400 / 1024))).resize((1024, 400), Image.LANCZOS).save(os.path.join(BG_DIR, name + '_banner.jpg'), quality=85, optimize=True)
+    if '--chapters-only' in os.sys.argv:
+        return
     for name, fn in SCENES.items():
         d, body = fn(random.Random(name))
         img = rasterize(document(''.join(body), W, H, defs=d)).convert('RGB')

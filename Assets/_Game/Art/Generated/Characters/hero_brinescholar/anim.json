@@ -1,0 +1,175 @@
+{
+ "id": "hero_brinescholar",
+ "frameSize": 288,
+ "viewBox": [
+  -40,
+  -70,
+  480,
+  480
+ ],
+ "feetY": 0.9291666666666667,
+ "heightRatio": 0.6701,
+ "clips": {
+  "idle": {
+   "fps": 8,
+   "loop": true,
+   "frames": [
+    "idle_00.png",
+    "idle_01.png",
+    "idle_02.png",
+    "idle_03.png",
+    "idle_04.png",
+    "idle_05.png",
+    "idle_06.png",
+    "idle_07.png"
+   ]
+  },
+  "attack": {
+   "fps": 14,
+   "loop": false,
+   "frames": [
+    "attack_00.png",
+    "attack_01.png",
+    "attack_02.png",
+    "attack_03.png",
+    "attack_04.png",
+    "attack_05.png"
+   ]
+  },
+  "skill": {
+   "fps": 12,
+   "loop": false,
+   "frames": [
+    "skill_00.png",
+    "skill_01.png",
+    "skill_02.png",
+    "skill_03.png",
+    "skill_04.png",
+    "skill_05.png",
+    "skill_06.png",
+    "skill_07.png"
+   ]
+  },
+  "hit": {
+   "fps": 12,
+   "loop": false,
+   "frames": [
+    "hit_00.png",
+    "hit_01.png",
+    "hit_02.png"
+   ]
+  },
+  "death": {
+   "fps": 10,
+   "loop": false,
+   "frames": [
+    "death_00.png",
+    "death_01.png",
+    "death_02.png",
+    "death_03.png",
+    "death_04.png",
+    "death_05.png"
+   ]
+  },
+  "victory": {
+   "fps": 10,
+   "loop": true,
+   "frames": [
+    "victory_00.png",
+    "victory_01.png",
+    "victory_02.png",
+    "victory_03.png",
+    "victory_04.png",
+    "victory_05.png"
+   ]
+  }
+ },
+ "bbox": [
+  0.2674,
+  0.2917,
+  0.7014,
+  0.9618
+ ],
+ "clipList": [
+  {
+   "name": "idle",
+   "fps": 8,
+   "loop": true,
+   "frames": [
+    "idle_00.png",
+    "idle_01.png",
+    "idle_02.png",
+    "idle_03.png",
+    "idle_04.png",
+    "idle_05.png",
+    "idle_06.png",
+    "idle_07.png"
+   ]
+  },
+  {
+   "name": "attack",
+   "fps": 14,
+   "loop": false,
+   "frames": [
+    "attack_00.png",
+    "attack_01.png",
+    "attack_02.png",
+    "attack_03.png",
+    "attack_04.png",
+    "attack_05.png"
+   ]
+  },
+  {
+   "name": "skill",
+   "fps": 12,
+   "loop": false,
+   "frames": [
+    "skill_00.png",
+    "skill_01.png",
+    "skill_02.png",
+    "skill_03.png",
+    "skill_04.png",
+    "skill_05.png",
+    "skill_06.png",
+    "skill_07.png"
+   ]
+  },
+  {
+   "name": "hit",
+   "fps": 12,
+   "loop": false,
+   "frames": [
+    "hit_00.png",
+    "hit_01.png",
+    "hit_02.png"
+   ]
+  },
+  {
+   "name": "death",
+   "fps": 10,
+   "loop": false,
+   "frames": [
+    "death_00.png",
+    "death_01.png",
+    "death_02.png",
+    "death_03.png",
+    "death_04.png",
+    "death_05.png"
+   ]
+  },
+  {
+   "name": "victory",
+   "fps": 10,
+   "loop": true,
+   "frames": [
+    "victory_00.png",
+    "victory_01.png",
+    "victory_02.png",
+    "victory_03.png",
+    "victory_04.png",
+    "victory_05.png"
+   ]
+  }
+ ],
+ "feetFromBottom": 0.0708
+}

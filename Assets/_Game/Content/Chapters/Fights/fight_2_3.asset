@@ -17,12 +17,12 @@ MonoBehaviour:
   waves:
   - spawns:
     - enemy: {fileID: 11400000, guid: d0a4b87d9c0da4c52af6baf77954d58e, type: 2}
-      statMultiplier: 2.71
+      statMultiplier: 2.68
     - enemy: {fileID: 11400000, guid: d0a4b87d9c0da4c52af6baf77954d58e, type: 2}
-      statMultiplier: 2.71
+      statMultiplier: 2.68
     - enemy: {fileID: 11400000, guid: d0a4b87d9c0da4c52af6baf77954d58e, type: 2}
-      statMultiplier: 2.71
-  recommendedPower: 1560
+      statMultiplier: 2.68
+  recommendedPower: 1870
   dropTable: {fileID: 11400000, guid: 89dfc2d4f29da41f497cea64d8d7be58, type: 2}
   firstClearTable: {fileID: 11400000, guid: 8ca5044df75744c8abc2caada740100b, type: 2}
   starTurnLimit: 0
@@ -31,3 +31,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb4850a406a5b409696edfd1d9338daf, type: 2}
   postBeats: []
   unlockConditions: []
+  isSideQuest: 0

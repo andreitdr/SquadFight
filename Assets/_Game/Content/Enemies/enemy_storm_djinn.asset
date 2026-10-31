@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_storm_djinn
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_storm_djinn
+  nameKey: enemy_storm_djinn_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 24010
+    - 600
+    - 138
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: 6dde25bd911a1452693306c6e8ff4e44, type: 2}
+  passiveSkill: {fileID: 11400000, guid: a89d7d071b48d46cfa5f68abd35a8c67, type: 2}
+  sprite: {fileID: 21300000, guid: 8a15658a95a464381beea2e459a78414, type: 3}
+  tint: {r: 0, g: 0.7058824, b: 0.84705883, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: 8a15658a95a464381beea2e459a78414, type: 3}
+  icon: {fileID: 21300000, guid: 652812ac4a5e34e77b81e3565bf4b6ab, type: 3}
+  animations: {fileID: 11400000, guid: fd3049ac1b5af4c0699f30450360b32d, type: 2}

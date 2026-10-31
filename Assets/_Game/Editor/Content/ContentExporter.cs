@@ -38,13 +38,13 @@ namespace Game.EditorTools.Content
                     .Concat(StatBlock.All.Select(s => N(h.baseStats[s])))
                     .Concat(new[] { h.basicSkill ? h.basicSkill.id : "", h.activeSkill ? h.activeSkill.id : "", h.passiveSkill ? h.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(h.tint), T(h.loreKey) }))));
 
-            File.WriteAllText(Path.Combine(folder, "enemies.csv"), Csv.Write(new[] { "id", "name", "isBoss" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "passive", "tint" }),
+            File.WriteAllText(Path.Combine(folder, "enemies.csv"), Csv.Write(new[] { "id", "name", "isBoss" }.Concat(statCols).Concat(new[] { "basicSkill", "activeSkill", "passive", "tint", "art" }),
                 OrderLike(folder, "enemies.csv", cdb.EnemyAssets).Select(e => new[] { e.id, T(e.nameKey), e.isBoss ? "true" : "false" }
                     .Concat(StatBlock.All.Select(s => N(e.baseStats[s])))
-                    .Concat(new[] { e.basicSkill ? e.basicSkill.id : "", e.activeSkill ? e.activeSkill.id : "", e.passiveSkill ? e.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(e.tint) }))));
+                    .Concat(new[] { e.basicSkill ? e.basicSkill.id : "", e.activeSkill ? e.activeSkill.id : "", e.passiveSkill ? e.passiveSkill.id : "", "#" + ColorUtility.ToHtmlStringRGB(e.tint), e.artFrom ?? "" }))));
 
-            File.WriteAllText(Path.Combine(folder, "equipment.csv"), Csv.Write(new[] { "id", "name", "slot", "rarity", "stats", "setId" },
-                cdb.Source.equipment.Select(e => new[] { e.id, T(e.nameKey), e.slot.ToString(), e.rarity.ToString(),
+            File.WriteAllText(Path.Combine(folder, "equipment.csv"), Csv.Write(new[] { "id", "name", "slot", "rarity", "tier", "stats", "setId" },
+                cdb.Source.equipment.Select(e => new[] { e.id, T(e.nameKey), e.slot.ToString(), e.rarity.ToString(), e.tier.ToString(Inv),
                     string.Join(";", e.stats.Select(m => m.kind == ModifierKind.Percent ? $"{m.stat}={N(m.value * 100)}%" : $"{m.stat}={N(m.value)}")), e.setId ?? "" })));
 
             var rc = cdb.Source.rarityConfig;

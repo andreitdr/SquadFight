@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_elder_thornling
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_elder_thornling
+  nameKey: enemy_elder_thornling_name
+  isBoss: 0
+  baseStats:
+    values:
+    - 2110
+    - 178
+    - 83
+    - 86
+    - 0.05
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 0}
+  passiveSkill: {fileID: 11400000, guid: 87fcab9c8b87346e8af07206b2e959bf, type: 2}
+  sprite: {fileID: 21300000, guid: f2016355cbabc48729ec3a2399596d8d, type: 3}
+  tint: {r: 0.30980393, g: 0.46666667, b: 0.1764706, a: 1}
+  artFrom: enemy_thornling
+  portrait: {fileID: 21300000, guid: f2016355cbabc48729ec3a2399596d8d, type: 3}
+  icon: {fileID: 21300000, guid: 79eb5d762299b40b9b72d0e30914dd12, type: 3}
+  animations: {fileID: 11400000, guid: dead41a0324234058bfb7569fb9f1204, type: 2}

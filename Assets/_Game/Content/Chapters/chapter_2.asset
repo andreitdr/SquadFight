@@ -22,7 +22,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0746a9b090f7c4cbc861f677bf872c73, type: 2}
   - {fileID: 11400000, guid: 4745221f776ac408f8e55a549145f9f8, type: 2}
   - {fileID: 11400000, guid: c0e517f70d6034d7cb2549faed952bdd, type: 2}
+  - {fileID: 11400000, guid: a315cf939da474e7caa21dab0adf0188, type: 2}
+  - {fileID: 11400000, guid: 0eeebe3e8d62d4a458f2e373c67f5844, type: 2}
+  - {fileID: 11400000, guid: f09c2bd65575c475ba23e24b19e7804d, type: 2}
   - {fileID: 11400000, guid: 8891ecd8c57f44ec391b4cfd6e144039, type: 2}
+  sideQuests:
+  - {fileID: 11400000, guid: c9b922678f1364f1993f5643bd6c1f7f, type: 2}
+  - {fileID: 11400000, guid: 6b34d049952954be28b15a723b497428, type: 2}
   unlockConditions: []
   clearReward: {fileID: 11400000, guid: bac7bf5ce3e894d39a35f74d13900956, type: 2}
   background: {fileID: 21300000, guid: 427b951597969472798713020b391233, type: 3}

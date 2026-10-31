@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef048a2f19374261bc319f4702ec0db, type: 3}
+  m_Name: eq_t7_hauberk
+  m_EditorClassIdentifier: Game.Data::Game.Data.EquipmentTemplate
+  id: eq_t7_hauberk
+  nameKey: eq_t7_hauberk_name
+  slot: 2
+  rarity: 0
+  stats:
+  - stat: 0
+    value: 1174
+    kind: 0
+  - stat: 2
+    value: 75
+    kind: 0
+  tier: 7
+  icon: {fileID: 21300000, guid: ab12bd884fe504712a48f330690e407b, type: 3}
+  setId: 

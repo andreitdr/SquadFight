@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62f9c40e1bb0446fa82213b6afeb2c1, type: 3}
+  m_Name: enemy_ashen_knight
+  m_EditorClassIdentifier: Game.Data::Game.Data.EnemyDefinition
+  id: enemy_ashen_knight
+  nameKey: enemy_ashen_knight_name
+  isBoss: 1
+  baseStats:
+    values:
+    - 43200
+    - 1080
+    - 196
+    - 96
+    - 0.1
+    - 1.5
+  basicSkill: {fileID: 11400000, guid: fde1ea82abf4747faa0f9136222c076b, type: 2}
+  activeSkill: {fileID: 11400000, guid: a99ced10fe8b740bea85e982fc02ab77, type: 2}
+  passiveSkill: {fileID: 11400000, guid: 1d936de6535aa4ea085aeb054b1dba47, type: 2}
+  sprite: {fileID: 21300000, guid: a447662a6808049e782be635b8581600, type: 3}
+  tint: {r: 0.36078432, g: 0.33333334, b: 0.32156864, a: 1}
+  artFrom: 
+  portrait: {fileID: 21300000, guid: a447662a6808049e782be635b8581600, type: 3}
+  icon: {fileID: 21300000, guid: f5bfdaa4511cf43efb3b4d43a5f1fa73, type: 3}
+  animations: {fileID: 11400000, guid: b0f5179a9dfbc4a808322c94460fba4d, type: 2}
