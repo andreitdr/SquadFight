@@ -7,6 +7,7 @@ Bones (all rotations in degrees, SVG convention: positive = clockwise on screen)
   armB  (aB) off arm on the viewer's right, wB = wrist rotation of the off-hand item
   legs  (lF, lB) around the hips
 """
+import glob
 import json
 import math
 import os
@@ -408,9 +409,25 @@ def bounds_head(S):
     return B
 
 
-def render_character(S, out_dir, frame_px=360, portrait_px=512, icon_px=256):
+def lighten(C):
+    """Smaller build: every other frame of the slow clips (idle, death, victory) at half the fps; attack/skill/hit untouched."""
+    for name in ('idle', 'death', 'victory'):
+        clip = C.get(name)
+        if not clip or len(clip['frames']) < 4:
+            continue
+        frames = clip['frames'][::2]
+        if not clip['loop'] and frames[-1] is not clip['frames'][-1]:
+            frames.append(clip['frames'][-1])  # keep the final pose (lying down, cheering)
+        clip['frames'] = frames
+        clip['fps'] = max(1, clip['fps'] // 2)
+    return C
+
+
+def render_character(S, out_dir, frame_px=360, portrait_px=512, icon_px=256, card_px=(600, 800), lite=False):
     os.makedirs(os.path.join(out_dir, 'anim'), exist_ok=True)
-    C = clips(S)
+    for old in glob.glob(os.path.join(out_dir, 'anim', '*.png')):
+        os.remove(old)  # frame count may shrink (lite); stale frames would linger
+    C = lighten(clips(S)) if lite else clips(S)
     manifest = {'id': S['id'], 'frameSize': frame_px, 'viewBox': VIEW, 'feetY': (cp.BODY[S.get('body', 'human')]['footy'] - VIEW[1]) / VIEW[3],
                 'heightRatio': 0.0, 'clips': {}}
     for name, clip in C.items():
@@ -430,7 +447,7 @@ def render_character(S, out_dir, frame_px=360, portrait_px=512, icon_px=256):
     manifest['feetFromBottom'] = round(1 - manifest['feetY'], 4)
     with open(os.path.join(out_dir, 'anim.json'), 'w') as f:
         json.dump(manifest, f, indent=1)
-    render_portraits(S, out_dir, portrait_px, icon_px)
+    render_portraits(S, out_dir, portrait_px, icon_px, card_px)
     return manifest
 
 
@@ -452,7 +469,7 @@ def portrait_box(S):
     return (200 - side / 2, top - 12, side, side)
 
 
-def render_portraits(S, out_dir, portrait_px=512, icon_px=256):
+def render_portraits(S, out_dir, portrait_px=512, icon_px=256, card_px=(600, 800)):
     rest = dict(REST)
     rest.update(S.get('rest', {}))
     pose = dict(rest, face=S.get('portrait_face', 'normal'))
@@ -479,4 +496,4 @@ def render_portraits(S, out_dir, portrait_px=512, icon_px=256):
     vb2 = (200 - cw / 2, top - 22, cw, ch)
     d2 = Defs('cb')
     body2 = compose(S, dict(rest, face=S.get('card_face', S.get('portrait_face', 'normal'))), d2, 0)
-    save(rasterize(document(body2, 600, 800, vb2, d2)), os.path.join(out_dir, 'card_bust.png'))
+    save(rasterize(document(body2, card_px[0], card_px[1], vb2, d2)), os.path.join(out_dir, 'card_bust.png'))

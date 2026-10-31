@@ -12,21 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769c6f0149ed24c52944413ee28ea587, type: 3}
   m_Name: hero_yara_anim
   m_EditorClassIdentifier: Game.Data::Game.Data.SpriteAnimSet
-  displayScale: 1.9199526
+  displayScale: 1.9259259
   feetY: 0.0708
   clips:
   - name: idle
-    fps: 8
+    fps: 4
     loop: 1
     frames:
     - {fileID: 21300000, guid: 75efd0a53e03c4d299ed3469cee6e0b8, type: 3}
     - {fileID: 21300000, guid: 9521a073f3f684d3f8a7e5fd67bc0948, type: 3}
     - {fileID: 21300000, guid: f58aa9f1471f949939c79f64c97e3ccb, type: 3}
     - {fileID: 21300000, guid: 71f6321344a1c4dffb52c70451792185, type: 3}
-    - {fileID: 21300000, guid: 6bdd2c6f0b9f54140ab1278ea8524ea0, type: 3}
-    - {fileID: 21300000, guid: a0fa72b8b5ee4403b9b18896d5e41e43, type: 3}
-    - {fileID: 21300000, guid: c9febd06a83174da6aa0b0a23e64ed7d, type: 3}
-    - {fileID: 21300000, guid: ce6253f3ca4f54c1e917de3c08f17512, type: 3}
   - name: attack
     fps: 14
     loop: 0
@@ -57,22 +53,17 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 5c077a321136d4380a6a6a7afb4818d6, type: 3}
     - {fileID: 21300000, guid: de219f43ad1b64bb098e19740d82a8fc, type: 3}
   - name: death
-    fps: 10
+    fps: 5
     loop: 0
     frames:
     - {fileID: 21300000, guid: 7958b6c9ead684dc0b924439f979d861, type: 3}
     - {fileID: 21300000, guid: 0fa34cc1dccf343dda7bf80777efb711, type: 3}
     - {fileID: 21300000, guid: 3d08ada54f2ff4e01b3f78f35314f9c7, type: 3}
     - {fileID: 21300000, guid: a9d044ca896ab4e239e4ea044cc0a6a0, type: 3}
-    - {fileID: 21300000, guid: 222d14f9a3b9e4c2481cd4f7ef9193d9, type: 3}
-    - {fileID: 21300000, guid: a99e0d3a0c18d40c49da19cbeb15d1e0, type: 3}
   - name: victory
-    fps: 10
+    fps: 5
     loop: 1
     frames:
     - {fileID: 21300000, guid: 4a8c986ffbae64629b7625803e273d6d, type: 3}
     - {fileID: 21300000, guid: 9e5857767fd734022a43b270f3ef19ef, type: 3}
     - {fileID: 21300000, guid: bef8b02f970194af7a8b2a48aee8d1d9, type: 3}
-    - {fileID: 21300000, guid: bc39cc608e05e46de95ded6bcee15b51, type: 3}
-    - {fileID: 21300000, guid: e7672789403424526811878598ec37d2, type: 3}
-    - {fileID: 21300000, guid: 8ad390cbac7c74433996414cde81346e, type: 3}

@@ -200,3 +200,10 @@ Owner: the game must work well on iPad without simply blowing the phone UI up.
 
 ## Branch per task (owner request, 2026-10-31)
 - Every new task (owner request, autopilot step, REWORK) starts on its own local branch `task/<slug>` cut from the current branch, and is merged back into that branch with `git merge --no-ff` when done. Conflicts are resolved and the affected tests re-run; a conflict that cannot be resolved safely is aborted and taken to the owner. Merged task branches are deleted with `git branch -d`; they are never pushed. Rules in `CLAUDE.md` ("Branch workflow") and `AUTOPILOT.md` (loop steps 1 and 6, Owner suggestions).
+
+## Smaller build for "The Hundred" art (owner request, 2026-10-31)
+- **APK 185 MB → 101 MB.** Textures were 98.5% of the build (902 MB uncompressed, 735 MB of it animation frames).
+- **Explicit ASTC on Android/iOS** for generated art (`GeneratedArt.Configure`): character frames and backgrounds ASTC 8×8, portraits/cards/icons/items ASTC 6×6, UI keeps the automatic format. ASTC alone only gave 185 → 170 MB: the old format's transparent padding zipped well, ASTC barely zips, so pixel count is what matters.
+- **New characters render lighter** (`gen_characters.py`, `char_rig.lighten`): 240 px frames (336 px bosses) instead of 288/400, every other frame of idle/death/victory at half the fps (attack, skill and hit untouched; 28 instead of 37 frames), 384 px portraits, 192 px icons, 450×600 card busts. The original 24 characters are unchanged.
+- Checked on the project emulator: boot, story, battle sprites and status icons render cleanly. Further savings would need visibly softer sprites or trimmed sprite atlases.
+
