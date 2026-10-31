@@ -39,12 +39,15 @@ namespace Game.Core
             return previous.FightIds.Count == 0 || p.IsFightCleared(previous.FightIds[previous.FightIds.Count - 1]);
         }
 
-        /// <summary>Default: chapter open and previous fight in the chapter cleared (first fight: chapter open). Conditions override the fight rule.</summary>
+        /// <summary>
+        /// Default: chapter open and previous main fight in the chapter cleared (first fight: chapter open). Conditions override the fight rule.
+        /// Side quests: chapter open and their conditions met (they are never part of the chain).
+        /// </summary>
         public static bool IsFightUnlocked(string fightId, GameDatabase db, IProgressView p)
         {
             if (!db.TryGetFight(fightId, out var fight) || string.IsNullOrEmpty(fight.ChapterId)) return false;
             if (!IsChapterUnlocked(fight.ChapterId, db, p)) return false;
-            if (fight.UnlockConditions.Count > 0) return ConditionsMet(fight.UnlockConditions, p);
+            if (fight.IsSideQuest || fight.UnlockConditions.Count > 0) return ConditionsMet(fight.UnlockConditions, p);
             var chapter = db.GetChapter(fight.ChapterId);
             var i = chapter.FightIds.IndexOf(fightId);
             return i <= 0 || p.IsFightCleared(chapter.FightIds[i - 1]);

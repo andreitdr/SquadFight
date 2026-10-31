@@ -38,6 +38,7 @@ namespace Game.Services
         }
 
         private static string S(Dictionary<string, string> r, string k) => r.TryGetValue(k, out var v) ? v : "";
+        private static bool IsSide(Dictionary<string, string> r) => S(r, "kind").Equals("Side", StringComparison.OrdinalIgnoreCase);
         private static int I(Dictionary<string, string> r, string k, int fb = 0) => string.IsNullOrEmpty(S(r, k)) ? fb : int.Parse(S(r, k), Inv);
         private static float F(Dictionary<string, string> r, string k, float fb = 0) => string.IsNullOrEmpty(S(r, k)) ? fb : float.Parse(S(r, k), NumberStyles.Float, Inv);
         private static bool B(Dictionary<string, string> r, string k) => S(r, k).ToLowerInvariant() == "true" || S(r, k) == "1";
@@ -137,6 +138,7 @@ namespace Game.Services
             db.Fights = fights.Select(r => new FightDef
             {
                 Id = S(r, "id"), NameKey = S(r, "id") + "_name", RecommendedPower = I(r, "recommendedPower"), DropTableId = Null(S(r, "dropTable")), FirstClearTableId = Null(S(r, "firstClearTable")),
+                IsSideQuest = S(r, "kind").Equals("Side", StringComparison.OrdinalIgnoreCase),
                 StarTurnLimit = I(r, "starTurnLimit"), BackgroundKey = "background", PreBeatIds = L(S(r, "preBeats")), PostBeatIds = L(S(r, "postBeats")), UnlockConditions = Conditions(S(r, "unlockConditions")),
                 Waves = S(r, "waves").Split('/').Select(w => w.Trim()).Where(w => w.Length > 0).Select(w => new WaveDef
                 {
@@ -150,9 +152,10 @@ namespace Game.Services
             db.Chapters = Read(folder, "chapters").Rows.OrderBy(r => I(r, "order")).Select(r => new ChapterDef
             {
                 Id = S(r, "id"), NameKey = S(r, "id") + "_name", ClearRewardTableId = Null(S(r, "clearReward")), UnlockConditions = Conditions(S(r, "unlockConditions")),
-                FightIds = fights.Where(f => S(f, "chapter") == S(r, "id")).OrderBy(f => I(f, "order")).Select(f => S(f, "id")).ToList(),
+                FightIds = fights.Where(f => S(f, "chapter") == S(r, "id") && !IsSide(f)).OrderBy(f => I(f, "order")).Select(f => S(f, "id")).ToList(),
+                SideQuestIds = fights.Where(f => S(f, "chapter") == S(r, "id") && IsSide(f)).OrderBy(f => I(f, "order")).Select(f => S(f, "id")).ToList(),
             }).ToList();
-            var fightOrder = db.Chapters.SelectMany(c => c.FightIds).ToList();
+            var fightOrder = db.Chapters.SelectMany(c => c.FightIds).Concat(db.Chapters.SelectMany(c => c.SideQuestIds)).ToList();
             db.Fights = db.Fights.OrderBy(f => fightOrder.IndexOf(f.Id)).ToList();
 
             db.Rules = new GameRules

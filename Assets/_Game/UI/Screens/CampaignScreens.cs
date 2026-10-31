@@ -44,7 +44,7 @@ namespace Game.UI
             _chapterInfo.rectTransform.Stretch(190, 95, 190, 5);
             var scroll = UIKit.ScrollView(body, "Fights", out _list, Th.spacing, Th.padding);
             ((RectTransform)scroll.transform).Stretch(0, 180, 0, 0);
-            var story = UIKit.Button(body, "Story", Ctx.T("story_replay"), () => StoryPopup.Show(Ctx, _vm.SeenStory, null, replay: true), UIKit.ButtonStyle.Ghost, Th.fontBody);
+            var story = UIKit.Button(body, "Story", Ctx.T("story_replay"), OpenJournal, UIKit.ButtonStyle.Ghost, Th.fontBody);
             ((RectTransform)story.transform).Anchor(new Vector2(1, 0), new Vector2(300, 100), new Vector2(-Th.padding, Th.padding), new Vector2(1, 0));
             Refresh();
         }
@@ -66,37 +66,53 @@ namespace Game.UI
             _next.interactable = _vm.SelectedChapter < chapters.Count - 1;
             UIKit.Clear(_list);
             foreach (var node in _vm.Fights) BuildNode(node);
+            var side = _vm.SideQuests;
+            if (ch.Unlocked && side.Count > 0)
+            {
+                UIKit.Text(_list, "SideTitle", Ctx.T("side_quests"), Th.fontLarge, Th.primary, TextAlignmentOptions.Left, bold: true).Size(preferredHeight: 80);
+                UIKit.Text(_list, "SideHint", Ctx.T("side_quests_hint"), Th.fontSmall, Th.textDim, TextAlignmentOptions.Left).Size(preferredHeight: 60);
+                foreach (var node in side) BuildNode(node);
+            }
+        }
+
+        private void OpenJournal()
+        {
+            var beats = _vm.ChapterJournal;
+            if (beats.Count == 0) Ctx.Manager.Toast(Ctx.T("journal_empty"));
+            else StoryPopup.Show(Ctx, beats, null, replay: true);
         }
 
         private void BuildNode(FightNode n)
         {
             var row = UIKit.Rect("Node", _list);
             row.Size(preferredHeight: 190);
-            var color = n.State == FightState.Locked ? Th.locked : n.IsNext ? Th.secondary : Th.panelAlt;
+            var color = n.State == FightState.Locked ? Th.locked : n.IsNext ? Th.secondary : n.IsSideQuest ? Th.panel : Th.panelAlt;
             var card = UIKit.Image(row, "Card", color, Th.rounded, raycast: true);
             var left = n.Index % 2 == 0;
-            card.rectTransform.anchorMin = new Vector2(left ? 0 : 0.18f, 0);
-            card.rectTransform.anchorMax = new Vector2(left ? 0.82f : 1, 1);
+            // Side quests sit off the zig-zag main path, full width.
+            card.rectTransform.anchorMin = new Vector2(n.IsSideQuest ? 0 : left ? 0 : 0.18f, 0);
+            card.rectTransform.anchorMax = new Vector2(n.IsSideQuest ? 1 : left ? 0.82f : 1, 1);
             card.rectTransform.offsetMin = card.rectTransform.offsetMax = Vector2.zero;
             var button = card.gameObject.AddComponent<Button>();
             button.targetGraphic = card;
             card.gameObject.AddComponent<ButtonFeedback>();
             var id = n.Def.Id;
+            var lockedHint = n.IsSideQuest && n.UnlockedBy != null ? Ctx.F("side_quest_locked", Ctx.T(n.UnlockedBy.NameKey)) : Ctx.T(n.IsSideQuest ? "side_quest_locked_other" : "error_fightlocked");
             button.onClick.AddListener(() =>
             {
-                if (n.State == FightState.Locked) Ctx.Manager.Toast(Ctx.T("error_fightlocked"));
+                if (n.State == FightState.Locked) Ctx.Manager.Toast(lockedHint);
                 else Ctx.Manager.Push<FightPreviewScreen>(id);
             });
             if (n.IsNext) TutorialAnchor.Mark(button, "campaign_next");
 
-            var num = UIKit.Image(card.transform, "Number", n.IsBoss ? Th.negative : Th.background, n.IsBoss ? Th.star : Th.circle);
+            var num = UIKit.Image(card.transform, "Number", n.IsBoss ? Th.negative : n.IsSideQuest ? Th.primary : Th.background, n.IsBoss ? Th.star : Th.circle);
             num.rectTransform.Anchor(new Vector2(0, 0.5f), new Vector2(130, 130), new Vector2(28, 0), new Vector2(0, 0.5f));
-            var numText = UIKit.Text(num.transform, "N", (n.Index + 1).ToString(), Th.fontLarge, Th.text, TextAlignmentOptions.Center, bold: true);
+            var numText = UIKit.Text(num.transform, "N", n.IsSideQuest ? "?" : (n.Index + 1).ToString(), Th.fontLarge, n.IsSideQuest ? Th.background : Th.text, TextAlignmentOptions.Center, bold: true);
             numText.rectTransform.Stretch();
             var name = UIKit.Text(card.transform, "Name", Ctx.T(n.Def.NameKey) + (n.IsBoss ? "  · " + Ctx.T("boss") : ""), Th.fontLarge, Th.text, TextAlignmentOptions.Left, bold: true);
             name.rectTransform.Stretch(180, 20, 24, 90);
             name.textWrappingMode = TextWrappingModes.NoWrap;
-            var info = UIKit.Text(card.transform, "Info", n.State == FightState.Locked ? Ctx.T("locked") : n.Def.RecommendedPower > 0 ? Ctx.F("recommended_power", n.Def.RecommendedPower) : "", Th.fontSmall, Th.textDim);
+            var info = UIKit.Text(card.transform, "Info", n.State == FightState.Locked ? (n.IsSideQuest ? lockedHint : Ctx.T("locked")) : n.Def.RecommendedPower > 0 ? Ctx.F("recommended_power", n.Def.RecommendedPower) : "", Th.fontSmall, Th.textDim);
             info.rectTransform.Stretch(180, 100, 220, 20);
             if (n.State != FightState.Locked && _vm.StarsEnabled)
             {
@@ -139,6 +155,8 @@ namespace Game.UI
         {
             if (this == null) return;
             UIKit.Clear(_content);
+            if (_vm.Fight.IsSideQuest)
+                UIKit.Text(_content, "SideQuest", Ctx.T("side_quest") + " · " + Ctx.T("side_quests_hint"), Th.fontSmall, Th.primary, TextAlignmentOptions.Left).Size(preferredHeight: 90);
             Section("enemies");
             foreach (var wave in _vm.Enemies.GroupBy(e => e.Wave))
             {

@@ -11,6 +11,8 @@ namespace Game.Data
         public string nameKey;
         [Tooltip("Ordered fights. Reorder here to change campaign order.")]
         public List<FightDefinition> fights = new List<FightDefinition>();
+        [Tooltip("Optional side quests (lore, better items). They never count toward chapter completion.")]
+        public List<FightDefinition> sideQuests = new List<FightDefinition>();
         [Tooltip("Leave empty for the default rule (previous chapter cleared).")]
         public List<UnlockConditionData> unlockConditions = new List<UnlockConditionData>();
         public DropTable clearReward;
@@ -23,6 +25,7 @@ namespace Game.Data
         public ChapterDef ToCore() => new ChapterDef
         {
             Id = id, NameKey = nameKey, FightIds = fights.Select(f => f ? f.id : null).ToList(),
+            SideQuestIds = sideQuests.Select(f => f ? f.id : null).ToList(),
             UnlockConditions = unlockConditions.Where(u => u != null).Select(u => u.ToCore()).ToList(),
             ClearRewardTableId = clearReward ? clearReward.id : null,
         };

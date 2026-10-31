@@ -60,15 +60,14 @@ namespace Game.Core
             Fill(_fights, Fights, f => f.Id, "fight");
             _fightOrder.Clear();
             var order = 0;
-            foreach (var c in Chapters)
-                foreach (var fid in c.FightIds)
-                {
-                    if (fid != null && _fights.TryGetValue(fid, out var f))
-                    {
-                        if (string.IsNullOrEmpty(f.ChapterId)) f.ChapterId = c.Id;
-                        if (!_fightOrder.ContainsKey(fid)) _fightOrder[fid] = order++;
-                    }
-                }
+            void Place(ChapterDef c, string fid)
+            {
+                if (fid == null || !_fights.TryGetValue(fid, out var f)) return;
+                if (string.IsNullOrEmpty(f.ChapterId)) f.ChapterId = c.Id;
+                if (!_fightOrder.ContainsKey(fid)) _fightOrder[fid] = order++;
+            }
+            foreach (var c in Chapters) foreach (var fid in c.FightIds) Place(c, fid);
+            foreach (var c in Chapters) foreach (var fid in c.SideQuestIds) Place(c, fid); // side quests after the whole main path
 
             _rarities.Clear();
             foreach (var r in Rarities)
@@ -123,7 +122,7 @@ namespace Game.Core
             return false;
         }
 
-        /// <summary>Position of the fight in the whole campaign (chapter order, then fight order); -1 if not in a chapter.</summary>
+        /// <summary>Position of the fight in the whole campaign (chapter order, then fight order; side quests after all main fights); -1 if not in a chapter.</summary>
         public int GetFightOrder(string fightId)
         {
             EnsureIndexed();

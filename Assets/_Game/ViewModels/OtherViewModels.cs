@@ -106,6 +106,9 @@ namespace Game.ViewModels
         public int Stars;
         public bool IsBoss;
         public bool IsNext;
+        public bool IsSideQuest => Def.IsSideQuest;
+        /// <summary>Locked side quests: the main fight that opens them (null if another rule applies).</summary>
+        public FightDef UnlockedBy;
     }
 
     public sealed class ChapterView
@@ -150,26 +153,42 @@ namespace Game.ViewModels
             Raise();
         }
 
-        public IReadOnlyList<FightNode> Fights
+        public IReadOnlyList<FightNode> Fights => Nodes(_s.Db.Chapters[SelectedChapter].FightIds);
+
+        /// <summary>Optional side quests of the selected chapter (not part of the progress counter).</summary>
+        public IReadOnlyList<FightNode> SideQuests => Nodes(_s.Db.Chapters[SelectedChapter].SideQuestIds);
+
+        private List<FightNode> Nodes(List<string> ids)
+        {
+            var next = _s.Progress.GetNextRecommendedFight();
+            return ids.Select((id, i) =>
+            {
+                var f = _s.Db.GetFight(id);
+                var p = _s.Progress.GetFightProgress(id);
+                var opener = f.UnlockConditions.FirstOrDefault(u => u.Type == UnlockConditionType.ClearFight && !_s.Progress.IsFightCleared(u.RefId));
+                return new FightNode
+                {
+                    Def = f, Index = i, State = p.Cleared ? FightState.Cleared : p.Unlocked ? FightState.Unlocked : FightState.Locked, Stars = p.BestStars,
+                    IsBoss = f.Waves.Any(w => w.Spawns.Any(sp => _s.Db.TryGetEnemy(sp.EnemyId, out var e) && e.IsBoss)), IsNext = id == next && !p.Cleared,
+                    UnlockedBy = opener != null && _s.Db.TryGetFight(opener.RefId, out var o) ? o : null,
+                };
+            }).ToList();
+        }
+
+        public IReadOnlyList<StoryBeatDef> SeenStory => _s.Progress.GetSeenBeats();
+
+        /// <summary>Lore journal of the selected chapter: every seen beat of its main fights and side quests, in fight order.</summary>
+        public IReadOnlyList<StoryBeatDef> ChapterJournal
         {
             get
             {
                 var chapter = _s.Db.Chapters[SelectedChapter];
-                var next = _s.Progress.GetNextRecommendedFight();
-                return chapter.FightIds.Select((id, i) =>
-                {
-                    var f = _s.Db.GetFight(id);
-                    var p = _s.Progress.GetFightProgress(id);
-                    return new FightNode
-                    {
-                        Def = f, Index = i, State = p.Cleared ? FightState.Cleared : p.Unlocked ? FightState.Unlocked : FightState.Locked, Stars = p.BestStars,
-                        IsBoss = f.Waves.Any(w => w.Spawns.Any(sp => _s.Db.TryGetEnemy(sp.EnemyId, out var e) && e.IsBoss)), IsNext = id == next && !p.Cleared,
-                    };
-                }).ToList();
+                var seen = new HashSet<string>(_s.Progress.GetSeenBeats().Select(b => b.Id));
+                return chapter.FightIds.Concat(chapter.SideQuestIds).Select(_s.Db.GetFight)
+                    .SelectMany(f => f.PreBeatIds.Concat(f.PostBeatIds)).Distinct().Where(seen.Contains)
+                    .Select(id => _s.Db.TryGetStoryBeat(id, out var b) ? b : null).Where(b => b != null).ToList();
             }
         }
-
-        public IReadOnlyList<StoryBeatDef> SeenStory => _s.Progress.GetSeenBeats();
     }
 
     public sealed class EnemyView

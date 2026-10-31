@@ -93,7 +93,13 @@ next_fight,Next: {0},Următoarea: {0}
 stars_total,Stars {0}/{1},Stele {0}/{1}
 replay,Replay,Rejoacă
 retry,Retry,Încearcă din nou
-story_replay,Story,Poveste
+story_replay,Journal,Jurnal
+journal_empty,No lore found in this chapter yet.,Încă nu ai descoperit nicio poveste în acest capitol.
+side_quests,Side quests,Misiuni secundare
+side_quests_hint,"Optional: lore and better items. They do not count toward chapter completion.","Opționale: povești și obiecte mai bune. Nu contează pentru terminarea capitolului."
+side_quest_locked,Clear {0} to open this side quest.,Termină {0} pentru a deschide această misiune.
+side_quest_locked_other,This side quest is not open yet.,Această misiune secundară nu este încă deschisă.
+side_quest,Side quest,Misiune secundară
 recommended_power,Recommended power {0},Putere recomandată {0}
 start_fight,Fight!,Luptă!
 enemies,Enemies,Inamici

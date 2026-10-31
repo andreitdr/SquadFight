@@ -339,6 +339,7 @@ namespace Game.EditorTools.Content
 
                 // Fights
                 var fightsByChapter = new Dictionary<string, List<(int order, FightDefinition fight)>>();
+                var sideQuests = new HashSet<FightDefinition>();
                 foreach (var row in src["fights"].Rows)
                 {
                     var id = row.Req("id");
@@ -346,6 +347,12 @@ namespace Game.EditorTools.Content
                     var ch = row.Req("chapter");
                     if (!fightsByChapter.TryGetValue(ch, out var list)) fightsByChapter[ch] = list = new List<(int, FightDefinition)>();
                     list.Add((row.Int("order"), f));
+                    var kind = row.Str("kind");
+                    if (kind.Length == 0) kind = "Main";
+                    if (!kind.Equals("Main", StringComparison.OrdinalIgnoreCase) && !kind.Equals("Side", StringComparison.OrdinalIgnoreCase))
+                        throw new FormatException($"{row.Context}: kind must be Main or Side");
+                    var isSide = kind.Equals("Side", StringComparison.OrdinalIgnoreCase);
+                    if (isSide) sideQuests.Add(f);
                     Track(f, "fight " + id, () =>
                     {
                         f.nameKey = Text(id + "_name", row.Req("name"));
@@ -358,6 +365,7 @@ namespace Game.EditorTools.Content
                         f.preBeats = ParseList(row.Str("preBeats")).Select(b => BeatRef(row, b)).ToList();
                         f.postBeats = ParseList(row.Str("postBeats")).Select(b => BeatRef(row, b)).ToList();
                         f.unlockConditions = ParseConditions(row.Str("unlockConditions"), row.Context);
+                        f.isSideQuest = isSide;
                     });
                 }
 
@@ -373,7 +381,9 @@ namespace Game.EditorTools.Content
                         c.nameKey = Text(id + "_name", row.Req("name"));
                         c.clearReward = TableRef(row, "clearReward");
                         c.unlockConditions = ParseConditions(row.Str("unlockConditions"), row.Context);
-                        c.fights = fightsByChapter.TryGetValue(id, out var fl) ? fl.OrderBy(x => x.order).Select(x => x.fight).ToList() : new List<FightDefinition>();
+                        var ordered = fightsByChapter.TryGetValue(id, out var fl) ? fl.OrderBy(x => x.order).Select(x => x.fight).ToList() : new List<FightDefinition>();
+                        c.fights = ordered.Where(x => !sideQuests.Contains(x)).ToList();
+                        c.sideQuests = ordered.Where(sideQuests.Contains).ToList();
                     });
                 }
                 foreach (var ch in fightsByChapter.Keys)

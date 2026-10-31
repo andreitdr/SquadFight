@@ -201,15 +201,20 @@ namespace Game.Core
         public string BackgroundKey;
         public List<string> PreBeatIds = new List<string>();
         public List<string> PostBeatIds = new List<string>();
-        /// <summary>Overrides the default "previous fight cleared" rule when non-empty.</summary>
+        /// <summary>Overrides the default "previous fight cleared" rule when non-empty. Side quests open only through these.</summary>
         public List<UnlockConditionDef> UnlockConditions = new List<UnlockConditionDef>();
+        /// <summary>Optional zone for lore and better items; never counts toward chapter completion, stars or the unlock chain.</summary>
+        public bool IsSideQuest;
     }
 
     public sealed class ChapterDef
     {
         public string Id;
         public string NameKey;
+        /// <summary>Main fights in order: these alone decide completion, stars and what unlocks next.</summary>
         public List<string> FightIds = new List<string>();
+        /// <summary>Optional side quests of the chapter (see <see cref="FightDef.IsSideQuest"/>).</summary>
+        public List<string> SideQuestIds = new List<string>();
         /// <summary>Overrides the default "previous chapter cleared" rule when non-empty.</summary>
         public List<UnlockConditionDef> UnlockConditions = new List<UnlockConditionDef>();
         public string ClearRewardTableId;

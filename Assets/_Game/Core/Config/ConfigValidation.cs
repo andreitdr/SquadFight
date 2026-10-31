@@ -343,11 +343,16 @@ namespace Game.Core
                 var ctx = "chapter:" + c.Id;
                 if (string.IsNullOrEmpty(c.NameKey)) r.Error(ctx, "missing name key");
                 if (c.FightIds.Count == 0) r.Error(ctx, "chapter has no fights");
-                foreach (var fid in c.FightIds)
+                foreach (var fid in c.FightIds.Concat(c.SideQuestIds))
                 {
-                    if (!db.TryGetFight(fid, out _)) r.Error(ctx, $"unknown fight '{fid}'");
+                    if (!db.TryGetFight(fid, out var f)) r.Error(ctx, $"unknown fight '{fid}'");
                     else if (fightOwners.TryGetValue(fid, out var other)) r.Error(ctx, $"fight '{fid}' is also listed in chapter '{other}' (fight ids must be unique globally)");
-                    else fightOwners[fid] = c.Id;
+                    else
+                    {
+                        fightOwners[fid] = c.Id;
+                        var listedAsSide = c.SideQuestIds.Contains(fid);
+                        if (f.IsSideQuest != listedAsSide) r.Error(ctx, listedAsSide ? $"'{fid}' is listed as a side quest but is a main fight" : $"side quest '{fid}' is in the main fight path");
+                    }
                 }
                 if (!string.IsNullOrEmpty(c.ClearRewardTableId) && !db.TryGetDropTable(c.ClearRewardTableId, out _))
                     r.Error(ctx, $"unknown chapter reward table '{c.ClearRewardTableId}'");
@@ -379,6 +384,8 @@ namespace Game.Core
                 foreach (var b in f.PreBeatIds.Concat(f.PostBeatIds))
                     if (!db.TryGetStoryBeat(b, out _)) r.Error(ctx, $"unknown story beat '{b}'");
                 ValidateConditions(f.UnlockConditions, ctx, db, r);
+                if (f.IsSideQuest && f.UnlockConditions.Count == 0) r.Error(ctx, "side quest needs an unlock condition (e.g. ClearFight of a main fight)");
+                if (f.IsSideQuest && f.UnlockConditions.Any(u => u != null && u.Type == UnlockConditionType.ClearFight && u.RefId == f.Id)) r.Error(ctx, "side quest unlocks on itself");
             }
             foreach (var b in db.StoryBeats.Where(b => b != null))
                 if (string.IsNullOrEmpty(b.TextKey)) r.Error("storybeat:" + b.Id, "missing text key");

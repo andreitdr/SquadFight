@@ -20,6 +20,8 @@ namespace Game.Data
         public List<StoryBeatDefinition> postBeats = new List<StoryBeatDefinition>();
         [Tooltip("Leave empty for the default rule (previous fight cleared).")]
         public List<UnlockConditionData> unlockConditions = new List<UnlockConditionData>();
+        [Tooltip("Optional zone (lore, better items). List it under the chapter's side quests; it never counts toward completion.")]
+        public bool isSideQuest;
 
         public FightDef ToCore() => new FightDef
         {
@@ -29,6 +31,7 @@ namespace Game.Data
             PreBeatIds = preBeats.Select(b => b ? b.id : null).ToList(),
             PostBeatIds = postBeats.Select(b => b ? b.id : null).ToList(),
             UnlockConditions = unlockConditions.Where(u => u != null).Select(u => u.ToCore()).ToList(),
+            IsSideQuest = isSideQuest,
             Waves = waves.Where(w => w != null).Select(w => new WaveDef
             {
                 Spawns = w.spawns.Where(s => s != null).Select(s => new EnemySpawnDef { EnemyId = s.enemy ? s.enemy.id : null, StatMultiplier = s.statMultiplier }).ToList(),

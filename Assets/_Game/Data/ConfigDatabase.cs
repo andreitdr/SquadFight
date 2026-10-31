@@ -64,7 +64,7 @@ namespace Game.Data
                 if (!ch) { Null("GameConfig.chapters"); continue; }
                 AddUnique(ChapterAssets, ch);
                 AddUnique(DropTableAssets, ch.clearReward);
-                foreach (var f in ch.fights)
+                foreach (var f in ch.fights.Concat(ch.sideQuests))
                 {
                     if (!f) { Null($"chapter {ch.id} fights"); continue; }
                     AddUnique(FightAssets, f);
