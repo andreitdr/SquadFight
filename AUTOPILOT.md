@@ -16,11 +16,12 @@ Each step file ends with a "Prompt for Claude" block and some phrases like "give
 
 ## The loop (repeat until step 18 is done)
 1. Read `PROGRESS.md`; pick the first step not marked DONE whose dependencies are DONE (overview §6). Steps 11 may run any time after 04.
+   Create a task branch for it from the current branch: `git switch -c task/step-NN-<slug>` (see "Branch workflow" in `CLAUDE.md`).
 2. Read `plan/00-overview.md` and that step's file.
 3. Implement everything in the step: code, assembly definitions, assets, tests.
 4. Verify (see "Verification").
 5. Fill the step file's "Decisions made" section and append to `DECISIONS.md`.
-6. Commit: `step-NN: <title>` (git init on first run; Git LFS rules from step 01).
+6. Commit on the task branch: `step-NN: <title>` (git init on first run; Git LFS rules from step 01). Then merge it back into the branch it came from with `git merge --no-ff`; resolve conflicts (re-run affected tests), or `git merge --abort` and ask the owner if they cannot be resolved safely. Delete the merged branch with `git branch -d`.
 7. Update `PROGRESS.md` (status, test results, open questions, anything deferred). Then start the next step immediately. **Do not stop to report between steps and do not ask permission to continue.**
 
 ## Do it yourself — automate everything automatable
@@ -45,7 +46,7 @@ How to ask:
 - The defaults already written in the step files (D1…D9) are approved. Use them.
 
 ## Owner suggestions
-If the owner sends a change request at any time: update `plan/00-overview.md` (assumptions table) and the affected step files first, note it in `DECISIONS.md`, redo any already-DONE step it affects (mark it REWORK in `PROGRESS.md`), then continue the loop.
+If the owner sends a change request at any time: create a task branch for it from the current branch (`git switch -c task/<slug>`), update `plan/00-overview.md` (assumptions table) and the affected step files first, note it in `DECISIONS.md`, redo any already-DONE step it affects (mark it REWORK in `PROGRESS.md`), merge the task branch back as in loop step 6, then continue the loop.
 
 ## Verification (a step is DONE only when all are true)
 - Everything compiles with zero errors and no new warnings.
