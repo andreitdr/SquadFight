@@ -176,7 +176,7 @@ Current step: — (all 18 steps done; owner change "The Hundred" done 2026-10-31
 ### iPad / tablet layout (owner request, 2026-10-31)
 - [x] Tablets get a canvas sized from the physical screen (`AdaptiveCanvasScaler`, ~1.2× phone size in inches instead of ~2×); phones unchanged.
 - [x] Centred content columns (`MaxSizeFitter`), Heroes/Bag grids add columns, Home centred, battle formation kept compact on a full-screen scene; tab bar grouped in the middle.
-- [x] `TabletLayoutTests` (EditMode); iPad 11" screenshots in the screen tour and battle test (`*_ipad.png`; needs a run with graphics — `-nographics` captures are blank).
+- [x] `TabletLayoutTests` (EditMode); iPad 11" screenshots in the screen tour and battle test (`*_ipad.png`; needs a run with graphics — under `-nographics` captures are skipped).
 - [ ] Check on a real iPad / iPad Simulator.
 
 ### Gold shop and skill levels (owner request, 2026-10-31; steps 03/05/06/12 reworked)

@@ -125,9 +125,9 @@ namespace Game.Tests.PlayMode
             foreach (var (name, w, h) in new[] { ("16x9", 1080, 1920), ("19_5x9", 1080, 2340), ("4x3", 1536, 2048) })
             {
                 scroll.verticalNormalizedPosition = 1;
-                Assert.IsTrue(UICapture.Capture(_root.transform, w, h, $"TestResults/screens/gallery_{name}.png"));
+                Assert.AreEqual(UICapture.CanRender, UICapture.Capture(_root.transform, w, h, $"TestResults/screens/gallery_{name}.png"));
                 scroll.verticalNormalizedPosition = 0.45f;
-                Assert.IsTrue(UICapture.Capture(_root.transform, w, h, $"TestResults/screens/gallery_{name}_mid.png"));
+                Assert.AreEqual(UICapture.CanRender, UICapture.Capture(_root.transform, w, h, $"TestResults/screens/gallery_{name}_mid.png"));
             }
             Assert.AreEqual("5.6M", CurrencyChip.FormatAmount(5_600_000));
             Assert.AreEqual("12M", CurrencyChip.FormatAmount(12_000_000));
